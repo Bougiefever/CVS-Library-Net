@@ -15,7 +15,7 @@ namespace PServerClient.Requests
       public override bool ResponseExpected { get { return false; } }
       public override string GetRequestString()
       {
-         string request = "Repository " + _root.RepositoryPath + " \n";
+         string request = "Repository " + _root.CvsRootPath + " \n";
          return request;
       }
    }

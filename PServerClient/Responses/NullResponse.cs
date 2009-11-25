@@ -20,6 +20,7 @@ namespace PServerClient.Responses
 
       public void ProcessResponse()
       {
+         Success = true;
          // do nothing
       }
    }

@@ -33,7 +33,7 @@ namespace PServerClient.Requests
       {
          StringBuilder sb = new StringBuilder();
          sb.Append("BEGIN VERIFICATION REQUEST\n");
-         sb.Append(_root.RepositoryPath);
+         sb.Append(_root.CvsRootPath);
          sb.Append("\n");
          sb.Append(_root.Username);
          sb.Append("\n");

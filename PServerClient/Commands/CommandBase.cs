@@ -23,9 +23,9 @@ namespace PServerClient.Commands
          set { _connection = value; }
       }
 
-      protected CommandBase(CvsRoot cvsRoot)
+      protected CommandBase(CvsRoot root)
       {
-         CvsRoot = cvsRoot;
+         CvsRoot = root;
          Requests = new List<IRequest>();
          log4net.Config.BasicConfigurator.Configure();
          _logger = log4net.LogManager.GetLogger(typeof(CommandBase));

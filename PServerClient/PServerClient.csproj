@@ -52,13 +52,17 @@
     <Compile Include="AuthStatus.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\LogCommand.cs" />
     <Compile Include="Commands\ValidRequestListCommand.cs" />
     <Compile Include="Commands\VerifyAuthCommand.cs" />
     <Compile Include="Connection\IConnection.cs" />
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
+    <Compile Include="LocalFileSystem\Entry.cs" />
     <Compile Include="CvsRoot.cs" />
+    <Compile Include="LocalFileSystem\FileFolder.cs" />
+    <Compile Include="LocalFileSystem\IFileFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PServerHelper.cs" />
     <Compile Include="Requests\AddRequest.cs" />

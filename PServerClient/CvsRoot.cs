@@ -4,10 +4,10 @@ namespace PServerClient
 {
    public class CvsRoot
    {
-      public CvsRoot(string host, int port, string username, string password, string repositoryPath, string localPath)
+      public CvsRoot(string host, int port, string username, string password, string cvsroot, string localPath)
       {
-         RepositoryPath = repositoryPath;
-         Root = string.Format(":pserver:{0}@{1}:{2}", username, host, repositoryPath);
+         CvsRootPath = cvsroot;
+         Root = string.Format(":pserver:{0}@{1}:{2}", username, host, cvsroot);
          Host = host;
          Port = port;
          Username = username;
@@ -18,7 +18,7 @@ namespace PServerClient
       public string LocalPath { get; set; }
       public string Username { get; set; }
       public string Root { get; set; }
-      public string RepositoryPath { get; set; }
+      public string CvsRootPath { get; set; }
       public string Host { get; set; }
       public int Port { get; set; }
       public string Password { get; set; }

@@ -20,7 +20,7 @@ namespace PServerClient.Tests
          Assert.AreEqual("username", root.Username);
          Assert.AreNotEqual("password", root.Password);
          Assert.AreEqual("A:yZZ30 e", root.Password);
-         Assert.AreEqual("/f1/f2/f3", root.RepositoryPath);
+         Assert.AreEqual("/f1/f2/f3", root.CvsRootPath);
          Assert.AreEqual(@"c:\f1\f2\f3", root.LocalPath);
          Assert.AreEqual(1, root.Port);
       }

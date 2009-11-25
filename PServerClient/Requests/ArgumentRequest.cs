@@ -7,11 +7,16 @@ namespace PServerClient.Requests
 {
    public class ArgumentRequest : RequestBase
    {
+      private string _arg;
+      public ArgumentRequest(string arg)
+      {
+         _arg = arg;
+      }
       public override bool ResponseExpected { get { return false; } }
-      public string ArgumentText { get; set; }
+      
       public override string GetRequestString()
       {
-         string request = "Argument " + ArgumentText + " \n";
+         string request = "Argument " + _arg + " \n";
          return request;
       }
    }
