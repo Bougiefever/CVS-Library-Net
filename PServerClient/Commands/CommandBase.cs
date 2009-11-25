@@ -10,6 +10,7 @@ namespace PServerClient.Commands
    public abstract class CommandBase : ICommand
    {
       private IConnection _connection;
+      private log4net.ILog _logger;
 
       public IConnection Connection
       {
@@ -26,6 +27,8 @@ namespace PServerClient.Commands
       {
          CvsRoot = cvsRoot;
          Requests = new List<IRequest>();
+         log4net.Config.BasicConfigurator.Configure();
+         _logger = log4net.LogManager.GetLogger(typeof(CommandBase));
       }
 
       public IList<IRequest> Requests { get; set; }
@@ -49,9 +52,19 @@ namespace PServerClient.Commands
       {
          get
          {
-            IAuthRequest authRequest = Requests.OfType<IAuthRequest>().First();
-            IAuthResponse response = (IAuthResponse)authRequest.Response;
-            return response.Status;
+            AuthStatus status;
+            try
+            {
+               IAuthRequest authRequest = Requests.OfType<IAuthRequest>().First();
+               IAuthResponse response = (IAuthResponse)authRequest.Response;
+               status = response.Status;
+            }
+            catch (Exception e)
+            {
+               _logger.Error("Not Authenticated", e);
+               status = AuthStatus.Error;
+            }
+            return status;
          }
       }
 
@@ -73,10 +86,11 @@ namespace PServerClient.Commands
                }
             }
          }
-         //catch (Exception e)
-         //{
-
-         //}
+         catch (Exception e)
+         {
+            _logger.Error("Command Execute exception", e);
+            throw;
+         }
          finally
          {
             Connection.Close();

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,18 +61,55 @@
     <Compile Include="CvsRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PServerHelper.cs" />
+    <Compile Include="Requests\AddRequest.cs" />
+    <Compile Include="Requests\AdminRequest.cs" />
+    <Compile Include="Requests\ArgumentRequest.cs" />
+    <Compile Include="Requests\ArgumentxRequest.cs" />
     <Compile Include="Requests\AuthRequest.cs" />
+    <Compile Include="Requests\CheckInRequest.cs" />
+    <Compile Include="Requests\CheckOutRequest.cs" />
+    <Compile Include="Requests\DiffRequest.cs" />
+    <Compile Include="Requests\DirectoryRequest.cs" />
+    <Compile Include="Requests\EntryRequest.cs" />
+    <Compile Include="Requests\ExportRequest.cs" />
+    <Compile Include="Requests\HistoryRequest.cs" />
+    <Compile Include="Requests\ImportRequest.cs" />
     <Compile Include="Requests\IRequest.cs" />
+    <Compile Include="Requests\LogRequest.cs" />
+    <Compile Include="Requests\LostRequest.cs" />
+    <Compile Include="Requests\ModifiedRequest.cs" />
+    <Compile Include="Requests\RDiffRequest.cs" />
+    <Compile Include="Requests\ReleaseRequest.cs" />
+    <Compile Include="Requests\RemoveRequest.cs" />
+    <Compile Include="Requests\Repository.cs" />
     <Compile Include="Requests\RequestBase.cs" />
+    <Compile Include="Requests\RootRequest.cs" />
+    <Compile Include="Requests\RTagRequest.cs" />
+    <Compile Include="Requests\StatusRequest.cs" />
+    <Compile Include="Requests\TagRequest.cs" />
+    <Compile Include="Requests\UnchangedRequest.cs" />
+    <Compile Include="Requests\UpdateRequest.cs" />
+    <Compile Include="Requests\UseUnchangedRequest.cs" />
     <Compile Include="Requests\ValidRequestsRequest.cs" />
     <Compile Include="Requests\VerifyAuthRequest.cs" />
     <Compile Include="Responses\AuthResponse.cs" />
+    <Compile Include="Responses\CheckedInResponse.cs" />
+    <Compile Include="Responses\ChecksumResponse.cs" />
+    <Compile Include="Responses\ClearStickyResponse.cs" />
+    <Compile Include="Responses\CopyFileResponse.cs" />
     <Compile Include="Responses\IResponse.cs" />
+    <Compile Include="Responses\MergedResponse.cs" />
     <Compile Include="Responses\MessageResponse.cs" />
+    <Compile Include="Responses\NewEntryResponse.cs" />
     <Compile Include="Responses\NullResponse.cs" />
     <Compile Include="Responses\OkResponse.cs" />
+    <Compile Include="Responses\PatchedResponse.cs" />
+    <Compile Include="Responses\RemovedResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="Responses\ResponseFactory.cs" />
+    <Compile Include="Responses\SetStaticDirectoryResponse.cs" />
+    <Compile Include="Responses\SetStickyResponse.cs" />
+    <Compile Include="Responses\UpdatedResponse.cs" />
     <Compile Include="Responses\ValidRequestResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

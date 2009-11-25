@@ -56,7 +56,7 @@ namespace PServerClient.Responses
       public ResponseType GetResponseType(string rawResponse)
       {
          ResponseType responseType = ResponseType.UnknownResponse;
-         for (int i=0; i<CreateResponseHelper.ResponsePatterns.Length - 1; i++)
+         for (int i=0; i<CreateResponseHelper.ResponsePatterns.Length; i++)
          {
             Match m = Regex.Match(rawResponse, CreateResponseHelper.ResponsePatterns[i]);
             if (m.Success)

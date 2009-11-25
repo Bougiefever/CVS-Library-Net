@@ -8,7 +8,7 @@ namespace PServerClient.Requests
 {
    public abstract class RequestBase : IRequest
    {
-      protected string CvsResponse;
+      public string CvsResponse { get; set; }
       public abstract bool ResponseExpected { get; }
       public abstract string GetRequestString();
       public virtual void SetCvsResponse(string response)
@@ -20,6 +20,7 @@ namespace PServerClient.Requests
       {
          ResponseFactory factory = new ResponseFactory();
          Response = factory.CreateResponse(CvsResponse);
+         Response.ResponseString = CvsResponse;
       }
 
       public IResponse Response { get; set; }

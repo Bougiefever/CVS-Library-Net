@@ -39,5 +39,14 @@ namespace PServerClient.Tests
          response = _factory.CreateResponse(test);
          Assert.IsNotInstanceOf<MessageResponse>(response);
       }
+
+      [Test]
+      public void CreateValidRequestsResponse()
+      {
+          string test = "Valid-requests my-first-request my-second-request\n";
+          IResponse response = _factory.CreateResponse(test);
+          Assert.IsInstanceOf<ValidRequestResponse>(response);
+
+      }
    }
 }

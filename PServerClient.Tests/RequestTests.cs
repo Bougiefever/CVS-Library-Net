@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using PServerClient.Requests;
+using PServerClient.Responses;
 
 namespace PServerClient.Tests
 {
@@ -7,6 +8,17 @@ namespace PServerClient.Tests
    public class RequestTests
    {
       private CvsRoot _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3", @"c:\f1\f2\f3");
+
+      [Test]
+      public void RequestBaseGetResponseTest()
+      {
+         AuthRequest request = new AuthRequest(_root);
+         string test = "I LOVE YOU\n";
+         request.SetCvsResponse(test);
+         request.GetResponse();
+         string result = request.Response.ResponseString;
+         Assert.AreEqual(test, result);
+      }
 
       [Test]
       public void VerifyAuthRequestTest()

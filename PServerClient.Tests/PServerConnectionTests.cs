@@ -41,16 +41,18 @@ namespace PServerClient.Tests
          byte[] writeBuffer = new byte[3] {97, 98, 99};
          byte[] readBuffer = new byte[3] {100, 101, 102};
 
-         Expect.Call(request.Response).Return(response);
+         //Expect.Call(request.Response).Return(response);
          Expect.Call(request.ResponseExpected).Return(true);
-         Expect.Call(response.ResponseString).PropertyBehavior();
+         //Expect.Call(response.ResponseString).PropertyBehavior();
          Expect.Call(request.GetRequestString()).Return("abc");
+         Expect.Call(() => request.SetCvsResponse("def"));
          Expect.Call(() => client.Write(writeBuffer));
          Expect.Call(client.Read()).Return(readBuffer);
+         Expect.Call(request.CvsResponse).Return("def");
 
          mocks.ReplayAll();
          connection.DoRequest(request);
-         string result = request.Response.ResponseString;
+         string result = request.CvsResponse;
          mocks.VerifyAll();
          Assert.AreEqual("def", result);
       }
