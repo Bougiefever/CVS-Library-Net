@@ -15,13 +15,13 @@ namespace PServerClient.Tests
       {
          CvsRoot root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3", @"c:\f1\f2\f3");
          string expected = ":pserver:username@host-name:/f1/f2/f3";
-         Assert.AreEqual(expected, root.Root);
+         Assert.AreEqual(expected, root.CvsConnectionString);
          Assert.AreEqual("host-name", root.Host);
          Assert.AreEqual("username", root.Username);
          Assert.AreNotEqual("password", root.Password);
          Assert.AreEqual("A:yZZ30 e", root.Password);
          Assert.AreEqual("/f1/f2/f3", root.CvsRootPath);
-         Assert.AreEqual(@"c:\f1\f2\f3", root.LocalPath);
+         Assert.AreEqual(@"c:\f1\f2\f3", root.WorkingDirectory);
          Assert.AreEqual(1, root.Port);
       }
    }

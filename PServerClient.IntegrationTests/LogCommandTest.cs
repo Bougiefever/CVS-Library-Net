@@ -13,8 +13,8 @@ namespace PServerClient.Tests.Commands
       private CvsRoot _root;
       private string _username;
       private string _password;
-      private string _repositoryPath;
-      private string _localPath;
+      private string _cvsRootPath;
+      private string _workingDirectory;
       private string _host;
       private int _port;
       [SetUp]
@@ -24,10 +24,10 @@ namespace PServerClient.Tests.Commands
          _port = 2401;
          _username = "abougie";
          _password = "AB4%o=wSobI4w";
-         _repositoryPath = "/usr/local/cvsroot/sandbox";
-         _localPath = "";
+         _cvsRootPath = "/usr/local/cvsroot/sandbox";
+         _workingDirectory = "";
 
-         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _repositoryPath, _localPath);
+         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath, _workingDirectory);
       }
 
       [Test][Ignore]

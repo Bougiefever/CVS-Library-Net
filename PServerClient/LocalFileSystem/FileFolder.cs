@@ -17,7 +17,7 @@ namespace PServerClient.LocalFileSystem
       {
          _cvsRoot = cvsRoot;
          RelativePath = relativePath;
-         string path = Path.Combine(_cvsRoot.LocalPath, relativePath);
+         string path = Path.Combine(_cvsRoot.WorkingDirectory, relativePath);
          _localFolder = new DirectoryInfo(path);
       }
 

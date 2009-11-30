@@ -79,10 +79,13 @@ namespace PServerClient.Commands
                if (success)
                {
                   Connection.DoRequest(request);
-                  request.GetResponse();
-                  IResponse response = request.Response;
-                  response.ProcessResponse();
-                  success = response.Success;
+                  if (request.ResponseExpected)
+                  {
+                     request.GetResponse();
+                     IResponse response = request.Response;
+                     response.ProcessResponse();
+                     success = response.Success;
+                  }
                }
             }
          }

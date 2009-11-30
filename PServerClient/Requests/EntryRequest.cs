@@ -12,7 +12,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         string request = "Entry " + EntryLine + " \n";
+         string request = "Entry " + EntryLine + lineEnd;
          return request;
       }
    }

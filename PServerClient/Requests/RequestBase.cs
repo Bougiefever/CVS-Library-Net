@@ -8,6 +8,7 @@ namespace PServerClient.Requests
 {
    public abstract class RequestBase : IRequest
    {
+      internal string lineEnd = "\n";
       public string CvsResponse { get; set; }
       public abstract bool ResponseExpected { get; }
       public abstract string GetRequestString();

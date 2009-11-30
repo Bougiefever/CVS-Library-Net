@@ -5,13 +5,16 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class CheckOutRequest : RequestBase
+   public class ExpandModulesRequest : RequestBase
    {
-      public override bool ResponseExpected { get { return true; } }
+      public override bool ResponseExpected
+      {
+         get { return true; }
+      }
 
       public override string GetRequestString()
       {
-         return "co" + lineEnd;
+         return "expand-modules" + lineEnd;
       }
    }
 }

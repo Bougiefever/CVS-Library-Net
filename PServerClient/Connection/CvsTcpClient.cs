@@ -1,4 +1,8 @@
 ﻿using System.Net.Sockets;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace PServerClient.Connection
 {
@@ -32,6 +36,8 @@ namespace PServerClient.Connection
       {
          _tcpClient.Close();
       }
+
+      public bool DataAvailable { get { return _stream.DataAvailable; } }
    }
 
 }

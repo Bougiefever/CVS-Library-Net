@@ -9,14 +9,17 @@ namespace PServerClient.Requests
    {
       private CvsRoot _root;
 
+
       public DirectoryRequest(CvsRoot root)
       {
          _root = root;
       }
-      public override bool ResponseExpected { get { return true; } }
+
+      public override bool ResponseExpected { get { return false; } }
       public override string GetRequestString()
       {
-         string request = "Directory " + _root.LocalPath + " \n";
+         //string checkoutDir = _root.CvsRootPath + "/" + _root.Module;
+         string request = "Directory ." + lineEnd + _root.CvsRootPath + lineEnd;
          return request;
       }
    }

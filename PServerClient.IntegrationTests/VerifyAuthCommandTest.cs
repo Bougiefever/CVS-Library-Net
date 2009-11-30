@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Requests;
+using PServerClient.Connection;
 
 namespace PServerClient.IntegrationTests
 {
@@ -13,8 +15,8 @@ namespace PServerClient.IntegrationTests
       private CvsRoot _root;
       private string _username;
       private string _password;
-      private string _repositoryPath;
-      private string _localPath;
+      private string _cvsRootPath;
+      private string _workingDirectory;
       private string _host;
       private int _port;
       [SetUp]
@@ -24,10 +26,10 @@ namespace PServerClient.IntegrationTests
          _port = 2401;
          _username = "abougie";
          _password = "AB4%o=wSobI4w";
-         _repositoryPath = "/usr/local/cvsroot/sandbox";
-         _localPath = "";
+         _cvsRootPath = "/usr/local/cvsroot/sandbox";
+         _workingDirectory = "";
 
-         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _repositoryPath, _localPath);
+         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath, _workingDirectory);
       }
 
       [Test]
@@ -54,6 +56,22 @@ namespace PServerClient.IntegrationTests
          VerifyAuthCommand command = new VerifyAuthCommand(_root);
          command.Execute();
          Assert.AreEqual(AuthStatus.NotAuthenticated, command.AuthStatus);
+      }
+
+      [Test]
+      public void AuthTest()
+      {
+         AuthRequest auth = new AuthRequest(_root);
+         string s = auth.GetRequestString();
+         Console.WriteLine(s);
+         CvsTcpClient client = new CvsTcpClient();
+         client.Connect(_root.Host, _root.Port);
+         byte[] bbb = PServerHelper.EncodeString(s);
+         client.Write(bbb);
+         byte[] rrr = client.Read();
+         string s2 = PServerHelper.DecodeString(rrr);
+         Console.WriteLine(s2);
+         client.Close();
       }
    }
 }

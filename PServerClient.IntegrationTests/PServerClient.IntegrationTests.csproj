@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckoutCommandTest.cs" />
     <Compile Include="LogCommandTest.cs" />
     <Compile Include="ValidRequestsListCommandTest.cs" />
     <Compile Include="VerifyAuthCommandTest.cs" />

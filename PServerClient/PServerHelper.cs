@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PServerClient.Connection;
 
 namespace PServerClient
 {
@@ -79,6 +80,47 @@ namespace PServerClient
          byte[] decode = new byte[newEnd];
          Array.Copy(buffer, decode,newEnd);
          return Encoding.ASCII.GetString(decode);
+      }
+
+      public static IList<string> ReadLines(ICvsTcpClient tcpClient)
+      {
+         byte[] buffer = tcpClient.Read();
+         IList<string> lines = new List<string>();
+         bool atEnd = false;
+         int i = 0;
+         StringBuilder sb = new StringBuilder();
+         byte last = 0;
+         while (!atEnd)
+         {
+            try
+            {
+               byte c = buffer[i++];
+               if (c == 10)
+               {
+                  lines.Add(sb.ToString());
+                  sb = new StringBuilder();
+               }
+               if (c != 0 && c != 10)
+                  sb.Append((char)c);
+               if (last == 10 && c == 0)
+                  atEnd = true;
+               if (i == buffer.Length)
+                  if (!tcpClient.DataAvailable)
+                     atEnd = true;
+                  else
+                  {
+                     buffer = tcpClient.Read();
+                     i = 0;
+                  }
+               last = c;
+            }
+            catch (Exception e)
+            {
+               Console.WriteLine(e.ToString());
+               atEnd = true;
+            }
+         }
+         return lines;
       }
    }
 }

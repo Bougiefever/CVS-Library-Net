@@ -10,7 +10,7 @@ namespace PServerClient.Requests
       public override bool ResponseExpected { get { return true; } }
       public override string GetRequestString()
       {
-         return "admin \n";
+         return "admin" + lineEnd;
       }
    }
 }

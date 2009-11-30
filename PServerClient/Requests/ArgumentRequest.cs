@@ -16,7 +16,7 @@ namespace PServerClient.Requests
       
       public override string GetRequestString()
       {
-         string request = "Argument " + _arg + " \n";
+         string request = "Argument " + _arg + lineEnd;
          return request;
       }
    }

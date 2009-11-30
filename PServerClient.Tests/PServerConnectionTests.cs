@@ -4,6 +4,7 @@ using PServerClient.Requests;
 using PServerClient.Responses;
 using Rhino.Mocks;
 using Is=Rhino.Mocks.Constraints.Is;
+using System.Collections.Generic;
 
 namespace PServerClient.Tests
 {
@@ -69,6 +70,52 @@ namespace PServerClient.Tests
          mocks.ReplayAll();
          connection.Close();
          mocks.VerifyAll();
+      }
+
+      [Test]
+      public void ReadLinesReadBufferOnceTest()
+      {
+         MockRepository mocks = new MockRepository();
+         ICvsTcpClient client = mocks.DynamicMock<ICvsTcpClient>();
+         //PServerConnection connection = new PServerConnection();
+         //connection.TcpClient = client;
+
+         byte[] readResult = new byte[] { 97, 98, 99, 10, 100, 101, 102, 10, 0, 0, 0 };
+         Expect.Call(client.Read()).Return(readResult);
+         //Expect.Call(client.DataAvailable).Return(false);
+
+         mocks.ReplayAll();
+         IList<string> results = PServerHelper.ReadLines(client);
+         mocks.VerifyAll();
+         Assert.AreEqual(2, results.Count);
+         Assert.AreEqual("abc", results[0]);
+         Assert.AreEqual("def", results[1]);
+      }
+
+      [Test]
+      public void ReadLinesReadBufferTwiceTest()
+      {
+         MockRepository mocks = new MockRepository();
+         ICvsTcpClient client = mocks.DynamicMock<ICvsTcpClient>();
+         //PServerConnection connection = new PServerConnection();
+         //connection.TcpClient = client;
+
+         byte[] readResult1 = new byte[] { 97, 98, 99, 10, 100, 101, 102, 10 };
+         byte[] readResult2 = new byte[] { 103, 104, 105, 10, 106, 107, 108, 10, 0 };
+         using (mocks.Ordered())
+         {
+            Expect.Call(client.Read()).Return(readResult1);
+            Expect.Call(client.DataAvailable).Return(true);
+            Expect.Call(client.Read()).Return(readResult2);
+            Expect.Call(client.DataAvailable).Return(false);
+         }
+
+         mocks.ReplayAll();
+         IList<string> results = PServerHelper.ReadLines(client);
+         mocks.VerifyAll();
+         Assert.AreEqual(4, results.Count);
+         Assert.AreEqual("abc", results[0]);
+         Assert.AreEqual("def", results[1]);
       }
 
       //[Test]

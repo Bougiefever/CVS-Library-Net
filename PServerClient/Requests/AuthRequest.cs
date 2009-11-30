@@ -21,14 +21,16 @@ namespace PServerClient.Requests
       public override string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
-         sb.Append("BEGIN AUTH REQUEST\n");
+         sb.Append("BEGIN AUTH REQUEST");
+         sb.Append(lineEnd);
          sb.Append(_root.CvsRootPath);
-         sb.Append("\n");
+         sb.Append(lineEnd);
          sb.Append(_root.Username);
-         sb.Append("\n");
+         sb.Append(lineEnd);
          sb.Append(_root.Password);
-         sb.Append("\n");
-         sb.Append("END AUTH REQUEST\n");
+         sb.Append(lineEnd);
+         sb.Append("END AUTH REQUEST");
+         sb.Append(lineEnd);
          return sb.ToString();
       }
    }

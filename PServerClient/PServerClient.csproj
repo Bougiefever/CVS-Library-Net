@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthStatus.cs" />
+    <Compile Include="Commands\CheckoutCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\LogCommand.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
+    <Compile Include="CreateResponseHelper.cs" />
     <Compile Include="LocalFileSystem\Entry.cs" />
     <Compile Include="CvsRoot.cs" />
     <Compile Include="LocalFileSystem\FileFolder.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Requests\DiffRequest.cs" />
     <Compile Include="Requests\DirectoryRequest.cs" />
     <Compile Include="Requests\EntryRequest.cs" />
+    <Compile Include="Requests\ExpandModulesRequest.cs" />
     <Compile Include="Requests\ExportRequest.cs" />
     <Compile Include="Requests\HistoryRequest.cs" />
     <Compile Include="Requests\ImportRequest.cs" />
