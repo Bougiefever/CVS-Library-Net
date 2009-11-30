@@ -1,5 +1,5 @@
 ﻿using PServerClient.Responses;
-
+using System.Collections.Generic;
 
 namespace PServerClient.Requests
 {
@@ -10,11 +10,11 @@ namespace PServerClient.Requests
    public interface IRequest 
    {
       bool ResponseExpected { get; }
-      string CvsResponse { get; set; }
+      string RawCvsResponse { get; set; }
       string GetRequestString();
-      void SetCvsResponse(string response);
-      void GetResponse();
-      IResponse Response { get; set; }
+      //void SetCvsResponse(string response);
+      void ProcessResponses(IList<string> cvsResponseLines);
+      IList<IResponse> Responses { get; set; }
    }
 
    /// <summary>

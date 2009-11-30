@@ -5,11 +5,13 @@ using System.Text;
 
 namespace PServerClient.Responses
 {
-   public class NewEntryResponse : ResponseBase
+   public class ErrorResponse : ResponseBase
    {
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();
       }
+
+ 
    }
 }

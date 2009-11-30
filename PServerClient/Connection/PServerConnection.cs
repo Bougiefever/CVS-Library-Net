@@ -34,19 +34,20 @@ namespace PServerClient.Connection
          Console.WriteLine("Request :" + requestString);
          byte[] sendBuffer = PServerHelper.EncodeString(requestString);
          TcpClient.Write(sendBuffer);
-         string cvsResponse = string.Empty;
          if (request.ResponseExpected)
          {
             //byte[] receiveBuffer = TcpClient.Read();
             //cvsResponse = PServerHelper.DecodeString(receiveBuffer);
             IList<string> lines = PServerHelper.ReadLines(TcpClient);
+            string cvsResponse = string.Empty;
             foreach (string l in lines)
             {
                cvsResponse += l + "\n";
                Console.WriteLine(l);
             }
+            request.ProcessResponses(lines);
+            request.RawCvsResponse = cvsResponse;
          }
-         request.SetCvsResponse(cvsResponse);
       }
 
       public void Close()

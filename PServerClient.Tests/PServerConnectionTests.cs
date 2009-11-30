@@ -46,14 +46,14 @@ namespace PServerClient.Tests
          Expect.Call(request.ResponseExpected).Return(true);
          //Expect.Call(response.ResponseString).PropertyBehavior();
          Expect.Call(request.GetRequestString()).Return("abc");
-         Expect.Call(() => request.SetCvsResponse("def"));
+         //Expect.Call(() => request.SetCvsResponse("def"));
          Expect.Call(() => client.Write(writeBuffer));
          Expect.Call(client.Read()).Return(readBuffer);
-         Expect.Call(request.CvsResponse).Return("def");
+         Expect.Call(request.RawCvsResponse).Return("def");
 
          mocks.ReplayAll();
          connection.DoRequest(request);
-         string result = request.CvsResponse;
+         string result = request.RawCvsResponse;
          mocks.VerifyAll();
          Assert.AreEqual("def", result);
       }

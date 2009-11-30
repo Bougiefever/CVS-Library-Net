@@ -104,6 +104,7 @@
     <Compile Include="Responses\ChecksumResponse.cs" />
     <Compile Include="Responses\ClearStickyResponse.cs" />
     <Compile Include="Responses\CopyFileResponse.cs" />
+    <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\IResponse.cs" />
     <Compile Include="Responses\MergedResponse.cs" />
     <Compile Include="Responses\MessageResponse.cs" />

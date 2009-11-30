@@ -1,36 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
-   public class AuthResponse : IAuthResponse
+   public class AuthResponse : IAuthResponse, IResponse
    {
       private const string AuthenticatePass = "I LOVE YOU";
       private const string AuthenticateFail = "I HATE YOU";
 
-      public string ResponseString { get; set; }
-      public bool Success { get; set; }
+      //public string ResponseString { get; set; }
+      //public bool Success { get; set; }
 
-      public string ErrorMessage { get; set; }
+      //public string ErrorMessage { get; set; }
       public AuthStatus Status { get; private set; }
-      public void ProcessResponse()
+      public void ProcessResponse(IList<string> lines)
       {
-         if (ResponseString.Contains("I LOVE YOU"))
+         if (lines[0].Contains("I LOVE YOU"))
          {
             Status = AuthStatus.Authenticated;
-            Success = true;
          }
-         if (ResponseString.Contains("I HATE YOU"))
+         if (lines[0].Contains("I HATE YOU"))
          {
             Status = AuthStatus.NotAuthenticated;
-            ErrorMessage = ResponseString;
-            Success = false;
          }
-         if (!ResponseString.Contains("I LOVE YOU") && !ResponseString.Contains("I HATE YOU"))
+         if (!lines[0].Contains("I LOVE YOU") && !lines[0].Contains("I HATE YOU"))
          {
             Status = AuthStatus.Error;
-            ErrorMessage = ResponseString;
-            Success = false;
          }
       }
+
+      public int LineCount { get { return 1; } }
+      public IList<string> ResponseLines { get; set; }
    }
 }

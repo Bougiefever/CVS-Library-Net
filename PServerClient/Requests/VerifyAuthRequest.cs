@@ -16,7 +16,7 @@ namespace PServerClient.Requests
       public VerifyAuthRequest(CvsRoot root)
       {
          _root = root;
-         Response = new AuthResponse();
+         Responses.Add(new AuthResponse());
       }
 
       public override bool ResponseExpected

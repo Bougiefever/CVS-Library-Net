@@ -7,9 +7,11 @@ namespace PServerClient.Responses
 {
    public class MergedResponse : ResponseBase
    {
-      public override void ProcessResponse()
+      public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();
       }
+
+      public override int LineCount { get { return 5; } }
    }
 }

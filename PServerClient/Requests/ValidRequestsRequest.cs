@@ -10,7 +10,7 @@ namespace PServerClient.Requests
    {
       public ValidRequestsRequest()
       {
-         Response = new ValidRequestResponse();
+         Responses.Add(new ValidRequestResponse());
       }
 
       public override bool ResponseExpected

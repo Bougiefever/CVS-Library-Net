@@ -7,10 +7,10 @@ namespace PServerClient.Responses
 {
    public class OkResponse : ResponseBase
    {
-      public override void ProcessResponse()
+      public override void ProcessResponse(IList<string> lines)
       {
-         Success = true;
-         ResponseString = "";
+         //Success = true;
+         //ResponseString = "";
       }
    }
 }

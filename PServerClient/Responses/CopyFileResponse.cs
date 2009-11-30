@@ -7,9 +7,10 @@ namespace PServerClient.Responses
 {
    public class CopyFileResponse : ResponseBase
    {
-      public override void ProcessResponse()
+      public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();
       }
+
    }
 }

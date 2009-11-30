@@ -5,18 +5,14 @@ using System.Text;
 
 namespace PServerClient.Responses
 {
-   public class ValidRequestResponse : IResponse
+   public class ValidRequestResponse : ResponseBase
    {
-      public string ResponseString { get; set; }
-      public bool Success { get; set; }
-
-      public string ErrorMessage { get; set; }
       public IList<string> ValidRequests { get; private set; }
-      public void ProcessResponse()
+      public override void ProcessResponse(IList<string> lines)
       {
-         string[] requests = ResponseString.Split((char) 32);
+         string[] requests = lines[0].Split((char) 32);
          ValidRequests = requests.ToList();
-         Success = true;
+         //Success = true;
       }
    }
 }

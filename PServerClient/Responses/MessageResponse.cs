@@ -7,7 +7,7 @@ namespace PServerClient.Responses
 {
    public class MessageResponse : ResponseBase
    {
-      public override void ProcessResponse()
+      public override void ProcessResponse(IList<string> lines)
       {
          
       }
