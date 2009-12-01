@@ -5,11 +5,12 @@ using System.Text;
 
 namespace PServerClient.Responses
 {
-   public class OkResponse : ResponseBase
+   public class ModuleExpansionResponse : ResponseBase
    {
+      public string ModuleName { get; set; }
       public override void ProcessResponse(IList<string> lines)
       {
-         // do nothing
+         ModuleName = lines[0];
       }
    }
 }

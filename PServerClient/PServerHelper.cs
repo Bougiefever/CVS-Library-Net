@@ -105,13 +105,9 @@ namespace PServerClient
                if (last == 10 && c == 0)
                   atEnd = true;
                if (i == buffer.Length)
-                  if (!tcpClient.DataAvailable)
-                     atEnd = true;
-                  else
-                  {
                      buffer = tcpClient.Read();
                      i = 0;
-                  }
+
                last = c;
             }
             catch (Exception e)
@@ -121,6 +117,30 @@ namespace PServerClient
             }
          }
          return lines;
+      }
+
+      public static string ReadToSpace(byte[] buffer)
+      {
+         bool isSpace = false;
+         int i = 0;
+         StringBuilder sb = new StringBuilder();
+         while (!isSpace)
+         {
+            try
+            {
+               byte c = buffer[i++];
+               if (c != 32)
+                  sb.Append((char)c);
+               else
+                  isSpace = true;
+            }
+            catch (Exception e)
+            {
+               Console.WriteLine(e.ToString());
+               isSpace = true;
+            }
+         }
+         return sb.ToString();
       }
    }
 }

@@ -6,7 +6,7 @@ using PServerClient.LocalFileSystem;
 
 namespace PServerClient.Responses
 {
-   public class PatchedResponse : ResponseBase, IFileResponse
+   public class CreatedResponse : ResponseBase, IFileResponse
    {
       public long FileLength { get; set; }
       public Entry CvsEntry { get; set; }

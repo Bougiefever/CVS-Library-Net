@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PServerClient.LocalFileSystem;
 
 namespace PServerClient.Responses
 {
-   public class MergedResponse : ResponseBase
+   public class MergedResponse : ResponseBase, IFileResponse
    {
+      public long FileLength { get; set; }
+      public Entry CvsEntry { get; set; }
+      public override int LineCount { get { return 5; } }
+
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();
       }
 
-      public override int LineCount { get { return 5; } }
    }
 }

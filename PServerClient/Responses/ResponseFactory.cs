@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using PServerClient.Connection;
+using System.Text;
 
 namespace PServerClient.Responses
 {
@@ -40,36 +42,46 @@ namespace PServerClient.Responses
 
    public class ResponseFactory
    {
-      public IList<IResponse> CreateResponses(IList<string> responseLines)
+      private ICvsTcpClient _tcpClient;
+      public IList<IResponse> CreateMyResponses(ICvsTcpClient tcpClient)
       {
+         _tcpClient = tcpClient;
          IList<IResponse> responses = new List<IResponse>();
-         ResponseType responseType;
-         int index = 0;
-         while (index < responses.Count)
+         bool hasData = true;
+         while (hasData)
          {
-            string line = responseLines[index++];
-            responseType = GetResponseType(line);
-            IResponse response = CreateResponse(responseType, line);
-            // get rest of entry on first line of response
-            Match m = Regex.Match(line, CreateResponseHelper.ResponsePatterns[(int)responseType]);
-            string text = m.Groups[1].ToString();
-            response.ResponseLines.Add(text);
-            if (response.LineCount > 1)
+            string line = ReadLine();
+            ResponseType responseType = GetResponseType(line);
+            IResponse response = CreateResponse(responseType);
+            if (response is IFileResponse)
             {
-               for (int i = 1; i < response.LineCount; i++)
-               {
-                  response.ResponseLines.Add(responseLines[index++]);
-               }
+
             }
          }
 
          return responses;
       }
 
-      public IResponse CreateResponse(ResponseType responseType, string rawResponse)
+      public IList<IResponse> CreateResponses(IList<string> lines)
       {
-         //ResponseType responseType = GetResponseType(rawResponse);
-         IResponse response = new NullResponse();
+         IList<IResponse> responses = new List<IResponse>();
+         ResponseType responseType;
+         int index = 0;
+         while (index < lines.Count)
+         {
+            string line = lines[index];
+            responseType = GetResponseType(line);
+            IResponse response = CreateResponse(responseType);
+            IList<string> responseLines = GetResponseLines(responseType, lines, response.LineCount, index);
+            index += responseLines.Count;
+            response.ProcessResponse(responseLines);
+         }
+         return responses;
+      }
+
+      public IResponse CreateResponse(ResponseType responseType)
+      {
+         IResponse response;
          switch (responseType)
          {
             case ResponseType.Auth:
@@ -78,16 +90,91 @@ namespace PServerClient.Responses
             case ResponseType.Ok:
                response = new OkResponse();
                break;
+            case ResponseType.Error:
+            case ResponseType.EMessage:
+               response = new ErrorResponse();
+               break;
             case ResponseType.Message:
                response = new MessageResponse();
+               break;
+            case ResponseType.MessageTag:
+               response = new MessageTagResponse();
                break;
             case ResponseType.ValidRequests:
                response = new ValidRequestResponse();
                break;
-            case ResponseType.Error:
             case ResponseType.CheckedIn:
+               response = new CheckedInResponse();
+               break;
             case ResponseType.NewEntry:
+               response = new NewEntryResponse();
+               break;
+            case ResponseType.Updated:
+               response = new UpdatedResponse();
+               break;
+            case ResponseType.Merged:
+               response = new MergedResponse();
+               break;
+            case ResponseType.Patched:
+               response = new PatchedResponse();
+               break;
+            case ResponseType.CheckSum:
+               response = new ChecksumResponse();
+               break;
+            case ResponseType.CopyFile:
+               response = new CopyFileResponse();
+               break;
+            case ResponseType.Removed:
+               response = new RemovedResponse();
+               break;
+            case ResponseType.RemoveEntry:
+               response = new RemoveEntryResponse();
+               break;
+            case ResponseType.SetStaticDirectory:
+               response = new SetStaticDirectoryResponse();
+               break;
+            case ResponseType.ClearStaticDirectory:
+               response = new ClearStaticDirectoryResponse();
+               break;
+            case ResponseType.SetSticky:
+               response = new SetStickyResponse();
+               break;
+            case ResponseType.ClearSticky:
+               response = new ClearStickyResponse();
+               break;
+            case ResponseType.Created:
+               response = new CreatedResponse();
+               break;
+            case ResponseType.UpdateExisting:
+               response = new UpdateExistingResponse();
+               break;
+            case ResponseType.RcsDiff:
+               response = new RcsDiffResponse();
+               break;
+            case ResponseType.Mode:
+               response = new ModeResponse();
+               break;
+            case ResponseType.ModTime:
+               response = new ModTimeResponse();
+               break;
+            case ResponseType.Template:
+               response = new TemplateResponse();
+               break;
+            case ResponseType.Notified:
+               response = new NotifiedResponse();
+               break;
+            case ResponseType.ModuleExpansion:
+               response = new ModuleExpansionResponse();
+               break;
+            case ResponseType.Mbinary:
+               response = new MbinaryResponse();
+               break;
+            case ResponseType.FMessage:
+               response = new FMessageResponse();
+               break;
             case ResponseType.Unknown:
+            default:
+               response = new NullResponse();
                break;
          }
          return response;
@@ -141,6 +228,15 @@ namespace PServerClient.Responses
          }
 
          return responseLines;
+      }
+
+      public string ReadLine()
+      {
+         int i = _tcpClient.ReadByte();
+         StringBuilder sb = new StringBuilder();
+         while (i != 10)
+            sb.Append((char)i);
+         return sb.ToString();
       }
 
    }

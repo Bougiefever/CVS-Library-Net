@@ -8,10 +8,6 @@ namespace PServerClient.Responses
       private const string AuthenticatePass = "I LOVE YOU";
       private const string AuthenticateFail = "I HATE YOU";
 
-      //public string ResponseString { get; set; }
-      //public bool Success { get; set; }
-
-      //public string ErrorMessage { get; set; }
       public AuthStatus Status { get; private set; }
       public void ProcessResponse(IList<string> lines)
       {
@@ -23,13 +19,9 @@ namespace PServerClient.Responses
          {
             Status = AuthStatus.NotAuthenticated;
          }
-         if (!lines[0].Contains("I LOVE YOU") && !lines[0].Contains("I HATE YOU"))
-         {
-            Status = AuthStatus.Error;
-         }
       }
 
       public int LineCount { get { return 1; } }
-      public IList<string> ResponseLines { get; set; }
+      //public IList<string> ResponseLines { get; set; }
    }
 }

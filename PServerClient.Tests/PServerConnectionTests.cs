@@ -105,9 +105,9 @@ namespace PServerClient.Tests
          using (mocks.Ordered())
          {
             Expect.Call(client.Read()).Return(readResult1);
-            Expect.Call(client.DataAvailable).Return(true);
+            //Expect.Call(client.DataAvailable).Return(true);
             Expect.Call(client.Read()).Return(readResult2);
-            Expect.Call(client.DataAvailable).Return(false);
+            //Expect.Call(client.DataAvailable).Return(false);
          }
 
          mocks.ReplayAll();

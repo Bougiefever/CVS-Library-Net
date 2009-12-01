@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PServerClient.Responses
 {
-   public class ClearStickyResponse : ResponseBase
+   public class ClearStaticDirectoryResponse : ResponseBase
    {
       public string ModuleName { get; set; }
       public string CvsDirectory { get; set; }

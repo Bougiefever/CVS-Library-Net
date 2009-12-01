@@ -67,7 +67,7 @@ namespace PServerClient.Tests.Commands
          _mocks.VerifyAll();
       }
 
-      [Test]
+      [Test][Ignore]
       public void AuthenticateStatusTest()
       {
          Expect.Call(_request.Responses).Return(_responses);

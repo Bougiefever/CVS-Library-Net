@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
+using PServerClient.LocalFileSystem;
 
 namespace PServerClient.Responses
 {
    public interface IResponse
    {
-      //string ResponseString { get; set; }
-      //bool Success { get; set; }
-      //string ErrorMessage { get; set; }
       void ProcessResponse(IList<string> lines);
       int LineCount { get; }
-      IList<string> ResponseLines { get; set; }
    }
 
    public interface IAuthResponse : IResponse
    {
       AuthStatus Status { get; }
+   }
+
+   public interface IFileResponse : IResponse
+   {
+      long FileLength { get; set; }
+      Entry CvsEntry { get; set; }
    }
 }

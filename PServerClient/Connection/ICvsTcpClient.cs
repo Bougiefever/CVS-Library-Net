@@ -5,7 +5,7 @@ namespace PServerClient.Connection
       void Connect(string host, int port);
       void Write(byte[] buffer);
       byte[] Read();
-      bool DataAvailable { get; }
+      int ReadByte();
       void Close();
    }
 }

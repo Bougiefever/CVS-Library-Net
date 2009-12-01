@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PServerClient.LocalFileSystem;
 
 namespace PServerClient.Responses
 {
-   public class PatchedResponse : ResponseBase, IFileResponse
+   public class FMessageResponse : ResponseBase
    {
-      public long FileLength { get; set; }
-      public Entry CvsEntry { get; set; }
-
+      public override int LineCount { get { return 0; } }
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();

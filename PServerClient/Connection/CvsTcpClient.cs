@@ -10,9 +10,12 @@ namespace PServerClient.Connection
    {
       private TcpClient _tcpClient;
       private NetworkStream _stream;
+      private int _lastByte;
+
       public CvsTcpClient()
       {
          _tcpClient = new TcpClient();
+         _lastByte = 0;
       }
       public void Connect(string host, int port)
       {
@@ -37,7 +40,14 @@ namespace PServerClient.Connection
          _tcpClient.Close();
       }
 
-      public bool DataAvailable { get { return _stream.DataAvailable; } }
+      public int ReadByte()
+      {
+         int b = _stream.ReadByte();
+         if (b == 0 && _lastByte == 10)
+            b = -1;
+         else
+            _lastByte = b;
+         return b;
+      }
    }
-
 }

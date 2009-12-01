@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PServerClient.Connection;
 
 namespace PServerClient
 {
    public static class CreateResponseHelper
    {
       public static readonly string[] ResponsePatterns;
-      private const string AuthRegex = "(I LOVE YOU|I HATE YOU)(.*)";
+      private const string AuthRegex = @"(I LOVE YOU|I HATE YOU)\s(.*)";
       private const string OkRegex = @"^ok\s(.*)";
       private const string ErrorRegex = @"^error\s(.*)";
       private const string MessageRegex = @"^M\s(.*)";
@@ -28,16 +29,16 @@ namespace PServerClient
       private const string ClearStickyRegex = @"^Clear-sticky\s(.*)";
       private const string CreatedRegex = @"^Created\s(.*)";
       private const string MessageTagRegex = @"^MT\s(.*)";
-      private const string UpdateExisting = @"^Update-existing\s(.*)";
-      private const string RcsDiff = @"^Rcs-diff\s(.*)";
-      private const string Mode = @"^Mode\s(.*)";
-      private const string ModTime = @"^Mod-time\s(.*)";
-      private const string Template = @"^Template\s(.*)";
-      private const string Notified = @"^Notified\s(.*)";
-      private const string ModuleExpansion = @"^Module-expansion\s(.*)";
-      private const string Mbinary = @"^Mbinary\s(.*)";
-      private const string EMessage = @"^E\s(.*)";
-      private const string FMessage = @"^F\s(.*)";
+      private const string UpdateExistingRegex = @"^Update-existing\s(.*)";
+      private const string RcsDiffRegex = @"^Rcs-diff\s(.*)";
+      private const string ModeRegex = @"^Mode\s(.*)";
+      private const string ModTimeRegex = @"^Mod-time\s(.*)";
+      private const string TemplateRegex = @"^Template\s(.*)";
+      private const string NotifiedRegex = @"^Notified\s(.*)";
+      private const string ModuleExpansionRegex = @"^Module-expansion\s(.*)";
+      private const string MbinaryRegex = @"^Mbinary\s(.*)";
+      private const string EMessageRegex = @"^E\s(.*)";
+      private const string FMessageRegex = @"^F\s(.*)";
 
       static CreateResponseHelper()
       {
@@ -63,17 +64,19 @@ namespace PServerClient
             ClearStickyRegex,
             CreatedRegex,
             MessageTagRegex,
-            UpdateExisting,
-            RcsDiff,
-            Mode,
-            ModTime,
-            Template,
-            Notified,
-            ModuleExpansion,
-            Mbinary,
-            EMessage,
-            FMessage
+            UpdateExistingRegex,
+            RcsDiffRegex,
+            ModeRegex,
+            ModTimeRegex,
+            TemplateRegex,
+            NotifiedRegex,
+            ModuleExpansionRegex,
+            MbinaryRegex,
+            EMessageRegex,
+            FMessageRegex
          };
       }
+
+
    }
 }

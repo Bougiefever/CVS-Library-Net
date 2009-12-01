@@ -12,7 +12,6 @@ namespace PServerClient.Responses
       {
          string[] requests = lines[0].Split((char) 32);
          ValidRequests = requests.ToList();
-         //Success = true;
       }
    }
 }
