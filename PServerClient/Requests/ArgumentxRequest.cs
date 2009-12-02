@@ -5,15 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class ArgumentxRequest : RequestBase
+   public class ArgumentxRequest : OneArgRequestBase
    {
-      public override bool ResponseExpected { get { return false; } }
-      public string ArgumentText { get; set; }
-
-      public override string GetRequestString()
-      {
-         string request = "Argumentx " + ArgumentText + lineEnd;
-         return request;
-      }
+      public ArgumentxRequest(string arg) : base(arg) {}
+      public override string RequestName { get { return "Argumentx"; } }      
    }
 }

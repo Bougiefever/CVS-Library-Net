@@ -11,7 +11,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "release \n";
+         return string.Format("release{0}", lineEnd);
       }
    }
 }

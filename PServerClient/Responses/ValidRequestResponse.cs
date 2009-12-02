@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class ValidRequestResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.ValidRequests; } }
       public IList<string> ValidRequests { get; private set; }
       public override void ProcessResponse(IList<string> lines)
       {

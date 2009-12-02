@@ -15,9 +15,6 @@ namespace PServerClient.Tests.Commands
    {
       private MockRepository _mocks;
       private IConnection _connection;
-      private IAuthRequest _request;
-      private IAuthResponse _response;
-      private IList<IResponse> _responses;
       private CvsRoot _root;
 
       [TestFixtureSetUp]
@@ -31,68 +28,32 @@ namespace PServerClient.Tests.Commands
       {
          _mocks = new MockRepository();
          _connection = _mocks.DynamicMock<IConnection>();
-         _request = _mocks.DynamicMock<IAuthRequest>();
-         _response = _mocks.DynamicMock<IAuthResponse>();
-         _responses = new List<IResponse>() { _response };
       }
 
       [Test]
       public void VerifyAuthCommandConstructorTest()
       {
          VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         command.Requests = new List<IRequest>() { _request };
          int count = command.Requests.OfType<IAuthRequest>().Count();
          Assert.IsTrue(count == 1);
          count = command.Requests.Count();
          Assert.IsTrue(count == 1);
       }
 
-      [Test][Ignore]
-      public void VerifyAuthCommandExecuteTest()
+      [Test]
+      public void CommandBaseStatusTest()
       {
-         Expect.Call(() => _connection.Connect(string.Empty, 1)).IgnoreArguments().Repeat.Once();
-         Expect.Call(_connection.Close).Repeat.Once();
-         Expect.Call(() => _connection.DoRequest(null))
-            .IgnoreArguments()
-            .Constraints(Is.TypeOf<IAuthRequest>());
-         Expect.Call(_request.Responses).Return(_responses);
-         //Expect.Call(() => _response.ProcessResponse());
-         //Expect.Call(_response.Success).Return(true);
-
-         _mocks.ReplayAll();
          VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         command.Connection = _connection;
-         command.Requests = new List<IRequest>() { _request };
-         command.Execute();
-         _mocks.VerifyAll();
-      }
+         IAuthRequest request = (IAuthRequest)command.Requests[0];
+         IAuthResponse response = _mocks.DynamicMock<IAuthResponse>();
+         request.Responses = new List<IResponse>() { response };
 
-      [Test][Ignore]
-      public void AuthenticateStatusTest()
-      {
-         Expect.Call(_request.Responses).Return(_responses);
-         Expect.Call(_response.Status).Return(AuthStatus.Error);
-
+         Expect.Call(response.Status).Return(AuthStatus.NotAuthenticated);
          _mocks.ReplayAll();
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         command.Requests = new List<IRequest>() { _request };
+
          AuthStatus result = command.AuthStatus;
          _mocks.VerifyAll();
-         Assert.AreEqual(AuthStatus.Error, result);
-      }
-
-      [Test][Ignore]
-      public void CommandBaseErrorMessageTest()
-      {
-         Expect.Call(_request.Responses).Return(_responses);
-         //Expect.Call(_response.ErrorMessage).Return("An error message");
-
-         _mocks.ReplayAll();
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         command.Requests = new List<IRequest>() { _request };
-         //string message = command.ErrorMessage;
-         _mocks.VerifyAll();
-         //Assert.AreEqual("An error message", message);
+         Assert.AreEqual(AuthStatus.NotAuthenticated, result);
       }
    }
 }

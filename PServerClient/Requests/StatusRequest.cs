@@ -11,7 +11,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "status \n";
+         return string.Format("status{0}", lineEnd);
       }
    }
 }

@@ -5,15 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class UnchangedRequest : RequestBase
+   public class UnchangedRequest : OneArgRequestBase
    {
-      public string Filename { get; set; }
-      public override bool ResponseExpected { get { return false; } }
-
-      public override string GetRequestString()
-      {
-         string request = "Unchanged " + Filename + " \n";
-         return request;
-      }
+      public UnchangedRequest(string fileName) : base(fileName) { }
+      public override string RequestName { get { return "Unchanged"; } }
    }
 }

@@ -34,20 +34,6 @@ namespace PServerClient.Commands
       public IList<IRequest> Requests { get; set; }
       public CvsRoot CvsRoot { get; private set; }
 
-      //public string ErrorMessage
-      //{
-      //   get
-      //   {
-      //      string message = string.Empty;
-      //      foreach (IRequest request in Requests)
-      //      {
-      //         IResponse response = request.Responses[0];
-      //         message += response.ErrorMessage;
-      //      }
-      //      return message;
-      //   }
-      //}
-
       public AuthStatus AuthStatus
       {
          get
@@ -56,7 +42,7 @@ namespace PServerClient.Commands
             try
             {
                IAuthRequest authRequest = Requests.OfType<IAuthRequest>().First();
-               IAuthResponse response = (IAuthResponse)authRequest.Responses;
+               IAuthResponse response = (IAuthResponse)authRequest.Responses[0];
                status = response.Status;
             }
             catch (Exception e)
@@ -73,20 +59,10 @@ namespace PServerClient.Commands
          Connection.Connect(CvsRoot.Host, CvsRoot.Port);
          try
          {
-            bool success = true;
             foreach (IRequest request in Requests)
             {
-               if (success)
-               {
-                  Connection.DoRequest(request);
-                  //if (request.ResponseExpected)
-                  //{
-                  //   request.GetResponses();
-                  //   IResponse response = request.Responses[0];
-                  //   response.ProcessResponse();
-                  //   success = response.Success;
-                  //}
-               }
+               IList<IResponse> responses = Connection.DoRequest(request);
+               request.Responses = responses;
             }
          }
          catch (Exception e)
@@ -99,21 +75,6 @@ namespace PServerClient.Commands
             Connection.Close();
          }
       }
-
-      //public bool Success
-      //{
-      //   get
-      //   {
-      //      bool success = true;
-      //      foreach (IRequest request in Requests)
-      //      {
-      //         IResponse response = request.Responses[0];
-      //         //if (success)
-      //         //   success = response.Success;
-      //      }
-      //      return success;
-      //   }
-      //}
 
       public virtual void PreExecute()
       {

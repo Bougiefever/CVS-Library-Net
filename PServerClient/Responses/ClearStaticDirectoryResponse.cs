@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class ClearStaticDirectoryResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.ClearStaticDirectory; } }
       public string ModuleName { get; set; }
       public string CvsDirectory { get; set; }
       public override int LineCount { get { return 2; } }

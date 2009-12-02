@@ -1,4 +1,6 @@
 ﻿using PServerClient.Requests;
+using PServerClient.Responses;
+using System.Collections.Generic;
 
 namespace PServerClient.Connection
 {
@@ -6,7 +8,7 @@ namespace PServerClient.Connection
    {
       ICvsTcpClient TcpClient { get; set; }
       void Connect(string host, int port);
-      void DoRequest(IRequest request);
+      IList<IResponse> DoRequest(IRequest request);
       void Close();
    }
 }

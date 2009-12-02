@@ -5,8 +5,9 @@ namespace PServerClient.Responses
 {
    public interface IResponse
    {
-      void ProcessResponse(IList<string> lines);
       int LineCount { get; }
+      ResponseType ResponseType { get; }
+      void ProcessResponse(IList<string> lines);
    }
 
    public interface IAuthResponse : IResponse

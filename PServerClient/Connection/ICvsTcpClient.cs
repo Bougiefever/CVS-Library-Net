@@ -6,6 +6,7 @@ namespace PServerClient.Connection
       void Write(byte[] buffer);
       byte[] Read();
       int ReadByte();
+      byte[] ReadBytes(int length);
       void Close();
    }
 }

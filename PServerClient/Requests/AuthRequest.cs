@@ -10,7 +10,6 @@ namespace PServerClient.Requests
       public AuthRequest(CvsRoot root)
       {
          _root = root;
-         Responses.Add(new AuthResponse());
       }
 
       public override bool ResponseExpected

@@ -9,8 +9,8 @@ namespace PServerClient
    public static class CreateResponseHelper
    {
       public static readonly string[] ResponsePatterns;
-      private const string AuthRegex = @"(I LOVE YOU|I HATE YOU)\s(.*)";
-      private const string OkRegex = @"^ok\s(.*)";
+      private const string AuthRegex = @"(I LOVE YOU|I HATE YOU)(.*)";
+      private const string OkRegex = @"^ok(.*)";
       private const string ErrorRegex = @"^error\s(.*)";
       private const string MessageRegex = @"^M\s(.*)";
       private const string ValidRequestsRegex = @"^Valid-requests\s(.*)";

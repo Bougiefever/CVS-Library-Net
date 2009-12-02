@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class ClearStickyResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.ClearSticky; } }
       public string ModuleName { get; set; }
       public string CvsDirectory { get; set; }
       public override int LineCount { get { return 2; } }

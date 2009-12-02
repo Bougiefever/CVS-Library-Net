@@ -18,9 +18,7 @@ namespace PServerClient.Requests
       public override bool ResponseExpected { get { return false; } }
       public override string GetRequestString()
       {
-         //string checkoutDir = _root.CvsRootPath + "/" + _root.Module;
-         string request = "Directory ." + lineEnd + _root.CvsRootPath + lineEnd;
-         return request;
+         return string.Format("Directory .{0}{1}/{2}{3}", lineEnd, _root.CvsRootPath, _root.Module, lineEnd);
       }
    }
 }

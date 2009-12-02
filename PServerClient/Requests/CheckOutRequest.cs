@@ -11,7 +11,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "co" + lineEnd;
+         return string.Format("co{0}", lineEnd);
       }
    }
 }

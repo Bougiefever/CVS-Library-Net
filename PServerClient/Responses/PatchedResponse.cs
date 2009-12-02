@@ -8,6 +8,7 @@ namespace PServerClient.Responses
 {
    public class PatchedResponse : ResponseBase, IFileResponse
    {
+      public override ResponseType ResponseType { get { return ResponseType.Patched; } }
       public long FileLength { get; set; }
       public Entry CvsEntry { get; set; }
 

@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class OkResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.Ok; } }
       public override void ProcessResponse(IList<string> lines)
       {
          // do nothing

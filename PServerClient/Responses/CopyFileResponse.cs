@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class CopyFileResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.CopyFile; } }
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();

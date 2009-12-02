@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class ModeResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.Mode; } }
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();

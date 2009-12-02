@@ -14,7 +14,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "expand-modules" + lineEnd;
+         return string.Format("expand-modules{0}", lineEnd);
       }
    }
 }

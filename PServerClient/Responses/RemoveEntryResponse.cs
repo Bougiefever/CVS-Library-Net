@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class RemoveEntryResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.RemoveEntry; } }
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();

@@ -100,10 +100,10 @@ namespace PServerClient.Tests
       public void MessageTagProcessResponseTest()
       {
          MessageTagResponse response = new MessageTagResponse();
-         IList<string> lines = new List<string>() { "+updated", "test U", "fname abougie/.cvspass", "newline", "-updated" };
+         IList<string> lines = new List<string>() { "+updated" };
          response.ProcessResponse(lines);
          Assert.AreSame(lines, response.MessageLines);
-         Assert.AreEqual(0, response.LineCount);
+         Assert.AreEqual(1, response.LineCount);
       }
 
       [Test]
@@ -118,9 +118,7 @@ namespace PServerClient.Tests
          Assert.AreEqual("/.cvspass/1.1.1.1///", entry.FileName);
          Assert.AreEqual("u=rw,g=rw,o=rw", entry.Properties);
          Assert.AreEqual(74, entry.FileLength);
-         byte[] test = Encoding.ASCII.GetBytes("/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w");
-         Assert.AreEqual(test, entry.FileContents);
-         Assert.AreEqual(0, response.LineCount);
+         Assert.AreEqual(5, response.LineCount);
       }
    }
 }

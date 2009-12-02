@@ -6,22 +6,9 @@ using PServerClient.Responses;
 
 namespace PServerClient.Requests
 {
-   public class ValidRequestsRequest : RequestBase
+   public class ValidRequestsRequest : NoArgRequestBase
    {
-      public ValidRequestsRequest()
-      {
-         Responses.Add(new ValidRequestResponse());
-      }
-
-      public override bool ResponseExpected
-      {
-         get { return true; }
-      }
-
-      public override string GetRequestString()
-      {
-         return "valid-requests \n";
-      }
-
+      public override bool ResponseExpected { get { return true; } }
+      public override string RequestName { get { return "valid-requests"; } }
    }
 }

@@ -10,10 +10,7 @@ namespace PServerClient.Requests
    public interface IRequest 
    {
       bool ResponseExpected { get; }
-      string RawCvsResponse { get; set; }
       string GetRequestString();
-      //void SetCvsResponse(string response);
-      void ProcessResponses(IList<string> cvsResponseLines);
       IList<IResponse> Responses { get; set; }
    }
 

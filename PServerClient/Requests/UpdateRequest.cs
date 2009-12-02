@@ -12,7 +12,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "update \n";
+         return string.Format("update{0}", lineEnd);
       }
    }
 }

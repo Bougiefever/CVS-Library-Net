@@ -8,6 +8,7 @@ namespace PServerClient.Responses
 {
    public class UpdateExistingResponse : ResponseBase, IFileResponse
    {
+      public override ResponseType ResponseType { get { return ResponseType.UpdateExisting; } }
       public string ModuleName { get; set; }
       public string CvsPath { get; set; }
       public long FileLength { get; set; }

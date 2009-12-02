@@ -8,6 +8,7 @@ namespace PServerClient.Responses
 {
    public class TemplateResponse : ResponseBase, IFileResponse
    {
+      public override ResponseType ResponseType { get { return ResponseType.Template; } }
       public long FileLength { get; set; }
       public Entry CvsEntry { get; set; }
 

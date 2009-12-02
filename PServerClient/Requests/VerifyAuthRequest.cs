@@ -16,30 +16,23 @@ namespace PServerClient.Requests
       public VerifyAuthRequest(CvsRoot root)
       {
          _root = root;
-         Responses.Add(new AuthResponse());
       }
 
-      public override bool ResponseExpected
-      {
-         get { return true; }
-      }
-
-      public void SetRequestString(string response)
-      {
-         
-      }
+      public override bool ResponseExpected { get { return true; } }
 
       public override string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
-         sb.Append("BEGIN VERIFICATION REQUEST\n");
+         sb.Append("BEGIN VERIFICATION REQUEST");
+         sb.Append(lineEnd);
          sb.Append(_root.CvsRootPath);
-         sb.Append("\n");
+         sb.Append(lineEnd);
          sb.Append(_root.Username);
-         sb.Append("\n");
+         sb.Append(lineEnd);
          sb.Append(_root.Password);
-         sb.Append("\n");
-         sb.Append("END VERIFICATION REQUEST\n");
+         sb.Append(lineEnd);
+         sb.Append("END VERIFICATION REQUEST");
+         sb.Append(lineEnd);
          return sb.ToString();
       }
    }

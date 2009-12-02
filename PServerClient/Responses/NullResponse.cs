@@ -7,24 +7,12 @@ namespace PServerClient.Responses
 {
    public class NullResponse : IResponse
    {
-      //private string _responseString = string.Empty;
-      //public string ResponseString
-      //{
-      //   get { return _responseString; }
-      //   set { _responseString = value; }
-      //}
-
-      //public bool Success { get; set; }
-
-      //public string ErrorMessage { get; set; }
-
+      public int LineCount { get { return 0; } }
+      public ResponseType ResponseType { get { return ResponseType.Unknown; } }
       public void ProcessResponse(IList<string> lines)
       {
-         //Success = true;
          // do nothing
       }
 
-      public int LineCount { get { return 0; } }
-      public IList<string> ResponseLines { get; set; }
    }
 }

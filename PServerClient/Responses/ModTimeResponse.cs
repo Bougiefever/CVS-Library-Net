@@ -10,7 +10,7 @@ namespace PServerClient.Responses
    public class ModTimeResponse : ResponseBase
    {
       private string _dateTimeRegex = @"(\d{2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
-
+      public override ResponseType ResponseType { get { return ResponseType.ModTime; } }
       public DateTime ModTime { get; set; }
       public override void ProcessResponse(IList<string> lines)
       {

@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class ModuleExpansionResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.ModuleExpansion; } }
       public string ModuleName { get; set; }
       public override void ProcessResponse(IList<string> lines)
       {

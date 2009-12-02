@@ -7,10 +7,12 @@ namespace PServerClient.Responses
 {
    public class ErrorResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.Error; } }
       public override int LineCount { get { return 0; } }
+      public string ErrorMessage { get; set; }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         ErrorMessage = lines[0];
       }
 
  

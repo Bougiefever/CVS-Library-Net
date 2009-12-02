@@ -11,8 +11,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         string request = "log \n";
-         return request;
+         return string.Format("log{0}", lineEnd);
       }
    }
 }

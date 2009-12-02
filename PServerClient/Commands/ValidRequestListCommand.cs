@@ -20,7 +20,7 @@ namespace PServerClient.Commands
          get
          {
             IRequest request = Requests.OfType<ValidRequestsRequest>().First();
-            ValidRequestResponse response = (ValidRequestResponse) request.Responses;
+            ValidRequestResponse response = request.Responses.OfType<ValidRequestResponse>().First();
             return response.ValidRequests;
          }
       }

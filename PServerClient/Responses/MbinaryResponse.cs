@@ -8,6 +8,7 @@ namespace PServerClient.Responses
 {
    public class MbinaryResponse : ResponseBase, IFileResponse
    {
+      public override ResponseType ResponseType { get { return ResponseType.Mbinary; } }
       public long FileLength { get; set; }
       public Entry CvsEntry { get; set; }
 

@@ -42,42 +42,42 @@ namespace PServerClient.Responses
 
    public class ResponseFactory
    {
-      private ICvsTcpClient _tcpClient;
-      public IList<IResponse> CreateMyResponses(ICvsTcpClient tcpClient)
-      {
-         _tcpClient = tcpClient;
-         IList<IResponse> responses = new List<IResponse>();
-         bool hasData = true;
-         while (hasData)
-         {
-            string line = ReadLine();
-            ResponseType responseType = GetResponseType(line);
-            IResponse response = CreateResponse(responseType);
-            if (response is IFileResponse)
-            {
+      //private ICvsTcpClient _tcpClient;
+      //public IList<IResponse> CreateMyResponses(ICvsTcpClient tcpClient)
+      //{
+      //   _tcpClient = tcpClient;
+      //   IList<IResponse> responses = new List<IResponse>();
+      //   bool hasData = true;
+      //   while (hasData)
+      //   {
+      //      string line = ReadLine();
+      //      ResponseType responseType = GetResponseType(line);
+      //      IResponse response = CreateResponse(responseType);
+      //      if (response is IFileResponse)
+      //      {
 
-            }
-         }
+      //      }
+      //   }
 
-         return responses;
-      }
+      //   return responses;
+      //}
 
-      public IList<IResponse> CreateResponses(IList<string> lines)
-      {
-         IList<IResponse> responses = new List<IResponse>();
-         ResponseType responseType;
-         int index = 0;
-         while (index < lines.Count)
-         {
-            string line = lines[index];
-            responseType = GetResponseType(line);
-            IResponse response = CreateResponse(responseType);
-            IList<string> responseLines = GetResponseLines(responseType, lines, response.LineCount, index);
-            index += responseLines.Count;
-            response.ProcessResponse(responseLines);
-         }
-         return responses;
-      }
+      //public IList<IResponse> CreateResponses(IList<string> lines)
+      //{
+      //   IList<IResponse> responses = new List<IResponse>();
+      //   ResponseType responseType;
+      //   int index = 0;
+      //   while (index < lines.Count)
+      //   {
+      //      string line = lines[index];
+      //      responseType = GetResponseType(line);
+      //      IResponse response = CreateResponse(responseType);
+      //      IList<string> responseLines = GetResponseLines(responseType, lines, response.LineCount, index);
+      //      index += responseLines.Count;
+      //      response.ProcessResponse(responseLines);
+      //   }
+      //   return responses;
+      //}
 
       public IResponse CreateResponse(ResponseType responseType)
       {
@@ -192,52 +192,42 @@ namespace PServerClient.Responses
          return responseType;
       }
 
-      public IList<string> GetResponseLines(ResponseType responseType, IList<string> lines, int lineCount, int index)
-      {
-         IList<string> responseLines = new List<string>();
-         string line = lines[index++];
-         string pattern = CreateResponseHelper.ResponsePatterns[(int)responseType];
-         Match m = Regex.Match(line, pattern);
-         responseLines.Add(m.Groups[1].ToString());
-         if (lineCount != 1)
-         {
-            int i = 1;
-            bool adding = true;
-            do
-            {
-               line = lines[index++];
-               if (lineCount == 0)
-               {
-                  m = Regex.Match(line, pattern);
-                  if (m.Success)
-                  {
-                     line = m.Groups[1].ToString();
-                     responseLines.Add(line);
-                  }
-                  else
-                     adding = false;
-               }
-               else
-               {
-                  responseLines.Add(line);
-                  i++;
-                  if (i == lineCount)
-                     adding = false;
-               }
-            } while (adding == true);
-         }
+      //public IList<string> GetResponseLines(ResponseType responseType, IList<string> lines, int lineCount, int index)
+      //{
+      //   IList<string> responseLines = new List<string>();
+      //   string line = lines[index++];
+      //   string pattern = CreateResponseHelper.ResponsePatterns[(int)responseType];
+      //   Match m = Regex.Match(line, pattern);
+      //   responseLines.Add(m.Groups[1].ToString());
+      //   if (lineCount != 1)
+      //   {
+      //      int i = 1;
+      //      bool adding = true;
+      //      do
+      //      {
+      //         line = lines[index++];
+      //         if (lineCount == 0)
+      //         {
+      //            m = Regex.Match(line, pattern);
+      //            if (m.Success)
+      //            {
+      //               line = m.Groups[1].ToString();
+      //               responseLines.Add(line);
+      //            }
+      //            else
+      //               adding = false;
+      //         }
+      //         else
+      //         {
+      //            responseLines.Add(line);
+      //            i++;
+      //            if (i == lineCount)
+      //               adding = false;
+      //         }
+      //      } while (adding == true);
+      //   }
 
-         return responseLines;
-      }
-
-      public string ReadLine()
-      {
-         int i = _tcpClient.ReadByte();
-         StringBuilder sb = new StringBuilder();
-         while (i != 10)
-            sb.Append((char)i);
-         return sb.ToString();
-      }
-
+      //   return responseLines;
+      //}
    }
 }

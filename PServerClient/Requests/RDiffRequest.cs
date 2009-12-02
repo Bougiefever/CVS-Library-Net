@@ -11,7 +11,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "rdiff \n";
+         return string.Format("rdiff{0}", lineEnd);
       }
    }
 }

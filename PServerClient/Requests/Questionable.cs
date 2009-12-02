@@ -5,10 +5,10 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class LostRequest : RequestBase
+   public class Questionable : RequestBase
    {
       private string _fileName;
-      public LostRequest(string fileName)
+      public Questionable(string fileName)
       {
          _fileName = fileName;
       }
@@ -16,7 +16,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return string.Format("Lost {0}{1}", _fileName, lineEnd);
+         return string.Format("Questionable {0}{1}", _fileName, lineEnd);
       }
    }
 }

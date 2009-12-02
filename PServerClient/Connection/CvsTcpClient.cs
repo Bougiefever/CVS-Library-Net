@@ -21,6 +21,7 @@ namespace PServerClient.Connection
       {
          _tcpClient.Connect(host, port);
          _stream = _tcpClient.GetStream();
+         _stream.ReadTimeout = 1000;
       }
 
       public void Write(byte[] buffer)
@@ -37,17 +38,42 @@ namespace PServerClient.Connection
 
       public void Close()
       {
+         _stream.Close();
          _tcpClient.Close();
       }
 
       public int ReadByte()
       {
-         int b = _stream.ReadByte();
+         _tcpClient.Client.Blocking = true;
+         int b = 0;
+         try
+         {
+            b = _stream.ReadByte();
+         }
+         catch (Exception e)
+         {
+            Console.WriteLine(e);
+            b = -1;
+         }
          if (b == 0 && _lastByte == 10)
             b = -1;
          else
             _lastByte = b;
          return b;
+      }
+
+      public byte[] ReadBytes(int length)
+      {
+         byte[] buffer = new byte[length];
+         for (int i = 0; i < length; i++)
+         {
+            _tcpClient.Client.Blocking = true;
+            int b = _stream.ReadByte();
+            if (b == -1)
+               throw new Exception("Unexpected end of stream");
+            buffer[i] = (byte)b;
+         }
+         return buffer;
       }
    }
 }

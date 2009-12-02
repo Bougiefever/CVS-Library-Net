@@ -1,7 +1,9 @@
 ﻿using PServerClient.Requests;
+using PServerClient.Responses;
 using System.Collections.Generic;
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PServerClient.Connection
 {
@@ -28,29 +30,17 @@ namespace PServerClient.Connection
          TcpClient.Connect(host, port);
       }
 
-      public void DoRequest(IRequest request)
+      public IList<IResponse> DoRequest(IRequest request)
       {
          string requestString = request.GetRequestString();
-         Console.WriteLine("Request :" + requestString);
          byte[] sendBuffer = PServerHelper.EncodeString(requestString);
          TcpClient.Write(sendBuffer);
+         IList<IResponse> responses;
          if (request.ResponseExpected)
-         {
-            string line = ReadLine();
-
-            //byte[] receiveBuffer = TcpClient.Read();
-
-            //cvsResponse = PServerHelper.DecodeString(receiveBuffer);
-            //IList<string> lines = PServerHelper.ReadLines(TcpClient);
-            //string cvsResponse = string.Empty;
-            //foreach (string l in lines)
-            //{
-            //   cvsResponse += l + "\n";
-            //   Console.WriteLine(l);
-            //}
-            //request.ProcessResponses(lines);
-            //request.RawCvsResponse = cvsResponse;
-         }
+            responses = GetResponses();
+         else
+            responses = new List<IResponse>();
+         return responses;
       }
 
       public void Close()
@@ -58,54 +48,64 @@ namespace PServerClient.Connection
          TcpClient.Close();
       }
 
-      public string ReadLine()
+      internal IList<IResponse> GetResponses()
       {
-         int i = TcpClient.ReadByte();
-         StringBuilder sb = new StringBuilder();
-         while (i != 10)
-            sb.Append((char)i);
-         return sb.ToString();
+         IList<IResponse> responses = new List<IResponse>();
+         string line = null;
+         do
+         {
+            line = ReadLine();
+            if (line != null)
+            {
+               ResponseFactory factory = new ResponseFactory();
+               ResponseType responseType = factory.GetResponseType(line);
+               IResponse response = factory.CreateResponse(responseType);
+               IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
+               response.ProcessResponse(responseLines);
+               if (response is IFileResponse)
+               {
+                  IFileResponse fileResponse = (IFileResponse)response;
+                  fileResponse.CvsEntry.FileContents = TcpClient.ReadBytes(fileResponse.CvsEntry.FileLength);
+               }
+               responses.Add(response);
+            }
+         } while (line != null);
+         return responses;
       }
 
-      public void Read()
+      internal IList<string> GetResponseLines(string line, ResponseType responseType, int lineCount)
       {
-         byte[] buffer = TcpClient.Read();
-         IList<string> lines = new List<string>();
-         bool atEnd = false;
-         int i = 0;
-         StringBuilder sb = new StringBuilder();
-         byte last = 0;
-         while (!atEnd)
+         string pattern = CreateResponseHelper.ResponsePatterns[(int)responseType];
+         Match m = Regex.Match(line, pattern);
+         string responseLine = m.Groups[1].ToString();
+         IList<string> responseLines = new List<string>() { responseLine };
+         if (lineCount > 0)
          {
-            try
+            for (int i = 1; i < lineCount; i++)
             {
-               byte c = buffer[i++];
-               if (c == 10)
-               {
-                  lines.Add(sb.ToString());
-                  sb = new StringBuilder();
-               }
-               if (c != 0 && c != 10)
-                  sb.Append((char)c);
-               if (last == 10 && c == 0)
-                  atEnd = true;
-               if (i == buffer.Length)
-                  //if (!TcpClient.DataAvailable)
-                  //   atEnd = true;
-                  //else
-                  //{
-                     buffer = TcpClient.Read();
-                     i = 0;
-                  //}
-               last = c;
-            }
-            catch (Exception e)
-            {
-               Console.WriteLine(e.ToString());
-               atEnd = true;
+               responseLine = ReadLine();
+               responseLines.Add(responseLine);
             }
          }
-       //  return lines;
+         return responseLines;
+      }
+
+      internal string ReadLine()
+      {
+         int i;
+         string line = null;
+         StringBuilder sb = new StringBuilder();
+         do
+         {
+            i = TcpClient.ReadByte();
+            if (i != 0 && i != 10 && i != -1)
+            {
+               sb.Append((char)i);
+            }
+         } while (i != 0 && i != 10 && i != -1);
+         if (sb.Length > 0)
+            line = sb.ToString();
+         return line;
       }
    }
 }

@@ -5,18 +5,18 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class LostRequest : RequestBase
+   public abstract class OneArgRequestBase : RequestBase
    {
-      private string _fileName;
-      public LostRequest(string fileName)
+      internal string _arg;
+      public OneArgRequestBase(string arg)
       {
-         _fileName = fileName;
+         _arg = arg;
       }
       public override bool ResponseExpected { get { return false; } }
-
+      public abstract string RequestName { get; }
       public override string GetRequestString()
       {
-         return string.Format("Lost {0}{1}", _fileName, lineEnd);
+         return string.Format("{0} {1}{2}", RequestName, _arg, lineEnd);
       }
    }
 }

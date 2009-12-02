@@ -7,6 +7,7 @@ namespace PServerClient.Responses
 {
    public class NotifiedResponse : ResponseBase
    {
+      public override ResponseType ResponseType { get { return ResponseType.Notified; } }
       public override void ProcessResponse(IList<string> lines)
       {
          throw new NotImplementedException();

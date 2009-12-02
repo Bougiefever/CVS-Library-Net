@@ -12,7 +12,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "history" + lineEnd;
+         return string.Format("history{0}",  lineEnd);
       }
    }
 }

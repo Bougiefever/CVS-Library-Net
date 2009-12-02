@@ -82,65 +82,65 @@ namespace PServerClient
          return Encoding.ASCII.GetString(decode);
       }
 
-      public static IList<string> ReadLines(ICvsTcpClient tcpClient)
-      {
-         byte[] buffer = tcpClient.Read();
-         IList<string> lines = new List<string>();
-         bool atEnd = false;
-         int i = 0;
-         StringBuilder sb = new StringBuilder();
-         byte last = 0;
-         while (!atEnd)
-         {
-            try
-            {
-               byte c = buffer[i++];
-               if (c == 10)
-               {
-                  lines.Add(sb.ToString());
-                  sb = new StringBuilder();
-               }
-               if (c != 0 && c != 10)
-                  sb.Append((char)c);
-               if (last == 10 && c == 0)
-                  atEnd = true;
-               if (i == buffer.Length)
-                     buffer = tcpClient.Read();
-                     i = 0;
+      //public static IList<string> ReadLines(ICvsTcpClient tcpClient)
+      //{
+      //   byte[] buffer = tcpClient.Read();
+      //   IList<string> lines = new List<string>();
+      //   bool atEnd = false;
+      //   int i = 0;
+      //   StringBuilder sb = new StringBuilder();
+      //   byte last = 0;
+      //   while (!atEnd)
+      //   {
+      //      try
+      //      {
+      //         byte c = buffer[i++];
+      //         if (c == 10)
+      //         {
+      //            lines.Add(sb.ToString());
+      //            sb = new StringBuilder();
+      //         }
+      //         if (c != 0 && c != 10)
+      //            sb.Append((char)c);
+      //         if (last == 10 && c == 0)
+      //            atEnd = true;
+      //         if (i == buffer.Length)
+      //               buffer = tcpClient.Read();
+      //               i = 0;
 
-               last = c;
-            }
-            catch (Exception e)
-            {
-               Console.WriteLine(e.ToString());
-               atEnd = true;
-            }
-         }
-         return lines;
-      }
+      //         last = c;
+      //      }
+      //      catch (Exception e)
+      //      {
+      //         Console.WriteLine(e.ToString());
+      //         atEnd = true;
+      //      }
+      //   }
+      //   return lines;
+      //}
 
-      public static string ReadToSpace(byte[] buffer)
-      {
-         bool isSpace = false;
-         int i = 0;
-         StringBuilder sb = new StringBuilder();
-         while (!isSpace)
-         {
-            try
-            {
-               byte c = buffer[i++];
-               if (c != 32)
-                  sb.Append((char)c);
-               else
-                  isSpace = true;
-            }
-            catch (Exception e)
-            {
-               Console.WriteLine(e.ToString());
-               isSpace = true;
-            }
-         }
-         return sb.ToString();
-      }
+      //public static string ReadToSpace(byte[] buffer)
+      //{
+      //   bool isSpace = false;
+      //   int i = 0;
+      //   StringBuilder sb = new StringBuilder();
+      //   while (!isSpace)
+      //   {
+      //      try
+      //      {
+      //         byte c = buffer[i++];
+      //         if (c != 32)
+      //            sb.Append((char)c);
+      //         else
+      //            isSpace = true;
+      //      }
+      //      catch (Exception e)
+      //      {
+      //         Console.WriteLine(e.ToString());
+      //         isSpace = true;
+      //      }
+      //   }
+      //   return sb.ToString();
+      //}
    }
 }

@@ -11,7 +11,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return "tag \n";
+         return string.Format("tag{0}", lineEnd);
       }
    }
 }
