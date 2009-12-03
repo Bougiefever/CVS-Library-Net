@@ -37,7 +37,8 @@ namespace PServerClient.Responses
       ModuleExpansion = 26,
       Mbinary = 27,
       EMessage = 28,
-      FMessage = 29
+      FMessage = 29,
+      WrapperRscOption = 30
    }
 
    public class ResponseFactory
@@ -183,9 +184,9 @@ namespace PServerClient.Responses
       public ResponseType GetResponseType(string rawResponse)
       {
          ResponseType responseType = ResponseType.Unknown;
-         for (int i = 0; i < CreateResponseHelper.ResponsePatterns.Length; i++)
+         for (int i = 0; i < ResponseHelper.ResponsePatterns.Length; i++)
          {
-            Match m = Regex.Match(rawResponse, CreateResponseHelper.ResponsePatterns[i]);
+            Match m = Regex.Match(rawResponse, ResponseHelper.ResponsePatterns[i]);
             if (m.Success)
                responseType = (ResponseType)i;
          }

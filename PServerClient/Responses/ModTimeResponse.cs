@@ -26,6 +26,7 @@ namespace PServerClient.Responses
          int offset = Convert.ToInt32(m.Groups[7].ToString());
 
          ModTime = new DateTime(year, month, day, hour + offset, minute, second);
+         base.ProcessResponse(lines);
       }
    }
 }

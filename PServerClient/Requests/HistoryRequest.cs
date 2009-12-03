@@ -5,14 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class HistoryRequest : RequestBase
+   public class HistoryRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true;} }
-      
-
-      public override string GetRequestString()
-      {
-         return string.Format("history{0}",  lineEnd);
-      }
+      public override string RequestName { get { return "history"; } }
    }
 }

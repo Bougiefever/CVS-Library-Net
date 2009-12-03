@@ -16,6 +16,7 @@ namespace PServerClient.Responses
       public AuthStatus Status { get; private set; }
       public int LineCount { get { return 1; } }
       public ResponseType ResponseType { get { return ResponseType.Auth; } }
+      public string ResponseText { get; set; }
       public void ProcessResponse(IList<string> lines)
       {
          if (lines[0].Contains("I LOVE YOU"))
@@ -26,6 +27,7 @@ namespace PServerClient.Responses
          {
             Status = AuthStatus.NotAuthenticated;
          }
+         ResponseText = lines[0] + (char)10;
       }
 
    }

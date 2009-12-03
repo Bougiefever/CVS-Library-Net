@@ -6,6 +6,7 @@ using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
 using PServerClient.Requests;
+using PServerClient.Responses;
 using System.Net.Sockets;
 
 namespace PServerClient.IntegrationTests
@@ -42,6 +43,19 @@ namespace PServerClient.IntegrationTests
          _root.LocalDirectory = "mydir";
          CheckoutCommand command = new CheckoutCommand(_root);
          command.Execute();
+
+         // print out the whole conversation
+         foreach (IRequest req in command.Requests)
+         {
+            Console.Write("C: {0}", req.GetRequestString());
+            if (req.ResponseExpected)
+               foreach(IResponse res in req.Responses)
+               {
+                  Console.Write("S: {0}", res.ResponseText);
+                  if (res is IFileResponse)
+                     Console.WriteLine(Encoding.ASCII.GetString(((IFileResponse)res).CvsEntry.FileContents));
+               }
+         }
       }
 
       [Test]

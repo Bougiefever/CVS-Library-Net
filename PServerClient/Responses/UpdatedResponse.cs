@@ -23,6 +23,7 @@ namespace PServerClient.Responses
          CvsEntry.FileName = lines[2];
          CvsEntry.Properties = lines[3];
          CvsEntry.FileLength = Convert.ToInt32(lines[4]);
+         base.ProcessResponse(lines);
       }
    }
 }

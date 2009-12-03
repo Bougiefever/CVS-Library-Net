@@ -14,7 +14,7 @@ namespace PServerClient.Responses
 
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         base.ProcessResponse(lines);
       }
    }
 }

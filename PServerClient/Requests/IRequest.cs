@@ -19,6 +19,12 @@ namespace PServerClient.Requests
    /// </summary>
    public interface IAuthRequest : IRequest
    {
-      
+      AuthStatus Status { get; }
+   }
+
+   public interface IFileRequest : IRequest
+   {
+      long FileLength { get; }
+      byte[] FileContents { get; set; }
    }
 }

@@ -5,13 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class StatusRequest : RequestBase
+   public class StatusRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("status{0}", lineEnd);
-      }
+      public override string RequestName { get { return "status"; } }
    }
 }

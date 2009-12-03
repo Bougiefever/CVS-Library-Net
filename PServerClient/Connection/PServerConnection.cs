@@ -1,7 +1,7 @@
 ﻿using PServerClient.Requests;
 using PServerClient.Responses;
 using System.Collections.Generic;
-using System;
+//using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -33,6 +33,7 @@ namespace PServerClient.Connection
       public IList<IResponse> DoRequest(IRequest request)
       {
          string requestString = request.GetRequestString();
+         //Console.WriteLine("C: " + requestString);
          byte[] sendBuffer = PServerHelper.EncodeString(requestString);
          TcpClient.Write(sendBuffer);
          IList<IResponse> responses;
@@ -75,7 +76,7 @@ namespace PServerClient.Connection
 
       internal IList<string> GetResponseLines(string line, ResponseType responseType, int lineCount)
       {
-         string pattern = CreateResponseHelper.ResponsePatterns[(int)responseType];
+         string pattern = ResponseHelper.ResponsePatterns[(int)responseType];
          Match m = Regex.Match(line, pattern);
          string responseLine = m.Groups[1].ToString();
          IList<string> responseLines = new List<string>() { responseLine };
@@ -105,6 +106,7 @@ namespace PServerClient.Connection
          } while (i != 0 && i != 10 && i != -1);
          if (sb.Length > 0)
             line = sb.ToString();
+         //Console.WriteLine("S: " + line);
          return line;
       }
    }

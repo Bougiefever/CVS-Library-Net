@@ -69,12 +69,12 @@ namespace PServerClient.Tests.Commands
          mocks.VerifyAll();
       }
 
-      //[Test][Ignore]
+      [Test]
       public void CommandBaseExecuteWhenAuthFailedTest()
       {
          MockRepository mocks = new MockRepository();
          IConnection connection = mocks.DynamicMock<IConnection>();
-         IRequest authRequest = mocks.DynamicMock<IAuthRequest>();
+         IAuthRequest authRequest = mocks.DynamicMock<IAuthRequest>();
          IResponse authResponse = mocks.DynamicMock<IAuthResponse>();
          IList<IResponse> authResponses = new List<IResponse>() { authResponse };
          IRequest otherRequest = mocks.DynamicMock<IRequest>();
@@ -88,12 +88,12 @@ namespace PServerClient.Tests.Commands
             .IgnoreArguments()
             .Repeat.Once();
          Expect.Call(connection.Close).Repeat.Once();
-         Expect.Call(authRequest.Responses).Return(authResponses);
-         Expect.Call(otherRequest.Responses).Return(otherResponses).Repeat.Never();
+         //Expect.Call(authRequest.Responses).Return(authResponses);
+         //Expect.Call(otherRequest.Responses).Return(otherResponses).Repeat.Never();
          Expect.Call(() => connection.DoRequest(null))
             .IgnoreArguments()
             .Repeat.Once();
-
+         Expect.Call(authRequest.Status).Return(AuthStatus.NotAuthenticated);
          mocks.ReplayAll();
          command.Execute();
          mocks.VerifyAll();

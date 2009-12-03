@@ -13,6 +13,7 @@ namespace PServerClient.Responses
       public override void ProcessResponse(IList<string> lines)
       {
          MessageLines = lines;
+         base.ProcessResponse(lines);
       }
    }
 }

@@ -5,13 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class CheckOutRequest : RequestBase
+   public class CheckOutRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("co{0}", lineEnd);
-      }
+      public override string RequestName { get { return "co"; } }
    }
 }

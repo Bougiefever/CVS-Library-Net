@@ -6,7 +6,7 @@ using PServerClient.Connection;
 
 namespace PServerClient
 {
-   public static class CreateResponseHelper
+   public static class ResponseHelper
    {
       public static readonly string[] ResponsePatterns;
       private const string AuthRegex = @"(I LOVE YOU|I HATE YOU)(.*)";
@@ -39,10 +39,44 @@ namespace PServerClient
       private const string MbinaryRegex = @"^Mbinary\s(.*)";
       private const string EMessageRegex = @"^E\s(.*)";
       private const string FMessageRegex = @"^F\s(.*)";
+      private const string WrapperRscOptionRegex = @"^Wrapper-rcsOption\s(.*)";
 
-      static CreateResponseHelper()
+      public static readonly string[] ResponseNames;
+      private const string AuthName = "";
+      private const string OkName = "ok";
+      private const string ErrorName = "error ";
+      private const string MessageName = "M ";
+      private const string ValidRequestsName = "Valid-requests ";
+      private const string CheckedInName = "Checked-in ";
+      private const string NewEntryName = "New-entry ";
+      private const string UpdatedName = "Updated ";
+      private const string MergedName = "Merged ";
+      private const string PatchedName = "Patched ";
+      private const string ChecksumName = "Checksum ";
+      private const string CopyFileName = "Copy-file ";
+      private const string RemovedName = "Removed ";
+      private const string RemoveEntryName = "Remove-entry ";
+      private const string SetStaticDirectoryName = "Set-static-directory ";
+      private const string ClearStaticDirectoryName = "Clear-static-directory ";
+      private const string SetStickyName = "Set-sticky ";
+      private const string ClearStickyName = "Clear-sticky ";
+      private const string CreatedName = "Created ";
+      private const string MessageTagName = "MT ";
+      private const string UpdateExistingName = "Update-existing ";
+      private const string RcsDiffName = "Rcs-diff ";
+      private const string ModeName = "Mode ";
+      private const string ModTimeName = "Mod-time ";
+      private const string TemplateName = "Template ";
+      private const string NotifiedName = "Notified ";
+      private const string ModuleExpansionName = "Module-expansion ";
+      private const string MbinaryName = "Mbinary ";
+      private const string EMessageName = "E ";
+      private const string FMessageName = "F ";
+      private const string WrapperRscOptionName = "Wrapper-rcsOption";
+
+      static ResponseHelper()
       {
-         ResponsePatterns = new string[30]
+         ResponsePatterns = new string[31]
          {
             AuthRegex,
             OkRegex,
@@ -73,7 +107,43 @@ namespace PServerClient
             ModuleExpansionRegex,
             MbinaryRegex,
             EMessageRegex,
-            FMessageRegex
+            FMessageRegex,
+            WrapperRscOptionRegex
+         };
+
+         ResponseNames = new string[31]
+         {
+            AuthName,
+            OkName,
+            ErrorName,
+            MessageName,
+            ValidRequestsName,
+            CheckedInName,
+            NewEntryName,
+            UpdatedName,
+            MergedName,
+            PatchedName,
+            ChecksumName,
+            CopyFileName,
+            RemovedName,
+            RemoveEntryName,
+            SetStaticDirectoryName,
+            ClearStaticDirectoryName,
+            SetStickyName,
+            ClearStickyName,
+            CreatedName,
+            MessageTagName,
+            UpdateExistingName,
+            RcsDiffName,
+            ModeName,
+            ModTimeName,
+            TemplateName,
+            NotifiedName,
+            ModuleExpansionName,
+            MbinaryName,
+            EMessageName,
+            FMessageName,
+            WrapperRscOptionName
          };
       }
 

@@ -50,10 +50,13 @@ namespace PServerClient.Connection
          {
             b = _stream.ReadByte();
          }
+         catch (System.IO.IOException)
+         {
+            b = -1;
+         }
          catch (Exception e)
          {
             Console.WriteLine(e);
-            b = -1;
          }
          if (b == 0 && _lastByte == 10)
             b = -1;

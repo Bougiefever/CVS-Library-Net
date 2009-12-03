@@ -5,13 +5,10 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class RTagRequest : RequestBase
+   public class RTagRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
+      public override string RequestName { get { return "rtag"; } }
 
-      public override string GetRequestString()
-      {
-         return string.Format("rtag{0}", lineEnd);
-      }
    }
 }

@@ -57,12 +57,22 @@ namespace PServerClient.Commands
       public void Execute()
       {
          Connection.Connect(CvsRoot.Host, CvsRoot.Port);
+
+
          try
          {
-            foreach (IRequest request in Requests)
+            // execute authentication request and check authentication status
+            // before executing other requests
+            IEnumerable<IRequest> authRequests = Requests.OfType<IAuthRequest>().Cast<IRequest>();
+            var otherRequests = Requests.Except(authRequests);
+            IAuthRequest auth = authRequests.Cast<IAuthRequest>().First();
+            auth.Responses = Connection.DoRequest(auth);
+            if (auth.Status == AuthStatus.Authenticated)
             {
-               IList<IResponse> responses = Connection.DoRequest(request);
-               request.Responses = responses;
+               foreach (IRequest request in otherRequests)
+               {
+                  request.Responses = Connection.DoRequest(request);
+               }
             }
          }
          catch (Exception e)

@@ -5,16 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class ExpandModulesRequest : RequestBase
+   public class ExpandModulesRequest : NoArgRequestBase
    {
-      public override bool ResponseExpected
-      {
-         get { return true; }
-      }
-
-      public override string GetRequestString()
-      {
-         return string.Format("expand-modules{0}", lineEnd);
-      }
+      public override bool ResponseExpected { get { return true; } }
+      public override string RequestName { get { return "expand-modules"; } }
    }
 }

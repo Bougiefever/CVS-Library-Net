@@ -50,7 +50,6 @@ namespace PServerClient.IntegrationTests
          ValidRequestsListCommand command = new ValidRequestsListCommand(_root);
          command.Execute();
          Assert.AreEqual(AuthStatus.NotAuthenticated, command.AuthStatus);
-         //Assert.AreEqual("I HATE YOU\n", command.ErrorMessage);
       }
    }
 }

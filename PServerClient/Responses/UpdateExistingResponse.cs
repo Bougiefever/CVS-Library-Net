@@ -21,7 +21,8 @@ namespace PServerClient.Responses
          CvsEntry = new Entry();
          CvsEntry.FileName = lines[2];
          CvsEntry.FileLength = Convert.ToInt32(lines[4]);
-         CvsEntry.FileContents = Encoding.ASCII.GetBytes(lines[5]);
+         //CvsEntry.FileContents = Encoding.ASCII.GetBytes(lines[5]);
+         base.ProcessResponse(lines);
       }
    }
 }

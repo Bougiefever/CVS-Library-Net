@@ -12,7 +12,7 @@ namespace PServerClient.Responses
       public string ErrorMessage { get; set; }
       public override void ProcessResponse(IList<string> lines)
       {
-         ErrorMessage = lines[0];
+         base.ProcessResponse(lines);
       }
 
  

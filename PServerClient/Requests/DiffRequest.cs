@@ -5,13 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class DiffRequest : RequestBase
+   public class DiffRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("diff{0}", lineEnd);
-      }
+      public override string RequestName { get { return "diff"; } }
    }
 }

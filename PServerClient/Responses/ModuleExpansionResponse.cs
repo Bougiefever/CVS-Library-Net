@@ -12,6 +12,7 @@ namespace PServerClient.Responses
       public override void ProcessResponse(IList<string> lines)
       {
          ModuleName = lines[0];
+         base.ProcessResponse(lines);
       }
    }
 }

@@ -11,7 +11,7 @@ namespace PServerClient.Responses
       public override int LineCount { get { return 0; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         base.ProcessResponse(lines);
       }
    }
 }

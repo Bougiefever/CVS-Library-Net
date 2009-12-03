@@ -12,8 +12,13 @@ namespace PServerClient.Commands
       public CheckoutCommand(CvsRoot root) : base(root)
       {
          Requests.Add(new AuthRequest(root));
-         //Requests.Add(new UnchangedRequest());
+         Requests.Add(new UseUnchangedRequest());
          Requests.Add(new RootRequest(root));
+         Requests.Add(new GlobalOptionRequest("-q"));
+         Requests.Add(new ArgumentRequest(root.Module));
+         Requests.Add(new DirectoryRequest(root));
+         Requests.Add(new ExpandModulesRequest());
+         Requests.Add(new ArgumentRequest("-N"));
          Requests.Add(new ArgumentRequest(root.Module));
          Requests.Add(new DirectoryRequest(root));
          Requests.Add(new CheckOutRequest());

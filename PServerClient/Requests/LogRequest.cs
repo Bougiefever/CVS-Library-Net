@@ -5,13 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class LogRequest : RequestBase
+   public class LogRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("log{0}", lineEnd);
-      }
+      public override string RequestName { get { return "log"; } }
    }
 }

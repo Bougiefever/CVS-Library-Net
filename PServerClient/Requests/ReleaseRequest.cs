@@ -5,13 +5,10 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class ReleaseRequest : RequestBase 
+   public class ReleaseRequest : NoArgRequestBase 
    {
       public override bool ResponseExpected { get { return true; } }
+      public override string RequestName { get { return "release"; } }
 
-      public override string GetRequestString()
-      {
-         return string.Format("release{0}", lineEnd);
-      }
    }
 }

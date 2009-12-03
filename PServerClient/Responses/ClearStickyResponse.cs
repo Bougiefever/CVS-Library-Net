@@ -15,6 +15,7 @@ namespace PServerClient.Responses
       {
          ModuleName = lines[0];
          CvsDirectory = lines[1];
+         base.ProcessResponse(lines);
       }
    }
 }

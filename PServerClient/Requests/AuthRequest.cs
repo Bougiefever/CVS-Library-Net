@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using PServerClient.Responses;
+using System.Linq;
 
 namespace PServerClient.Requests
 {
@@ -15,6 +16,15 @@ namespace PServerClient.Requests
       public override bool ResponseExpected
       {
          get { return true; }
+      }
+
+      public AuthStatus Status
+      {
+         get
+         {
+            IAuthResponse authResponse = Responses.OfType<IAuthResponse>().First();
+            return authResponse.Status;
+         }
       }
 
       public override string GetRequestString()

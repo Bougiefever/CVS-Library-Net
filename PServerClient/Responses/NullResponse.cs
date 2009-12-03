@@ -9,9 +9,10 @@ namespace PServerClient.Responses
    {
       public int LineCount { get { return 0; } }
       public ResponseType ResponseType { get { return ResponseType.Unknown; } }
+      public string ResponseText { get; set; }
       public void ProcessResponse(IList<string> lines)
       {
-         // do nothing
+         ResponseText = string.Empty;
       }
 
    }

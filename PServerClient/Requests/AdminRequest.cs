@@ -5,12 +5,9 @@ using System.Text;
 
 namespace PServerClient.Requests
 {
-   public class AdminRequest : RequestBase
+   public class AdminRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-      public override string GetRequestString()
-      {
-         return string.Format("admin", lineEnd);
-      }
+      public override string RequestName { get { return "admin"; } }
    }
 }
