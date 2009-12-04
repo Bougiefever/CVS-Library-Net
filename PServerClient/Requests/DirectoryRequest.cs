@@ -18,7 +18,7 @@ namespace PServerClient.Requests
       public override bool ResponseExpected { get { return false; } }
       public override string GetRequestString()
       {
-         return string.Format("Directory .{0}{1}/{2}{3}", lineEnd, _root.CvsRootPath, _root.Module, lineEnd);
+         return string.Format("Directory .{0}{1}/{2}{3}", lineEnd, _root.Root, _root.Module, lineEnd);
       }
    }
 }

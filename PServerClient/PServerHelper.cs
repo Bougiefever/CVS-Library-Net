@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PServerClient.Connection;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace PServerClient
 {
@@ -80,6 +82,28 @@ namespace PServerClient
          byte[] decode = new byte[newEnd];
          Array.Copy(buffer, decode,newEnd);
          return Encoding.ASCII.GetString(decode);
+      }
+
+      public static DateTime ConvertRFC822ToDateTime(string rfcDate)
+      {
+         string dateTimeRegex = @"(\d{2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
+         Match m = Regex.Match(rfcDate, dateTimeRegex);
+
+         int day = Convert.ToInt32(m.Groups[1].ToString());
+         int month = DateTime.ParseExact(m.Groups[2].ToString(), "MMM", CultureInfo.CurrentCulture).Month;
+         int year = Convert.ToInt32(m.Groups[3].ToString());
+         int hour = Convert.ToInt32(m.Groups[4].ToString());
+         int minute = Convert.ToInt32(m.Groups[5].ToString());
+         int second = Convert.ToInt32(m.Groups[6].ToString());
+         int offset = Convert.ToInt32(m.Groups[7].ToString());
+
+         DateTime date = new DateTime(year, month, day, hour + offset, minute, second);
+         return date;
+      }
+
+      public static string ConvertDateTimeToRFC822String(DateTime date)
+      {
+         return date.ToString("dd MMM yyyy HH:mm:ss -0000");
       }
 
       //public static IList<string> ReadLines(ICvsTcpClient tcpClient)

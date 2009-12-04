@@ -16,7 +16,7 @@ namespace PServerClient.Requests
       public override bool ResponseExpected { get { return false; } }
       public override string GetRequestString()
       {
-         return string.Format("Root {0}{1}", _root.CvsRootPath, lineEnd);
+         return string.Format("Root {0}{1}", _root.Root, lineEnd);
       }
    }
 }

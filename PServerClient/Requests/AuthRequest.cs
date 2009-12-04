@@ -32,7 +32,7 @@ namespace PServerClient.Requests
          StringBuilder sb = new StringBuilder();
          sb.Append("BEGIN AUTH REQUEST");
          sb.Append(lineEnd);
-         sb.Append(_root.CvsRootPath);
+         sb.Append(_root.Root);
          sb.Append(lineEnd);
          sb.Append(_root.Username);
          sb.Append(lineEnd);

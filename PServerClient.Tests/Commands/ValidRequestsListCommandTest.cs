@@ -17,7 +17,7 @@ namespace PServerClient.Tests.Commands
       [TestFixtureSetUp]
       public void TestFixtureSetUp()
       {
-         _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3", @"c:\f1\f2\f3");
+         _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3");
       }
 
       [Test]

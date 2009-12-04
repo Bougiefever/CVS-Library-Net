@@ -64,7 +64,7 @@ namespace PServerClient.Commands
             // execute authentication request and check authentication status
             // before executing other requests
             IEnumerable<IRequest> authRequests = Requests.OfType<IAuthRequest>().Cast<IRequest>();
-            var otherRequests = Requests.Except(authRequests);
+            IEnumerable<IRequest> otherRequests = Requests.Except(authRequests);
             IAuthRequest auth = authRequests.Cast<IAuthRequest>().First();
             auth.Responses = Connection.DoRequest(auth);
             if (auth.Status == AuthStatus.Authenticated)

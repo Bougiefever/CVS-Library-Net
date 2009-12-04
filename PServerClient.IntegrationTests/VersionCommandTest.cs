@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Requests;
+using PServerClient.Responses;
 
-namespace PServerClient.Tests.Commands
+namespace PServerClient.IntegrationTests
 {
    [TestFixture]
-   public class LogCommandTest
+   public class VersionCommandTest
    {
       private CvsRoot _root;
       private string _username;
@@ -29,16 +31,23 @@ namespace PServerClient.Tests.Commands
 
          _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
       }
-
-      [Test][Ignore]
-      public void SimpleLogTest()
+      [Test]
+      public void ExecuteTest()
       {
-         LogCommand command = new LogCommand(_root);
-         command.LocalOnly = true;
+         ICommand command = new VersionCommand(_root);
          command.Execute();
-
+         // print out the whole conversation, not auth
+         IEnumerable<IAuthRequest> auth = command.Requests.OfType<IAuthRequest>();
+         IEnumerable<IRequest> reqs = command.Requests.Except(auth.Cast<IRequest>());
+         foreach (IRequest req in reqs) 
+         {
+            Console.Write("C: {0}", req.GetRequestString());
+            if (req.ResponseExpected)
+               foreach (IResponse res in req.Responses)
+               {
+                  Console.Write("S: {0}", res.ResponseText);
+               }
+         }
       }
-
-
    }
 }

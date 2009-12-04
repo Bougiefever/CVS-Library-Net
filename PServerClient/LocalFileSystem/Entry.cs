@@ -1,19 +1,34 @@
-﻿
+using System.Collections.Generic;
+using System.IO;
+
 namespace PServerClient.LocalFileSystem
 {
-   public interface IEntry
+   public class Entry : LocalCvsItem
    {
-      string FileName { get; set; }
-      string Properties { get; set; }
-      int FileLength { get; set; }
-      byte[] FileContents { get; set; }
-   }
 
-   public class Entry : IEntry
-   {
-      public string FileName { get; set; }
-      public string Properties { get; set; }
-      public int FileLength { get; set; }
-      public byte[] FileContents { get; set; }
+      public override IEnumerator<LocalCvsItem> CreateIterator()
+      {
+         return null;
+      }
+
+      public override void Read()
+      {
+         FileInfo file = (FileInfo) Item;
+         using (FileStream fileStream = file.OpenRead())
+         {
+            fileStream.Read(FileContents, 0, (int)file.Length);
+            fileStream.Close();
+         }
+      }
+
+      public override void Write()
+      {
+         FileInfo file = (FileInfo)Item;
+         using (FileStream fileStream = file.Open(FileMode.OpenOrCreate))
+         {
+            fileStream.Write(FileContents, 0, FileContents.Length);
+            fileStream.Close();
+         }
+      }
    }
 }

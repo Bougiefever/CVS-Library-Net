@@ -18,7 +18,6 @@ namespace PServerClient.Responses
 
    public interface IFileResponse : IResponse
    {
-      long FileLength { get; set; }
       Entry CvsEntry { get; set; }
    }
 }

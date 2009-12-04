@@ -9,7 +9,8 @@ namespace PServerClient.Tests
    [TestFixture]
    public class RequestTests
    {
-      private CvsRoot _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3", @"c:\f1\f2\f3");
+      private CvsRoot _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3");
+      private string _working = @"c:\f1\f2\f3";
       public RequestTests()
       {
          _root.Module = "mod1";

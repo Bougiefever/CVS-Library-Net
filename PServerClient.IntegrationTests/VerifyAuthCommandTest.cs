@@ -29,7 +29,7 @@ namespace PServerClient.IntegrationTests
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
          _workingDirectory = "";
 
-         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath, _workingDirectory);
+         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
       }
 
       [Test]

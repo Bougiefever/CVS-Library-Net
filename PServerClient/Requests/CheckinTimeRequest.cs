@@ -15,7 +15,7 @@ namespace PServerClient.Requests
       public override bool ResponseExpected { get { return false; } }
       public override string GetRequestString()
       {
-         string time = _checkin.ToString("dd MMM yyyy HH:mm:ss -0000");
+         string time = PServerHelper.ConvertDateTimeToRFC822String(_checkin);
          return string.Format("Checkin-time {0}{1}", time, lineEnd);
       }
    }
