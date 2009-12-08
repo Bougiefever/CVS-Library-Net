@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace PServerClient.LocalFileSystem
@@ -21,16 +22,16 @@ namespace PServerClient.LocalFileSystem
          }
       }
 
-      public byte[] ReadFile(string filePath)
-      {
-         FileInfo file = new FileInfo(filePath);
-         return ReadFile(file);
-      }
+      //public byte[] ReadFile(string filePath)
+      //{
+      //   FileInfo file = new FileInfo(filePath);
+      //   return ReadFile(file);
+      //}
 
       public byte[] ReadFile(FileInfo file)
       {
          if (!file.Exists)
-            throw new Exception(string.Format("The specified file does not exist: {0}", file.FullName));
+            throw new IOException(string.Format("The specified file does not exist: {0}", file.FullName));
          byte[] buffer;
          using (FileStream stream = file.Open(FileMode.Open))
          {
@@ -41,79 +42,101 @@ namespace PServerClient.LocalFileSystem
          return buffer;
       }
 
-      public void WriteFile(string filePath, byte[] buffer)
+      public IList<string> ReadFileLines(FileInfo file)
       {
-         FileInfo file = new FileInfo(filePath);
-         WriteFile(file, buffer);
-
+         if (!file.Exists)
+            throw new IOException(string.Format("The specified file does not exist: {0}", file.FullName));
+         TextReader reader = file.OpenText();
+         IList<string> lines = new List<string>();
+         string line;
+         while ((line = reader.ReadLine()) != null)
+         {
+            lines.Add(line);
+         }
+         reader.Close();
+         return lines;
       }
+
+      public void WriteFileLines(FileInfo file, IList<string> lines)
+      {
+         using (TextWriter tw = file.CreateText())
+         {
+            foreach (string s in lines)
+            {
+               tw.WriteLine(s);
+            }
+            tw.Flush();
+            tw.Close();
+         }
+      }
+
+      //public void WriteFile(string filePath, byte[] buffer)
+      //{
+      //   FileInfo file = new FileInfo(filePath);
+      //   WriteFile(file, buffer);
+
+      //}
 
       public void WriteFile(FileInfo file, byte[] buffer)
       {
-         using (FileStream stream = file.Open(FileMode.OpenOrCreate))
+         using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Write))
          {
             stream.Write(buffer, 0, buffer.Length);
             stream.Flush();
             stream.Close();
          }
+         file.Refresh();
       }
 
-      public bool FileExists(string filePath)
+
+      public bool Exists(FileSystemInfo info)
       {
-         FileInfo file = new FileInfo(filePath);
-         return FileExists(file);
+         return info.Exists;
       }
 
-      public bool FileExists(FileInfo file)
-      {
-         return file.Exists;
-      }
-
-      public bool DirectoryExists(string dirPath)
-      {
-         DirectoryInfo dir = new DirectoryInfo(dirPath);
-         return DirectoryExists(dir);
-      }
-
-      public bool DirectoryExists(DirectoryInfo dir)
-      {
-         return dir.Exists;
-      }
-
-      public void CreateDirectory(string dirPath)
-      {
-         DirectoryInfo dir = new DirectoryInfo(dirPath);
-         CreateDirectory(dir);
-      }
+      //public void CreateDirectory(string dirPath)
+      //{
+      //   DirectoryInfo dir = new DirectoryInfo(dirPath);
+      //   CreateDirectory(dir);
+      //}
 
       public void CreateDirectory(DirectoryInfo dir)
       {
          if (!dir.Exists)
             dir.Create();
-      }
+          dir.Refresh();
+     }
 
-      public void DeleteDirectory(string dirPath)
-      {
-         DirectoryInfo dir = new DirectoryInfo(dirPath);
-         DeleteDirectory(dir);
-      }
+      //public void DeleteDirectory(string dirPath)
+      //{
+      //   DirectoryInfo dir = new DirectoryInfo(dirPath);
+      //   DeleteDirectory(dir);
+      //}
 
-      public void DeleteDirectory(DirectoryInfo dir)
-      {
-         if (dir.Exists)
-            dir.Delete(true);
-      }
+     // public void DeleteDirectory(DirectoryInfo dir)
+     // {
+     //    if (dir.Exists)
+     //       dir.Delete(true);
+     //     dir.Refresh();
+     //}
 
-      public void DeleteFile(string filePath)
-      {
-         FileInfo file = new FileInfo(filePath);
-         DeleteFile(file);
-      }
+      //public void DeleteFile(string filePath)
+      //{
+      //   FileInfo file = new FileInfo(filePath);
+      //   DeleteFile(file);
+      //}
 
-      public void DeleteFile(FileInfo file)
+      //public void DeleteFile(FileInfo file)
+      //{
+      //   if (file.Exists)
+      //      file.Delete();
+      //}
+
+      public void Delete(FileSystemInfo info)
       {
-         if (file.Exists)
-            file.Delete();
+         if (info.Exists)
+            info.Delete();
+         info.Refresh();
       }
    }
 }

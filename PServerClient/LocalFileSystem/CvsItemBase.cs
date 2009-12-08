@@ -9,13 +9,19 @@ namespace PServerClient.LocalFileSystem
    /// </summary>
    public abstract class CvsItemBase : ICvsItem
    {
+      protected CvsItemBase(FileSystemInfo info)
+      {
+         Item = info;
+         ChildItems = new List<ICvsItem>();
+      }
+
       /// <summary>
       /// This is the file or folder
       /// </summary>
-      public FileSystemInfo Item { get; set; }
+      public FileSystemInfo Item { get; private set; }
       public IList<ICvsItem> ChildItems { get; set; }
       public DateTime ModTime { get; set; }
-      public string Version { get; set; }
+      public string Revision { get; set; }
       public string Properties { get; set; }
       public long Length { get; set; }
       public byte[] FileContents { get; set; }

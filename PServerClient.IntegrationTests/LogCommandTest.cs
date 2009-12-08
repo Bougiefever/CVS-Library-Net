@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
 
-namespace PServerClient.Tests.Commands
+namespace PServerClient.IntegrationTests
 {
    [TestFixture]
    public class LogCommandTest

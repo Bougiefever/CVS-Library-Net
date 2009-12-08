@@ -159,13 +159,13 @@ namespace PServerClient.Tests
          for (int i = 0; i < readBytes.Length; i++)
             Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
          Expect.Call(_client.ReadBytes(74))
-            .Return(PServerHelper.EncodeString(fileContents));
+            .Return(fileContents.Encode());
          _mocks.ReplayAll();
          var result = _connection.GetResponses();
          _mocks.VerifyAll();
          Assert.AreEqual(1, result.Count);
          IFileResponse response = (IFileResponse) result[0];
-         string testFile = PServerHelper.DecodeString(response.CvsEntry.FileContents);
+         string testFile = response.CvsEntry.FileContents.Decode();
          Assert.AreEqual(fileContents, testFile);
       }
 
@@ -198,7 +198,7 @@ namespace PServerClient.Tests
          for (int i = 0; i < readBytes.Length; i++)
             Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
          Expect.Call(_client.ReadBytes(74))
-            .Return(PServerHelper.EncodeString(fileContents));
+            .Return(fileContents.Encode());
          _mocks.ReplayAll();
          var result = _connection.GetResponses();
          _mocks.VerifyAll();
@@ -211,7 +211,7 @@ namespace PServerClient.Tests
          byte[] copy;
          foreach (string line in lines)
          {
-            byte[] lineBytes = PServerHelper.EncodeString(line);
+            byte[] lineBytes = line.Encode();
             copy = new byte[cBytes.Length];
             cBytes.CopyTo(copy, 0);
             cBytes = new byte[cBytes.Length + lineBytes.Length + 1];

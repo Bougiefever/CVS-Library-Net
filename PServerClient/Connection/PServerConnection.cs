@@ -33,9 +33,10 @@ namespace PServerClient.Connection
       public IList<IResponse> DoRequest(IRequest request)
       {
          string requestString = request.GetRequestString();
-         //Console.WriteLine("C: " + requestString);
-         byte[] sendBuffer = PServerHelper.EncodeString(requestString);
+         byte[] sendBuffer = requestString.Encode();
          TcpClient.Write(sendBuffer);
+         // do file stuff for request here
+
          IList<IResponse> responses;
          if (request.ResponseExpected)
             responses = GetResponses();
@@ -106,7 +107,6 @@ namespace PServerClient.Connection
          } while (i != 0 && i != 10 && i != -1);
          if (sb.Length > 0)
             line = sb.ToString();
-         //Console.WriteLine("S: " + line);
          return line;
       }
    }

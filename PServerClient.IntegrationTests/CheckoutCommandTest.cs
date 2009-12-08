@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
-using PServerClient.Connection;
 using PServerClient.Requests;
 using PServerClient.Responses;
-using System.Net.Sockets;
 
 namespace PServerClient.IntegrationTests
 {
@@ -67,101 +64,101 @@ namespace PServerClient.IntegrationTests
          client.Connect(_root.Host, _root.Port);
 
          // write auth string
-         byte[] bbb = PServerHelper.EncodeString(s);
+         byte[] bbb = s.Encode();
          NetworkStream stream = client.GetStream();
          stream.Write(bbb, 0, bbb.Length);
 
          // read auth response
          byte[] rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
-         string s2 = PServerHelper.DecodeString(rrr);
+         string s2 = rrr.Decode();
          Console.WriteLine(s2);
 
          // write valid responses string
          s = "Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write valid requests 
          s = "valid-requests" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // read valid requests
          rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
-         s = PServerHelper.DecodeString(rrr);
+         s = rrr.Decode();
          Console.WriteLine(s);
 
          // write unchanged
          s = "UseUnchanged" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write root
          s = "Root /usr/local/cvsroot/sandbox" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write global option
          s = "Global_option -q" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write argument
          s = "Argument abougie" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write directory
          s = "Directory ." + lineend + "/usr/local/cvsroot/sandbox" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // expand mods 
          s = "expand-modules" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // get expand mods response
          rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
-         s = PServerHelper.DecodeString(rrr);
+         s = rrr.Decode();
          Console.WriteLine(s);
 
          // arg command
          s = "Argument -N" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          s = "Argument abougie" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          s = "Directory ." + lineend + "/usr/local/cvsroot/sandbox" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          s = "co" + lineend;
-         bbb = PServerHelper.EncodeString(s);
+         bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // read checkout response
          rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
-         s = PServerHelper.DecodeString(rrr);
+         s = rrr.Decode();
          Console.WriteLine(s);
          client.Close();
       }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 namespace PServerClient.LocalFileSystem
 {
@@ -8,6 +9,10 @@ namespace PServerClient.LocalFileSystem
    /// </summary>
    public class Folder : CvsItemBase
    {
+      public Folder(FileSystemInfo info) : base(info)
+      {
+      }
+
       public override IEnumerator<ICvsItem> CreateIterator()
       {
          return ChildItems.GetEnumerator();

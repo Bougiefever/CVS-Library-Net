@@ -15,7 +15,7 @@ namespace PServerClient.Responses
       public override void ProcessResponse(IList<string> lines)
       {
          string date = lines[0];
-         ModTime = PServerHelper.ConvertRFC822ToDateTime(date);
+         ModTime = date.Rfc822ToDateTime();
          //Match m = Regex.Match(date, _dateTimeRegex);
 
          //int day = Convert.ToInt32(m.Groups[1].ToString());

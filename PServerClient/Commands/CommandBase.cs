@@ -67,7 +67,8 @@ namespace PServerClient.Commands
             IEnumerable<IRequest> otherRequests = Requests.Except(authRequests);
             IAuthRequest auth = authRequests.Cast<IAuthRequest>().First();
             auth.Responses = Connection.DoRequest(auth);
-            if (auth.Status == AuthStatus.Authenticated)
+            AuthStatus status = auth.Status;
+            if (status == AuthStatus.Authenticated)
             {
                foreach (IRequest request in otherRequests)
                {

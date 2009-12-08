@@ -60,12 +60,12 @@ namespace PServerClient
          return sb.ToString();
       }
 
-      public static byte[] EncodeString(string message)
+      public static byte[] Encode(this string message)
       {
          return Encoding.ASCII.GetBytes(message);
       }
 
-      public static string DecodeString(byte[] buffer)
+      public static string Decode(this byte[] buffer)
       {
          int i = 0;
          int newEnd = 0;
@@ -84,7 +84,7 @@ namespace PServerClient
          return Encoding.ASCII.GetString(decode);
       }
 
-      public static DateTime ConvertRFC822ToDateTime(string rfcDate)
+      public static DateTime Rfc822ToDateTime(this string rfcDate)
       {
          string dateTimeRegex = @"(\d{2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
          Match m = Regex.Match(rfcDate, dateTimeRegex);
@@ -101,10 +101,21 @@ namespace PServerClient
          return date;
       }
 
-      public static string ConvertDateTimeToRFC822String(DateTime date)
+      public static string ToRfc822(this DateTime date)
       {
          return date.ToString("dd MMM yyyy HH:mm:ss -0000");
       }
+
+      public static string ToEntryFileDateTimeFormat(this DateTime date)
+      {
+         string entrydate;
+         if (date.Day < 10)
+            entrydate = date.ToString("ddd MMM d HH:mm:ss yyyy");
+         else
+            entrydate = date.ToString("ddd MMM  d HH:mm:ss yyyy");
+         return entrydate;
+      }
+
 
       //public static IList<string> ReadLines(ICvsTcpClient tcpClient)
       //{

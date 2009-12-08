@@ -66,10 +66,10 @@ namespace PServerClient.IntegrationTests
          Console.WriteLine(s);
          CvsTcpClient client = new CvsTcpClient();
          client.Connect(_root.Host, _root.Port);
-         byte[] bbb = PServerHelper.EncodeString(s);
+         byte[] bbb = s.Encode();
          client.Write(bbb);
          byte[] rrr = client.Read();
-         string s2 = PServerHelper.DecodeString(rrr);
+         string s2 = rrr.Decode();
          Console.WriteLine(s2);
          client.Close();
       }

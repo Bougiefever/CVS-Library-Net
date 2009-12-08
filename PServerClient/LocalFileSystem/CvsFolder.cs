@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PServerClient.LocalFileSystem
 {
    public class CvsFolder
    {
+      private const string EntryRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
+      private ICvsItem _parent;
+
       public CvsFolder(ICvsItem parent)
       {
          // create objects
-         ParentFolder = parent;
+         _parent = parent;
          Directory = new DirectoryInfo(Path.Combine(parent.Item.FullName, "CVS"));
          RepositoryFile = new FileInfo(Path.Combine(Directory.FullName, "Repository"));
          EntriesFile = new FileInfo(Path.Combine(Directory.FullName, "Entries"));
@@ -16,11 +21,9 @@ namespace PServerClient.LocalFileSystem
 
          // create file system folder for CVS folder if it doesn't exist
          ReaderWriter.Current.CreateDirectory(Directory);
-         //if (!Directory.Exists)
-         //   Directory.Create();
       }
 
-      public ICvsItem ParentFolder { get; private set; }
+      //public ICvsItem ParentFolder { get; private set; }
       public DirectoryInfo Directory { get; private set; }
       public FileInfo RepositoryFile { get; private set; }
       public FileInfo EntriesFile { get; private set; }
@@ -28,49 +31,82 @@ namespace PServerClient.LocalFileSystem
 
       public string GetRootString()
       {
-         if (!ReaderWriter.Current.FileExists(RootFile))
-            throw new Exception(@"The ""Root"" cvs file does not exist");
-         string root;
          byte[] buffer = ReaderWriter.Current.ReadFile(RootFile);
-         root = PServerHelper.DecodeString(buffer);
+         string root = buffer.Decode();
          return root;
       }
 
       public void WriteRootFile(string root)
       {
-            if (root[root.Length] != 10)
-               root += (char) 10;
-            byte[] buffer = PServerHelper.EncodeString(root);
-
+         byte[] buffer = root.Encode();
          ReaderWriter.Current.WriteFile(RootFile, buffer);
       }
 
       public string GetRepositoryString()
       {
-         if (!RepositoryFile.Exists)
-            throw new Exception(@"The ""Repository"" cvs file does not exist");
-         string repository;
-         using (FileStream stream = RepositoryFile.Open(FileMode.Open))
-         {
-            byte[] buffer = new byte[RepositoryFile.Length];
-            stream.Read(buffer, 0, (int)RepositoryFile.Length);
-            repository = PServerHelper.DecodeString(buffer);
-            stream.Close();
-         }
+         byte[] buffer = ReaderWriter.Current.ReadFile(RepositoryFile);
+         string repository = buffer.Decode();
          return repository;
       }
 
       public void WriteRepositoryFile(string repository)
       {
-         using (FileStream stream = RepositoryFile.Open(FileMode.OpenOrCreate))
+         byte[] buffer = repository.Encode();
+         ReaderWriter.Current.WriteFile(RepositoryFile, buffer);
+      }
+
+      public IList<ICvsItem> GetEntryItems()
+      {
+         IList<string> entryLines = ReaderWriter.Current.ReadFileLines(EntriesFile);
+         IList<ICvsItem> items = new List<ICvsItem>();
+         foreach (string s in entryLines)
          {
-            if (repository[repository.Length] != 10)
-               repository += (char)10;
-            byte[] buffer = PServerHelper.EncodeString(repository);
-            stream.Write(buffer, 0, buffer.Length);
-            stream.Flush();
-            stream.Close();
+            Match m = Regex.Match(s, EntryRegex);
+            if (m.Success)
+            {
+               string code = m.Groups[1].ToString();
+               string fileName = m.Groups[1].ToString();
+               string revision = m.Groups[2].ToString();
+               string date = m.Groups[3].ToString();
+               string keywordMode = m.Groups[4].ToString();
+               string stickyOption = m.Groups[5].ToString();
+
+               FileInfo file = new FileInfo(Path.Combine(_parent.Item.FullName, fileName));
+               ICvsItem item;
+               if (code == "D")
+                  item = new Folder(file);
+               else
+                  item = new Entry(file)
+                            {
+                               Revision = revision,
+                               ModTime = date.Rfc822ToDateTime(),
+                               Properties = keywordMode
+                            };
+               items.Add(item);
+            }
+
          }
+         return items;
+      }
+
+      public void SaveEntriesFile(IList<ICvsItem> items)
+      {
+         IList<string> lines = new List<string>();
+         foreach (ICvsItem item in items)
+         {
+            string entryLine;
+            if (item.ItemType == CvsItemType.Entry)
+            {
+               entryLine = string.Format("/{0}/{1}/{2}/{3}/", item.Item.Name, item.Revision,
+                                                item.ModTime.ToEntryFileDateTimeFormat(), item.Properties);
+            }
+            else
+            {
+               entryLine = string.Format("D/{0}////", item.Item.Name);
+            }
+            lines.Add(entryLine);
+         }
+         ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
       }
    }
 }

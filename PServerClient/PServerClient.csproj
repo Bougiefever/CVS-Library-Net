@@ -64,6 +64,7 @@
     <Compile Include="CreateResponseHelper.cs" />
     <Compile Include="CvsRoot.cs" />
     <Compile Include="LocalFileSystem\CvsFolder.cs" />
+    <Compile Include="LocalFileSystem\CvsItemFactory.cs" />
     <Compile Include="LocalFileSystem\Entry.cs" />
     <Compile Include="LocalFileSystem\CvsItemBase.cs" />
     <Compile Include="LocalFileSystem\CvsItemType.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Requests\AnnotateRequest.cs" />
     <Compile Include="Requests\ArgumentRequest.cs" />
     <Compile Include="Requests\ArgumentxRequest.cs" />
+    <Compile Include="Requests\AuthRequestBase.cs" />
     <Compile Include="Requests\AuthRequest.cs" />
     <Compile Include="Requests\CaseRequest.cs" />
     <Compile Include="Requests\CheckInRequest.cs" />

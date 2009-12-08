@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 
 
@@ -40,7 +37,7 @@ namespace PServerClient.Tests
       {
          string encode = "abc";
          byte[] expected = new byte[] { 97, 98, 99 };
-         byte[] result = PServerHelper.EncodeString(encode);
+         byte[] result = encode.Encode();
          Assert.AreEqual(expected, result);
       }
 
@@ -49,7 +46,7 @@ namespace PServerClient.Tests
       {
          byte[] decode = new byte[] { 97, 98, 99, 10 };
          string expected = "abc\n";
-         string result = PServerHelper.DecodeString(decode);
+         string result = decode.Decode();
          Assert.AreEqual(expected, result);
       }
 
@@ -58,8 +55,25 @@ namespace PServerClient.Tests
       {
          byte[] decode = new byte[] { 97, 98, 99, 10, 0, 0, 0 };
          string expected = "abc\n";
-         string result = PServerHelper.DecodeString(decode);
+         string result = decode.Decode();
          Assert.AreEqual(expected, result);
+      }
+
+      [Test]
+      public void ConvertDateTimeToRfc822StringTest()
+      {
+         DateTime dt = DateTime.Parse("1/1/2011 1:52:22 PM");
+         string result = dt.ToRfc822();
+         Assert.AreEqual("01 Jan 2011 13:52:22 -0000", result);
+      }
+
+      [Test]
+      public void ConvertRfc822ToDateTimeTest()
+      {
+         string dt = "01 Jan 2011 13:52:22 -0000";
+         DateTime expected = DateTime.Parse("1/1/2011 1:52:22 PM");
+         DateTime result = dt.Rfc822ToDateTime();
+         Assert.AreEqual(result, expected);
       }
    }
 }

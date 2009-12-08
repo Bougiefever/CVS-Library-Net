@@ -13,7 +13,7 @@ namespace PServerClient.LocalFileSystem
       /// Either FileInfo or DirectoryInfo object depending on
       /// whether instance is an Entry or Folder object
       /// </summary>
-      FileSystemInfo Item { get; set; }
+      FileSystemInfo Item { get; }
       /// <summary>
       /// List of Entries or sub-Folders for the current item
       /// Entries will return an empty list because they do not have 
@@ -27,7 +27,7 @@ namespace PServerClient.LocalFileSystem
       /// <summary>
       /// For Entry type, Cvs revision string
       /// </summary>
-      string Version { get; set; }
+      string Revision { get; set; }
       /// <summary>
       /// For Entry type, the cvs properties string
       /// </summary>
