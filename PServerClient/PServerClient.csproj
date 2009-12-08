@@ -63,10 +63,14 @@
     <Compile Include="Connection\PServerConnection.cs" />
     <Compile Include="CreateResponseHelper.cs" />
     <Compile Include="CvsRoot.cs" />
+    <Compile Include="LocalFileSystem\CvsFolder.cs" />
     <Compile Include="LocalFileSystem\Entry.cs" />
-    <Compile Include="LocalFileSystem\LocalCvsItem.cs" />
-    <Compile Include="LocalFileSystem\LocalItemType.cs" />
-    <Compile Include="LocalFileSystem\WorkingDirectory.cs" />
+    <Compile Include="LocalFileSystem\CvsItemBase.cs" />
+    <Compile Include="LocalFileSystem\CvsItemType.cs" />
+    <Compile Include="LocalFileSystem\IReaderWriter.cs" />
+    <Compile Include="LocalFileSystem\ReaderWriter.cs" />
+    <Compile Include="LocalFileSystem\Folder.cs" />
+    <Compile Include="LocalFileSystem\ICvsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PServerHelper.cs" />
     <Compile Include="Requests\AddRequest.cs" />

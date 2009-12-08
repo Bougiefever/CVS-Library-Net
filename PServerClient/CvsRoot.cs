@@ -16,15 +16,33 @@ namespace PServerClient
       }
 
       // for the current user and machine
-      public WorkingDirectory WorkingDirectory { get; set; }
+      /// <summary>
+      /// This is the root folder for the cvs module that is being used
+      /// </summary>
+      public Folder WorkingDirectory { get; set; }
       public string Username { get; set; }
       public string Password { get; set; }
 
       // cvs repository settings
+      /// <summary>
+      /// Pserver connection string for Cvs
+      /// </summary>
       public string CvsConnectionString { get; set; }
+      /// <summary>
+      /// Cvs root folder on unix machine
+      /// </summary>
       public string Root { get; set; }
+      /// <summary>
+      /// Name of Cvs module being interacted with
+      /// </summary>
       public string Module { get; set; }
+      /// <summary>
+      /// Name of host machine
+      /// </summary>
       public string Host { get; set; }
+      /// <summary>
+      /// Port for Cvs on host machine
+      /// </summary>
       public int Port { get; set; }
    }
 }

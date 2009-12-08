@@ -3,32 +3,34 @@ using System.IO;
 
 namespace PServerClient.LocalFileSystem
 {
-   public class Entry : LocalCvsItem
+   public class Entry : CvsItemBase
    {
 
-      public override IEnumerator<LocalCvsItem> CreateIterator()
+      public override IEnumerator<ICvsItem> CreateIterator()
       {
          return null;
       }
 
       public override void Read()
       {
-         FileInfo file = (FileInfo) Item;
-         using (FileStream fileStream = file.OpenRead())
-         {
-            fileStream.Read(FileContents, 0, (int)file.Length);
-            fileStream.Close();
-         }
+         FileContents = ReaderWriter.Current.ReadFile((FileInfo)Item);
+         //FileInfo file = (FileInfo) Item;
+         //using (FileStream fileStream = file.OpenRead())
+         //{
+         //   fileStream.Read(FileContents, 0, (int)file.Length);
+         //   fileStream.Close();
+         //}
       }
 
       public override void Write()
       {
-         FileInfo file = (FileInfo)Item;
-         using (FileStream fileStream = file.Open(FileMode.OpenOrCreate))
-         {
-            fileStream.Write(FileContents, 0, FileContents.Length);
-            fileStream.Close();
-         }
+         ReaderWriter.Current.WriteFile((FileInfo)Item, FileContents);
+         //FileInfo file = (FileInfo)Item;
+         //using (FileStream fileStream = file.Open(FileMode.OpenOrCreate))
+         //{
+         //   fileStream.Write(FileContents, 0, FileContents.Length);
+         //   fileStream.Close();
+         //}
       }
    }
 }
