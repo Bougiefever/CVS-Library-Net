@@ -18,6 +18,6 @@ namespace PServerClient.Responses
 
    public interface IFileResponse : IResponse
    {
-      Entry CvsEntry { get; set; }
+      ReceiveFile File { get; set; }
    }
 }

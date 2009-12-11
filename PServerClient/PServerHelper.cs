@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using PServerClient.Connection;
 using System.Text.RegularExpressions;
@@ -8,6 +9,33 @@ using System.Globalization;
 
 namespace PServerClient
 {
+   public enum MonthName
+   {
+      Jan = 1,
+      Feb = 2,
+      Mar = 3,
+      Apr = 4,
+      May = 5,
+      Jun = 6,
+      Jul = 7,
+      Aug = 8,
+      Sep = 9,
+      Oct = 10,
+      Nov = 11,
+      Dec = 12
+   }
+
+   public enum Day
+   {
+      Sun = 0,
+      Mon = 1, 
+      Tue = 2,
+      Wed = 3,
+      Thu = 4,
+      Fri = 5,
+      Sat = 6
+   }
+
    public static class PServerHelper
    {
       private static byte[] _code;
@@ -88,7 +116,8 @@ namespace PServerClient
       {
          string dateTimeRegex = @"(\d{2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
          Match m = Regex.Match(rfcDate, dateTimeRegex);
-
+         if (!m.Success)
+            throw new ArgumentException("RFC822 date string is not formatted properly");
          int day = Convert.ToInt32(m.Groups[1].ToString());
          int month = DateTime.ParseExact(m.Groups[2].ToString(), "MMM", CultureInfo.CurrentCulture).Month;
          int year = Convert.ToInt32(m.Groups[3].ToString());
@@ -106,16 +135,49 @@ namespace PServerClient
          return date.ToString("dd MMM yyyy HH:mm:ss -0000");
       }
 
-      public static string ToEntryFileDateTimeFormat(this DateTime date)
+      public static string ToEntryString(this DateTime date)
       {
          string entrydate;
          if (date.Day < 10)
-            entrydate = date.ToString("ddd MMM d HH:mm:ss yyyy");
-         else
             entrydate = date.ToString("ddd MMM  d HH:mm:ss yyyy");
+         else
+            entrydate = date.ToString("ddd MMM d HH:mm:ss yyyy");
          return entrydate;
       }
 
+      public static DateTime EntryToDateTime(this string date)
+      {
+         string dateTimeRegex = @"(.{3})\s(.{3})\s+(\d{1,2})\s(\d{2}):(\d{2}):(\d{2})\s(\d{4})";
+         Match m = Regex.Match(date, dateTimeRegex);
+         if (!m.Success)
+            throw new ArgumentException("Date string is not formatted correctly");
+
+         string dow = m.Groups[1].ToString();
+         string mon = m.Groups[2].ToString();
+         int day = Convert.ToInt32(m.Groups[3].ToString());
+         int hour = Convert.ToInt32(m.Groups[4].ToString());
+         int minute = Convert.ToInt32(m.Groups[5].ToString());
+         int second = Convert.ToInt32(m.Groups[6].ToString());
+         int year = Convert.ToInt32(m.Groups[7].ToString());
+         int month = PServerHelper.StringToEnum(typeof (MonthName), mon);
+         DateTime dt = new DateTime(year, month, day, hour, minute, second);
+
+         return dt;
+      }
+
+      public static int StringToEnum(Type t, string value)
+      {
+         var fis = t.GetFields();
+         object result = null;
+         foreach (FieldInfo fi in fis) 
+         {
+            if (fi.Name == value)
+               result = fi.GetValue(null);
+         }
+         if (result == null)
+            throw new FormatException("Cannot convert string to " + t.ToString());
+         return Convert.ToInt32((result));
+      }
 
       //public static IList<string> ReadLines(ICvsTcpClient tcpClient)
       //{

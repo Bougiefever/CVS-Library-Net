@@ -65,11 +65,11 @@ namespace PServerClient.LocalFileSystem
             if (m.Success)
             {
                string code = m.Groups[1].ToString();
-               string fileName = m.Groups[1].ToString();
-               string revision = m.Groups[2].ToString();
-               string date = m.Groups[3].ToString();
-               string keywordMode = m.Groups[4].ToString();
-               string stickyOption = m.Groups[5].ToString();
+               string fileName = m.Groups[2].ToString();
+               string revision = m.Groups[3].ToString();
+               string date = m.Groups[4].ToString();
+               string keywordMode = m.Groups[5].ToString();
+               string stickyOption = m.Groups[6].ToString();
 
                FileInfo file = new FileInfo(Path.Combine(_parent.Item.FullName, fileName));
                ICvsItem item;
@@ -79,7 +79,7 @@ namespace PServerClient.LocalFileSystem
                   item = new Entry(file)
                             {
                                Revision = revision,
-                               ModTime = date.Rfc822ToDateTime(),
+                               ModTime = date.EntryToDateTime(),
                                Properties = keywordMode
                             };
                items.Add(item);
@@ -96,14 +96,11 @@ namespace PServerClient.LocalFileSystem
          {
             string entryLine;
             if (item.ItemType == CvsItemType.Entry)
-            {
                entryLine = string.Format("/{0}/{1}/{2}/{3}/", item.Item.Name, item.Revision,
-                                                item.ModTime.ToEntryFileDateTimeFormat(), item.Properties);
-            }
+                                         item.ModTime.ToEntryString(), item.Properties);
             else
-            {
                entryLine = string.Format("D/{0}////", item.Item.Name);
-            }
+            Console.WriteLine(entryLine);
             lines.Add(entryLine);
          }
          ReaderWriter.Current.WriteFileLines(EntriesFile, lines);

@@ -56,7 +56,7 @@ namespace PServerClient.Commands
 
       public void Execute()
       {
-         Connection.Connect(CvsRoot.Host, CvsRoot.Port);
+         Connection.Connect(CvsRoot);
 
 
          try

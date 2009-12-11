@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using PServerClient.Connection;
 
 namespace PServerClient
@@ -145,6 +146,24 @@ namespace PServerClient
             FMessageName,
             WrapperRscOptionName
          };
+      }
+
+      public static string GetFileNameFromUpdatedLine(string line)
+      {
+         string regex = @"^/(.+?)/";
+         Match m = Regex.Match(line, regex);
+         if (!m.Success)
+            throw new ArgumentException("Unexpected response string format");
+         return m.Groups[1].ToString();
+      }
+
+      public static string GetRevisionFromUpdatedLine(string line)
+      {
+         string regex = @"/(\d.+?)/";
+         Match m = Regex.Match(line, regex);
+         if (!m.Success)
+            throw new ArgumentException("Unexpected response string format");
+         return m.Groups[1].ToString();
       }
 
 

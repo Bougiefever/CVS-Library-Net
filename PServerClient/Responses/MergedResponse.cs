@@ -10,7 +10,7 @@ namespace PServerClient.Responses
    {
       public override ResponseType ResponseType { get { return ResponseType.Merged; } }
       public long FileLength { get; set; }
-      public Entry CvsEntry { get; set; }
+      public ReceiveFile File { get; set; }
       public override int LineCount { get { return 5; } }
 
       public override void ProcessResponse(IList<string> lines)

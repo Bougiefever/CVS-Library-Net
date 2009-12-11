@@ -75,5 +75,35 @@ namespace PServerClient.Tests
          DateTime result = dt.Rfc822ToDateTime();
          Assert.AreEqual(result, expected);
       }
+
+      [Test]
+      public void ConvertDateTimeToEntryFormatTest()
+      {
+         DateTime dt = DateTime.Parse("12/11/2009 19:09:26");
+         string date = dt.ToEntryString();
+         Assert.AreEqual("Fri Dec 11 19:09:26 2009", date);
+
+         dt = dt.AddDays(-5);
+         date = dt.ToEntryString();
+         Assert.AreEqual("Sun Dec  6 19:09:26 2009", date);
+      }
+
+      [Test]
+      public void ConvertEntryFileDateStringToDateTimeTest()
+      {
+         string test = "Mon Dec  7 23:15:36 2009";
+         DateTime dt = test.EntryToDateTime();
+         Assert.AreEqual(DateTime.Parse("12/7/2009 11:15:36 PM"), dt);
+         
+      }
+
+      [Test]
+      public void StringToEnumTest()
+      {
+         string test = "Dec";
+         int result = PServerHelper.StringToEnum(typeof (MonthName), test);
+         MonthName mon = MonthName.Dec;
+         Assert.AreEqual(mon, (MonthName)result);
+      }
    }
 }

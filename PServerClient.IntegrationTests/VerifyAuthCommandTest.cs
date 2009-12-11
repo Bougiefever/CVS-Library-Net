@@ -79,7 +79,7 @@ namespace PServerClient.IntegrationTests
       {
          AuthRequest auth = new AuthRequest(_root);
          PServerConnection connection = new PServerConnection();
-         connection.Connect(_root.Host, _root.Port);
+         connection.Connect(_root);
          var result = connection.DoRequest(auth);
          connection.Close();
       }

@@ -61,7 +61,7 @@
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
-    <Compile Include="CreateResponseHelper.cs" />
+    <Compile Include="ResponseHelper.cs" />
     <Compile Include="CvsRoot.cs" />
     <Compile Include="LocalFileSystem\CvsFolder.cs" />
     <Compile Include="LocalFileSystem\CvsItemFactory.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="Responses\CopyFileResponse.cs" />
     <Compile Include="Responses\CreatedResponse.cs" />
     <Compile Include="Responses\ErrorResponse.cs" />
+    <Compile Include="Responses\FileResponseBase.cs" />
     <Compile Include="Responses\FMessageResponse.cs" />
     <Compile Include="Responses\IResponse.cs" />
     <Compile Include="Responses\MbinaryResponse.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Responses\OkResponse.cs" />
     <Compile Include="Responses\PatchedResponse.cs" />
     <Compile Include="Responses\RcsDiffResponse.cs" />
+    <Compile Include="Responses\ReceiveFile.cs" />
     <Compile Include="Responses\RemovedResponse.cs" />
     <Compile Include="Responses\RemoveEntryResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />

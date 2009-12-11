@@ -3,7 +3,7 @@ using PServerClient.LocalFileSystem;
 
 namespace PServerClient
 {
-   public class CvsRoot
+   public  class CvsRoot
    {
       public CvsRoot(string host, int port, string username, string password, string cvsroot)
       {

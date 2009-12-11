@@ -7,7 +7,6 @@ namespace PServerClient.Commands
    {
       IList<IRequest> Requests { get; set;}
       CvsRoot CvsRoot { get; }
-      //string ErrorMessage { get; }
       void Execute();
    }
 }

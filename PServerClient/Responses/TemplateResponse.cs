@@ -10,7 +10,7 @@ namespace PServerClient.Responses
    {
       public override ResponseType ResponseType { get { return ResponseType.Template; } }
       public long FileLength { get; set; }
-      public Entry CvsEntry { get; set; }
+      public ReceiveFile File { get; set; }
 
       public override void ProcessResponse(IList<string> lines)
       {

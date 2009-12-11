@@ -57,7 +57,7 @@ namespace PServerClient.Tests.Commands
          command.Connection = connection;
          command.Requests = new List<IRequest>() {authRequest, otherRequest};
 
-         Expect.Call(() => connection.Connect(null, 0))
+         Expect.Call(() => connection.Connect(null))
             .IgnoreArguments()
             .Repeat.Once();
          Expect.Call(connection.DoRequest(authRequest)).Return(authResponses);
@@ -84,7 +84,7 @@ namespace PServerClient.Tests.Commands
          ValidRequestsListCommand command = new ValidRequestsListCommand(_root);
          command.Connection = connection;
          command.Requests = new List<IRequest>() { authRequest, otherRequest };
-         Expect.Call(() => connection.Connect(null, 0))
+         Expect.Call(() => connection.Connect(null))
             .IgnoreArguments()
             .Repeat.Once();
          Expect.Call(connection.Close).Repeat.Once();

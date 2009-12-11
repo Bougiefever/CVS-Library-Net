@@ -34,7 +34,8 @@ namespace PServerClient.Tests
             .IgnoreArguments()
             .Constraints(Is.Equal("host"), Is.Equal(1));
          _mocks.ReplayAll();
-         _connection.Connect("host", 1);
+         CvsRoot root = new CvsRoot("host", 1, "me", "pws", "/my/cvs/root");
+         _connection.Connect(root);
          _mocks.VerifyAll();
       }
 

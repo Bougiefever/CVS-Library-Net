@@ -10,6 +10,7 @@ namespace PServerClient.Connection
    public class PServerConnection : IConnection
    {
       private ICvsTcpClient _cvsTcpClient;
+      private CvsRoot _root;
 
       public ICvsTcpClient TcpClient
       {
@@ -25,9 +26,10 @@ namespace PServerClient.Connection
          }
       }
 
-      public void Connect(string host, int port)
+      public void Connect(CvsRoot root)
       {
-         TcpClient.Connect(host, port);
+         _root = root;
+         TcpClient.Connect(root.Host, root.Port);
       }
 
       public IList<IResponse> DoRequest(IRequest request)
@@ -67,7 +69,7 @@ namespace PServerClient.Connection
                if (response is IFileResponse)
                {
                   IFileResponse fileResponse = (IFileResponse)response;
-                  fileResponse.CvsEntry.FileContents = TcpClient.ReadBytes((int)fileResponse.CvsEntry.Length);
+                  fileResponse.File.FileContents = TcpClient.ReadBytes((int)fileResponse.File.FileLength);
                }
                responses.Add(response);
             }
