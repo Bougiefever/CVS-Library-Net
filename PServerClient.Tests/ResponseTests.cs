@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using PServerClient.Requests;
 using PServerClient.Responses;
 
 namespace PServerClient.Tests
@@ -8,6 +9,14 @@ namespace PServerClient.Tests
    [TestFixture]
    public class ResponseTests
    {
+      [Test]
+      public void GetValidResponsesStringTest()
+      {
+         ResponseType[] types = new[] { ResponseType.Ok, ResponseType.MessageTag, ResponseType.EMessage };
+         string rtypes = ResponseHelper.GetValidResponsesString(types);
+         Assert.AreEqual("ok MT E", rtypes);
+      }
+
       [Test]
       public void AuthResponseAuthenticatedTest()
       {
@@ -32,11 +41,11 @@ namespace PServerClient.Tests
       public void ValidRequestsResponseProcessTest()
       {
          ValidRequestResponse response = new ValidRequestResponse();
-         IList<string> lines = new List<string>() { "Root Valid-responses valid-requests Repository Directory" };
+         IList<string> lines = new List<string>() { "Root Valid-responses valid-requests Global_option" };
          response.ProcessResponse(lines);
-         Assert.AreEqual(5, response.ValidRequests.Count);
-         Assert.AreEqual("Root", response.ValidRequests[0]);
-         Assert.AreEqual("Directory", response.ValidRequests[4]);
+         Assert.AreEqual(4, response.ValidRequestTypes.Count);
+         Assert.AreEqual(RequestType.Root, response.ValidRequestTypes[0]);
+         Assert.AreEqual(RequestType.GlobalOption, response.ValidRequestTypes[3]);
          Assert.AreEqual(lines.Count, response.LineCount);
       }
 
@@ -99,22 +108,42 @@ namespace PServerClient.Tests
          MessageTagResponse response = new MessageTagResponse();
          IList<string> lines = new List<string>() { "+updated" };
          response.ProcessResponse(lines);
-         Assert.AreSame(lines, response.MessageLines);
+         string expected = "+updated";
+         Assert.AreSame(expected, response.Message);
          Assert.AreEqual(1, response.LineCount);
       }
 
-      [Test][Ignore]
-      public void UpdatedProcessResponseTest()
+      [Test]
+      public void FileResponseBaseProcessTest()
       {
          UpdatedResponse response = new UpdatedResponse();
-         IList<string> lines = new List<string>() { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/.cvspass/1.1.1.1///", "u=rw,g=rw,o=rw","74", "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w"};
+         IList<string> lines = new List<string>() { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.ProcessResponse(lines);
-         //Assert.AreEqual("mod1/", response.ModuleName);
-         //Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.CvsPath);
-         //Entry entry = response.CvsEntry;
-         //Assert.AreEqual("/.cvspass/1.1.1.1///", entry.FileName);
-         //Assert.AreEqual("u=rw,g=rw,o=rw", entry.Properties);
-         //Assert.AreEqual(74, entry.FileLength);
+         ReceiveFile file = response.File;
+         Assert.AreEqual("mod1", file.Path[0]);
+         Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", file.CvsPath);
+         Assert.AreEqual("file1.cs", file.FileName);
+         Assert.AreEqual("1.2.3.4", file.Revision);
+         Assert.AreEqual("u=rw,g=rw,o=rw", file.Properties);
+         Assert.AreEqual(74, file.FileLength);
+         Assert.AreEqual(5, response.LineCount);
+      }
+
+      [Test]
+      public void FileResponseBaseProcessMultipleDirectoriesTest()
+      {
+         UpdatedResponse response = new UpdatedResponse();
+         IList<string> lines = new List<string>() { "mod1/mod2/mod3/", "/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
+         response.ProcessResponse(lines);
+         ReceiveFile file = response.File;
+         Assert.AreEqual("mod1", file.Path[0]);
+         Assert.AreEqual("mod2", file.Path[1]);
+         Assert.AreEqual("mod3", file.Path[2]);
+         Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", file.CvsPath);
+         Assert.AreEqual("file1.cs", file.FileName);
+         Assert.AreEqual("1.2.3.4", file.Revision);
+         Assert.AreEqual("u=rw,g=rw,o=rw", file.Properties);
+         Assert.AreEqual(74, file.FileLength);
          Assert.AreEqual(5, response.LineCount);
       }
    }

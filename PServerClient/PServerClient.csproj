@@ -61,6 +61,11 @@
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
+    <Compile Include="Commands\ExitCode.cs" />
+    <Compile Include="FileType.cs" />
+    <Compile Include="RequestHelper.cs" />
+    <Compile Include="Requests\RequestType.cs" />
+    <Compile Include="Requests\SendFile.cs" />
     <Compile Include="ResponseHelper.cs" />
     <Compile Include="CvsRoot.cs" />
     <Compile Include="LocalFileSystem\CvsFolder.cs" />
@@ -113,7 +118,7 @@
     <Compile Include="Requests\NoArgRequestBase.cs" />
     <Compile Include="Requests\NotifyRequest.cs" />
     <Compile Include="Requests\QuestionableRequest.cs" />
-    <Compile Include="Requests\RannotateRequest.cs" />
+    <Compile Include="Requests\RAnnotateRequest.cs" />
     <Compile Include="Requests\RDiffRequest.cs" />
     <Compile Include="Requests\ReleaseRequest.cs" />
     <Compile Include="Requests\RemoveRequest.cs" />
@@ -150,11 +155,13 @@
     <Compile Include="Responses\CreatedResponse.cs" />
     <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\FileResponseBase.cs" />
-    <Compile Include="Responses\FMessageResponse.cs" />
+    <Compile Include="Responses\FlushResponse.cs" />
     <Compile Include="Responses\IResponse.cs" />
     <Compile Include="Responses\MbinaryResponse.cs" />
     <Compile Include="Responses\MergedResponse.cs" />
     <Compile Include="Responses\MessageResponse.cs" />
+    <Compile Include="Responses\Messages\MessageHelper.cs" />
+    <Compile Include="Responses\Messages\UpdatedMessage.cs" />
     <Compile Include="Responses\MessageTagResponse.cs" />
     <Compile Include="Responses\ModeResponse.cs" />
     <Compile Include="Responses\ModTimeResponse.cs" />
@@ -170,12 +177,14 @@
     <Compile Include="Responses\RemoveEntryResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="Responses\ResponseFactory.cs" />
+    <Compile Include="Responses\ResponseType.cs" />
     <Compile Include="Responses\SetStaticDirectoryResponse.cs" />
     <Compile Include="Responses\SetStickyResponse.cs" />
     <Compile Include="Responses\TemplateResponse.cs" />
     <Compile Include="Responses\UpdatedResponse.cs" />
     <Compile Include="Responses\UpdateExistingResponse.cs" />
     <Compile Include="Responses\ValidRequestResponse.cs" />
+    <Compile Include="Responses\WrapperRscOptionResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

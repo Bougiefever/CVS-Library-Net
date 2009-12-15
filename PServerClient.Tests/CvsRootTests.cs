@@ -21,7 +21,6 @@ namespace PServerClient.Tests
          Assert.AreNotEqual("password", root.Password);
          Assert.AreEqual("A:yZZ30 e", root.Password);
          Assert.AreEqual("/f1/f2/f3", root.Root);
-         //Assert.AreEqual(@"c:\f1\f2\f3", root.CvsDirectory);
          Assert.AreEqual(1, root.Port);
       }
    }

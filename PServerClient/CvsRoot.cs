@@ -19,7 +19,7 @@ namespace PServerClient
       /// <summary>
       /// This is the root folder for the cvs module that is being used
       /// </summary>
-      public Folder WorkingDirectory { get; set; }
+      public ICvsItem WorkingDirectory { get; set; }
       public string Username { get; set; }
       public string Password { get; set; }
 

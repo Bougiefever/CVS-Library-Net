@@ -55,7 +55,7 @@ namespace PServerClient.Connection
       internal IList<IResponse> GetResponses()
       {
          IList<IResponse> responses = new List<IResponse>();
-         string line = null;
+         string line;
          do
          {
             line = ReadLine();

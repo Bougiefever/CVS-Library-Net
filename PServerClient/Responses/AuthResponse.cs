@@ -3,15 +3,18 @@ using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
-   public class AuthResponse : IAuthResponse, IResponse
+   public class AuthResponse : IAuthResponse
    {
-      private const string AuthenticatePass = "I LOVE YOU";
-      private const string AuthenticateFail = "I HATE YOU";
+      //private const string AuthenticatePass = "I LOVE YOU";
+      //private const string AuthenticateFail = "I HATE YOU";
+
+      #region IAuthResponse Members
 
       public AuthStatus Status { get; private set; }
       public int LineCount { get { return 1; } }
       public ResponseType ResponseType { get { return ResponseType.Auth; } }
       public string ResponseText { get; set; }
+
       public void ProcessResponse(IList<string> lines)
       {
          if (lines[0].Contains("I LOVE YOU"))
@@ -22,8 +25,14 @@ namespace PServerClient.Responses
          {
             Status = AuthStatus.NotAuthenticated;
          }
-         ResponseText = lines[0] + (char)10;
+         ResponseText = lines[0] + (char) 10;
       }
 
+      public string DisplayResponse()
+      {
+         return "";
+      }
+
+      #endregion
    }
 }

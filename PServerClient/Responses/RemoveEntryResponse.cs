@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PServerClient.Responses
 {
+   /// <summary>
+   /// Remove-entry pathname \n
+   //The file needs its entry removed from CVS/Entries, but the file itself is already
+   //gone (this happens in response to a ci request which involves committing the
+   //removal of a file).
+   /// </summary>
    public class RemoveEntryResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.RemoveEntry; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         base.ProcessResponse(lines);
+         throw new NotImplementedException();
       }
+
+      public override string DisplayResponse()
+      {
+         throw new NotImplementedException();
+      }
+
+      public override ResponseType ResponseType { get { return ResponseType.RemoveEntry; } }
    }
 }

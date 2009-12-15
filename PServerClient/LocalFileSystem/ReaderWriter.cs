@@ -22,12 +22,6 @@ namespace PServerClient.LocalFileSystem
          }
       }
 
-      //public byte[] ReadFile(string filePath)
-      //{
-      //   FileInfo file = new FileInfo(filePath);
-      //   return ReadFile(file);
-      //}
-
       public byte[] ReadFile(FileInfo file)
       {
          if (!file.Exists)
@@ -70,13 +64,6 @@ namespace PServerClient.LocalFileSystem
          }
       }
 
-      //public void WriteFile(string filePath, byte[] buffer)
-      //{
-      //   FileInfo file = new FileInfo(filePath);
-      //   WriteFile(file, buffer);
-
-      //}
-
       public void WriteFile(FileInfo file, byte[] buffer)
       {
          using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Write))
@@ -88,17 +75,10 @@ namespace PServerClient.LocalFileSystem
          file.Refresh();
       }
 
-
       public bool Exists(FileSystemInfo info)
       {
          return info.Exists;
       }
-
-      //public void CreateDirectory(string dirPath)
-      //{
-      //   DirectoryInfo dir = new DirectoryInfo(dirPath);
-      //   CreateDirectory(dir);
-      //}
 
       public void CreateDirectory(DirectoryInfo dir)
       {
@@ -106,31 +86,6 @@ namespace PServerClient.LocalFileSystem
             dir.Create();
           dir.Refresh();
      }
-
-      //public void DeleteDirectory(string dirPath)
-      //{
-      //   DirectoryInfo dir = new DirectoryInfo(dirPath);
-      //   DeleteDirectory(dir);
-      //}
-
-     // public void DeleteDirectory(DirectoryInfo dir)
-     // {
-     //    if (dir.Exists)
-     //       dir.Delete(true);
-     //     dir.Refresh();
-     //}
-
-      //public void DeleteFile(string filePath)
-      //{
-      //   FileInfo file = new FileInfo(filePath);
-      //   DeleteFile(file);
-      //}
-
-      //public void DeleteFile(FileInfo file)
-      //{
-      //   if (file.Exists)
-      //      file.Delete();
-      //}
 
       public void Delete(FileSystemInfo info)
       {

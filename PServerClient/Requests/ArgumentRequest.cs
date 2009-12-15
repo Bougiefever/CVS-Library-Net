@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PServerClient.Requests
+﻿namespace PServerClient.Requests
 {
+   /// <summary>
+   /// Argument text \n
+   //Response expected: no. Save argument for use in a subsequent command.
+   //Arguments accumulate until an argument-using command is given, at which
+   //point they are forgotten.
+   /// </summary>
    public class ArgumentRequest : OneArgRequestBase
    {
-      public ArgumentRequest(string arg) : base(arg) {}
-      public override string RequestName { get { return "Argument"; } }      
+      public ArgumentRequest(string arg) : base(arg)
+      {
+      }
+
+      public override RequestType RequestType { get { return RequestType.Argument; } }
    }
 }

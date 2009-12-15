@@ -80,7 +80,8 @@ namespace PServerClient.LocalFileSystem
                             {
                                Revision = revision,
                                ModTime = date.EntryToDateTime(),
-                               Properties = keywordMode
+                               Properties = keywordMode,
+                               StickyOption = stickyOption
                             };
                items.Add(item);
             }
@@ -94,12 +95,9 @@ namespace PServerClient.LocalFileSystem
          IList<string> lines = new List<string>();
          foreach (ICvsItem item in items)
          {
-            string entryLine;
-            if (item.ItemType == CvsItemType.Entry)
-               entryLine = string.Format("/{0}/{1}/{2}/{3}/", item.Item.Name, item.Revision,
-                                         item.ModTime.ToEntryString(), item.Properties);
-            else
-               entryLine = string.Format("D/{0}////", item.Item.Name);
+            string code = item.ItemType == CvsItemType.Folder ? "D" : string.Empty;
+            string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Item.Name, item.Revision,
+                                         item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
             Console.WriteLine(entryLine);
             lines.Add(entryLine);
          }

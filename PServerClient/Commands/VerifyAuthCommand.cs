@@ -10,7 +10,8 @@ namespace PServerClient.Commands
    {
       public VerifyAuthCommand(CvsRoot cvsRoot) : base(cvsRoot)
       {
-         Requests.Add(new VerifyAuthRequest(cvsRoot));
+         RequiredRequests.Clear();
+         RequiredRequests.Add(new VerifyAuthRequest(cvsRoot));
       }
    }
 }

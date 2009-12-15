@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Sockets;
-using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.LocalFileSystem;
 using PServerClient.Requests;
 using PServerClient.Responses;
 
@@ -15,7 +17,6 @@ namespace PServerClient.IntegrationTests
       private string _username;
       private string _password;
       private string _cvsRootPath;
-      private string _workingDirectory;
       private string _host;
       private int _port;
       private const string lineend = "\n";
@@ -28,28 +29,32 @@ namespace PServerClient.IntegrationTests
          _username = "abougie";
          _password = "AB4%o=wSobI4w";
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
-         _workingDirectory = "";
-
          _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
+         DirectoryInfo di = new DirectoryInfo(@"c:\_cvs\abougie");
+         ICvsItem folder = new Folder(di);
+         _root.WorkingDirectory = folder;
+         _root.Module = "abougie";
       }
 
       [Test]
       public void CheckoutCommandExecuteTest()
       {
-         _root.Module = "abougie";
          CheckoutCommand command = new CheckoutCommand(_root);
          command.Execute();
+         //WriteResponses(command);
+      }
 
-         // print out the whole conversation
-         foreach (IRequest req in command.Requests)
+      private void WriteResponses(ICommand command)
+      {
+         IList<IRequest> requests = command.Requests;
+         foreach (IRequest request in requests)
          {
-            Console.Write("C: {0}", req.GetRequestString());
-            if (req.ResponseExpected)
-               foreach(IResponse res in req.Responses)
+            Console.WriteLine(request.RequestType + ":");
+            if (request.ResponseExpected)
+               foreach (IResponse response in request.Responses)
                {
-                  Console.Write("S: {0}", res.ResponseText);
-                  if (res is IFileResponse)
-                     Console.WriteLine(Encoding.ASCII.GetString(((IFileResponse)res).CvsEntry.FileContents));
+                  Console.WriteLine(response.ResponseType);
+                  //Console.WriteLine(response.ResponseText);
                }
          }
       }
@@ -72,7 +77,8 @@ namespace PServerClient.IntegrationTests
          byte[] rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
          string s2 = rrr.Decode();
-         Console.WriteLine(s2);
+         Console.Write(s2);
+         Console.WriteLine();
 
          // write valid responses string
          s = "Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT" + lineend;
@@ -90,7 +96,8 @@ namespace PServerClient.IntegrationTests
          rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
          s = rrr.Decode();
-         Console.WriteLine(s);
+         Console.Write(s);
+         Console.WriteLine();
 
          // write unchanged
          s = "UseUnchanged" + lineend;
@@ -132,7 +139,8 @@ namespace PServerClient.IntegrationTests
          rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
          s = rrr.Decode();
-         Console.WriteLine(s);
+         Console.Write(s);
+         Console.WriteLine();
 
          // arg command
          s = "Argument -N" + lineend;
@@ -159,7 +167,8 @@ namespace PServerClient.IntegrationTests
          rrr = new byte[1024];
          stream.Read(rrr, 0, 1024);
          s = rrr.Decode();
-         Console.WriteLine(s);
+         Console.Write(s);
+         Console.WriteLine();
          client.Close();
       }
    }

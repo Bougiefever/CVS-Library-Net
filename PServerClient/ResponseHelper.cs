@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using PServerClient.Connection;
+using PServerClient.Responses;
 
 namespace PServerClient
 {
@@ -45,39 +44,39 @@ namespace PServerClient
       public static readonly string[] ResponseNames;
       private const string AuthName = "";
       private const string OkName = "ok";
-      private const string ErrorName = "error ";
-      private const string MessageName = "M ";
-      private const string ValidRequestsName = "Valid-requests ";
-      private const string CheckedInName = "Checked-in ";
-      private const string NewEntryName = "New-entry ";
-      private const string UpdatedName = "Updated ";
-      private const string MergedName = "Merged ";
-      private const string PatchedName = "Patched ";
-      private const string ChecksumName = "Checksum ";
-      private const string CopyFileName = "Copy-file ";
-      private const string RemovedName = "Removed ";
-      private const string RemoveEntryName = "Remove-entry ";
-      private const string SetStaticDirectoryName = "Set-static-directory ";
-      private const string ClearStaticDirectoryName = "Clear-static-directory ";
-      private const string SetStickyName = "Set-sticky ";
-      private const string ClearStickyName = "Clear-sticky ";
-      private const string CreatedName = "Created ";
-      private const string MessageTagName = "MT ";
-      private const string UpdateExistingName = "Update-existing ";
-      private const string RcsDiffName = "Rcs-diff ";
-      private const string ModeName = "Mode ";
-      private const string ModTimeName = "Mod-time ";
-      private const string TemplateName = "Template ";
-      private const string NotifiedName = "Notified ";
-      private const string ModuleExpansionName = "Module-expansion ";
-      private const string MbinaryName = "Mbinary ";
-      private const string EMessageName = "E ";
-      private const string FMessageName = "F ";
+      private const string ErrorName = "error";
+      private const string MessageName = "M";
+      private const string ValidRequestsName = "Valid-requests";
+      private const string CheckedInName = "Checked-in";
+      private const string NewEntryName = "New-entry";
+      private const string UpdatedName = "Updated";
+      private const string MergedName = "Merged";
+      private const string PatchedName = "Patched";
+      private const string ChecksumName = "Checksum";
+      private const string CopyFileName = "Copy-file";
+      private const string RemovedName = "Removed";
+      private const string RemoveEntryName = "Remove-entry";
+      private const string SetStaticDirectoryName = "Set-static-directory";
+      private const string ClearStaticDirectoryName = "Clear-static-directory";
+      private const string SetStickyName = "Set-sticky";
+      private const string ClearStickyName = "Clear-sticky";
+      private const string CreatedName = "Created";
+      private const string MessageTagName = "MT";
+      private const string UpdateExistingName = "Update-existing";
+      private const string RcsDiffName = "Rcs-diff";
+      private const string ModeName = "Mode";
+      private const string ModTimeName = "Mod-time";
+      private const string TemplateName = "Template";
+      private const string NotifiedName = "Notified";
+      private const string ModuleExpansionName = "Module-expansion";
+      private const string MbinaryName = "Mbinary";
+      private const string EMessageName = "E";
+      private const string FMessageName = "F";
       private const string WrapperRscOptionName = "Wrapper-rcsOption";
 
       static ResponseHelper()
       {
-         ResponsePatterns = new string[31]
+         ResponsePatterns = new []
          {
             AuthRegex,
             OkRegex,
@@ -112,7 +111,7 @@ namespace PServerClient
             WrapperRscOptionRegex
          };
 
-         ResponseNames = new string[31]
+         ResponseNames = new []
          {
             AuthName,
             OkName,
@@ -166,6 +165,11 @@ namespace PServerClient
          return m.Groups[1].ToString();
       }
 
-
+      public static string GetValidResponsesString(ResponseType[] validResponses)
+      {
+         IEnumerable<string> responses = validResponses.Select(vr => ResponseNames[(int) vr]);
+         string resString = String.Join(" ", responses.ToArray());
+         return resString;
+      }
    }
 }

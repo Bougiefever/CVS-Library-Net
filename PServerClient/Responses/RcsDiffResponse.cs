@@ -1,19 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PServerClient.LocalFileSystem;
 
 namespace PServerClient.Responses
 {
+   /// <summary>
+   /// Rcs-diff pathname \n
+   //This is just like Updated and takes the same additional data, with the one
+   //difference that instead of sending a new copy of the file, the server sends an
+   //RCS change text. This change text is produced by ‘diff -n’ (the GNU diff
+   //‘-a’ option may also be used). The client must apply this change text to the
+   //existing file. This will only be used when the client has an exact copy of an
+   //earlier revision of a file. This response is only used if the update command is
+   //given the ‘-u’ argument.
+   /// </summary>
    public class RcsDiffResponse : ResponseBase, IFileResponse
    {
-      public override ResponseType ResponseType { get { return ResponseType.RcsDiff; } }
-      public ReceiveFile File { get; set; }
-
       public override void ProcessResponse(IList<string> lines)
       {
-         base.ProcessResponse(lines);
+         throw new NotImplementedException();
       }
+
+      public override string DisplayResponse()
+      {
+         throw new NotImplementedException();
+      }
+
+      public override ResponseType ResponseType { get { return ResponseType.RcsDiff; } }
+      public ReceiveFile File { get; set; }
    }
 }

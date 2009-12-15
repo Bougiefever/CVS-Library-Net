@@ -6,7 +6,8 @@ namespace PServerClient.Commands
    public interface ICommand
    {
       IList<IRequest> Requests { get; set;}
-      CvsRoot CvsRoot { get; }
+      CvsRoot Root { get; }
+      ExitCode ExitCode { get; }
       void Execute();
    }
 }

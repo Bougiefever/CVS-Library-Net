@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Requests;
+using PServerClient.Responses;
 
 namespace PServerClient.IntegrationTests
 {
@@ -14,7 +16,6 @@ namespace PServerClient.IntegrationTests
       private string _username;
       private string _password;
       private string _cvsRootPath;
-      private string _workingDirectory;
       private string _host;
       private int _port;
       [SetUp]
@@ -25,8 +26,6 @@ namespace PServerClient.IntegrationTests
          _username = "abougie";
          _password = "AB4%o=wSobI4w";
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
-         _workingDirectory = "";
-
          _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
       }
 
@@ -35,11 +34,9 @@ namespace PServerClient.IntegrationTests
       {
          ValidRequestsListCommand command = new ValidRequestsListCommand(_root);   
          command.Execute();
-         IList<string> requests = command.RequestList;
-         Assert.IsNotNull(requests);
-         foreach (string s in requests)
+         foreach (RequestType t in command.ValidRequestTypes)
          {
-            Console.WriteLine(s);
+            Console.WriteLine(RequestHelper.RequestNames[(int)t]);
          }
       }
 

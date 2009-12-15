@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using PServerClient.Connection;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -28,7 +25,7 @@ namespace PServerClient
    public enum Day
    {
       Sun = 0,
-      Mon = 1, 
+      Mon = 1,
       Tue = 2,
       Wed = 3,
       Thu = 4,
@@ -79,7 +76,7 @@ namespace PServerClient
       public static string UnscramblePassword(this string scrambled)
       {
          StringBuilder sb = new StringBuilder(scrambled.Length - 1);
-         for (int i=1; i < scrambled.Length; i++)
+         for (int i = 1; i < scrambled.Length; i++)
          {
             char x = scrambled[i];
             char y = (char)_code[x];
@@ -108,13 +105,13 @@ namespace PServerClient
          if (newEnd == 0)
             newEnd = buffer.Length;
          byte[] decode = new byte[newEnd];
-         Array.Copy(buffer, decode,newEnd);
+         Array.Copy(buffer, decode, newEnd);
          return Encoding.ASCII.GetString(decode);
       }
 
       public static DateTime Rfc822ToDateTime(this string rfcDate)
       {
-         string dateTimeRegex = @"(\d{2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
+         const string dateTimeRegex = @"(\d{1,2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
          Match m = Regex.Match(rfcDate, dateTimeRegex);
          if (!m.Success)
             throw new ArgumentException("RFC822 date string is not formatted properly");
@@ -137,17 +134,15 @@ namespace PServerClient
 
       public static string ToEntryString(this DateTime date)
       {
-         string entrydate;
-         if (date.Day < 10)
-            entrydate = date.ToString("ddd MMM  d HH:mm:ss yyyy");
-         else
-            entrydate = date.ToString("ddd MMM d HH:mm:ss yyyy");
+         string entrydate = string.Empty;
+         if (date.Year > 1)
+            entrydate = date.Day < 10 ? date.ToString("ddd MMM  d HH:mm:ss yyyy") : date.ToString("ddd MMM d HH:mm:ss yyyy");
          return entrydate;
       }
 
       public static DateTime EntryToDateTime(this string date)
       {
-         string dateTimeRegex = @"(.{3})\s(.{3})\s+(\d{1,2})\s(\d{2}):(\d{2}):(\d{2})\s(\d{4})";
+         const string dateTimeRegex = @"(.{3})\s(.{3})\s+(\d{1,2})\s(\d{2}):(\d{2}):(\d{2})\s(\d{4})";
          Match m = Regex.Match(date, dateTimeRegex);
          if (!m.Success)
             throw new ArgumentException("Date string is not formatted correctly");
@@ -159,7 +154,7 @@ namespace PServerClient
          int minute = Convert.ToInt32(m.Groups[5].ToString());
          int second = Convert.ToInt32(m.Groups[6].ToString());
          int year = Convert.ToInt32(m.Groups[7].ToString());
-         int month = PServerHelper.StringToEnum(typeof (MonthName), mon);
+         int month = StringToEnum(typeof(MonthName), mon);
          DateTime dt = new DateTime(year, month, day, hour, minute, second);
 
          return dt;
@@ -169,75 +164,14 @@ namespace PServerClient
       {
          var fis = t.GetFields();
          object result = null;
-         foreach (FieldInfo fi in fis) 
+         foreach (FieldInfo fi in fis)
          {
             if (fi.Name == value)
                result = fi.GetValue(null);
          }
          if (result == null)
-            throw new FormatException("Cannot convert string to " + t.ToString());
+            throw new FormatException("Cannot convert string to " + t);
          return Convert.ToInt32((result));
       }
-
-      //public static IList<string> ReadLines(ICvsTcpClient tcpClient)
-      //{
-      //   byte[] buffer = tcpClient.Read();
-      //   IList<string> lines = new List<string>();
-      //   bool atEnd = false;
-      //   int i = 0;
-      //   StringBuilder sb = new StringBuilder();
-      //   byte last = 0;
-      //   while (!atEnd)
-      //   {
-      //      try
-      //      {
-      //         byte c = buffer[i++];
-      //         if (c == 10)
-      //         {
-      //            lines.Add(sb.ToString());
-      //            sb = new StringBuilder();
-      //         }
-      //         if (c != 0 && c != 10)
-      //            sb.Append((char)c);
-      //         if (last == 10 && c == 0)
-      //            atEnd = true;
-      //         if (i == buffer.Length)
-      //               buffer = tcpClient.Read();
-      //               i = 0;
-
-      //         last = c;
-      //      }
-      //      catch (Exception e)
-      //      {
-      //         Console.WriteLine(e.ToString());
-      //         atEnd = true;
-      //      }
-      //   }
-      //   return lines;
-      //}
-
-      //public static string ReadToSpace(byte[] buffer)
-      //{
-      //   bool isSpace = false;
-      //   int i = 0;
-      //   StringBuilder sb = new StringBuilder();
-      //   while (!isSpace)
-      //   {
-      //      try
-      //      {
-      //         byte c = buffer[i++];
-      //         if (c != 32)
-      //            sb.Append((char)c);
-      //         else
-      //            isSpace = true;
-      //      }
-      //      catch (Exception e)
-      //      {
-      //         Console.WriteLine(e.ToString());
-      //         isSpace = true;
-      //      }
-      //   }
-      //   return sb.ToString();
-      //}
    }
 }

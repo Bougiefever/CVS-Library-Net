@@ -12,17 +12,19 @@ namespace PServerClient.Commands
    {
       public ValidRequestsListCommand(CvsRoot root) : base(root)
       {
-         Requests.Add(new AuthRequest(root));
-         Requests.Add(new ValidRequestsRequest());
+         RequiredRequests.Clear();
+         RequiredRequests.Add(new AuthRequest(root));
+         RequiredRequests.Add(new ValidRequestsRequest());
       }
-      public IList<string> RequestList
-      {
-         get
-         {
-            IRequest request = Requests.OfType<ValidRequestsRequest>().First();
-            ValidRequestResponse response = request.Responses.OfType<ValidRequestResponse>().First();
-            return response.ValidRequests;
-         }
-      }
+
+      //public IList<RequestType> RequestList
+      //{
+      //   get
+      //   {
+      //      IRequest request = Requests.OfType<ValidRequestsRequest>().First();
+      //      ValidRequestResponse response = request.Responses.OfType<ValidRequestResponse>().First();
+      //      return response.ValidRequestTypes;
+      //   }
+      //}
    }
 }

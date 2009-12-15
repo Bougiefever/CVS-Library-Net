@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PServerClient.Requests
+﻿namespace PServerClient.Requests
 {
+   /// <summary>
+   /// Set variable=value \n
+   //Response expected: no. Set a user variable variable to value. The Root request
+   //need not have been previously sent.
+   /// </summary>
    public class SetRequest : RequestBase
    {
-      private string _variable;
-      private string _value;
+      private readonly string _value;
+      private readonly string _variable;
 
       public SetRequest(string variableName, string value)
       {
@@ -17,10 +17,11 @@ namespace PServerClient.Requests
       }
 
       public override bool ResponseExpected { get { return false; } }
+      public override RequestType RequestType { get { return RequestType.Set; } }
 
       public override string GetRequestString()
       {
-         return string.Format("Set {0}={1}{2}", _variable, _value, lineEnd);
+         return string.Format("{3} {0}={1}{2}", _variable, _value, LineEnd, RequestName);
       }
    }
 }

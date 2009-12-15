@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PServerClient.Requests
+﻿namespace PServerClient.Requests
 {
-   public class ReleaseRequest : NoArgRequestBase 
+   /// <summary>
+   /// release \n
+   //Response expected: yes. Note that a cvs release command has taken place
+   //and update the history file accordingly.
+   /// </summary>
+   public class ReleaseRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-      public override string RequestName { get { return "release"; } }
-
+      public override RequestType RequestType { get { return RequestType.Release; } }
    }
 }

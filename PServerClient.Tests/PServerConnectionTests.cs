@@ -166,7 +166,7 @@ namespace PServerClient.Tests
          _mocks.VerifyAll();
          Assert.AreEqual(1, result.Count);
          IFileResponse response = (IFileResponse) result[0];
-         string testFile = response.CvsEntry.FileContents.Decode();
+         string testFile = response.File.FileContents.Decode();
          Assert.AreEqual(fileContents, testFile);
       }
 

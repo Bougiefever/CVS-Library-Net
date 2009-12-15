@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PServerClient.Requests
+﻿namespace PServerClient.Requests
 {
+   /// <summary>
+   /// Gssapi-authenticate \n
+   //Response expected: no. Use GSSAPI authentication to authenticate all fur-
+   //ther communication between the client and the server. This will only work if
+   //the connection was made over GSSAPI in the first place. Encrypted data is
+   //automatically authenticated, so using both Gssapi-authenticate and Gssapi-
+   //encrypt has no effect beyond that of Gssapi-encrypt. Unlike encrypted data,
+   //it is reasonable to compress authenticated data.
+   //Note that this request does not fully prevent an attacker from hijacking the con-
+   //nection, in the sense that it does not prevent hijacking the connection between
+   //the initial authentication and the Gssapi-authenticate request.
+   /// </summary>
    public class GssapiAuthenticateRequest : NoArgRequestBase
    {
-      public override string RequestName { get { return "Gssapi-authenticate"; } }
+      public override RequestType RequestType { get { return RequestType.GssapiAuthenticate; } }
    }
 }

@@ -10,7 +10,6 @@ namespace PServerClient.Commands
    {
       public VersionCommand(CvsRoot root) : base(root)
       {
-         Requests.Add(new AuthRequest(root));
          Requests.Add(new VersionRequest());
       }
    }

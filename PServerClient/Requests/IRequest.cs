@@ -1,17 +1,17 @@
-﻿using PServerClient.Responses;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PServerClient.Responses;
 
 namespace PServerClient.Requests
 {
-
    /// <summary>
    /// Request interface to process cvs requests
    /// </summary>
-   public interface IRequest 
+   public interface IRequest
    {
       bool ResponseExpected { get; }
-      string GetRequestString();
       IList<IResponse> Responses { get; set; }
+      RequestType RequestType { get;}
+      string GetRequestString();
    }
 
    /// <summary>

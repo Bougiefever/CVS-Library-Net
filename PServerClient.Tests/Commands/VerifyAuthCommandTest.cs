@@ -34,17 +34,17 @@ namespace PServerClient.Tests.Commands
       public void VerifyAuthCommandConstructorTest()
       {
          VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         int count = command.Requests.OfType<IAuthRequest>().Count();
+         int count = command.RequiredRequests.OfType<IAuthRequest>().Count();
          Assert.IsTrue(count == 1);
          count = command.Requests.Count();
-         Assert.IsTrue(count == 1);
+         Assert.IsTrue(count == 0);
       }
 
       [Test]
       public void CommandBaseStatusTest()
       {
          VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         IAuthRequest request = (IAuthRequest)command.Requests[0];
+         IAuthRequest request = (IAuthRequest)command.RequiredRequests[0];
          IAuthResponse response = _mocks.DynamicMock<IAuthResponse>();
          request.Responses = new List<IResponse>() { response };
 

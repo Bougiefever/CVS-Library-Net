@@ -16,7 +16,7 @@ namespace PServerClient.IntegrationTests
       private string _username;
       private string _password;
       private string _cvsRootPath;
-      private string _workingDirectory;
+      //private string _workingDirectory;
       private string _host;
       private int _port;
       [SetUp]
@@ -27,7 +27,7 @@ namespace PServerClient.IntegrationTests
          _username = "abougie";
          _password = "AB4%o=wSobI4w";
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
-         _workingDirectory = "";
+         //_workingDirectory = "";
 
          _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
       }
@@ -37,7 +37,8 @@ namespace PServerClient.IntegrationTests
       {
          VerifyAuthCommand command = new VerifyAuthCommand(_root);
          command.Execute();
-         Assert.AreEqual(AuthStatus.Authenticated, command.AuthStatus);
+         AuthStatus status = command.AuthStatus;
+         Assert.AreEqual(AuthStatus.Authenticated, status);
       }
 
       [Test]

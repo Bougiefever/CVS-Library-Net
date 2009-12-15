@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using PServerClient.LocalFileSystem;
 
 namespace PServerClient.Responses
 {
@@ -8,7 +7,7 @@ namespace PServerClient.Responses
       int LineCount { get; }
       ResponseType ResponseType { get; }
       void ProcessResponse(IList<string> lines);
-      string ResponseText { get; set; }
+      string DisplayResponse();
    }
 
    public interface IAuthResponse : IResponse

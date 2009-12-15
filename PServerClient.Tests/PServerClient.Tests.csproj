@@ -50,10 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CommandBaseTest.cs" />
     <Compile Include="Commands\ValidRequestsListCommandTest.cs" />
     <Compile Include="Commands\VerifyAuthCommandTest.cs" />
     <Compile Include="CvsFolderTest.cs" />
     <Compile Include="CvsRootTests.cs" />
+    <Compile Include="MessageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PServerConnectionTests.cs" />
     <Compile Include="PServerHelperTest.cs" />

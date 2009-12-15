@@ -1,35 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using PServerClient.Responses;
 
 namespace PServerClient.Requests
 {
    public abstract class AuthRequestBase : IAuthRequest
    {
-      private CvsRoot _root;
-      private string _authString;
-      private string _lineEnd = "\n";
+      private const string lineEnd = "\n";
+      private readonly CvsRoot _root;
 
-      protected AuthRequestBase(CvsRoot root, string authString)
+      protected AuthRequestBase(CvsRoot root)
       {
          _root = root;
-         _authString = authString;
       }
 
-      public bool ResponseExpected
-      {
-         get { return true; }
-      }
+      #region IAuthRequest Members
+
+      public bool ResponseExpected { get { return true; } }
 
       public virtual string GetRequestString()
       {
          return string.Format("BEGIN {0} REQUEST{1}{2}{1}{3}{1}{4}{1}END {0} REQUEST{1}",
-                                              _authString, _lineEnd, _root.Root, _root.Username, _root.Password);
+                              RequestHelper.RequestNames[(int) RequestType], lineEnd, _root.Root, _root.Username, _root.Password);
       }
 
-      public IList<IResponse> Responses { get; set;}
+      public IList<IResponse> Responses { get; set; }
+      public abstract RequestType RequestType { get; }
 
       public AuthStatus Status
       {
@@ -46,5 +43,7 @@ namespace PServerClient.Requests
             }
          }
       }
+
+      #endregion
    }
 }

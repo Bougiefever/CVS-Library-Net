@@ -164,10 +164,10 @@ namespace PServerClient.Tests
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.EMessage, result);
 
-         //FMessage
+         //Flush
          test = "F message text";
          result = _factory.GetResponseType(test);
-         Assert.AreEqual(ResponseType.FMessage, result);
+         Assert.AreEqual(ResponseType.Flush, result);
       }
 
       [Test]
@@ -289,9 +289,9 @@ namespace PServerClient.Tests
          response = _factory.CreateResponse(type);
          Assert.IsInstanceOf<MbinaryResponse>(response);
 
-         type = ResponseType.FMessage;
+         type = ResponseType.Flush;
          response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<FMessageResponse>(response);
+         Assert.IsInstanceOf<FlushResponse>(response);
 
          type = ResponseType.Unknown;
          response = _factory.CreateResponse(type);

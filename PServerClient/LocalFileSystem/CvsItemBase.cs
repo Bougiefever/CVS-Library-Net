@@ -13,6 +13,9 @@ namespace PServerClient.LocalFileSystem
       {
          Item = info;
          ChildItems = new List<ICvsItem>();
+         Revision = string.Empty;
+         Properties = string.Empty;
+         StickyOption = string.Empty;
       }
 
       /// <summary>
@@ -23,6 +26,7 @@ namespace PServerClient.LocalFileSystem
       public DateTime ModTime { get; set; }
       public string Revision { get; set; }
       public string Properties { get; set; }
+      public string StickyOption { get; set; }
       public long Length { get; set; }
       public byte[] FileContents { get; set; }
 

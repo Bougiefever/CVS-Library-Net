@@ -1,28 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using PServerClient.Responses;
 
 namespace PServerClient.Requests
 {
+   /// <summary>
+   /// Valid-responses request-list \n
+   /// Response expected: no. Tell the server what responses the client will accept.
+   /// request-list is a space separated list of tokens. The Root request need not have
+   /// been previously sent.
+   /// </summary>
    public class ValidResponsesRequest : RequestBase
    {
-      public ValidResponsesRequest(string responses)
+      private readonly ResponseType[] _validResponses;
+
+      public ValidResponsesRequest(ResponseType[] validResponses)
       {
-         ValidResponses = responses.Split((char)32).ToList<string>();
-      }
-      public ValidResponsesRequest(IList<string> responses)
-      {
-         ValidResponses = responses;
+         _validResponses = validResponses;   
       }
 
-      public IList<string> ValidResponses { get; private set; }
       public override bool ResponseExpected { get { return false; } }
+      public override RequestType RequestType { get { return RequestType.ValidResponses; } }
 
       public override string GetRequestString()
       {
-         string responses = String.Join(" ", ValidResponses.ToArray());
-         return string.Format("Valid-responses {0}{1}", responses, lineEnd);
+         return string.Format("{2} {0}{1}", ResponseHelper.GetValidResponsesString(_validResponses), LineEnd, RequestName);
       }
    }
 }

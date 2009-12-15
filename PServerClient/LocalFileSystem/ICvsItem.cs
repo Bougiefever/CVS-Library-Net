@@ -33,6 +33,10 @@ namespace PServerClient.LocalFileSystem
       /// </summary>
       string Properties { get; set; }
       /// <summary>
+      /// For Entry type
+      /// </summary>
+      string StickyOption { get; set; }
+      /// <summary>
       /// For entry type, length in bytes of file contents
       /// </summary>
       long Length { get; set; }
