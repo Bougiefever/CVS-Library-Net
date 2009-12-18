@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PServerClient.CVS;
 using PServerClient.Requests;
 
 namespace PServerClient.Commands
@@ -6,7 +7,7 @@ namespace PServerClient.Commands
    public interface ICommand
    {
       IList<IRequest> Requests { get; set;}
-      CvsRoot Root { get; }
+      Root Root { get; }
       ExitCode ExitCode { get; }
       void Execute();
    }

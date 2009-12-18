@@ -1,4 +1,6 @@
-﻿namespace PServerClient.Requests
+﻿using PServerClient.CVS;
+
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Directory local-directory \n
@@ -14,9 +16,9 @@
    /// </summary>
    public class DirectoryRequest : RequestBase
    {
-      private readonly CvsRoot _root;
+      private readonly Root _root;
 
-      public DirectoryRequest(CvsRoot root)
+      public DirectoryRequest(Root root)
       {
          _root = root;
       }
@@ -26,7 +28,7 @@
 
       public override string GetRequestString()
       {
-         return string.Format("{4} .{0}{1}/{2}{3}", LineEnd, _root.Root, _root.Module, LineEnd, RequestName);
+         return string.Format("{4} .{0}{1}/{2}{3}", LineEnd, _root.CVSRoot, _root.Module, LineEnd, RequestName);
       }
    }
 }

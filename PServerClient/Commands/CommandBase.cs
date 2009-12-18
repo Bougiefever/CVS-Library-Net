@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PServerClient.Connection;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 
@@ -27,7 +28,7 @@ namespace PServerClient.Commands
          set { _connection = value; }
       }
 
-      protected CommandBase(CvsRoot root)
+      protected CommandBase(Root root)
       {
          log4net.Config.BasicConfigurator.Configure();
          _logger = log4net.LogManager.GetLogger(typeof(CommandBase));
@@ -40,10 +41,11 @@ namespace PServerClient.Commands
          RequiredRequests.Add(new UseUnchangedRequest());
          RequiredRequests.Add(new ValidResponsesRequest(RequestHelper.ValidResponses));
          RequiredRequests.Add(new ValidRequestsRequest());
+         ValidRequestTypes = new List<RequestType>();
       }
 
       public IList<IRequest> Requests { get; set; }
-      public CvsRoot Root { get; private set; }
+      public Root Root { get; private set; }
       public ExitCode ExitCode { get; private set; }
 
       public AuthStatus AuthStatus
@@ -138,9 +140,12 @@ namespace PServerClient.Commands
          if (code == ExitCode.Succeeded && authRequest.RequestType == RequestType.Auth)
          {
             // set the valid request list
-            ValidRequestsRequest validRequests = (ValidRequestsRequest)RequiredRequests.Where(rr => rr.RequestType == RequestType.ValidRequests).First();
-            ValidRequestResponse vr = (ValidRequestResponse) validRequests.Responses[0];
-            ValidRequestTypes = vr.ValidRequestTypes;
+            ValidRequestsRequest validRequests = (ValidRequestsRequest)RequiredRequests.Where(rr => rr.RequestType == RequestType.ValidRequests).FirstOrDefault();
+            if (validRequests != null)
+            {
+               ValidRequestResponse vr = (ValidRequestResponse) validRequests.Responses[0];
+               ValidRequestTypes = vr.ValidRequestTypes;
+            }
          }
          return code;
       }
@@ -149,8 +154,11 @@ namespace PServerClient.Commands
       {
          foreach (IRequest request in Requests)
          {
-            if (!ValidRequestTypes.Contains(request.RequestType))
-               return false;
+            if (ValidRequestTypes.Count > 0)
+            {
+               if (!ValidRequestTypes.Contains(request.RequestType))
+                  return false;
+            }
          }
          return true;
       }

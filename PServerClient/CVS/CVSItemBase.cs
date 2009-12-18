@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace PServerClient.LocalFileSystem
+namespace PServerClient.CVS
 {
    /// <summary>
    /// Abstract base class to interact with both Cvs folders and Cvs entry files on the Windows file system
    /// </summary>
-   public abstract class CvsItemBase : ICvsItem
+   public abstract class CVSItemBase : ICVSItem
    {
-      protected CvsItemBase(FileSystemInfo info)
+      protected CVSItemBase(FileSystemInfo info)
       {
          Item = info;
-         ChildItems = new List<ICvsItem>();
          Revision = string.Empty;
          Properties = string.Empty;
          StickyOption = string.Empty;
       }
 
+
+      public abstract IList<ICVSItem> ChildItems { get; }
+      public abstract CVSFolder CvsFolder { get; }
       /// <summary>
       /// This is the file or folder
       /// </summary>
-      public FileSystemInfo Item { get; private set; }
-      public IList<ICvsItem> ChildItems { get; set; }
+      public FileSystemInfo Item { get; private set; }      
+      public string Name { get { return Item.Name; } }
       public DateTime ModTime { get; set; }
       public string Revision { get; set; }
       public string Properties { get; set; }
@@ -30,17 +32,16 @@ namespace PServerClient.LocalFileSystem
       public long Length { get; set; }
       public byte[] FileContents { get; set; }
 
-      public CvsItemType ItemType 
+      public ItemType ItemType 
       {
          get
          {
             if (Item is FileInfo)
-               return CvsItemType.Entry;
-            return CvsItemType.Folder;
+               return ItemType.Entry;
+            return ItemType.Folder;
          }
       }
 
-      public abstract IEnumerator<ICvsItem> CreateIterator();
       
       public virtual void Write()
       {
@@ -51,14 +52,15 @@ namespace PServerClient.LocalFileSystem
          throw new NotSupportedException();
       }
 
-      public virtual void AddItem(ICvsItem item)
+      public virtual void AddItem(ICVSItem item)
       {
          throw new NotSupportedException();
       }
 
-      public virtual void RemoveItem(ICvsItem item)
+      public virtual void RemoveItem(ICVSItem item)
       {
          throw new NotSupportedException();
       }
+
    }
 }

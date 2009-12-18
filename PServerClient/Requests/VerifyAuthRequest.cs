@@ -1,8 +1,10 @@
-﻿namespace PServerClient.Requests
+﻿using PServerClient.CVS;
+
+namespace PServerClient.Requests
 {
    public class VerifyAuthRequest : AuthRequestBase
    {
-      public VerifyAuthRequest(CvsRoot root) : base(root)
+      public VerifyAuthRequest(Root root) : base(root)
       {
       }
 

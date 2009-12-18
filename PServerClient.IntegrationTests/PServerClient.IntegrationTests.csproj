@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CheckoutCommandTest.cs" />
     <Compile Include="CvsFolderTest.cs" />
+    <Compile Include="CvsServerFileReceiverTest.cs" />
     <Compile Include="LogCommandTest.cs" />
     <Compile Include="ReaderWriterTest.cs" />
     <Compile Include="ValidRequestsListCommandTest.cs" />

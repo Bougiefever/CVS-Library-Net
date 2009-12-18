@@ -173,5 +173,31 @@ namespace PServerClient
             throw new FormatException("Cannot convert string to " + t);
          return Convert.ToInt32((result));
       }
+
+      public static string[] GetUpdatedFnamePathFile(string fname)
+      {
+         const string fnameRegex = @"fname (.+)/(.+)$";
+         Match m = Regex.Match(fname, fnameRegex);
+         string[] names = new string[2];
+         if (m.Success)
+         {
+            names[0] = m.Groups[1].ToString();
+            names[1] = m.Groups[2].ToString();
+         }
+         return names;
+      }
+
+      public static string[] GetMUPathFile(string mu)
+      {
+         const string muRegex = @"M U (.+)/(.+)$";
+         Match m = Regex.Match(mu, muRegex);
+         string[] names = new string[2];
+         if (m.Success)
+         {
+            names[0] = m.Groups[1].ToString();
+            names[1] = m.Groups[2].ToString();
+         }
+         return names;
+      }
    }
 }

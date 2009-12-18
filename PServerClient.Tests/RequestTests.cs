@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace PServerClient.Tests
    [TestFixture]
    public class RequestTests
    {
-      private CvsRoot _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3");
+      private Root _root = new Root("host-name", 1, "username", "password", "/f1/f2/f3");
 
       public RequestTests()
       {

@@ -4,7 +4,7 @@ using System.IO;
 using System.Net.Sockets;
 using NUnit.Framework;
 using PServerClient.Commands;
-using PServerClient.LocalFileSystem;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 
@@ -13,7 +13,7 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class CheckoutCommandTest
    {
-      private CvsRoot _root;
+      private Root _root;
       private string _username;
       private string _password;
       private string _cvsRootPath;
@@ -29,9 +29,9 @@ namespace PServerClient.IntegrationTests
          _username = "abougie";
          _password = "AB4%o=wSobI4w";
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
-         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
+         _root = new Root(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
          DirectoryInfo di = new DirectoryInfo(@"c:\_cvs\abougie");
-         ICvsItem folder = new Folder(di);
+         ICVSItem folder = new Folder(di);
          _root.WorkingDirectory = folder;
          _root.Module = "abougie";
       }

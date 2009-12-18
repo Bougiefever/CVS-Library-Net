@@ -3,10 +3,10 @@ using System.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 using Rhino.Mocks;
-using Is = Rhino.Mocks.Constraints.Is;
 
 namespace PServerClient.Tests.Commands
 {
@@ -15,12 +15,12 @@ namespace PServerClient.Tests.Commands
    {
       private MockRepository _mocks;
       private IConnection _connection;
-      private CvsRoot _root;
+      private Root _root;
 
       [TestFixtureSetUp]
       public void TestFixtureSetUp()
       {
-         _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3");
+         _root = new Root("host-name", 1, "username", "password", "/f1/f2/f3");
       }
 
       [SetUp]

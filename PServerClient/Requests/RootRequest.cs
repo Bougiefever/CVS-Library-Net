@@ -1,4 +1,6 @@
-﻿namespace PServerClient.Requests
+﻿using PServerClient.CVS;
+
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Root pathname \n
@@ -14,9 +16,9 @@
    /// </summary>
    public class RootRequest : RequestBase
    {
-      private readonly CvsRoot _root;
+      private readonly Root _root;
 
-      public RootRequest(CvsRoot root)
+      public RootRequest(Root root)
       {
          _root = root;
       }
@@ -26,7 +28,7 @@
 
       public override string GetRequestString()
       {
-         return string.Format("{2} {0}{1}", _root.Root, LineEnd, RequestName);
+         return string.Format("{2} {0}{1}", _root.CVSRoot, LineEnd, RequestName);
       }
    }
 }

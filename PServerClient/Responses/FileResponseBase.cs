@@ -35,7 +35,6 @@ namespace PServerClient.Responses
                       FileLength = Convert.ToInt64(fileLength)
                    };
       }
-      public string ResponseText { get; set; }
       public ReceiveFile File { get; set; }
    }
 }

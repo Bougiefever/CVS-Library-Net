@@ -1,13 +1,12 @@
-using System;
-using PServerClient.LocalFileSystem;
+using PServerClient.CVS;
 
-namespace PServerClient
+namespace PServerClient.CVS
 {
-   public  class CvsRoot
+   public class Root
    {
-      public CvsRoot(string host, int port, string username, string password, string cvsroot)
+      public Root(string host, int port, string username, string password, string cvsroot)
       {
-         Root = cvsroot;
+         CVSRoot = cvsroot;
          CvsConnectionString = string.Format(":pserver:{0}@{1}:{2}", username, host, cvsroot);
          Host = host;
          Port = port;
@@ -17,9 +16,9 @@ namespace PServerClient
 
       // for the current user and machine
       /// <summary>
-      /// This is the root folder for the cvs module that is being used
+      /// This is the root folder for the current cvs module
       /// </summary>
-      public ICvsItem WorkingDirectory { get; set; }
+      public ICVSItem WorkingDirectory { get; set; }
       public string Username { get; set; }
       public string Password { get; set; }
 
@@ -31,7 +30,7 @@ namespace PServerClient
       /// <summary>
       /// Cvs root folder on unix machine
       /// </summary>
-      public string Root { get; set; }
+      public string CVSRoot { get; set; }
       /// <summary>
       /// Name of Cvs module being interacted with
       /// </summary>

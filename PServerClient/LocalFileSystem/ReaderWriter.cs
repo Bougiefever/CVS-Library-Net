@@ -66,6 +66,9 @@ namespace PServerClient.LocalFileSystem
 
       public void WriteFile(FileInfo file, byte[] buffer)
       {
+         if (file.Exists)
+            file.Delete();
+         
          using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Write))
          {
             stream.Write(buffer, 0, buffer.Length);

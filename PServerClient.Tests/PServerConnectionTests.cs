@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using PServerClient.Connection;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 using Rhino.Mocks;
@@ -34,7 +35,7 @@ namespace PServerClient.Tests
             .IgnoreArguments()
             .Constraints(Is.Equal("host"), Is.Equal(1));
          _mocks.ReplayAll();
-         CvsRoot root = new CvsRoot("host", 1, "me", "pws", "/my/cvs/root");
+         Root root = new Root("host", 1, "me", "pws", "/my/cvs/root");
          _connection.Connect(root);
          _mocks.VerifyAll();
       }
@@ -292,7 +293,7 @@ namespace PServerClient.Tests
       //{
       //   //string password = "AB4%o=wSobI4w";
       //   //PServer connection = new PServer("gb-aix-q", "2401", "abougie", password.UnscramblePassword(), "/usr/local/cvsroot/sandbox");
-      //   //Console.WriteLine(connection.CvsRoot.Root);
+      //   //Console.WriteLine(connection.Root.Root);
       //   //string response = connection.VerifyAuthentication();
       //   //Assert.AreNotEqual(string.Empty, response);
       //   //Assert.IsTrue(response.Contains("I LOVE YOU"));
@@ -304,7 +305,7 @@ namespace PServerClient.Tests
       //{
       //   //string password = "A:yZZ30 e";
       //   //PServer connection = new PServer("gb-aix-q", "2401", "abougie", password.UnscramblePassword(), "/usr/local/cvsroot/sandbox");
-      //   //Console.WriteLine(connection.CvsRoot.Root);
+      //   //Console.WriteLine(connection.Root.Root);
       //   //string response = connection.VerifyAuthentication();
       //   //Assert.AreNotEqual(string.Empty, response);
       //   //Assert.IsTrue(response.Contains("I HATE YOU"));
@@ -316,7 +317,7 @@ namespace PServerClient.Tests
       //{
       //   //string password = "AB4%o=wSobI4w";
       //   //PServer connection = new PServer("gb-aix-q", "2401", "abougie", password.UnscramblePassword(), "/usr/local/cvsroot/sandbox");
-      //   //Console.WriteLine(connection.CvsRoot.Root);
+      //   //Console.WriteLine(connection.Root.Root);
       //   //string response = connection.ValidRequestsRequest();
       //   //Assert.AreNotEqual(string.Empty, response);
       //   //Console.WriteLine(response);

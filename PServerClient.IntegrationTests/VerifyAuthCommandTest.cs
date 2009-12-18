@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Connection;
 
@@ -12,7 +10,7 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class VerifyAuthCommandTest
    {
-      private CvsRoot _root;
+      private Root _root;
       private string _username;
       private string _password;
       private string _cvsRootPath;
@@ -29,7 +27,7 @@ namespace PServerClient.IntegrationTests
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
          //_workingDirectory = "";
 
-         _root = new CvsRoot(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
+         _root = new Root(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
       }
 
       [Test]

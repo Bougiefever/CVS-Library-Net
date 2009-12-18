@@ -1,8 +1,10 @@
-﻿namespace PServerClient.Requests
+﻿using PServerClient.CVS;
+
+namespace PServerClient.Requests
 {
    public class AuthRequest : AuthRequestBase
    {
-      public AuthRequest(CvsRoot root) : base(root)
+      public AuthRequest(Root root) : base(root)
       {
       }
 

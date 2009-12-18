@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace PServerClient.LocalFileSystem
+namespace PServerClient.CVS
 {
    /// <summary>
    /// This the interface for both local Cvs folders and Cvs entry files
    /// </summary>
-   public interface ICvsItem
+   public interface ICVSItem
    {
       /// <summary>
       /// Either FileInfo or DirectoryInfo object depending on
@@ -15,11 +15,15 @@ namespace PServerClient.LocalFileSystem
       /// </summary>
       FileSystemInfo Item { get; }
       /// <summary>
-      /// List of Entries or sub-Folders for the current item
-      /// Entries will return an empty list because they do not have 
+      /// List of Entries or Folders contained by the current item
+      /// Entry does not support this because files do not have 
       /// child items
       /// </summary>
-      IList<ICvsItem> ChildItems { get; set; }
+      IList<ICVSItem> ChildItems { get;  }
+      /// <summary>
+      /// Name of folder or file
+      /// </summary>
+      string Name { get; }
       /// <summary>
       /// for Entry type, Cvs modification time
       /// </summary>
@@ -47,15 +51,10 @@ namespace PServerClient.LocalFileSystem
       /// <summary>
       /// Looks at the Item property of itself and returns either Folder or Entry type
       /// </summary>
-      CvsItemType ItemType { get; }
+      ItemType ItemType { get; }
       /// <summary>
-      /// Gets an iterator to loop through child items.
-      /// Entry types return null
-      /// </summary>
-      /// <returns></returns>
-      IEnumerator<ICvsItem> CreateIterator();
-      /// <summary>
-      /// Write the FileContents to the Entry file
+      /// Write the FileContents to the Entry file if item is Entry type
+      /// Create a directory if item is Folder type
       /// </summary>
       void Write();
       /// <summary>
@@ -66,11 +65,13 @@ namespace PServerClient.LocalFileSystem
       /// Add a child item
       /// </summary>
       /// <param name="item"></param>
-      void AddItem(ICvsItem item);
+      void AddItem(ICVSItem item);
       /// <summary>
       /// Remove a child item
       /// </summary>
       /// <param name="item"></param>
-      void RemoveItem(ICvsItem item);
+      void RemoveItem(ICVSItem item);
+
+      CVSFolder CvsFolder { get; }
    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.CVS;
 using PServerClient.Requests;
 
 namespace PServerClient.Tests.Commands
@@ -8,12 +9,12 @@ namespace PServerClient.Tests.Commands
    [TestFixture]
    public class ValidRequestsListCommandTest
    {
-      private CvsRoot _root;
+      private Root _root;
 
       [TestFixtureSetUp]
       public void TestFixtureSetUp()
       {
-         _root = new CvsRoot("host-name", 1, "username", "password", "/f1/f2/f3");
+         _root = new Root("host-name", 1, "username", "password", "/f1/f2/f3");
       }
 
       [Test]

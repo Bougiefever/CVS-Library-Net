@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PServerClient.CVS;
 using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
    public class VerifyAuthCommand : CommandBase
    {
-      public VerifyAuthCommand(CvsRoot cvsRoot) : base(cvsRoot)
+      public VerifyAuthCommand(Root root) : base(root)
       {
          RequiredRequests.Clear();
-         RequiredRequests.Add(new VerifyAuthRequest(cvsRoot));
+         RequiredRequests.Add(new VerifyAuthRequest(root));
       }
    }
 }

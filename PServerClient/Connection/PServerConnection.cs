@@ -1,4 +1,5 @@
-﻿using PServerClient.Requests;
+﻿using PServerClient.CVS;
+using PServerClient.Requests;
 using PServerClient.Responses;
 using System.Collections.Generic;
 //using System;
@@ -10,7 +11,7 @@ namespace PServerClient.Connection
    public class PServerConnection : IConnection
    {
       private ICvsTcpClient _cvsTcpClient;
-      private CvsRoot _root;
+      private Root _root;
 
       public ICvsTcpClient TcpClient
       {
@@ -26,7 +27,7 @@ namespace PServerClient.Connection
          }
       }
 
-      public void Connect(CvsRoot root)
+      public void Connect(Root root)
       {
          _root = root;
          TcpClient.Connect(root.Host, root.Port);

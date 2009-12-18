@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using PServerClient.LocalFileSystem;
 
-namespace PServerClient.LocalFileSystem
+namespace PServerClient.CVS
 {
-   public class CvsFolder
+   public class CVSFolder
    {
       private const string EntryRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
-      private ICvsItem _parent;
+      private readonly ICVSItem _parent;
+      private readonly string _cvsRoot;
+      private readonly string _cvsModule;
 
-      public CvsFolder(ICvsItem parent)
+      public CVSFolder(ICVSItem parent, string cvsRoot, string cvsModule)
       {
          // create objects
          _parent = parent;
-         Directory = new DirectoryInfo(Path.Combine(parent.Item.FullName, "CVS"));
-         RepositoryFile = new FileInfo(Path.Combine(Directory.FullName, "Repository"));
-         EntriesFile = new FileInfo(Path.Combine(Directory.FullName, "Entries"));
-         RootFile = new FileInfo(Path.Combine(Directory.FullName, "Root"));
-
-         // create file system folder for CVS folder if it doesn't exist
-         ReaderWriter.Current.CreateDirectory(Directory);
+         CVSDirectory = new DirectoryInfo(Path.Combine(parent.Item.FullName, "CVS"));
+         RepositoryFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Repository"));
+         EntriesFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Entries"));
+         RootFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Root"));
+         _cvsRoot = cvsRoot;
+         _cvsModule = cvsModule;
       }
 
-      //public ICvsItem ParentFolder { get; private set; }
-      public DirectoryInfo Directory { get; private set; }
+      public DirectoryInfo CVSDirectory { get; private set; }
       public FileInfo RepositoryFile { get; private set; }
       public FileInfo EntriesFile { get; private set; }
       public FileInfo RootFile { get; private set; }
@@ -55,10 +56,10 @@ namespace PServerClient.LocalFileSystem
          ReaderWriter.Current.WriteFile(RepositoryFile, buffer);
       }
 
-      public IList<ICvsItem> GetEntryItems()
+      public IList<ICVSItem> GetEntryItems()
       {
          IList<string> entryLines = ReaderWriter.Current.ReadFileLines(EntriesFile);
-         IList<ICvsItem> items = new List<ICvsItem>();
+         IList<ICVSItem> items = new List<ICVSItem>();
          foreach (string s in entryLines)
          {
             Match m = Regex.Match(s, EntryRegex);
@@ -72,9 +73,9 @@ namespace PServerClient.LocalFileSystem
                string stickyOption = m.Groups[6].ToString();
 
                FileInfo file = new FileInfo(Path.Combine(_parent.Item.FullName, fileName));
-               ICvsItem item;
+               ICVSItem item;
                if (code == "D")
-                  item = new Folder(file);
+                  item = new Folder(file, _cvsRoot, _cvsModule);
                else
                   item = new Entry(file)
                             {
@@ -85,23 +86,31 @@ namespace PServerClient.LocalFileSystem
                             };
                items.Add(item);
             }
-
          }
          return items;
       }
 
-      public void SaveEntriesFile(IList<ICvsItem> items)
+      public void SaveEntriesFile(IList<ICVSItem> items)
       {
          IList<string> lines = new List<string>();
-         foreach (ICvsItem item in items)
+         foreach (ICVSItem item in items)
          {
-            string code = item.ItemType == CvsItemType.Folder ? "D" : string.Empty;
+            string code = item.ItemType == ItemType.Folder ? "D" : string.Empty;
             string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Item.Name, item.Revision,
                                          item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
             Console.WriteLine(entryLine);
             lines.Add(entryLine);
          }
          ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
+      }
+
+      public void SaveCVSFolder(IList<ICVSItem> items)
+      {
+         // create CVS folder if it doesn't exist
+         ReaderWriter.Current.CreateDirectory(CVSDirectory);
+         WriteRootFile(_cvsRoot);
+         WriteRepositoryFile(_cvsModule);
+         SaveEntriesFile(items);
       }
    }
 }

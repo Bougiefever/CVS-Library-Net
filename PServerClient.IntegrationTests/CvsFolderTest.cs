@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using NUnit.Framework;
+using PServerClient.CVS;
 using PServerClient.LocalFileSystem;
 
 namespace PServerClient.IntegrationTests
@@ -11,7 +8,7 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class CvsFolderTest
    {
-      private ICvsItem _parent;
+      private ICVSItem _parent;
 
       [SetUp]
       public void SetUp()
@@ -36,8 +33,8 @@ namespace PServerClient.IntegrationTests
       [Test]
       public void ConstructorTest()
       {
-         CvsFolder cvsFolder = new CvsFolder(_parent);
-         Assert.AreEqual(@"c:\_junk\rwtesting\CVS", cvsFolder.Directory.FullName);
+         CVSFolder cvsFolder = new CVSFolder(_parent);
+         Assert.AreEqual(@"c:\_junk\rwtesting\CVS", cvsFolder.CVSDirectory.FullName);
          Assert.AreEqual(@"c:\_junk\rwtesting\CVS\Root", cvsFolder.RootFile.FullName);
          Assert.AreEqual(@"c:\_junk\rwtesting\CVS\Repository", cvsFolder.RepositoryFile.FullName);
          Assert.AreEqual(@"c:\_junk\rwtesting\CVS\Entries", cvsFolder.EntriesFile.FullName);
@@ -47,14 +44,14 @@ namespace PServerClient.IntegrationTests
       [ExpectedException(typeof (IOException))]
       public void GetRootStringWhenRootFileDoesNotExistTest()
       {
-         CvsFolder cvsFolder = new CvsFolder(_parent);
+         CVSFolder cvsFolder = new CVSFolder(_parent);
          string result = cvsFolder.GetRootString();
       }
 
       [Test]
       public void WriteRootFile()
       {
-         CvsFolder cvsFolder = new CvsFolder(_parent);
+         CVSFolder cvsFolder = new CVSFolder(_parent);
          string root = ":pserver:abougie@gb-aix-q:/usr/local/cvsroot/sandbox";
          cvsFolder.WriteRootFile(root);
          
@@ -74,7 +71,7 @@ namespace PServerClient.IntegrationTests
          fs.Flush();
          fs.Close();
 
-         CvsFolder folder = new CvsFolder(_parent);
+         CVSFolder folder = new CVSFolder(_parent);
          string result = folder.GetRootString();
          Assert.AreEqual(root, result);
       }
@@ -82,7 +79,7 @@ namespace PServerClient.IntegrationTests
       [Test]
       public void WriteRepositoryFileTest()
       {
-         CvsFolder folder = new CvsFolder(_parent);
+         CVSFolder folder = new CVSFolder(_parent);
          string rep = "abougie/cvstest";
          folder.WriteRepositoryFile(rep);
 
@@ -102,7 +99,7 @@ namespace PServerClient.IntegrationTests
          fs.Flush();
          fs.Close();
 
-         CvsFolder folder = new CvsFolder(_parent);
+         CVSFolder folder = new CVSFolder(_parent);
          string result = folder.GetRepositoryString();
          Assert.AreEqual(rep, result);
       }
