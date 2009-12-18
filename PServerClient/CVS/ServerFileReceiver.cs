@@ -24,6 +24,7 @@ namespace PServerClient.CVS
          {
             ReceiveMUStyleResponses(checkOutResponses);
          }
+         WriteToDisk(_root.ModuleFolder);
       }
 
       public void WriteToDisk(Folder module)
@@ -117,7 +118,7 @@ namespace PServerClient.CVS
             {
                repository += "/" + folderName;
                DirectoryInfo di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
-               folder = new Folder(di, _root.CvsConnectionString, repository);
+               folder = new Folder(di, _root.CVSConnectionString, repository);
                current.AddItem(folder);
             }
             current = folder;

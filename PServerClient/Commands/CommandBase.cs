@@ -68,7 +68,7 @@ namespace PServerClient.Commands
          }
       }
 
-      public void Execute()
+      public virtual void Execute()
       {
          Connection.Connect(Root);
          try

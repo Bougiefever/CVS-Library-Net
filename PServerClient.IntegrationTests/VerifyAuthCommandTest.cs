@@ -11,23 +11,11 @@ namespace PServerClient.IntegrationTests
    public class VerifyAuthCommandTest
    {
       private Root _root;
-      private string _username;
-      private string _password;
-      private string _cvsRootPath;
-      //private string _workingDirectory;
-      private string _host;
-      private int _port;
+
       [SetUp]
       public void SetUp()
       {
-         _host = "gb-aix-q";
-         _port = 2401;
-         _username = "abougie";
-         _password = "AB4%o=wSobI4w";
-         _cvsRootPath = "/usr/local/cvsroot/sandbox";
-         //_workingDirectory = "";
-
-         _root = new Root(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
+         _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword(), TestConfig.RepositoryPath);
       }
 
       [Test]

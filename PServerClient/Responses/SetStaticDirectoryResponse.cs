@@ -5,16 +5,18 @@ namespace PServerClient.Responses
 {
    public class SetStaticDirectoryResponse : ResponseBase
    {
+      private string _path;
+      public override int LineCount { get { return 2; } }
       public override ResponseType ResponseType { get { return ResponseType.SetStaticDirectory; } }
 
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         _path = lines[0];
       }
 
       public override string DisplayResponse()
       {
-         throw new NotImplementedException();
+         return _path;
       }
    }
 }

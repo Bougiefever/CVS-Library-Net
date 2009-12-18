@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using NUnit.Framework;
+using PServerClient.CVS;
 
 
 namespace PServerClient.Tests
@@ -104,6 +106,31 @@ namespace PServerClient.Tests
          int result = PServerHelper.StringToEnum(typeof (MonthName), test);
          MonthName mon = MonthName.Dec;
          Assert.AreEqual(mon, (MonthName)result);
+      }
+
+      [Test]
+      public void CreateModuleFolderStructureTest()
+      {
+         string module = "mymod/";
+         
+         DirectoryInfo di = new DirectoryInfo(@"c:\_test");
+         Folder mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string", module);
+         Assert.AreEqual("mymod", mod.Name);
+         Assert.AreEqual(0, mod.Count);
+
+         module = "rootmod/mymod";
+         mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string", module);
+         Assert.AreEqual("rootmod", mod.Name);
+         Assert.AreEqual(1, mod.Count);
+         Assert.AreEqual("mymod", mod[0].Name);
+
+         module = "rootfolder/teamfolder/myproject";
+         mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string", module);
+         Assert.AreEqual("rootfolder", mod.Name);
+         Assert.AreEqual(1, mod.Count);
+         Assert.AreEqual("teamfolder", mod[0].Name);
+         Assert.AreEqual(1, mod[0].Count);
+         Assert.AreEqual("myproject", mod[0][0].Name);
       }
    }
 }

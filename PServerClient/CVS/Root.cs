@@ -13,7 +13,7 @@ namespace PServerClient.CVS
       public Root(string host, int port, string username, string password, string repositoryPath)
       {
          RepositoryPath = repositoryPath;
-         CvsConnectionString = string.Format(":pserver:{0}@{1}:{2}", username, host, repositoryPath);
+         CVSConnectionString = string.Format(":pserver:{0}@{1}:{2}", username, host, repositoryPath);
          Host = host;
          Port = port;
          Username = username;
@@ -27,8 +27,7 @@ namespace PServerClient.CVS
          {
             if (_moduleFolder == null)
             {
-               DirectoryInfo di = new DirectoryInfo(WorkingDirectory.FullName + "\\" + Module);
-               _moduleFolder = new Folder(di, CvsConnectionString, Module);
+               _moduleFolder = PServerHelper.CreateModuleFolderStructure(WorkingDirectory, CVSConnectionString, Module);
             }
             return _moduleFolder;
          }
@@ -40,7 +39,7 @@ namespace PServerClient.CVS
       /// <summary>
       /// Pserver connection string for Cvs
       /// </summary>
-      public string CvsConnectionString { get; set; }
+      public string CVSConnectionString { get; set; }
       /// <summary>
       /// Cvs root folder on unix machine
       /// </summary>

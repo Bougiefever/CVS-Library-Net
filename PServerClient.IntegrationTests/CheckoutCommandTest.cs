@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Net.Sockets;
 using NUnit.Framework;
@@ -14,26 +15,17 @@ namespace PServerClient.IntegrationTests
    public class CheckoutCommandTest
    {
       private Root _root;
-      private string _username;
-      private string _password;
-      private string _cvsRootPath;
-      private string _host;
-      private int _port;
+
       private const string lineend = "\n";
 
       [SetUp]
       public void SetUp()
       {
-         _host = "gb-aix-q";
-         _port = 2401;
-         _username = "abougie";
-         _password = "AB4%o=wSobI4w";
-         _cvsRootPath = "/usr/local/cvsroot/sandbox";
-         _root = new Root(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
-         DirectoryInfo di = new DirectoryInfo(@"c:\_cvs");
+
+         _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword(), TestConfig.RepositoryPath);
         // ICVSItem folder = new Folder(di);
-         _root.WorkingDirectory = di;
-         _root.Module = "abougie";
+         _root.WorkingDirectory = TestConfig.WorkingDirectory;
+         _root.Module = TestConfig.ModuleName;
       }
 
       [Test]

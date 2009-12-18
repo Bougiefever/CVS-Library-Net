@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using PServerClient.CVS;
 
 namespace PServerClient
 {
@@ -198,6 +200,35 @@ namespace PServerClient
             names[1] = m.Groups[2].ToString();
          }
          return names;
+      }
+
+      public static Folder CreateModuleFolderStructure(DirectoryInfo working, string cvsConnection, string module)
+      {
+         string[] folders = module.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
+         string folderName = folders[0];
+         DirectoryInfo di = new DirectoryInfo(working.FullName + "\\" + folderName);
+         Folder root = new Folder(di, cvsConnection, folderName);
+         string repository = folderName;
+         Folder current = root;
+         for (int i = 1; i < folders.Length; i++)
+         {
+            folderName = folders[i];
+            Folder folder = null;
+            foreach (ICVSItem item in current)
+            {
+               if ((item is Folder) && item.Name == folderName)
+                  folder = (Folder)item;
+            }
+            if (folder == null)
+            {
+               repository += "/" + folderName;
+               di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
+               folder = new Folder(di, cvsConnection, repository);
+               current.AddItem(folder);
+            }
+            current = folder;
+         }
+         return current;
       }
    }
 }

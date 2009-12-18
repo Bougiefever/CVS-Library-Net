@@ -19,7 +19,7 @@ namespace PServerClient.Tests
 
          Root root = new Root(hostName, port, user, pwd, repoPath);
          string expected = ":pserver:username@host-name:/f1/f2/f3";
-         Assert.AreEqual(expected, root.CvsConnectionString);
+         Assert.AreEqual(expected, root.CVSConnectionString);
          Assert.AreEqual(hostName, root.Host);
          Assert.AreEqual(user, root.Username);
          Assert.AreNotEqual(pwd, root.Password);
@@ -42,7 +42,22 @@ namespace PServerClient.Tests
          root.WorkingDirectory = di;
          root.Module = "mymod";
          Assert.AreEqual(root.ModuleFolder.Info.FullName, @"c:\_temp\mymod");
+      }
 
+      [Test]
+      public void GetModuleFolderWithMultipleNamesInPathTest()
+      {
+         string hostName = "host-name";
+         int port = 1;
+         string user = "username";
+         string pwd = "password";
+         string repoPath = "/f1/f2/f3";
+
+         Root root = new Root(hostName, port, user, pwd, repoPath);
+         DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
+         root.WorkingDirectory = di;
+         root.Module = "rootmod/mymod";
+         Folder modFolder = root.ModuleFolder;
 
       }
    }
