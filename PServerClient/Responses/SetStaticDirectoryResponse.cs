@@ -11,7 +11,7 @@ namespace PServerClient.Responses
 
       public override void ProcessResponse(IList<string> lines)
       {
-         _path = lines[0];
+         _path = lines[1];
       }
 
       public override string DisplayResponse()
