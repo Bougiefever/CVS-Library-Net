@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using PServerClient.LocalFileSystem;
@@ -6,46 +6,37 @@ using PServerClient.LocalFileSystem;
 namespace PServerClient.CVS
 {
    /// <summary>
-   /// This class is to interact with the local file system. It represents one
-   /// local windows folder in the project. It contains project files and other system folders.
+   /// Represents a folder in the cvs repository
    /// </summary>
    public class Folder : CVSItemBase
    {
-      private IList<ICVSItem> _childItems;
-      private CVSFolder _cvsFolder;
+      private readonly IList<ICVSItem> _childItems;
+      private readonly CVSFolder _cvsFolder;
 
       public Folder(FileSystemInfo info, string cvsRoot, string cvsModule) : base(info)
       {
-         _cvsFolder = new CVSFolder(this, cvsRoot, cvsModule);
+         _cvsFolder = new CVSFolder((DirectoryInfo) Info, cvsRoot, cvsModule);
+         _childItems = new List<ICVSItem>();
       }
+
+      public override CVSFolder CvsFolder {  get { return _cvsFolder; } }
+      public override int Count { get { return _childItems.Count; } }
+      public override ICVSItem this[int idx] { get { return _childItems[idx]; } }
 
       public override void AddItem(ICVSItem item)
       {
-         ChildItems.Add(item);
+         _childItems.Add(item);
       }
       public override void RemoveItem(ICVSItem item)
       {
-         ChildItems.Remove(item);
+         _childItems.Remove(item);
       }
 
-      public override CVSFolder CvsFolder 
-      { 
-         get { return _cvsFolder; }
-      }
-
-      public override IList<ICVSItem> ChildItems 
-      { 
-         get
-         {
-            if (_childItems == null)
-               _childItems = new List<ICVSItem>();
-            return _childItems;
-         } 
-      }
+      public override IEnumerator GetEnumerator() { return _childItems.GetEnumerator(); }
 
       public override void Write()
       {
-         ReaderWriter.Current.CreateDirectory((DirectoryInfo)Item);
+         ReaderWriter.Current.CreateDirectory((DirectoryInfo)Info);
       }
    }
 }

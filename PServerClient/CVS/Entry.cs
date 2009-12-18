@@ -5,6 +5,9 @@ using PServerClient.LocalFileSystem;
 
 namespace PServerClient.CVS
 {
+   /// <summary>
+   /// Represents a cvs file in the repository
+   /// </summary>
    public class Entry : CVSItemBase
    {
       public Entry(FileSystemInfo info) : base(info)
@@ -13,22 +16,12 @@ namespace PServerClient.CVS
 
       public override void Read()
       {
-         FileContents = ReaderWriter.Current.ReadFile((FileInfo)Item);
-      }
-
-      public override IList<ICVSItem> ChildItems 
-      { 
-         get { throw new NotSupportedException(); }
-      }
-
-      public override CVSFolder CvsFolder 
-      { 
-         get { throw new NotSupportedException(); }
+         FileContents = ReaderWriter.Current.ReadFile((FileInfo)Info);
       }
 
       public override void Write()
       {
-         ReaderWriter.Current.WriteFile((FileInfo)Item, FileContents);
+         ReaderWriter.Current.WriteFile((FileInfo)Info, FileContents);
       }
    }
 }

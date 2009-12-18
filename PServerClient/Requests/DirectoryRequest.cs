@@ -28,7 +28,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return string.Format("{4} .{0}{1}/{2}{3}", LineEnd, _root.CVSRoot, _root.Module, LineEnd, RequestName);
+         return string.Format("{4} .{0}{1}/{2}{3}", LineEnd, _root.RepositoryPath, _root.Module, LineEnd, RequestName);
       }
    }
 }

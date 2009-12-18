@@ -73,7 +73,6 @@
     <Compile Include="CVS\CVSFolder.cs" />
     <Compile Include="CVS\Entry.cs" />
     <Compile Include="CVS\CVSItemBase.cs" />
-    <Compile Include="CVS\ItemType.cs" />
     <Compile Include="LocalFileSystem\IReaderWriter.cs" />
     <Compile Include="LocalFileSystem\ReaderWriter.cs" />
     <Compile Include="CVS\Folder.cs" />

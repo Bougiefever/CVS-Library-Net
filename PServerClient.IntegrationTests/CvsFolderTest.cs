@@ -8,24 +8,30 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class CvsFolderTest
    {
-      private ICVSItem _parent;
+      private DirectoryInfo _moduleDI;
+      private CVSFolder _cvsFolder;
+      private readonly string _connection = ":pserver:user@gb-aix-q:/usr/local/cvsroot/sandbox";
+      private readonly string _module = "mymod";
+
 
       [SetUp]
       public void SetUp()
       {
-         DirectoryInfo dir = new DirectoryInfo(@"c:\_junk\rwtesting");
-         if (dir.Exists)
-            dir.Delete(true);
-         dir.Refresh();
-         dir.Create();
-         dir.Refresh();
-         _parent = new Folder(dir);
+         _moduleDI = new DirectoryInfo(@"c:\_temp\mymod");
+
+         if (_moduleDI.Exists)
+            _moduleDI.Delete(true);
+         _moduleDI.Refresh();
+         _moduleDI.Create();
+         _moduleDI.Refresh();
+         _cvsFolder = new CVSFolder(_moduleDI, _connection, _module);
+         _cvsFolder.CVSDirectory.Create();
       }
 
       [TearDown]
       public void TearDown()
       {
-         DirectoryInfo dir = new DirectoryInfo(@"c:\_junk\rwtesting");
+         DirectoryInfo dir = new DirectoryInfo(@"c:\_temp");
          if (dir.Exists)
             dir.Delete(true);
       }
@@ -33,74 +39,67 @@ namespace PServerClient.IntegrationTests
       [Test]
       public void ConstructorTest()
       {
-         CVSFolder cvsFolder = new CVSFolder(_parent);
-         Assert.AreEqual(@"c:\_junk\rwtesting\CVS", cvsFolder.CVSDirectory.FullName);
-         Assert.AreEqual(@"c:\_junk\rwtesting\CVS\Root", cvsFolder.RootFile.FullName);
-         Assert.AreEqual(@"c:\_junk\rwtesting\CVS\Repository", cvsFolder.RepositoryFile.FullName);
-         Assert.AreEqual(@"c:\_junk\rwtesting\CVS\Entries", cvsFolder.EntriesFile.FullName);
+         Assert.AreEqual(@"c:\_temp\mymod\CVS", _cvsFolder.CVSDirectory.FullName);
+         Assert.AreEqual(@"c:\_temp\mymod\CVS\Root", _cvsFolder.RootFile.FullName);
+         Assert.AreEqual(@"c:\_temp\mymod\CVS\Repository", _cvsFolder.RepositoryFile.FullName);
+         Assert.AreEqual(@"c:\_temp\mymod\CVS\Entries", _cvsFolder.EntriesFile.FullName);
       }
 
       [Test]
       [ExpectedException(typeof (IOException))]
       public void GetRootStringWhenRootFileDoesNotExistTest()
       {
-         CVSFolder cvsFolder = new CVSFolder(_parent);
-         string result = cvsFolder.GetRootString();
+         CVSFolder cvsFolder = new CVSFolder(_moduleDI, ":pserver:abougie@gb-aix-q:/usr/local/cvsroot/sandbox", "rwtesting");
+         string result = cvsFolder.ReadRootFile();
       }
 
       [Test]
       public void WriteRootFile()
       {
-         CVSFolder cvsFolder = new CVSFolder(_parent);
-         string root = ":pserver:abougie@gb-aix-q:/usr/local/cvsroot/sandbox";
-         cvsFolder.WriteRootFile(root);
-         
-         FileInfo fi = new FileInfo(@"c:\_junk\rwtesting\CVS\Root");
+         _cvsFolder.WriteRootFile();
+
+         FileInfo fi = new FileInfo(@"c:\_temp\mymod\CVS\Root");
          string result = ReaderWriter.Current.ReadFile(fi).Decode();
-         Assert.AreEqual(root, result);
+         Assert.AreEqual(_connection, result);
       }
 
       [Test]
       public void ReadRootfile()
       {
-         Directory.CreateDirectory(@"c:\_junk\rwtesting\CVS");
-         FileInfo file = new FileInfo(@"c:\_junk\rwtesting\CVS\Root");
+         Directory.CreateDirectory(@"c:\_temp\mymod\CVS");
+         FileInfo file = new FileInfo(@"c:\_temp\mymod\CVS\Root");
          FileStream fs = file.Open(FileMode.CreateNew);
          string root = ":pserver:abougie@gb-aix-q:/usr/local/cvsroot/sandbox";
          fs.Write(root.Encode(), 0, root.Length);
          fs.Flush();
          fs.Close();
 
-         CVSFolder folder = new CVSFolder(_parent);
-         string result = folder.GetRootString();
+         string result = _cvsFolder.ReadRootFile();
          Assert.AreEqual(root, result);
       }
 
       [Test]
       public void WriteRepositoryFileTest()
       {
-         CVSFolder folder = new CVSFolder(_parent);
-         string rep = "abougie/cvstest";
-         folder.WriteRepositoryFile(rep);
+         _cvsFolder.WriteRepositoryFile();
 
-         FileInfo fi = new FileInfo(@"c:\_junk\rwtesting\CVS\Repository");
+         FileInfo fi = new FileInfo(@"c:\_temp\mymod\CVS\Repository");
          string result = ReaderWriter.Current.ReadFile(fi).Decode();
-         Assert.AreEqual(rep, result);
+         Assert.AreEqual(_module, result);
       }
 
       [Test]
       public void ReadRepositoryFileTest()
       {
-         Directory.CreateDirectory(@"c:\_junk\rwtesting\CVS");
-         FileInfo file = new FileInfo(@"c:\_junk\rwtesting\CVS\Repository");
+         Directory.CreateDirectory(@"c:\_temp\mymod\CVS");
+         FileInfo file = new FileInfo(@"c:\_temp\mymod\CVS\Repository");
          FileStream fs = file.Open(FileMode.CreateNew);
-         string rep = "abougie/cvstest";
+         string rep = "rwtesting";
          fs.Write(rep.Encode(), 0, rep.Length);
          fs.Flush();
          fs.Close();
 
-         CVSFolder folder = new CVSFolder(_parent);
-         string result = folder.GetRepositoryString();
+         string result = _cvsFolder.ReadRepositoryFile();
          Assert.AreEqual(rep, result);
       }
 

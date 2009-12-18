@@ -16,7 +16,7 @@ namespace PServerClient.Requests
 
       public override string GetRequestString()
       {
-         return string.Format("{2} {0}{1}", _root.CVSRoot, LineEnd, RequestName);
+         return string.Format("{2} {0}{1}", _root.RepositoryPath, LineEnd, RequestName);
       }
    }
 }

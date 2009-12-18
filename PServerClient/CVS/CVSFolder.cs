@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -6,23 +7,25 @@ using PServerClient.LocalFileSystem;
 
 namespace PServerClient.CVS
 {
+   /// <summary>
+   /// The CVS folder that belongs to each repository folder
+   /// </summary>
    public class CVSFolder
    {
       private const string EntryRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
-      private readonly ICVSItem _parent;
-      private readonly string _cvsRoot;
-      private readonly string _cvsModule;
+      private readonly DirectoryInfo _parent;
+      private readonly string _cvsConnection;
+      private readonly string _cvsRepository;
 
-      public CVSFolder(ICVSItem parent, string cvsRoot, string cvsModule)
+      public CVSFolder(DirectoryInfo parentFolder, string cvsConnection, string cvsRepository)
       {
-         // create objects
-         _parent = parent;
-         CVSDirectory = new DirectoryInfo(Path.Combine(parent.Item.FullName, "CVS"));
+         _parent = parentFolder;
+         CVSDirectory = new DirectoryInfo(Path.Combine(parentFolder.FullName, "CVS"));
          RepositoryFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Repository"));
          EntriesFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Entries"));
          RootFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Root"));
-         _cvsRoot = cvsRoot;
-         _cvsModule = cvsModule;
+         _cvsConnection = cvsConnection;
+         _cvsRepository = cvsRepository;
       }
 
       public DirectoryInfo CVSDirectory { get; private set; }
@@ -30,33 +33,33 @@ namespace PServerClient.CVS
       public FileInfo EntriesFile { get; private set; }
       public FileInfo RootFile { get; private set; }
 
-      public string GetRootString()
+      public string ReadRootFile()
       {
          byte[] buffer = ReaderWriter.Current.ReadFile(RootFile);
          string root = buffer.Decode();
          return root;
       }
 
-      public void WriteRootFile(string root)
+      public void WriteRootFile()
       {
-         byte[] buffer = root.Encode();
+         byte[] buffer = _cvsConnection.Encode();
          ReaderWriter.Current.WriteFile(RootFile, buffer);
       }
 
-      public string GetRepositoryString()
+      public string ReadRepositoryFile()
       {
          byte[] buffer = ReaderWriter.Current.ReadFile(RepositoryFile);
          string repository = buffer.Decode();
          return repository;
       }
 
-      public void WriteRepositoryFile(string repository)
+      public void WriteRepositoryFile()
       {
-         byte[] buffer = repository.Encode();
+         byte[] buffer = _cvsRepository.Encode();
          ReaderWriter.Current.WriteFile(RepositoryFile, buffer);
       }
 
-      public IList<ICVSItem> GetEntryItems()
+      public IList<ICVSItem> ReadEntries()
       {
          IList<string> entryLines = ReaderWriter.Current.ReadFileLines(EntriesFile);
          IList<ICVSItem> items = new List<ICVSItem>();
@@ -66,37 +69,44 @@ namespace PServerClient.CVS
             if (m.Success)
             {
                string code = m.Groups[1].ToString();
-               string fileName = m.Groups[2].ToString();
+               string entryName = m.Groups[2].ToString();
                string revision = m.Groups[3].ToString();
                string date = m.Groups[4].ToString();
                string keywordMode = m.Groups[5].ToString();
                string stickyOption = m.Groups[6].ToString();
 
-               FileInfo file = new FileInfo(Path.Combine(_parent.Item.FullName, fileName));
                ICVSItem item;
+               string path = Path.Combine(_parent.FullName, entryName);
                if (code == "D")
-                  item = new Folder(file, _cvsRoot, _cvsModule);
+               {
+                  DirectoryInfo di = new DirectoryInfo(path);
+                  string repo = _cvsRepository + "/" + entryName;
+                  item = new Folder(di, _cvsConnection, repo);
+               }
                else
-                  item = new Entry(file)
+               {
+                  FileInfo fi = new FileInfo(path);
+                  item = new Entry(fi)
                             {
                                Revision = revision,
                                ModTime = date.EntryToDateTime(),
                                Properties = keywordMode,
                                StickyOption = stickyOption
                             };
+               }
                items.Add(item);
             }
          }
          return items;
       }
 
-      public void SaveEntriesFile(IList<ICVSItem> items)
+      public void WriteEntries(IList<ICVSItem> items)
       {
          IList<string> lines = new List<string>();
          foreach (ICVSItem item in items)
          {
-            string code = item.ItemType == ItemType.Folder ? "D" : string.Empty;
-            string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Item.Name, item.Revision,
+            string code = item is Folder ? "D" : string.Empty;
+            string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
                                          item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
             Console.WriteLine(entryLine);
             lines.Add(entryLine);
@@ -108,9 +118,9 @@ namespace PServerClient.CVS
       {
          // create CVS folder if it doesn't exist
          ReaderWriter.Current.CreateDirectory(CVSDirectory);
-         WriteRootFile(_cvsRoot);
-         WriteRepositoryFile(_cvsModule);
-         SaveEntriesFile(items);
+         WriteRootFile();
+         WriteRepositoryFile();
+         WriteEntries(items);
       }
    }
 }

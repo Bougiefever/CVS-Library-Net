@@ -1,24 +1,38 @@
-using PServerClient.CVS;
+using System.IO;
 
 namespace PServerClient.CVS
 {
+   /// <summary>
+   /// CVSRoot object contains information about the CVS repository.
+   /// Also contains the local working directory and the CVS module folder,
+   /// which is the entry point for the hierarchy of the repository module items
+   /// </summary>
    public class Root
    {
-      public Root(string host, int port, string username, string password, string cvsroot)
+      private Folder _moduleFolder;
+      public Root(string host, int port, string username, string password, string repositoryPath)
       {
-         CVSRoot = cvsroot;
-         CvsConnectionString = string.Format(":pserver:{0}@{1}:{2}", username, host, cvsroot);
+         RepositoryPath = repositoryPath;
+         CvsConnectionString = string.Format(":pserver:{0}@{1}:{2}", username, host, repositoryPath);
          Host = host;
          Port = port;
          Username = username;
          Password = password.ScramblePassword();
       }
 
-      // for the current user and machine
-      /// <summary>
-      /// This is the root folder for the current cvs module
-      /// </summary>
-      public ICVSItem WorkingDirectory { get; set; }
+      public DirectoryInfo WorkingDirectory { get; set; }
+      public Folder ModuleFolder
+      {
+         get
+         {
+            if (_moduleFolder == null)
+            {
+               DirectoryInfo di = new DirectoryInfo(WorkingDirectory.FullName + "\\" + Module);
+               _moduleFolder = new Folder(di, CvsConnectionString, Module);
+            }
+            return _moduleFolder;
+         }
+      }
       public string Username { get; set; }
       public string Password { get; set; }
 
@@ -30,7 +44,7 @@ namespace PServerClient.CVS
       /// <summary>
       /// Cvs root folder on unix machine
       /// </summary>
-      public string CVSRoot { get; set; }
+      public string RepositoryPath { get; set; }
       /// <summary>
       /// Name of Cvs module being interacted with
       /// </summary>

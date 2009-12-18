@@ -13,8 +13,8 @@ namespace PServerClient.Tests.Commands
       public void TestFixtureSetUp()
       {
          _root = new Root("host-name", 1, "username", "password", "/f1/f2/f3");
-         Folder f = new Folder(new DirectoryInfo(@"c:\mydir"));
-         _root.WorkingDirectory = f;
+         DirectoryInfo workingDir = new DirectoryInfo(@"c:\mydir");
+         _root.WorkingDirectory = workingDir;
       }
 
 

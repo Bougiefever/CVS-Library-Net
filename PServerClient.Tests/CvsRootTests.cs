@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.IO;
+using NUnit.Framework;
 using PServerClient.CVS;
 
 namespace PServerClient.Tests
@@ -10,15 +11,39 @@ namespace PServerClient.Tests
       [Test]
       public void ConstructorTest()
       {
-         Root root = new Root("host-name", 1, "username", "password", "/f1/f2/f3");
+         string hostName = "host-name";
+         int port = 1;
+         string user = "username";
+         string pwd = "password";
+         string repoPath = "/f1/f2/f3";
+
+         Root root = new Root(hostName, port, user, pwd, repoPath);
          string expected = ":pserver:username@host-name:/f1/f2/f3";
          Assert.AreEqual(expected, root.CvsConnectionString);
-         Assert.AreEqual("host-name", root.Host);
-         Assert.AreEqual("username", root.Username);
-         Assert.AreNotEqual("password", root.Password);
-         Assert.AreEqual("A:yZZ30 e", root.Password);
-         Assert.AreEqual("/f1/f2/f3", root.CVSRoot);
+         Assert.AreEqual(hostName, root.Host);
+         Assert.AreEqual(user, root.Username);
+         Assert.AreNotEqual(pwd, root.Password);
+         Assert.AreEqual(pwd.ScramblePassword(), root.Password);
+         Assert.AreEqual(repoPath, root.RepositoryPath);
          Assert.AreEqual(1, root.Port);
+      }
+
+      [Test]
+      public void GetModuleFolderTest()
+      {
+         string hostName = "host-name";
+         int port = 1;
+         string user = "username";
+         string pwd = "password";
+         string repoPath = "/f1/f2/f3";
+
+         Root root = new Root(hostName, port, user, pwd, repoPath);
+         DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
+         root.WorkingDirectory = di;
+         root.Module = "mymod";
+         Assert.AreEqual(root.ModuleFolder.Info.FullName, @"c:\_temp\mymod");
+
+
       }
    }
 }

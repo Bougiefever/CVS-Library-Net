@@ -23,7 +23,7 @@ namespace PServerClient.Requests
       public virtual string GetRequestString()
       {
          return string.Format("BEGIN {0} REQUEST{1}{2}{1}{3}{1}{4}{1}END {0} REQUEST{1}",
-                              RequestHelper.RequestNames[(int) RequestType], lineEnd, _root.CVSRoot, _root.Username, _root.Password);
+                              RequestHelper.RequestNames[(int) RequestType], lineEnd, _root.RepositoryPath, _root.Username, _root.Password);
       }
 
       public IList<IResponse> Responses { get; set; }

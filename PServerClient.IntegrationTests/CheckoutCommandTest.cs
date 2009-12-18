@@ -30,9 +30,9 @@ namespace PServerClient.IntegrationTests
          _password = "AB4%o=wSobI4w";
          _cvsRootPath = "/usr/local/cvsroot/sandbox";
          _root = new Root(_host, _port, _username, _password.UnscramblePassword(), _cvsRootPath);
-         DirectoryInfo di = new DirectoryInfo(@"c:\_cvs\abougie");
-         ICVSItem folder = new Folder(di);
-         _root.WorkingDirectory = folder;
+         DirectoryInfo di = new DirectoryInfo(@"c:\_cvs");
+        // ICVSItem folder = new Folder(di);
+         _root.WorkingDirectory = di;
          _root.Module = "abougie";
       }
 

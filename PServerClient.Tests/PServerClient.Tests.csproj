@@ -53,7 +53,7 @@
     <Compile Include="Commands\AddCommandTest.cs" />
     <Compile Include="Commands\CheckoutCommandTest.cs" />
     <Compile Include="Commands\CommandBaseTest.cs" />
-    <Compile Include="Commands\CvsServerFileReceiverTest.cs" />
+    <Compile Include="ServerFileReceiverTest.cs" />
     <Compile Include="Commands\ExportCommandTest.cs" />
     <Compile Include="Commands\UpdateCommandTest.cs" />
     <Compile Include="Commands\ValidRequestsListCommandTest.cs" />
@@ -72,9 +72,6 @@
       <Project>{CDB3E7C6-94F2-43FA-93A2-D075D4FD8464}</Project>
       <Name>PServerClient</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LocalFileSystemTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

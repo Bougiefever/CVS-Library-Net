@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 
 namespace PServerClient.CVS
@@ -7,19 +7,23 @@ namespace PServerClient.CVS
    /// <summary>
    /// This the interface for both local Cvs folders and Cvs entry files
    /// </summary>
-   public interface ICVSItem
+   public interface ICVSItem : IEnumerable
    {
       /// <summary>
       /// Either FileInfo or DirectoryInfo object depending on
       /// whether instance is an Entry or Folder object
       /// </summary>
-      FileSystemInfo Item { get; }
+      FileSystemInfo Info { get; }
       /// <summary>
       /// List of Entries or Folders contained by the current item
       /// Entry does not support this because files do not have 
       /// child items
       /// </summary>
-      IList<ICVSItem> ChildItems { get;  }
+      ICVSItem this[int idx] { get; }
+      /// <summary>
+      /// Count of child items
+      /// </summary>
+      int Count { get; }
       /// <summary>
       /// Name of folder or file
       /// </summary>
@@ -49,10 +53,6 @@ namespace PServerClient.CVS
       /// </summary>
       byte[] FileContents { get; set; }
       /// <summary>
-      /// Looks at the Item property of itself and returns either Folder or Entry type
-      /// </summary>
-      ItemType ItemType { get; }
-      /// <summary>
       /// Write the FileContents to the Entry file if item is Entry type
       /// Create a directory if item is Folder type
       /// </summary>
@@ -71,7 +71,9 @@ namespace PServerClient.CVS
       /// </summary>
       /// <param name="item"></param>
       void RemoveItem(ICVSItem item);
-
+      /// <summary>
+      /// CVS hidden folder for repository information
+      /// </summary>
       CVSFolder CvsFolder { get; }
    }
 }

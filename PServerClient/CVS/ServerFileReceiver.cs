@@ -26,17 +26,16 @@ namespace PServerClient.CVS
          }
       }
 
-      public void SaveFolder(ICVSItem working)
+      public void WriteToDisk(Folder module)
       {
-         working.Write();
-         foreach (ICVSItem item in working.ChildItems)
+         module.Write();
+         foreach (ICVSItem item in module)
          {
-            if (item.ItemType == ItemType.Folder)
-               SaveFolder(item);
+            if (item is Folder)
+               WriteToDisk((Folder)item);
             else
                item.Write();
          }
-         
       }
 
       internal void ReceiveMTUpdatedResponses(IList<IResponse> responses)
@@ -66,26 +65,26 @@ namespace PServerClient.CVS
 
       internal void ReceiveMUStyleResponses(IList<IResponse> responses)
       {
-         int i = 0;
-         IResponse response = responses[i++];
-         while (response.ResponseType != ResponseType.Ok)
-         {
-            if (response.ResponseType == ResponseType.Message)
-            {
+         //int i = 0;
+         //IResponse response = responses[i++];
+         //while (response.ResponseType != ResponseType.Ok)
+         //{
+         //   if (response.ResponseType == ResponseType.Message)
+         //   {
 
-            }
-         }
+         //   }
+         //}
       }
 
       public void AddNewEntry(IList<IResponse> entryResponses)
       {
-         Folder workingDir = (Folder)_root.WorkingDirectory;
          IResponse res = entryResponses.Where(r => r.ResponseType == ResponseType.MessageTag).First();
          string[] names = PServerHelper.GetUpdatedFnamePathFile(res.DisplayResponse());
          string[] folders = names[0].Split(new[] { @"/" }, StringSplitOptions.RemoveEmptyEntries);
-         Folder current = CreateFolderStructure(workingDir, folders);
+         Folder current = CreateFolderStructure(folders);
+
          string filename = names[1];
-         FileInfo fi = new FileInfo(Path.Combine(current.Item.FullName, filename));
+         FileInfo fi = new FileInfo(Path.Combine(current.Info.FullName, filename));
          Entry entry = new Entry(fi);
          res = entryResponses.Where(r => r.ResponseType == ResponseType.ModTime).First();
          entry.ModTime = ((ModTimeResponse)res).ModTime;
@@ -101,22 +100,29 @@ namespace PServerClient.CVS
          current.AddItem(entry);
       }
 
-      public Folder CreateFolderStructure(Folder workingDir, string[] folders)
+      public Folder CreateFolderStructure(string[] folders)
       {
-         Folder startFolder = workingDir;
-         for (int i = 0; i < folders.Length; i++)
+         Folder current = _root.ModuleFolder;
+         string repository = _root.Module;
+         for (int i = 1; i < folders.Length; i++)
          {
             string folderName = folders[i];
-            Folder folder = (Folder)startFolder.ChildItems.Where(ci => ci.ItemType == ItemType.Folder && ci.Name == folderName).FirstOrDefault();
+            Folder folder = null;
+            foreach (ICVSItem item in current)
+            {
+               if ((item is Folder) && item.Name == folderName)
+                  folder = (Folder)item;
+            }
             if (folder == null)
             {
-               DirectoryInfo di = new DirectoryInfo(Path.Combine(startFolder.Item.FullName, folderName));
-               folder = new Folder(di);
-               startFolder.AddItem(folder);
+               repository += "/" + folderName;
+               DirectoryInfo di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
+               folder = new Folder(di, _root.CvsConnectionString, repository);
+               current.AddItem(folder);
             }
-            startFolder = folder;
+            current = folder;
          }
-         return startFolder;
+         return current;
       }
    }
 }
