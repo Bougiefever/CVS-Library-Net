@@ -9,7 +9,7 @@ namespace PServerClient.Responses
       ResponseType ResponseType { get; }
       void ProcessResponse(IList<string> lines);
       string DisplayResponse();
-      XDocument ToXML();
+      XElement ToXML();
    }
 
    public interface IAuthResponse : IResponse

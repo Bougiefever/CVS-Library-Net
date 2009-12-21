@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
@@ -181,6 +183,36 @@ namespace PServerClient.Tests.Commands
          _mocks.VerifyAll();
 
          Assert.AreEqual(ExitCode.Failed, result);
+      }
+
+      [Test]
+      public void GetResponsesTest()
+      {
+         //create mock request/responses
+         ValidRequestsRequest vrrequest = new ValidRequestsRequest();
+         ValidRequestResponse vrresponse = new ValidRequestResponse();
+         string process = "Root Valid-responses valid-requests Repository Directory";
+         vrresponse.ProcessResponse(new List<string>{process});
+         vrrequest.Responses = new List<IResponse>{vrresponse};
+
+         CheckOutRequest corequest = new CheckOutRequest();
+         IList<string> lines = new List<string>() { "module/", "/f1/f2/f3/" };
+         IResponse r1 = new ClearStickyResponse();
+         r1.ProcessResponse(lines);
+         IResponse r2 = new ClearStaticDirectoryResponse();
+         r2.ProcessResponse(lines);
+         corequest.Responses = new List<IResponse> {r1, r2};
+
+         CheckoutCommand cmd = new CheckoutCommand(_root);
+         cmd.Requests = new List<IRequest>{vrrequest, corequest};
+
+         IList<IResponse> responses = cmd.GetResponses();
+         Assert.AreEqual(3, responses.Count);
+
+         XDocument xdoc = cmd.ResponsesXML();
+         Console.WriteLine(xdoc.ToString());
+         bool result = ResponseHelper.ValidateResponseXML(xdoc);
+         Assert.IsTrue(result);
       }
    }
 }

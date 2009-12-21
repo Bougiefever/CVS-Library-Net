@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using PServerClient.CVS;
 using PServerClient.Requests;
 
@@ -10,5 +11,6 @@ namespace PServerClient.Commands
       Root Root { get; }
       ExitCode ExitCode { get; }
       void Execute();
+      XDocument ResponsesXML();
    }
 }

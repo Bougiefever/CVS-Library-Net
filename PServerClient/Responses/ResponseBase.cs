@@ -23,21 +23,20 @@ namespace PServerClient.Responses
       }
       public virtual int LineCount { get { return 1; } }
 
-      public virtual XDocument ToXML()
+      public virtual XElement ToXML()
       {
-         XDocument xdoc = new XDocument(new XElement("Responses",
-                                                     new XElement("Response",
-                                                                  new XElement("Name", ResponseType.ToString()),
-                                                                  new XElement("ResponseType", (int)ResponseType),
-                                                                  new XElement("ProcessLines"))));
-         XElement xLines = xdoc.Descendants("ProcessLines").First();
+         XElement responseElement = new XElement("Response",
+                                             new XElement("Name", ResponseType.ToString()),
+                                             new XElement("ResponseType", (int)ResponseType),
+                                             new XElement("ProcessLines"));
+         XElement xLines = responseElement.Descendants("ProcessLines").First();
 
          foreach (string s in ResponseLines)
          {
             XElement line = new XElement("Line", s);
             xLines.Add(line);
          }
-         return xdoc;
+         return responseElement;
       }
    }
 }

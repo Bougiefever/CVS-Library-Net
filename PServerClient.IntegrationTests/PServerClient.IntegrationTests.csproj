@@ -53,6 +53,7 @@
     <Compile Include="LogCommandTest.cs" />
     <Compile Include="ReaderWriterTest.cs" />
     <Compile Include="TestConfig.cs" />
+    <Compile Include="TestHelper.cs" />
     <Compile Include="ValidRequestsListCommandTest.cs" />
     <Compile Include="VerifyAuthCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

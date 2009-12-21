@@ -18,10 +18,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Auth, response.ResponseType);
          response.ProcessResponse(new List<string>{"I LOVE YOU"});
          Assert.AreEqual("I LOVE YOU", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -34,9 +34,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -48,10 +48,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string>{"123"});
          Assert.AreEqual("123", response.DisplayResponse());
          Assert.AreEqual("123", response.CheckSum);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -63,10 +63,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" });
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -78,10 +78,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" });
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -93,10 +93,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/usr/local/cvsroot/sandbox/mod1/newfile1.cs" });
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.OriginalFileName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/newfile1.cs", response.NewFileName);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -109,9 +109,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -122,10 +122,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Error, response.ResponseType);
          response.ProcessResponse(new List<string> { "My error message" });
          Assert.AreEqual("My error message", response.Message);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -135,10 +135,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(1, response.LineCount);
          Assert.AreEqual(ResponseType.Flush, response.ResponseType);
          response.ProcessResponse(new List<string> { "" });
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -151,9 +151,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -166,9 +166,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -179,10 +179,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Message, response.ResponseType);
          response.ProcessResponse(new List<string> { "My message" });
          Assert.AreEqual("My message", response.Message);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -193,10 +193,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.MessageTag, response.ResponseType);
          response.ProcessResponse(new List<string> { "My message" });
          Assert.AreEqual("My message", response.Message);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -207,10 +207,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Mode, response.ResponseType);
          response.ProcessResponse(new List<string> { "modemode" });
          Assert.AreEqual("modemode", response.Mode);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -222,10 +222,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "27 Nov 2009 14:21:06 -0000" });
          DateTime expected = DateTime.Parse("11/27/2009 2:21:06 PM");
          Assert.AreEqual(expected, response.ModTime);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -236,10 +236,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.ModuleExpansion, response.ResponseType);
          response.ProcessResponse(new List<string> { "mod1" });
          Assert.AreEqual("mod1", response.ModuleName);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -251,10 +251,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "mod1", "/file1.cs/1.1.1.1///" });
          Assert.AreEqual("file1.cs", response.FileName);
          Assert.AreEqual("1.1.1.1", response.Revision);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -265,10 +265,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Notified, response.ResponseType);
          response.ProcessResponse(new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs" });
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -279,10 +279,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Unknown, response.ResponseType);
          response.ProcessResponse(new List<string> { "" });
          Assert.AreEqual("", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -293,10 +293,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Ok, response.ResponseType);
          response.ProcessResponse(new List<string> { "" });
          Assert.AreEqual("ok ", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -309,9 +309,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -324,9 +324,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -337,10 +337,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Removed, response.ResponseType);
          response.ProcessResponse(new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs" });
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -351,10 +351,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.RemoveEntry, response.ResponseType);
          response.ProcessResponse(new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs" });
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -366,10 +366,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" });
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -381,10 +381,10 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" });
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
-         XDocument doc = response.ToXML();
-         bool result = ResponseHelper.ValidateResponseXML(doc);
+         XElement el = response.ToXML();
+         bool result = ResponseHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(doc.ToString());
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -397,9 +397,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -412,9 +412,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -427,9 +427,9 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          response.File.Contents = contents.Encode();
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.DisplayResponse());
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -442,9 +442,9 @@ namespace PServerClient.Tests
          response.ProcessResponse(new List<string>{process});
          var result = response.ValidRequestTypes;
          Assert.IsInstanceOf<IList<RequestType>>(result);
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]
@@ -455,9 +455,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.WrapperRscOption, response.ResponseType);
          string process = "*.cs -k 'b'";
          response.ProcessResponse(new List<string> { process });
-         XDocument doc = response.ToXML();
-         Assert.IsTrue(ResponseHelper.ValidateResponseXML(doc));
-         Console.WriteLine(doc.ToString());
+         XElement el = response.ToXML();
+         Assert.IsTrue(ResponseHelper.ValidateResponseXML(el));
+         Console.WriteLine(el.ToString());
       }
 
       [Test]

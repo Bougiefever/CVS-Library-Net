@@ -222,15 +222,29 @@ namespace PServerClient
          return sb.ToString();
       }
 
+      public static bool ValidateResponseXML(XElement response)
+      {
+         XmlSchemaSet schemas = new XmlSchemaSet();
+         schemas.Add("", XmlReader.Create(new StringReader(ResponseXMLSchema)));
+         bool isValid = true;
+         XDocument xdoc = new XDocument(new XElement("Responses",
+            response));
+         xdoc.Validate(schemas, (o, e) =>
+                                       {
+                                          isValid = false;
+                                       });
+         return isValid;
+      }
+
       public static bool ValidateResponseXML(XDocument response)
       {
          XmlSchemaSet schemas = new XmlSchemaSet();
          schemas.Add("", XmlReader.Create(new StringReader(ResponseXMLSchema)));
          bool isValid = true;
          response.Validate(schemas, (o, e) =>
-                                       {
-                                          isValid = false;
-                                       });
+         {
+            isValid = false;
+         });
          return isValid;
       }
 
