@@ -11,21 +11,8 @@ namespace PServerClient.Responses
    //text file conventions. To transmit a text file to standard output, servers should
    //use a series of ‘M’ requests.
    /// </summary>
-   public class MbinaryResponse : ResponseBase, IFileResponse
+   public class MbinaryResponse : FileResponseBase
    {
-      public long FileLength { get; set; }
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.Mbinary; } }
-      public ReceiveFile File { get; set; }
-
    }
 }

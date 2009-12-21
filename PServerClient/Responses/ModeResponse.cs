@@ -10,16 +10,16 @@ namespace PServerClient.Responses
    /// </summary>
    public class ModeResponse : ResponseBase
    {
+      public string Mode { get; private set; }
+      public override ResponseType ResponseType { get { return ResponseType.Mode; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         Mode = lines[0];
+         base.ProcessResponse(lines);
       }
-
       public override string DisplayResponse()
       {
-         throw new NotImplementedException();
+         return Mode;
       }
-
-      public override ResponseType ResponseType { get { return ResponseType.Mode; } }
    }
 }

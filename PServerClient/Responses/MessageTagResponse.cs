@@ -55,20 +55,8 @@ namespace PServerClient.Responses
    //M done
    //For a list of specific tags, see Section 5.12 [Text tags], 
    /// </summary>
-   public class MessageTagResponse : ResponseBase
+   public class MessageTagResponse : MessageResponseBase
    {
       public override ResponseType ResponseType { get { return ResponseType.MessageTag; } }
-      public string Message { get; set; }
-      public override string DisplayResponse()
-      {
-         return Message;
-      }
-
-      public override int LineCount { get { return 1; } }
-
-      public override void ProcessResponse(IList<string> lines)
-      {
-         Message = lines[0];
-      }
    }
 }

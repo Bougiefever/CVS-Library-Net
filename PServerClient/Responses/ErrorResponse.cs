@@ -18,23 +18,8 @@ namespace PServerClient.Responses
    //has no way of flagging the output as intended for standard error, the way that
    //the E response does).
    /// </summary>
-   public class ErrorResponse : ResponseBase
+   public class ErrorResponse : MessageResponseBase
    {
-      public override void ProcessResponse(IList<string> lines)
-      {
-         foreach (string s in lines)
-         {
-            ErrorMessage += s + Environment.NewLine;
-         }
-      }
-
-      public override string DisplayResponse()
-      {
-         return ErrorMessage;
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.Error; } }
-      public override int LineCount { get { return 0; } }
-      public string ErrorMessage { get; set; }
    }
 }

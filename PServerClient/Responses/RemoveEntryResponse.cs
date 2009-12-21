@@ -11,16 +11,16 @@ namespace PServerClient.Responses
    /// </summary>
    public class RemoveEntryResponse : ResponseBase
    {
+      public string RepositoryPath { get; private set; }
+      public override ResponseType ResponseType { get { return ResponseType.RemoveEntry; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         RepositoryPath = lines[0];
+         base.ProcessResponse(lines);
       }
-
       public override string DisplayResponse()
       {
-         throw new NotImplementedException();
+         return RepositoryPath;
       }
-
-      public override ResponseType ResponseType { get { return ResponseType.RemoveEntry; } }
    }
 }

@@ -9,19 +9,8 @@ namespace PServerClient.Responses
    //successfully operated on (checked in, added, etc.). name in the Entries line is
    //the same as the last component of pathname.
    /// </summary>
-   public class CheckedInResponse : ResponseBase
+   public class CheckedInResponse : FileResponseBase
    {
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.CheckedIn; } }
-      public override int LineCount { get { return 0; } }
    }
 }

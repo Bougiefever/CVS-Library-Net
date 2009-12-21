@@ -16,17 +16,18 @@ namespace PServerClient.Responses
    /// </summary>
    public class ChecksumResponse : ResponseBase
    {
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
+      private string _checkSum;
+      public string CheckSum { get { return _checkSum; } }
 
       public override ResponseType ResponseType { get { return ResponseType.CheckSum; } }
-      public override int LineCount { get { return 0; } }
+      public override void ProcessResponse(IList<string> lines)
+      {
+         _checkSum = lines[0];
+         base.ProcessResponse(lines);
+      }
+      public override string DisplayResponse()
+      {
+         return _checkSum;
+      }
    }
 }

@@ -10,16 +10,15 @@ namespace PServerClient.Responses
    /// </summary>
    public class NewEntryResponse : ResponseBase
    {
+      public string FileName { get; private set; }
+      public string Revision { get; private set; }
+      public override ResponseType ResponseType { get { return ResponseType.NewEntry; } }
+      public override int LineCount { get { return 2; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         FileName = ResponseHelper.GetFileNameFromUpdatedLine(lines[1]);
+         Revision = ResponseHelper.GetRevisionFromUpdatedLine(lines[1]);
+         base.ProcessResponse(lines);
       }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
-      public override ResponseType ResponseType { get { return ResponseType.NewEntry; } }
    }
 }

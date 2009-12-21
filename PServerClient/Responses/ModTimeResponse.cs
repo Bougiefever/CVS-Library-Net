@@ -12,6 +12,7 @@ namespace PServerClient.Responses
       {
          string date = lines[0];
          ModTime = date.Rfc822ToDateTime();
+         base.ProcessResponse(lines);
       }
 
       public override string DisplayResponse()

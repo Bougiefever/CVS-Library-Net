@@ -13,19 +13,8 @@ namespace PServerClient.Responses
    //earlier revision of a file. This response is only used if the update command is
    //given the ‘-u’ argument.
    /// </summary>
-   public class RcsDiffResponse : ResponseBase, IFileResponse
+   public class RcsDiffResponse : FileResponseBase
    {
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.RcsDiff; } }
-      public ReceiveFile File { get; set; }
    }
 }

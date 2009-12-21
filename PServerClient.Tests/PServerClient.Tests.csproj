@@ -53,6 +53,8 @@
     <Compile Include="Commands\AddCommandTest.cs" />
     <Compile Include="Commands\CheckoutCommandTest.cs" />
     <Compile Include="Commands\CommandBaseTest.cs" />
+    <Compile Include="ResponseHelperTest.cs" />
+    <Compile Include="ResponseXMLTest.cs" />
     <Compile Include="ServerFileReceiverTest.cs" />
     <Compile Include="Commands\ExportCommandTest.cs" />
     <Compile Include="Commands\UpdateCommandTest.cs" />

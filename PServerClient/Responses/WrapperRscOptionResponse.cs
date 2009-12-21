@@ -16,16 +16,14 @@ namespace PServerClient.Responses
    /// </summary>
    public class WrapperRscOptionResponse : ResponseBase
    {
+      public string Pattern { get; private set; }
+      public string Option { get; private set; }
+      public override ResponseType ResponseType { get { return ResponseType.WrapperRscOption; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         Pattern = "to-do";
+         Option = "to-do";
+         base.ProcessResponse(lines);
       }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
-      public override ResponseType ResponseType { get { return ResponseType.WrapperRscOption; } }
    }
 }

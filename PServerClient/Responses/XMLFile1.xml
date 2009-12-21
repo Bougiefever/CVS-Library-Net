@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Responses>
+   <Response>
+      <Name>ClearSticky</Name>
+      <ResponseType>17</ResponseType>
+      <ProcessLines>
+         <Line>Clear-sticky abougie/</Line>
+         <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
+      </ProcessLines>
+   </Response>
+   <Response>
+      <Name>Updated</Name>
+      <ResponseType>7</ResponseType>
+      <ProcessLines>
+         <Line>Updated abougie/</Line>
+         <Line>/usr/local/cvsroot/sandbox/abougie/.cvspass</Line>
+         <Line>/.cvspass/1.1.1.1///</Line>
+         <Line>u=rw,g=rw,o=rw</Line>
+         <Line>74</Line>
+      </ProcessLines>
+      <ResponseFile>
+         <Length>74</Length>
+         <Contents>
+            <![CDATA[/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w]]>
+         </Contents>
+      </ResponseFile>
+   </Response>
+</Responses>

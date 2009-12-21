@@ -70,7 +70,7 @@ namespace PServerClient.Connection
                if (response is IFileResponse)
                {
                   IFileResponse fileResponse = (IFileResponse)response;
-                  fileResponse.File.FileContents = TcpClient.ReadBytes((int)fileResponse.File.FileLength);
+                  fileResponse.File.Contents = TcpClient.ReadBytes((int)fileResponse.File.Length);
                }
                responses.Add(response);
             }

@@ -16,23 +16,8 @@ namespace PServerClient.Responses
    //have left it around forever, thus letting the user clean it up as desired. But
    //another answer, such as until the next commit, might be preferable.
    /// </summary>
-   public class MergedResponse : ResponseBase, IFileResponse
+   public class MergedResponse : FileResponseBase
    {
-      public long FileLength { get; set; }
-
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.Merged; } }
-      public ReceiveFile File { get; set; }
-      public override int LineCount { get { return 5; } }
-
    }
 }

@@ -108,7 +108,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(mon, (MonthName)result);
       }
 
-      [Test]
+      [Test][Ignore]
       public void CreateModuleFolderStructureTest()
       {
          string module = "mymod/";

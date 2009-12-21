@@ -90,13 +90,13 @@ namespace PServerClient.CVS
          res = entryResponses.Where(r => r.ResponseType == ResponseType.ModTime).First();
          entry.ModTime = ((ModTimeResponse)res).ModTime;
          UpdatedResponse ur = (UpdatedResponse)entryResponses.Where(r => r.ResponseType == ResponseType.Updated).First();
-         if (entry.Name == ur.File.FileName)
+         if (entry.Name == ur.File.Name)
          {
             entry.Revision = ur.File.Revision;
             entry.StickyOption = "";
-            entry.Length = ur.File.FileLength;
+            entry.Length = ur.File.Length;
             entry.Properties = ur.File.Properties;
-            entry.FileContents = ur.File.FileContents;
+            entry.FileContents = ur.File.Contents;
          }
          current.AddItem(entry);
       }

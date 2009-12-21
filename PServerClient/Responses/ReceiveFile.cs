@@ -6,12 +6,12 @@
    public class ReceiveFile
    {
       public string[] Path { get; set; }
-      public string CvsPath { get; set; }
-      public string FileName { get; set; }
+      public string RepositoryPath { get; set; }
+      public string Name { get; set; }
       public string Revision { get; set; }
       public string Properties { get; set; }
-      public long FileLength { get; set; }
-      public byte[] FileContents { get; set; }
-      public FileType FileType { get; set; }
+      public long Length { get; set; }
+      public byte[] Contents { get; set; }
+      public FileType Type { get; set; }
    }
 }

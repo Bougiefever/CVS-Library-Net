@@ -15,16 +15,21 @@ namespace PServerClient.Responses
    /// </summary>
    public class SetStickyResponse : ResponseBase
    {
+      public string ModuleName { get; set; }
+      public string RepositoryPath { get; set; }
+
+      public override int LineCount { get { return 2; } }
+      public override ResponseType ResponseType { get { return ResponseType.SetSticky; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         ModuleName = lines[0];
+         RepositoryPath = lines[1];
+         base.ProcessResponse(lines);
       }
 
       public override string DisplayResponse()
       {
-         throw new NotImplementedException();
+         return ModuleName + Environment.NewLine + RepositoryPath;
       }
-
-      public override ResponseType ResponseType { get { return ResponseType.SetSticky; } }
    }
 }

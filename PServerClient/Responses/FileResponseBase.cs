@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace PServerClient.Responses
 {
-   public abstract class FileResponseBase : IFileResponse
+   public abstract class FileResponseBase : ResponseBase, IFileResponse
    {
 
-      public abstract ResponseType ResponseType { get; }
-      public virtual string DisplayResponse()
+      public override abstract ResponseType ResponseType { get; }
+      public override string DisplayResponse()
       {
-         return File.CvsPath;
+         return File.RepositoryPath;
       }
 
-      public virtual int LineCount { get { return 5; } }
+      public override int LineCount { get { return 5; } }
 
-      public virtual void ProcessResponse(IList<string> lines)
+      public override void ProcessResponse(IList<string> lines)
       {
          string module = lines[0];
          string cvsPath = lines[1];
@@ -27,14 +29,30 @@ namespace PServerClient.Responses
 
          File = new ReceiveFile
                    {
-                      FileName = fileName,
+                      Name = fileName,
                       Revision = revision,
-                      CvsPath = cvsPath,
+                      RepositoryPath = cvsPath,
                       Path = module.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries),
                       Properties = fileProperties,
-                      FileLength = Convert.ToInt64(fileLength)
+                      Length = Convert.ToInt64(fileLength)
                    };
+         ResponseLines = new string[LineCount];
+         ResponseLines[0] = ResponseHelper.ResponseNames[(int)ResponseType] + " " + lines[0];
+         for (int i = 1; i < LineCount; i++)
+            ResponseLines[i] = lines[i];
       }
       public ReceiveFile File { get; set; }
+      public override XDocument ToXML()
+      {
+         XDocument xdoc = base.ToXML();
+         string length = File.Length.ToString();
+         string contents = ResponseHelper.FileContentsToByteArrayString(File.Contents);
+         XElement responseFile = new XElement("ResponseFile",
+            new XElement("Length", length),
+            new XElement("Contents", contents));
+         XElement res = xdoc.Element("Responses").Element("Response");
+         res.Add(responseFile);
+         return xdoc;
+      }
    }
 }

@@ -20,6 +20,7 @@ namespace PServerClient.Responses
       public override void ProcessResponse(IList<string> lines)
       {
          ValidRequestTypes = RequestHelper.RequestsToRequestTypes(lines[0]);
+         base.ProcessResponse(lines);
       }
 
       public override string DisplayResponse()

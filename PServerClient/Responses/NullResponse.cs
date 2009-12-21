@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace PServerClient.Responses
 {
-   public class NullResponse : IResponse
+   public class NullResponse : ResponseBase
    {
-      public int LineCount { get { return 0; } }
-      public ResponseType ResponseType { get { return ResponseType.Unknown; } }
-      public string ResponseText { get; set; }
-
-      public void ProcessResponse(IList<string> lines)
+      public override int LineCount { get { return 1; } }
+      public override ResponseType ResponseType { get { return ResponseType.Unknown; } }
+      public override void ProcessResponse(IList<string> lines)
       {
-         ResponseText = string.Empty;
-      }
-
-      public string DisplayResponse()
-      {
-         return "";
+         ResponseLines = new string[lines.Count];
+         for (int i = 0; i < lines.Count; i++)
+         {
+            ResponseLines[i] = lines[i];
+         }
       }
    }
 }

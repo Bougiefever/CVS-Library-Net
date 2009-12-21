@@ -11,10 +11,10 @@ namespace PServerClient.Responses
    {
       public override ResponseType ResponseType { get { return ResponseType.ClearStaticDirectory; } }
       public string ModuleName { get; set; }
-      public string CvsDirectory { get; set; }
+      public string RepositoryPath { get; set; }
       public override string DisplayResponse()
       {
-         return ModuleName + Environment.NewLine + CvsDirectory;
+         return ModuleName + Environment.NewLine + RepositoryPath;
       }
 
       public override int LineCount { get { return 2; } }
@@ -22,7 +22,8 @@ namespace PServerClient.Responses
       public override void ProcessResponse(IList<string> lines)
       {
          ModuleName = lines[0];
-         CvsDirectory = lines[1];
+         RepositoryPath = lines[1];
+         base.ProcessResponse(lines);
       }
    }
 }

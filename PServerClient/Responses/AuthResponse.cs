@@ -1,36 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
-   public class AuthResponse : IAuthResponse
+   public class AuthResponse : ResponseBase, IAuthResponse
    {
-      //private const string AuthenticatePass = "I LOVE YOU";
-      //private const string AuthenticateFail = "I HATE YOU";
+      private const string AuthenticatePass = "I LOVE YOU";
+      private const string AuthenticateFail = "I HATE YOU";
 
       #region IAuthResponse Members
 
       public AuthStatus Status { get; private set; }
-      public int LineCount { get { return 1; } }
-      public ResponseType ResponseType { get { return ResponseType.Auth; } }
-      public string ResponseText { get; set; }
+      public override int LineCount { get { return 1; } }
+      public override ResponseType ResponseType { get { return ResponseType.Auth; } }
 
-      public void ProcessResponse(IList<string> lines)
+      public override void ProcessResponse(IList<string> lines)
       {
-         if (lines[0].Contains("I LOVE YOU"))
+         if (lines[0].Contains(AuthenticatePass))
          {
             Status = AuthStatus.Authenticated;
          }
-         if (lines[0].Contains("I HATE YOU"))
+         if (lines[0].Contains(AuthenticateFail))
          {
             Status = AuthStatus.NotAuthenticated;
          }
-         ResponseText = lines[0] + (char) 10;
+         ResponseLines = new string[1];
+         ResponseLines[0] = lines[0];
       }
 
-      public string DisplayResponse()
+      public override string DisplayResponse()
       {
-         return "";
+         return ResponseLines[0];
       }
 
       #endregion

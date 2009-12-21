@@ -11,17 +11,6 @@ namespace PServerClient.Responses
    /// </summary>
    public class FlushResponse : ResponseBase
    {
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.Flush; } }
-      public override int LineCount { get { return 0; } }
    }
 }

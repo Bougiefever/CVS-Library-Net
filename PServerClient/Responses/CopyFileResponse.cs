@@ -15,16 +15,17 @@ namespace PServerClient.Responses
    /// </summary>
    public class CopyFileResponse : ResponseBase
    {
+      private string _originalFileName;
+      private string _newFileName;
+      public string OriginalFileName { get { return _originalFileName; } }
+      public string NewFileName { get { return _newFileName; } }
+      public override ResponseType ResponseType { get { return ResponseType.CopyFile; } }
+      public override int LineCount { get { return 2; } }
       public override void ProcessResponse(IList<string> lines)
       {
-         throw new NotImplementedException();
+         _originalFileName = lines[0];
+         _newFileName = lines[1];
+         base.ProcessResponse(lines);
       }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
-      public override ResponseType ResponseType { get { return ResponseType.CopyFile; } }
    }
 }

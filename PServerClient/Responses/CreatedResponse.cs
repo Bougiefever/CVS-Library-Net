@@ -16,25 +16,8 @@ namespace PServerClient.Responses
    //files. For example, the client is case-insensitive and the names differ only in
    //case.
    /// </summary>
-   public class CreatedResponse : ResponseBase, IFileResponse
+   public class CreatedResponse : FileResponseBase
    {
-      public long FileLength { get; set; }
-
-      #region IFileResponse Members
-
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.Created; } }
-      public ReceiveFile File { get; set; }
-
-      #endregion
    }
 }

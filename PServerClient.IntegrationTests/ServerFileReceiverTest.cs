@@ -200,7 +200,7 @@ namespace PServerClient.IntegrationTests
                                   };
          res.ProcessResponse(lines);
          string text = "abcde";
-         res.File.FileContents = text.Encode();
+         res.File.Contents = text.Encode();
          return res;
       }
    }

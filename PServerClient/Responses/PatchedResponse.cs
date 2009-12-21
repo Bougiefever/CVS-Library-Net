@@ -14,20 +14,8 @@ namespace PServerClient.Responses
    //The Patched response is deprecated in favor of the Rcs-diff response. How-
    //ever, older clients (CVS 1.9 and earlier) only support Patched.
    /// </summary>
-   public class PatchedResponse : ResponseBase, IFileResponse
+   public class PatchedResponse : FileResponseBase
    {
-      public long FileLength { get; set; }
-      public override void ProcessResponse(IList<string> lines)
-      {
-         throw new NotImplementedException();
-      }
-
-      public override string DisplayResponse()
-      {
-         throw new NotImplementedException();
-      }
-
       public override ResponseType ResponseType { get { return ResponseType.Patched; } }
-      public ReceiveFile File { get; set; }
    }
 }

@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace PServerClient.Responses
 {
    public class SetStaticDirectoryResponse : ResponseBase
    {
-      private string _path;
+      public string ModuleName { get; set; }
+      public string RepositoryPath { get; set; }
+
       public override int LineCount { get { return 2; } }
       public override ResponseType ResponseType { get { return ResponseType.SetStaticDirectory; } }
 
       public override void ProcessResponse(IList<string> lines)
       {
-         _path = lines[1];
+         ModuleName = lines[0];
+         RepositoryPath = lines[1];
+         base.ProcessResponse(lines);
       }
 
       public override string DisplayResponse()
       {
-         return _path;
+         return ModuleName + Environment.NewLine + RepositoryPath;
       }
    }
 }

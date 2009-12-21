@@ -12,20 +12,8 @@ namespace PServerClient.Responses
    //this document will hopefully standardize more of the ‘MT’ tags; see Section 5.12
    //[Text tags]
    /// </summary>
-   public class MessageResponse : ResponseBase
+   public class MessageResponse : MessageResponseBase
    {
       public override ResponseType ResponseType { get { return ResponseType.Message; } }
-      public string Message { get; set; }
-      public override string DisplayResponse()
-      {
-         return Message;
-      }
-
-      public override int LineCount { get { return 0; } }
-
-      public override void ProcessResponse(IList<string> lines)
-      {
-         Message = lines[0];
-      }
    }
 }
