@@ -206,13 +206,6 @@ namespace PServerClient.Tests.Commands
          CheckoutCommand cmd = new CheckoutCommand(_root);
          cmd.Requests = new List<IRequest>{vrrequest, corequest};
 
-         IList<IResponse> responses = cmd.GetResponses();
-         Assert.AreEqual(3, responses.Count);
-
-         XDocument xdoc = cmd.ResponsesXML();
-         Console.WriteLine(xdoc.ToString());
-         bool result = ResponseHelper.ValidateResponseXML(xdoc);
-         Assert.IsTrue(result);
       }
    }
 }

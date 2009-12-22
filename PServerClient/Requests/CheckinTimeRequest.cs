@@ -24,20 +24,13 @@ namespace PServerClient.Requests
    /// </summary>
    public class CheckinTimeRequest : RequestBase
    {
-      private DateTime _checkin;
-
-      public CheckinTimeRequest(DateTime time)
+      public CheckinTimeRequest(DateTime checkinTime)
       {
-         _checkin = time;
+         string time = checkinTime.ToRfc822();
+         RequestLines = new string[1];
+         RequestLines[0] = string.Format("{0} {1}", RequestName, time);
       }
-
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.CheckinTime; } }
-
-      public override string GetRequestString()
-      {
-         string time = _checkin.ToRfc822();
-         return string.Format("{2} {0}{1}", time, LineEnd, RequestName);
-      }
    }
 }

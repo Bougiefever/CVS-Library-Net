@@ -33,13 +33,7 @@ namespace PServerClient.IntegrationTests
       {
          CheckoutCommand command = new CheckoutCommand(_root);
          command.Execute();
-         SaveResponsesToXmlFile(command);
-      }
-
-      private void SaveResponsesToXmlFile(ICommand command)
-      {
-         FileInfo fi = new FileInfo(@"c:\_junk\CheckoutCommandResponses.xml");
-         TestHelper.SaveResponsesToFile(command, fi);
+         
       }
 
       private void WriteResponses(ICommand command)

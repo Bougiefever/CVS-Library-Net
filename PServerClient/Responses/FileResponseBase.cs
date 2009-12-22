@@ -42,16 +42,5 @@ namespace PServerClient.Responses
             ResponseLines[i] = lines[i];
       }
       public ReceiveFile File { get; set; }
-      public override XElement ToXML()
-      {
-         XElement responseElement = base.ToXML();
-         string length = File.Length.ToString();
-         string contents = ResponseHelper.FileContentsToByteArrayString(File.Contents);
-         XElement responseFile = new XElement("ResponseFile",
-            new XElement("Length", length),
-            new XElement("Contents", contents));
-         responseElement.Add(responseFile);
-         return responseElement;
-      }
    }
 }

@@ -4,7 +4,7 @@ namespace PServerClient.Requests
 {
    public class VerifyAuthRequest : AuthRequestBase
    {
-      public VerifyAuthRequest(Root root) : base(root)
+      public VerifyAuthRequest(Root root) : base(root, RequestType.VerifyAuth)
       {
       }
 

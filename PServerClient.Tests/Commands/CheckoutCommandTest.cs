@@ -1,4 +1,6 @@
 using System.IO;
+using System.Xml;
+using System.Xml.Schema;
 using NUnit.Framework;
 using PServerClient.CVS;
 
@@ -17,6 +19,14 @@ namespace PServerClient.Tests.Commands
          _root.WorkingDirectory = workingDir;
       }
 
+      [Test]
+      public void Test()
+      {
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\ResponseSchema.xsd");
+         XmlReader reader = XmlReader.Create(fi.OpenRead());
+         XmlSchemaSet schemas = new XmlSchemaSet();
+         schemas.Add("", reader);
 
+      }
    }
 }

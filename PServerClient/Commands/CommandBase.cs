@@ -105,20 +105,6 @@ namespace PServerClient.Commands
          }
       }
 
-      public XDocument ResponsesXML()
-      {
-         XDocument xdoc = new XDocument();
-         XElement responsesElement = new XElement("Responses");
-         IList<IResponse> responses = GetResponses();
-         foreach (IResponse response in responses)
-         {
-            XElement responseElement = response.ToXML();
-            responsesElement.Add(responseElement);
-         }
-         xdoc.Add(responsesElement);
-         return xdoc;
-      }
-
       public virtual void PreExecute()
       {
          // default is do nothing
@@ -176,19 +162,6 @@ namespace PServerClient.Commands
             }
          }
          return true;
-      }
-
-      internal IList<IResponse> GetResponses()
-      {
-         IList<IResponse> responses = new List<IResponse>();
-         foreach (IRequest request in Requests)
-         {
-            foreach (IResponse response in request.Responses)
-            {
-               responses.Add(response);
-            }
-         }
-         return responses;
       }
    }
 }

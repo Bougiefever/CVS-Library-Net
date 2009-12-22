@@ -11,6 +11,5 @@ namespace PServerClient.Commands
       Root Root { get; }
       ExitCode ExitCode { get; }
       void Execute();
-      XDocument ResponsesXML();
    }
 }

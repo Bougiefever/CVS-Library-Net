@@ -53,13 +53,16 @@
     <Compile Include="LogCommandTest.cs" />
     <Compile Include="ReaderWriterTest.cs" />
     <Compile Include="TestConfig.cs" />
-    <Compile Include="TestHelper.cs" />
     <Compile Include="ValidRequestsListCommandTest.cs" />
     <Compile Include="VerifyAuthCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VersionCommandTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PServerClient.Tests\PServerClient.Tests.csproj">
+      <Project>{ED84E622-B562-4B69-A08A-1804E29E191B}</Project>
+      <Name>PServerClient.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PServerClient\PServerClient.csproj">
       <Project>{CDB3E7C6-94F2-43FA-93A2-D075D4FD8464}</Project>
       <Name>PServerClient</Name>

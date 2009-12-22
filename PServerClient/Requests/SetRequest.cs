@@ -7,21 +7,12 @@
    /// </summary>
    public class SetRequest : RequestBase
    {
-      private readonly string _value;
-      private readonly string _variable;
-
       public SetRequest(string variableName, string value)
       {
-         _variable = variableName;
-         _value = value;
+         RequestLines = new string[1];
+         RequestLines[0] = string.Format("{0} {1}={2}", RequestName, variableName, value);
       }
-
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.Set; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("{3} {0}={1}{2}", _variable, _value, LineEnd, RequestName);
-      }
    }
 }

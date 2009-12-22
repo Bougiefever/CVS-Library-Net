@@ -16,19 +16,13 @@ namespace PServerClient.Requests
    /// </summary>
    public class DirectoryRequest : RequestBase
    {
-      private readonly Root _root;
-
       public DirectoryRequest(Root root)
       {
-         _root = root;
+         RequestLines = new string[2];
+         RequestLines[0] = string.Format("{0} .", RequestName);
+         RequestLines[1] = string.Format("{0}/{1}", root.RepositoryPath, root.Module);
       }
-
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.Directory; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("{4} .{0}{1}/{2}{3}", LineEnd, _root.RepositoryPath, _root.Module, LineEnd, RequestName);
-      }
    }
 }

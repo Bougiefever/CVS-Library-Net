@@ -14,19 +14,14 @@
    /// </summary>
    public class EntryRequest : RequestBase
    {
-      private readonly string _entryLine;
-
       public EntryRequest(string name, string version, string conflict, string options, string tagOrDate)
       {
-         _entryLine = string.Format("/{0}/{1}/{2}/{3}/{4}", name, version, conflict, options, tagOrDate);
+         string entryLine = string.Format("/{0}/{1}/{2}/{3}/{4}", name, version, conflict, options, tagOrDate);
+         RequestLines = new string[1];
+         RequestLines[0] = string.Format("{0} {1}", RequestName, entryLine);
       }
 
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.Entry; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("{2} {0}{1}", _entryLine, LineEnd, RequestName);
-      }
    }
 }

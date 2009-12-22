@@ -2,11 +2,11 @@
 {
    public abstract class NoArgRequestBase : RequestBase
    {
-      public override bool ResponseExpected { get { return false; } }
-
-      public override string GetRequestString()
+      protected NoArgRequestBase()
       {
-         return string.Format("{0}{1}", RequestName, LineEnd);
+         RequestLines = new string[1];
+         RequestLines[0] = RequestName;
       }
+      public override bool ResponseExpected { get { return false; } }
    }
 }

@@ -80,39 +80,6 @@ namespace PServerClient
       private const string FMessageName = "F";
       private const string WrapperRscOptionName = "Wrapper-rcsOption";
 
-      private const string ResponseXMLSchema =
-         @"<xsd:schema 
-   attributeFormDefault=""unqualified"" 
-   elementFormDefault=""qualified"" 
-   version=""1.0"" 
-   xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-
-   <xsd:element name=""Responses"" type=""ResponsesType"" />
-   <xsd:complexType name=""ResponsesType"">
-      <xsd:sequence>
-         <xsd:element maxOccurs=""unbounded"" name=""Response"" type=""ResponseType"" />
-      </xsd:sequence>
-   </xsd:complexType>
-   <xsd:complexType name=""ResponseType"">
-      <xsd:sequence>
-         <xsd:element name=""Name"" type=""xsd:string"" />
-         <xsd:element name=""ResponseType"" type=""xsd:int"" />
-         <xsd:element name=""ProcessLines"" type=""ProcessLinesType"" />
-         <xsd:element name=""ResponseFile"" type=""ResponseFileType"" maxOccurs=""1"" minOccurs=""0"" />
-      </xsd:sequence>
-   </xsd:complexType>
-   <xsd:complexType name=""ResponseFileType"">
-      <xsd:sequence>
-         <xsd:element name=""Length"" type=""xsd:int"" />
-         <xsd:element name=""Contents"" type=""xsd:string"" />
-      </xsd:sequence>
-   </xsd:complexType>
-   <xsd:complexType name=""ProcessLinesType"">
-      <xsd:sequence>
-         <xsd:element maxOccurs=""unbounded"" name=""Line"" type=""xsd:string"" />
-      </xsd:sequence>
-   </xsd:complexType>
-</xsd:schema>";
       static ResponseHelper()
       {
          ResponsePatterns = new []
@@ -222,72 +189,6 @@ namespace PServerClient
          return sb.ToString();
       }
 
-      public static bool ValidateResponseXML(XElement response)
-      {
-         XmlSchemaSet schemas = new XmlSchemaSet();
-         schemas.Add("", XmlReader.Create(new StringReader(ResponseXMLSchema)));
-         bool isValid = true;
-         XDocument xdoc = new XDocument(new XElement("Responses",
-            response));
-         xdoc.Validate(schemas, (o, e) =>
-                                       {
-                                          isValid = false;
-                                       });
-         return isValid;
-      }
 
-      public static bool ValidateResponseXML(XDocument response)
-      {
-         XmlSchemaSet schemas = new XmlSchemaSet();
-         schemas.Add("", XmlReader.Create(new StringReader(ResponseXMLSchema)));
-         bool isValid = true;
-         response.Validate(schemas, (o, e) =>
-         {
-            isValid = false;
-         });
-         return isValid;
-      }
-
-      public static IList<IResponse> ResponsesFromXML(XDocument xdoc)
-      {
-         IList<IResponse> responses = new List<IResponse>();
-         IEnumerable<XElement> responseElements = xdoc.Element("Responses").Elements("Response");
-         foreach (XElement element in responseElements)
-         {
-            IResponse response = ResponseFromXElement(element);
-            responses.Add(response);
-         }
-         return responses;
-      }
-
-      public static IResponse ResponseFromXElement(XElement responseElement)
-      {
-         ResponseType rtype = (ResponseType)Convert.ToInt32(responseElement.Element("ResponseType").Value);
-         ResponseFactory factory = new ResponseFactory();
-         IResponse response = factory.CreateResponse(rtype);
-         IList<string> lines = new List<string>();
-         XElement linesElement = responseElement.Descendants("ProcessLines").First();
-         foreach (XElement lineElement in linesElement.Elements())
-         {
-            lines.Add(lineElement.Value);
-         }
-         response.ProcessResponse(lines);
-         if (response is IFileResponse)
-         {
-            IFileResponse fileResponse = (IFileResponse) response;
-            XElement fileElement = responseElement.Descendants("ResponseFile").First();
-            long len = Convert.ToInt64(fileElement.Element("Length").Value);
-            string byteString = fileElement.Element("Contents").Value;
-            byte[] buffer = new byte[len];
-            string[] bytes = byteString.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < bytes.Length; i++)
-            {
-               buffer[i] = Convert.ToByte(bytes[i]);
-            }
-            fileResponse.File.Length = len;
-            fileResponse.File.Contents = buffer;
-         }
-         return response;
-      }
    }
 }

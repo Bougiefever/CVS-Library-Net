@@ -10,27 +10,18 @@
    /// </summary>
    public class ModifiedRequest : RequestBase, IFileRequest
    {
-      private readonly string _filename;
-      private readonly string _mode;
-
       public ModifiedRequest(string fileName, string mode, long fileLength)
       {
-         _filename = fileName;
-         _mode = mode;
          FileLength = fileLength;
+         RequestLines = new string[3];
+         RequestLines[0] = string.Format("{0} {1}", RequestName, fileName);
+         RequestLines[1] = mode;
+         RequestLines[2] = fileLength.ToString();
       }
 
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.Modified; } }
-
-      public override string GetRequestString()
-      {
-         string request = string.Format("{4} {0}{1}{2}{1}{3}{1}", _filename, LineEnd, _mode, FileLength, RequestName);
-         return request;
-      }
-
       public long FileLength { get; set; }
       public byte[] FileContents { get; set; }
-
    }
 }

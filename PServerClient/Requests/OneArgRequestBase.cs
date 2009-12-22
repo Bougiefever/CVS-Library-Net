@@ -2,18 +2,11 @@
 {
    public abstract class OneArgRequestBase : RequestBase
    {
-      internal string _arg;
-
-      public OneArgRequestBase(string arg)
+      protected OneArgRequestBase(string arg)
       {
-         _arg = arg;
+         RequestLines = new string[1];
+         RequestLines[0] = string.Format("{0} {1}", RequestName, arg);
       }
-
       public override bool ResponseExpected { get { return false; } }
-
-      public override string GetRequestString()
-      {
-         return string.Format("{0} {1}{2}", RequestName, _arg, LineEnd);
-      }
    }
 }
