@@ -22,16 +22,20 @@ namespace PServerClient.Requests
          RequestLines[2] = _root.Username;
          RequestLines[3] = _root.Password;
          RequestLines[4] = string.Format("END {0} REQUEST", requestName);
+         Responses = new List<IResponse>();
       }
+
+      #region IAuthRequest Members
 
       public bool ResponseExpected { get { return true; } }
       public string[] RequestLines { get; internal set; }
+
       public virtual string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
          for (int i = 0; i < RequestLines.Length; i++)
          {
-            sb.Append(RequestLines[i]).Append("\n");
+            sb.Append(RequestLines[i]).Append(lineEnd);
          }
          string request = sb.ToString();
          return request;
@@ -55,5 +59,7 @@ namespace PServerClient.Requests
             }
          }
       }
+
+      #endregion
    }
 }

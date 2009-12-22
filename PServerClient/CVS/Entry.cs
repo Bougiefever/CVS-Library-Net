@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using PServerClient.LocalFileSystem;
 
@@ -16,12 +14,12 @@ namespace PServerClient.CVS
 
       public override void Read()
       {
-         FileContents = ReaderWriter.Current.ReadFile((FileInfo)Info);
+         FileContents = ReaderWriter.Current.ReadFile((FileInfo) Info);
       }
 
       public override void Write()
       {
-         ReaderWriter.Current.WriteFile((FileInfo)Info, FileContents);
+         ReaderWriter.Current.WriteFile((FileInfo) Info, FileContents);
       }
    }
 }

@@ -1,0 +1,6 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Default" />
+  <Config name="Default" binpathtype="Auto">
+    <assembly path="PServerClient.Tests\bin\PServerClient.Tests.dll" />
+  </Config>
+</NUnitProject>

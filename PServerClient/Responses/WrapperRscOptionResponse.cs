@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -19,6 +18,7 @@ namespace PServerClient.Responses
       public string Pattern { get; private set; }
       public string Option { get; private set; }
       public override ResponseType ResponseType { get { return ResponseType.WrapperRscOption; } }
+
       public override void ProcessResponse(IList<string> lines)
       {
          Pattern = "to-do";

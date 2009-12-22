@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+using log4net;
+using log4net.Config;
 using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
@@ -11,28 +12,15 @@ namespace PServerClient.Commands
 {
    public abstract class CommandBase : ICommand
    {
+      private readonly ILog _logger;
       private IConnection _connection;
-      private readonly log4net.ILog _logger;
 
       internal IList<RequestType> ValidRequestTypes;
 
-      protected internal IList<IRequest> RequiredRequests { get; internal set; }
-
-      public IConnection Connection
-      {
-         get
-         {
-            if (_connection == null)
-               _connection = new PServerConnection();
-            return _connection;
-         }
-         set { _connection = value; }
-      }
-
       protected CommandBase(Root root)
       {
-         log4net.Config.BasicConfigurator.Configure();
-         _logger = log4net.LogManager.GetLogger(typeof(CommandBase));
+         BasicConfigurator.Configure();
+         _logger = LogManager.GetLogger(typeof (CommandBase));
 
          Root = root;
          Requests = new List<IRequest>();
@@ -45,9 +33,16 @@ namespace PServerClient.Commands
          ValidRequestTypes = new List<RequestType>();
       }
 
-      public IList<IRequest> Requests { get; set; }
-      public Root Root { get; private set; }
-      public ExitCode ExitCode { get; private set; }
+      public IConnection Connection
+      {
+         get
+         {
+            if (_connection == null)
+               _connection = new PServerConnection();
+            return _connection;
+         }
+         set { _connection = value; }
+      }
 
       public AuthStatus AuthStatus
       {
@@ -57,7 +52,7 @@ namespace PServerClient.Commands
             try
             {
                IAuthRequest authRequest = RequiredRequests.OfType<IAuthRequest>().First();
-               IAuthResponse response = (IAuthResponse)authRequest.Responses[0];
+               IAuthResponse response = (IAuthResponse) authRequest.Responses[0];
                status = response.Status;
             }
             catch (Exception e)
@@ -68,6 +63,15 @@ namespace PServerClient.Commands
             return status;
          }
       }
+
+      #region ICommand Members
+
+      public abstract CommandType CommandType { get; }
+      public IList<IRequest> RequiredRequests { get; internal set; }
+
+      public IList<IRequest> Requests { get; set; }
+      public Root Root { get; private set; }
+      public ExitCode ExitCode { get; private set; }
 
       public virtual void Execute()
       {
@@ -92,7 +96,6 @@ namespace PServerClient.Commands
             }
             if (ExitCode == ExitCode.Succeeded)
                PostExecute();
-
          }
          catch (Exception e)
          {
@@ -104,6 +107,8 @@ namespace PServerClient.Commands
             Connection.Close();
          }
       }
+
+      #endregion
 
       public virtual void PreExecute()
       {
@@ -117,7 +122,6 @@ namespace PServerClient.Commands
 
       internal ExitCode ExecuteRequiredRequests()
       {
-
          // execute authentication request and check authentication status
          // before executing other requests
          IAuthRequest authRequest = RequiredRequests.OfType<IAuthRequest>().First();
@@ -141,7 +145,7 @@ namespace PServerClient.Commands
          if (code == ExitCode.Succeeded && authRequest.RequestType == RequestType.Auth)
          {
             // set the valid request list
-            ValidRequestsRequest validRequests = (ValidRequestsRequest)RequiredRequests.Where(rr => rr.RequestType == RequestType.ValidRequests).FirstOrDefault();
+            ValidRequestsRequest validRequests = (ValidRequestsRequest) RequiredRequests.Where(rr => rr.RequestType == RequestType.ValidRequests).FirstOrDefault();
             if (validRequests != null)
             {
                ValidRequestResponse vr = (ValidRequestResponse) validRequests.Responses[0];

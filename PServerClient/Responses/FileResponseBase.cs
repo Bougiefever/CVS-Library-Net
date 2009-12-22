@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace PServerClient.Responses
 {
    public abstract class FileResponseBase : ResponseBase, IFileResponse
    {
+      #region IFileResponse Members
 
-      public override abstract ResponseType ResponseType { get; }
+      public abstract override ResponseType ResponseType { get; }
+
       public override string DisplayResponse()
       {
          return File.RepositoryPath;
@@ -37,10 +37,13 @@ namespace PServerClient.Responses
                       Length = Convert.ToInt64(fileLength)
                    };
          ResponseLines = new string[LineCount];
-         ResponseLines[0] = ResponseHelper.ResponseNames[(int)ResponseType] + " " + lines[0];
+         ResponseLines[0] = ResponseHelper.ResponseNames[(int) ResponseType] + " " + lines[0];
          for (int i = 1; i < LineCount; i++)
             ResponseLines[i] = lines[i];
       }
+
       public ReceiveFile File { get; set; }
+
+      #endregion
    }
 }

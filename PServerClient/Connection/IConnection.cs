@@ -1,7 +1,7 @@
-﻿using PServerClient.CVS;
+﻿using System.Collections.Generic;
+using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
-using System.Collections.Generic;
 
 namespace PServerClient.Connection
 {

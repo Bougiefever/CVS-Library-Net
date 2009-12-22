@@ -1,13 +1,140 @@
 ﻿using NUnit.Framework;
 using PServerClient.Responses;
-using System.Collections.Generic;
 
 namespace PServerClient.Tests
 {
    [TestFixture]
    public class ResponseFactoryTests
    {
-      private ResponseFactory _factory = new ResponseFactory();
+      private readonly ResponseFactory _factory = new ResponseFactory();
+
+      [Test]
+      public void CreateResponsesTest()
+      {
+         ResponseType type = ResponseType.Auth;
+         IResponse response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<AuthResponse>(response);
+
+         type = ResponseType.Ok;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<OkResponse>(response);
+
+         type = ResponseType.Error;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ErrorResponse>(response);
+
+         type = ResponseType.EMessage;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ErrorResponse>(response);
+
+         type = ResponseType.Message;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<MessageResponse>(response);
+
+         type = ResponseType.MessageTag;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<MessageTagResponse>(response);
+
+         type = ResponseType.ValidRequests;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ValidRequestResponse>(response);
+
+         type = ResponseType.CheckedIn;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<CheckedInResponse>(response);
+
+         type = ResponseType.NewEntry;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<NewEntryResponse>(response);
+
+         type = ResponseType.Updated;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<UpdatedResponse>(response);
+
+         type = ResponseType.Merged;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<MergedResponse>(response);
+
+         type = ResponseType.Patched;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<PatchedResponse>(response);
+
+         type = ResponseType.CheckSum;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ChecksumResponse>(response);
+
+         type = ResponseType.CopyFile;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<CopyFileResponse>(response);
+
+         type = ResponseType.Removed;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<RemovedResponse>(response);
+
+         type = ResponseType.RemoveEntry;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<RemoveEntryResponse>(response);
+
+         type = ResponseType.SetStaticDirectory;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<SetStaticDirectoryResponse>(response);
+
+         type = ResponseType.ClearStaticDirectory;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ClearStaticDirectoryResponse>(response);
+
+         type = ResponseType.SetSticky;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<SetStickyResponse>(response);
+
+         type = ResponseType.ClearSticky;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ClearStickyResponse>(response);
+
+         type = ResponseType.Created;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<CreatedResponse>(response);
+
+         type = ResponseType.UpdateExisting;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<UpdateExistingResponse>(response);
+
+         type = ResponseType.RcsDiff;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<RcsDiffResponse>(response);
+
+         type = ResponseType.Mode;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ModeResponse>(response);
+
+         type = ResponseType.ModTime;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ModTimeResponse>(response);
+
+         type = ResponseType.Template;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<TemplateResponse>(response);
+
+         type = ResponseType.Notified;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<NotifiedResponse>(response);
+
+         type = ResponseType.ModuleExpansion;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<ModuleExpansionResponse>(response);
+
+         type = ResponseType.Mbinary;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<MbinaryResponse>(response);
+
+         type = ResponseType.Flush;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<FlushResponse>(response);
+
+         type = ResponseType.Unknown;
+         response = _factory.CreateResponse(type);
+         Assert.IsInstanceOf<NullResponse>(response);
+      }
 
       [Test]
       public void ResponseTypeTest()
@@ -168,134 +295,6 @@ namespace PServerClient.Tests
          test = "F message text";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Flush, result);
-      }
-
-      [Test]
-      public void CreateResponsesTest()
-      {
-         ResponseType type = ResponseType.Auth;
-         IResponse response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<AuthResponse>(response);
-
-         type = ResponseType.Ok;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<OkResponse>(response);
-
-         type = ResponseType.Error;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ErrorResponse>(response);
-
-         type = ResponseType.EMessage;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ErrorResponse>(response);
-
-         type = ResponseType.Message;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<MessageResponse>(response);
-
-         type = ResponseType.MessageTag;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<MessageTagResponse>(response);
-
-         type = ResponseType.ValidRequests;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ValidRequestResponse>(response);
-
-         type = ResponseType.CheckedIn;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<CheckedInResponse>(response);
-
-         type = ResponseType.NewEntry;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<NewEntryResponse>(response);
-
-         type = ResponseType.Updated;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<UpdatedResponse>(response);
-
-         type = ResponseType.Merged;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<MergedResponse>(response);
-
-         type = ResponseType.Patched;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<PatchedResponse>(response);
-
-         type = ResponseType.CheckSum;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ChecksumResponse>(response);
-
-         type = ResponseType.CopyFile;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<CopyFileResponse>(response);
-
-         type = ResponseType.Removed;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<RemovedResponse>(response);
-
-         type = ResponseType.RemoveEntry;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<RemoveEntryResponse>(response);
-
-         type = ResponseType.SetStaticDirectory;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<SetStaticDirectoryResponse>(response);
-
-         type = ResponseType.ClearStaticDirectory;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ClearStaticDirectoryResponse>(response);
-
-         type = ResponseType.SetSticky;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<SetStickyResponse>(response);
-
-         type = ResponseType.ClearSticky;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ClearStickyResponse>(response);
-
-         type = ResponseType.Created;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<CreatedResponse>(response);
-
-         type = ResponseType.UpdateExisting;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<UpdateExistingResponse>(response);
-
-         type = ResponseType.RcsDiff;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<RcsDiffResponse>(response);
-
-         type = ResponseType.Mode;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ModeResponse>(response);
-
-         type = ResponseType.ModTime;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ModTimeResponse>(response);
-
-         type = ResponseType.Template;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<TemplateResponse>(response);
-
-         type = ResponseType.Notified;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<NotifiedResponse>(response);
-
-         type = ResponseType.ModuleExpansion;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ModuleExpansionResponse>(response);
-
-         type = ResponseType.Mbinary;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<MbinaryResponse>(response);
-
-         type = ResponseType.Flush;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<FlushResponse>(response);
-
-         type = ResponseType.Unknown;
-         response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<NullResponse>(response);
       }
    }
 }

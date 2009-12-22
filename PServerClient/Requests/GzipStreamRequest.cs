@@ -14,6 +14,7 @@
       public GzipStreamRequest(string level) : base(level)
       {
       }
+
       public override RequestType RequestType { get { return RequestType.GzipStream; } }
    }
 }

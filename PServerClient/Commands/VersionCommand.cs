@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PServerClient.CVS;
+﻿using PServerClient.CVS;
 using PServerClient.Requests;
 
 namespace PServerClient.Commands
@@ -15,5 +11,7 @@ namespace PServerClient.Commands
          RequiredRequests.Add(new AuthRequest(root));
          Requests.Add(new VersionRequest());
       }
+
+      public override CommandType CommandType { get { return CommandType.Version; } }
    }
 }

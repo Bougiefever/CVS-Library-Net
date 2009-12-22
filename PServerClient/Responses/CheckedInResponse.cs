@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PServerClient.Responses
+﻿namespace PServerClient.Responses
 {
    /// <summary>
    /// Checked-in pathname \n

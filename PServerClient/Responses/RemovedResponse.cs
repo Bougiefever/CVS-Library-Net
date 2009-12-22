@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -12,11 +11,13 @@ namespace PServerClient.Responses
    {
       public string RepositoryPath { get; private set; }
       public override ResponseType ResponseType { get { return ResponseType.Removed; } }
+
       public override void ProcessResponse(IList<string> lines)
       {
          RepositoryPath = lines[0];
          base.ProcessResponse(lines);
       }
+
       public override string DisplayResponse()
       {
          return RepositoryPath;

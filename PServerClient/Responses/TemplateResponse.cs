@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PServerClient.Responses
+﻿namespace PServerClient.Responses
 {
    /// <summary>
    /// Template pathname \n
@@ -13,6 +10,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class TemplateResponse : FileResponseBase, IFileResponse
    {
+      #region IFileResponse Members
+
       public override ResponseType ResponseType { get { return ResponseType.Template; } }
+
+      #endregion
    }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
+﻿using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -8,6 +6,7 @@ namespace PServerClient.Responses
    {
       public override int LineCount { get { return 1; } }
       public override ResponseType ResponseType { get { return ResponseType.Unknown; } }
+
       public override void ProcessResponse(IList<string> lines)
       {
          ResponseLines = new string[lines.Count];

@@ -1,22 +1,23 @@
-﻿using System.Net.Sockets;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System;
+﻿using System;
+using System.IO;
+using System.Net.Sockets;
 
 namespace PServerClient.Connection
 {
    public class CvsTcpClient : ICvsTcpClient
    {
-      private TcpClient _tcpClient;
-      private NetworkStream _stream;
+      private readonly TcpClient _tcpClient;
       private int _lastByte;
+      private NetworkStream _stream;
 
       public CvsTcpClient()
       {
          _tcpClient = new TcpClient();
          _lastByte = 0;
       }
+
+      #region ICvsTcpClient Members
+
       public void Connect(string host, int port)
       {
          _tcpClient.Connect(host, port);
@@ -50,7 +51,7 @@ namespace PServerClient.Connection
          {
             b = _stream.ReadByte();
          }
-         catch (System.IO.IOException)
+         catch (IOException)
          {
             b = -1;
          }
@@ -74,9 +75,11 @@ namespace PServerClient.Connection
             int b = _stream.ReadByte();
             if (b == -1)
                throw new Exception("Unexpected end of stream");
-            buffer[i] = (byte)b;
+            buffer[i] = (byte) b;
          }
          return buffer;
       }
+
+      #endregion
    }
 }

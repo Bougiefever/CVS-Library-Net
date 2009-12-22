@@ -13,6 +13,7 @@
       public KoptRequest(string arg) : base(arg)
       {
       }
+
       public override RequestType RequestType { get { return RequestType.Kopt; } }
    }
 }

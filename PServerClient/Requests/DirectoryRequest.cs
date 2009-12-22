@@ -22,6 +22,7 @@ namespace PServerClient.Requests
          RequestLines[0] = string.Format("{0} .", RequestName);
          RequestLines[1] = string.Format("{0}/{1}", root.RepositoryPath, root.Module);
       }
+
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.Directory; } }
    }

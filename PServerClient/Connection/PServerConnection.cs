@@ -1,10 +1,10 @@
-﻿using PServerClient.CVS;
-using PServerClient.Requests;
-using PServerClient.Responses;
-using System.Collections.Generic;
-//using System;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using PServerClient.CVS;
+using PServerClient.Requests;
+using PServerClient.Responses;
+//using System;
 
 namespace PServerClient.Connection
 {
@@ -12,6 +12,8 @@ namespace PServerClient.Connection
    {
       private ICvsTcpClient _cvsTcpClient;
       private Root _root;
+
+      #region IConnection Members
 
       public ICvsTcpClient TcpClient
       {
@@ -21,10 +23,7 @@ namespace PServerClient.Connection
                _cvsTcpClient = new CvsTcpClient();
             return _cvsTcpClient;
          }
-         set
-         {
-            _cvsTcpClient = value;
-         }
+         set { _cvsTcpClient = value; }
       }
 
       public void Connect(Root root)
@@ -53,6 +52,8 @@ namespace PServerClient.Connection
          TcpClient.Close();
       }
 
+      #endregion
+
       internal IList<IResponse> GetResponses()
       {
          IList<IResponse> responses = new List<IResponse>();
@@ -69,8 +70,8 @@ namespace PServerClient.Connection
                response.ProcessResponse(responseLines);
                if (response is IFileResponse)
                {
-                  IFileResponse fileResponse = (IFileResponse)response;
-                  fileResponse.File.Contents = TcpClient.ReadBytes((int)fileResponse.File.Length);
+                  IFileResponse fileResponse = (IFileResponse) response;
+                  fileResponse.File.Contents = TcpClient.ReadBytes((int) fileResponse.File.Length);
                }
                responses.Add(response);
             }
@@ -80,10 +81,10 @@ namespace PServerClient.Connection
 
       internal IList<string> GetResponseLines(string line, ResponseType responseType, int lineCount)
       {
-         string pattern = ResponseHelper.ResponsePatterns[(int)responseType];
+         string pattern = ResponseHelper.ResponsePatterns[(int) responseType];
          Match m = Regex.Match(line, pattern);
          string responseLine = m.Groups[1].ToString();
-         IList<string> responseLines = new List<string>() { responseLine };
+         IList<string> responseLines = new List<string> {responseLine};
          if (lineCount > 0)
          {
             for (int i = 1; i < lineCount; i++)
@@ -105,7 +106,7 @@ namespace PServerClient.Connection
             i = TcpClient.ReadByte();
             if (i != 0 && i != 10 && i != -1)
             {
-               sb.Append((char)i);
+               sb.Append((char) i);
             }
          } while (i != 0 && i != 10 && i != -1);
          if (sb.Length > 0)

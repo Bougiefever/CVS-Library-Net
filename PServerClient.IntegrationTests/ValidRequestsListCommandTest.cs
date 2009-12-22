@@ -3,6 +3,7 @@ using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
 using PServerClient.Requests;
+using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
 {

@@ -7,5 +7,7 @@ namespace PServerClient.Commands
       public ImportCommand(Root root) : base(root)
       {
       }
+
+      public override CommandType CommandType { get { return CommandType.Import; } }
    }
 }

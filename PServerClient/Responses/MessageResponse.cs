@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PServerClient.Responses
+﻿namespace PServerClient.Responses
 {
    /// <summary>
    /// M text \n A one-line message for the user. Note that the format of text is not designed

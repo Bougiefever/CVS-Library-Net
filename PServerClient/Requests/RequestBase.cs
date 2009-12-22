@@ -8,7 +8,17 @@ namespace PServerClient.Requests
    {
       internal string LineEnd = "\n";
 
+      protected RequestBase()
+      {
+         Responses = new List<IResponse>();
+      }
+
+      public string RequestName { get { return RequestHelper.RequestNames[(int) RequestType]; } }
+
+      #region IRequest Members
+
       public abstract bool ResponseExpected { get; }
+
       public virtual string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
@@ -19,16 +29,11 @@ namespace PServerClient.Requests
          string request = sb.ToString();
          return request;
       }
+
       public abstract RequestType RequestType { get; }
       public string[] RequestLines { get; internal set; }
-      public string RequestName
-      {
-         get
-         {
-            return RequestHelper.RequestNames[(int) RequestType];
-         }
-      }
       public IList<IResponse> Responses { get; set; }
 
+      #endregion
    }
 }

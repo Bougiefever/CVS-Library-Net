@@ -19,9 +19,13 @@
          RequestLines[2] = fileLength.ToString();
       }
 
+      #region IFileRequest Members
+
       public override bool ResponseExpected { get { return false; } }
       public override RequestType RequestType { get { return RequestType.Modified; } }
       public long FileLength { get; set; }
       public byte[] FileContents { get; set; }
+
+      #endregion
    }
 }

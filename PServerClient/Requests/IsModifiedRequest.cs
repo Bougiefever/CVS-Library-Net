@@ -28,6 +28,7 @@
       public IsModifiedRequest(string fileName) : base(fileName)
       {
       }
+
       public override RequestType RequestType { get { return RequestType.IsModified; } }
    }
 }

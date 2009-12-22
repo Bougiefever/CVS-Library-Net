@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using PServerClient.Requests;
 
@@ -28,7 +27,7 @@ namespace PServerClient.Responses
          StringBuilder sb = new StringBuilder();
          foreach (RequestType t in ValidRequestTypes)
          {
-            sb.AppendLine(RequestHelper.RequestNames[(int)t]);
+            sb.AppendLine(RequestHelper.RequestNames[(int) t]);
          }
          return sb.ToString();
       }

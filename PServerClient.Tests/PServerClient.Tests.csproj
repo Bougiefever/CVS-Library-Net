@@ -37,6 +37,7 @@
       <HintPath>..\SharedLib\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -67,7 +68,8 @@
     <Compile Include="RequestTests.cs" />
     <Compile Include="ResponseFactoryTests.cs" />
     <Compile Include="ResponseTests.cs" />
-    <Compile Include="TestHelper.cs" />
+    <Compile Include="TestSetup\TestConfig.cs" />
+    <Compile Include="TestSetup\TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PServerClient\PServerClient.csproj">
@@ -76,7 +78,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestFiles\CheckoutCommandResponses.xml" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestSetup\CheckOutModule.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

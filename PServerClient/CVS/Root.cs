@@ -10,6 +10,7 @@ namespace PServerClient.CVS
    public class Root
    {
       private Folder _moduleFolder;
+
       public Root(string host, int port, string username, string password, string repositoryPath)
       {
          RepositoryPath = repositoryPath;
@@ -21,6 +22,7 @@ namespace PServerClient.CVS
       }
 
       public DirectoryInfo WorkingDirectory { get; set; }
+
       public Folder ModuleFolder
       {
          get
@@ -32,6 +34,7 @@ namespace PServerClient.CVS
             return _moduleFolder;
          }
       }
+
       public string Username { get; set; }
       public string Password { get; set; }
 
@@ -40,18 +43,22 @@ namespace PServerClient.CVS
       /// Pserver connection string for Cvs
       /// </summary>
       public string CVSConnectionString { get; set; }
+
       /// <summary>
       /// Cvs root folder on unix machine
       /// </summary>
       public string RepositoryPath { get; set; }
+
       /// <summary>
       /// Name of Cvs module being interacted with
       /// </summary>
       public string Module { get; set; }
+
       /// <summary>
       /// Name of host machine
       /// </summary>
       public string Host { get; set; }
+
       /// <summary>
       /// Port for Cvs on host machine
       /// </summary>

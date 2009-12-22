@@ -52,6 +52,7 @@
     <Compile Include="AuthStatus.cs" />
     <Compile Include="Commands\CheckoutCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CommandType.cs" />
     <Compile Include="CVS\ServerFileReceiver.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ImportCommand.cs" />
@@ -184,12 +185,6 @@
     <Compile Include="Responses\UpdateExistingResponse.cs" />
     <Compile Include="Responses\ValidRequestResponse.cs" />
     <Compile Include="Responses\WrapperRscOptionResponse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Responses\XMLFile1.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ResponseSchema.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -52,7 +52,6 @@
     <Compile Include="ServerFileReceiverTest.cs" />
     <Compile Include="LogCommandTest.cs" />
     <Compile Include="ReaderWriterTest.cs" />
-    <Compile Include="TestConfig.cs" />
     <Compile Include="ValidRequestsListCommandTest.cs" />
     <Compile Include="VerifyAuthCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

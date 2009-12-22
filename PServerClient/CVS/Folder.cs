@@ -19,7 +19,7 @@ namespace PServerClient.CVS
          _childItems = new List<ICVSItem>();
       }
 
-      public override CVSFolder CvsFolder {  get { return _cvsFolder; } }
+      public override CVSFolder CvsFolder { get { return _cvsFolder; } }
       public override int Count { get { return _childItems.Count; } }
       public override ICVSItem this[int idx] { get { return _childItems[idx]; } }
 
@@ -27,16 +27,20 @@ namespace PServerClient.CVS
       {
          _childItems.Add(item);
       }
+
       public override void RemoveItem(ICVSItem item)
       {
          _childItems.Remove(item);
       }
 
-      public override IEnumerator GetEnumerator() { return _childItems.GetEnumerator(); }
+      public override IEnumerator GetEnumerator()
+      {
+         return _childItems.GetEnumerator();
+      }
 
       public override void Write()
       {
-         ReaderWriter.Current.CreateDirectory((DirectoryInfo)Info);
+         ReaderWriter.Current.CreateDirectory((DirectoryInfo) Info);
       }
    }
 }

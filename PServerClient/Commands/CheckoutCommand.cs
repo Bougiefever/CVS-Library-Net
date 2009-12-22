@@ -5,7 +5,6 @@ using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 
-
 namespace PServerClient.Commands
 {
    public class CheckoutCommand : CommandBase
@@ -20,6 +19,8 @@ namespace PServerClient.Commands
          Requests.Add(new CheckOutRequest());
       }
 
+      public override CommandType CommandType { get { return CommandType.CheckOut; } }
+
       public override void PostExecute()
       {
          IList<IResponse> checkOutResponses = Requests.Where(r => r.RequestType == RequestType.CheckOut)
@@ -33,7 +34,5 @@ namespace PServerClient.Commands
          ServerFileReceiver fileReceiver = new ServerFileReceiver(Root);
          fileReceiver.ProcessCheckoutResponses(checkOutResponses);
       }
-
-
    }
 }

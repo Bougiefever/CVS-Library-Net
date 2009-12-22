@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
-using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
@@ -17,5 +11,7 @@ namespace PServerClient.Commands
          RequiredRequests.Add(new AuthRequest(root));
          RequiredRequests.Add(new ValidRequestsRequest());
       }
+
+      public override CommandType CommandType { get { return CommandType.ValidRequestsList; } }
    }
 }

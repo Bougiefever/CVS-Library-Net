@@ -8,6 +8,7 @@ using PServerClient.Commands;
 using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
+using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
 {
@@ -23,7 +24,6 @@ namespace PServerClient.IntegrationTests
       {
 
          _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword(), TestConfig.RepositoryPath);
-        // ICVSItem folder = new Folder(di);
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _root.Module = TestConfig.ModuleName;
       }
@@ -33,7 +33,7 @@ namespace PServerClient.IntegrationTests
       {
          CheckoutCommand command = new CheckoutCommand(_root);
          command.Execute();
-         
+         TestHelper.SaveCommandConversation(command, @"c:\_junk\checkout.xml");
       }
 
       private void WriteResponses(ICommand command)

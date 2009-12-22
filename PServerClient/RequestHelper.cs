@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PServerClient.Requests;
 using PServerClient.Responses;
-using System.Linq;
 
 namespace PServerClient
 {
@@ -71,34 +71,6 @@ namespace PServerClient
       private const string WatchRemoveRequest = "watch-remove";
       private const string WrapperSendmercsOptionsRequest = "wrapper-sendme-rcsOptions";
       public static readonly string[] RequestNames;
-
-      public static ResponseType[] ValidResponses
-      {
-         get
-         {
-            return new[]
-                      {
-                         ResponseType.Ok,
-                         ResponseType.Error,
-                         ResponseType.ValidRequests,
-                         ResponseType.CheckedIn,
-                         ResponseType.NewEntry,
-                         ResponseType.Updated,
-                         ResponseType.Created,
-                         ResponseType.Merged,
-                         ResponseType.ModTime,
-                         ResponseType.Removed,
-                         ResponseType.SetStaticDirectory,
-                         ResponseType.ClearStaticDirectory,
-                         ResponseType.SetSticky,
-                         ResponseType.ClearSticky,
-                         ResponseType.ModuleExpansion,
-                         ResponseType.Message,
-                         ResponseType.EMessage,
-                         ResponseType.MessageTag
-                      };
-         }
-      }
 
       static RequestHelper()
       {
@@ -169,11 +141,39 @@ namespace PServerClient
                            };
       }
 
+      public static ResponseType[] ValidResponses
+      {
+         get
+         {
+            return new[]
+                      {
+                         ResponseType.Ok,
+                         ResponseType.Error,
+                         ResponseType.ValidRequests,
+                         ResponseType.CheckedIn,
+                         ResponseType.NewEntry,
+                         ResponseType.Updated,
+                         ResponseType.Created,
+                         ResponseType.Merged,
+                         ResponseType.ModTime,
+                         ResponseType.Removed,
+                         ResponseType.SetStaticDirectory,
+                         ResponseType.ClearStaticDirectory,
+                         ResponseType.SetSticky,
+                         ResponseType.ClearSticky,
+                         ResponseType.ModuleExpansion,
+                         ResponseType.Message,
+                         ResponseType.EMessage,
+                         ResponseType.MessageTag
+                      };
+         }
+      }
+
       public static IList<RequestType> RequestsToRequestTypes(string requestList)
       {
-         string[] sep = new [] {" "};
+         string[] sep = new[] {" "};
          string[] requestNames = requestList.Split(sep, StringSplitOptions.RemoveEmptyEntries);
-         IList<RequestType> types  = new List<RequestType>();
+         IList<RequestType> types = new List<RequestType>();
          foreach (string s in requestNames)
          {
             var type = RequestNames.Select((r, i) => new {Name = r, Type = (RequestType) i})

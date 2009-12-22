@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace PServerClient.LocalFileSystem
@@ -16,11 +15,10 @@ namespace PServerClient.LocalFileSystem
                _readerWriter = new ReaderWriter();
             return _readerWriter;
          }
-         set
-         {
-            _readerWriter = value;
-         }
+         set { _readerWriter = value; }
       }
+
+      #region IReaderWriter Members
 
       public byte[] ReadFile(FileInfo file)
       {
@@ -30,7 +28,7 @@ namespace PServerClient.LocalFileSystem
          using (FileStream stream = file.Open(FileMode.Open))
          {
             buffer = new byte[file.Length];
-            stream.Read(buffer, 0, (int)file.Length);
+            stream.Read(buffer, 0, (int) file.Length);
             stream.Close();
          }
          return buffer;
@@ -68,7 +66,7 @@ namespace PServerClient.LocalFileSystem
       {
          if (file.Exists)
             file.Delete();
-         
+
          using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Write))
          {
             stream.Write(buffer, 0, buffer.Length);
@@ -87,8 +85,8 @@ namespace PServerClient.LocalFileSystem
       {
          if (!dir.Exists)
             dir.Create();
-          dir.Refresh();
-     }
+         dir.Refresh();
+      }
 
       public void Delete(FileSystemInfo info)
       {
@@ -96,5 +94,7 @@ namespace PServerClient.LocalFileSystem
             info.Delete();
          info.Refresh();
       }
+
+      #endregion
    }
 }

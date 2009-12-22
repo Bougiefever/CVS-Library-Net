@@ -4,8 +4,8 @@ namespace PServerClient.Responses
 {
    public class AuthResponse : ResponseBase, IAuthResponse
    {
-      private const string AuthenticatePass = "I LOVE YOU";
       private const string AuthenticateFail = "I HATE YOU";
+      private const string AuthenticatePass = "I LOVE YOU";
 
       #region IAuthResponse Members
 

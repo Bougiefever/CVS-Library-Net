@@ -4,7 +4,7 @@
    {
       public LostRequest(string fileName)
       {
-         RequestLines  = new string[1];
+         RequestLines = new string[1];
          RequestLines[0] = string.Format("{0} {1}", RequestName, fileName);
       }
 

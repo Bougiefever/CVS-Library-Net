@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1031]C:\_code\Testing\PServerClient\PServerClient.IntegrationTests\bin\PServerClient.IntegrationTests.dll</TopNode>
+  <SelectedNode>[0-1032]PServerClient</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1031]C:\_code\Testing\PServerClient\PServerClient.IntegrationTests\bin\PServerClient.IntegrationTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1032]PServerClient" Expanded="true" />
+    <Node UniqueName="[0-1033]PServerClient.IntegrationTests" Expanded="true" />
+    <Node UniqueName="[0-1008]PServerClient.IntegrationTests.CheckoutCommandTest" Expanded="true" />
+    <Node UniqueName="[0-1024]PServerClient.IntegrationTests.CvsFolderTest" Expanded="true" />
+    <Node UniqueName="[0-1000]PServerClient.IntegrationTests.LogCommandTest" Expanded="true" />
+    <Node UniqueName="[0-1002]PServerClient.IntegrationTests.ReaderWriterTest" Expanded="true" />
+    <Node UniqueName="[0-1020]PServerClient.IntegrationTests.ServerFileReceiverTest" Expanded="true" />
+    <Node UniqueName="[0-1011]PServerClient.IntegrationTests.ValidRequestsListCommandTest" Expanded="true" />
+    <Node UniqueName="[0-1014]PServerClient.IntegrationTests.VerifyAuthCommandTest" Expanded="true" />
+    <Node UniqueName="[0-1006]PServerClient.IntegrationTests.VersionCommandTest" Expanded="true" />
+  </Nodes>
+</VisualState>

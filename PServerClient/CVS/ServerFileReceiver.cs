@@ -9,6 +9,7 @@ namespace PServerClient.CVS
    public class ServerFileReceiver
    {
       private readonly Root _root;
+
       public ServerFileReceiver(Root root)
       {
          _root = root;
@@ -24,7 +25,7 @@ namespace PServerClient.CVS
          {
             ReceiveMUStyleResponses(checkOutResponses);
          }
-         WriteToDisk(_root.ModuleFolder);
+         //WriteToDisk(_root.ModuleFolder);
       }
 
       public void WriteToDisk(Folder module)
@@ -33,7 +34,7 @@ namespace PServerClient.CVS
          foreach (ICVSItem item in module)
          {
             if (item is Folder)
-               WriteToDisk((Folder)item);
+               WriteToDisk((Folder) item);
             else
                item.Write();
          }
@@ -48,11 +49,11 @@ namespace PServerClient.CVS
             IList<IResponse> entryResponses;
             if (response.ResponseType == ResponseType.ModTime)
             {
-               entryResponses = new List<IResponse> { response };
+               entryResponses = new List<IResponse> {response};
                response = responses[i++];
                while (response.ResponseType == ResponseType.MessageTag)
                {
-                  MessageTagResponse r = (MessageTagResponse)response;
+                  MessageTagResponse r = (MessageTagResponse) response;
                   if (r.Message.StartsWith("fname"))
                      entryResponses.Add(response);
                   response = responses[i++];
@@ -81,15 +82,15 @@ namespace PServerClient.CVS
       {
          IResponse res = entryResponses.Where(r => r.ResponseType == ResponseType.MessageTag).First();
          string[] names = PServerHelper.GetUpdatedFnamePathFile(res.DisplayResponse());
-         string[] folders = names[0].Split(new[] { @"/" }, StringSplitOptions.RemoveEmptyEntries);
+         string[] folders = names[0].Split(new[] {@"/"}, StringSplitOptions.RemoveEmptyEntries);
          Folder current = CreateFolderStructure(folders);
 
          string filename = names[1];
          FileInfo fi = new FileInfo(Path.Combine(current.Info.FullName, filename));
          Entry entry = new Entry(fi);
          res = entryResponses.Where(r => r.ResponseType == ResponseType.ModTime).First();
-         entry.ModTime = ((ModTimeResponse)res).ModTime;
-         UpdatedResponse ur = (UpdatedResponse)entryResponses.Where(r => r.ResponseType == ResponseType.Updated).First();
+         entry.ModTime = ((ModTimeResponse) res).ModTime;
+         UpdatedResponse ur = (UpdatedResponse) entryResponses.Where(r => r.ResponseType == ResponseType.Updated).First();
          if (entry.Name == ur.File.Name)
          {
             entry.Revision = ur.File.Revision;
@@ -112,7 +113,7 @@ namespace PServerClient.CVS
             foreach (ICVSItem item in current)
             {
                if ((item is Folder) && item.Name == folderName)
-                  folder = (Folder)item;
+                  folder = (Folder) item;
             }
             if (folder == null)
             {

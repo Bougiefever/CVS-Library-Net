@@ -1,43 +1,43 @@
 ﻿using System.IO;
 using NUnit.Framework;
 using PServerClient.CVS;
+using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
    [TestFixture]
    public class CvsRootTests
    {
+      private readonly string _hostName = TestConfig.CVSHost; //ConfigurationManager.AppSettings["CVS Host"];// "host-name";
+      private readonly int _port = TestConfig.CVSPort; //Convert.ToInt32(ConfigurationManager.AppSettings["CVS Port"]); // 1;
+      private readonly string _user = TestConfig.Username; //ConfigurationManager.AppSettings["CVS Username"]; //"username";
+      private readonly string _pwd = TestConfig.Password; //ConfigurationManager.AppSettings["Password scrambled"]; //"password";
+      private readonly string _repoPath = TestConfig.RepositoryPath; //ConfigurationManager.AppSettings["Repository Path"]; //"/f1/f2/f3";
 
       [Test]
       public void ConstructorTest()
       {
-         string hostName = "host-name";
-         int port = 1;
-         string user = "username";
-         string pwd = "password";
-         string repoPath = "/f1/f2/f3";
-
-         Root root = new Root(hostName, port, user, pwd, repoPath);
+         Root root = new Root(_hostName, _port, _user, _pwd, _repoPath);
          string expected = ":pserver:username@host-name:/f1/f2/f3";
          Assert.AreEqual(expected, root.CVSConnectionString);
-         Assert.AreEqual(hostName, root.Host);
-         Assert.AreEqual(user, root.Username);
-         Assert.AreNotEqual(pwd, root.Password);
-         Assert.AreEqual(pwd.ScramblePassword(), root.Password);
-         Assert.AreEqual(repoPath, root.RepositoryPath);
+         Assert.AreEqual(_hostName, root.Host);
+         Assert.AreEqual(_user, root.Username);
+         Assert.AreNotEqual(_pwd, root.Password);
+         Assert.AreEqual(_pwd.ScramblePassword(), root.Password);
+         Assert.AreEqual(_repoPath, root.RepositoryPath);
          Assert.AreEqual(1, root.Port);
       }
 
       [Test]
       public void GetModuleFolderTest()
       {
-         string hostName = "host-name";
-         int port = 1;
-         string user = "username";
-         string pwd = "password";
-         string repoPath = "/f1/f2/f3";
+         //string hostName = "host-name";
+         //int port = 1;
+         //string user = "username";
+         //string pwd = "password";
+         //string repoPath = "/f1/f2/f3";
 
-         Root root = new Root(hostName, port, user, pwd, repoPath);
+         Root root = new Root(_hostName, _port, _user, _pwd, _repoPath);
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;
          root.Module = "mymod";
@@ -47,18 +47,17 @@ namespace PServerClient.Tests
       [Test]
       public void GetModuleFolderWithMultipleNamesInPathTest()
       {
-         string hostName = "host-name";
-         int port = 1;
-         string user = "username";
-         string pwd = "password";
-         string repoPath = "/f1/f2/f3";
+         //string hostName = "host-name";
+         //int port = 1;
+         //string user = "username";
+         //string pwd = "password";
+         //string repoPath = "/f1/f2/f3";
 
-         Root root = new Root(hostName, port, user, pwd, repoPath);
+         Root root = new Root(_hostName, _port, _user, _pwd, _repoPath);
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;
          root.Module = "rootmod/mymod";
          Folder modFolder = root.ModuleFolder;
-
       }
    }
 }

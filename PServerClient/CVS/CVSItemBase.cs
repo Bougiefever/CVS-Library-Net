@@ -17,13 +17,33 @@ namespace PServerClient.CVS
          StickyOption = string.Empty;
       }
 
+      #region ICVSItem Members
+
       public abstract void Write();
-      public virtual CVSFolder CvsFolder { get { throw new NotSupportedException();} }
-      public virtual void Read() { throw new NotSupportedException(); }
-      public virtual void AddItem(ICVSItem item) { throw new NotSupportedException(); }
-      public virtual void RemoveItem(ICVSItem item) { throw new NotSupportedException(); }
+      public virtual CVSFolder CvsFolder { get { throw new NotSupportedException(); } }
+
+      public virtual void Read()
+      {
+         throw new NotSupportedException();
+      }
+
+      public virtual void AddItem(ICVSItem item)
+      {
+         throw new NotSupportedException();
+      }
+
+      public virtual void RemoveItem(ICVSItem item)
+      {
+         throw new NotSupportedException();
+      }
+
       public virtual ICVSItem this[int idx] { get { throw new NotSupportedException(); } }
-      public virtual IEnumerator GetEnumerator() { throw new NotSupportedException(); }
+
+      public virtual IEnumerator GetEnumerator()
+      {
+         throw new NotSupportedException();
+      }
+
       public virtual int Count { get { throw new NotSupportedException(); } }
 
       /// <summary>
@@ -38,5 +58,7 @@ namespace PServerClient.CVS
       public string StickyOption { get; set; }
       public long Length { get; set; }
       public byte[] FileContents { get; set; }
+
+      #endregion
    }
 }

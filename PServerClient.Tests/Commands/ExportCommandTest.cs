@@ -11,9 +11,6 @@ namespace PServerClient.Tests.Commands
       [Test]
       public void Test()
       {
-
       }
-
-      
    }
 }

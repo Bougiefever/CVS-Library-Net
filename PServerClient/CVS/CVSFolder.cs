@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -13,9 +12,9 @@ namespace PServerClient.CVS
    public class CVSFolder
    {
       private const string EntryRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
-      private readonly DirectoryInfo _parent;
       private readonly string _cvsConnection;
       private readonly string _cvsRepository;
+      private readonly DirectoryInfo _parent;
 
       public CVSFolder(DirectoryInfo parentFolder, string cvsConnection, string cvsRepository)
       {
@@ -107,7 +106,7 @@ namespace PServerClient.CVS
          {
             string code = item is Folder ? "D" : string.Empty;
             string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
-                                         item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
+                                             item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
             Console.WriteLine(entryLine);
             lines.Add(entryLine);
          }

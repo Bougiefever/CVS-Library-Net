@@ -26,7 +26,5 @@ namespace PServerClient.Tests.Commands
          requestCount = command.RequiredRequests.OfType<ValidRequestsRequest>().Count();
          Assert.IsTrue(requestCount == 1);
       }
-
-
    }
 }

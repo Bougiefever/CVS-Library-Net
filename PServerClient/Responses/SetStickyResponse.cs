@@ -20,6 +20,7 @@ namespace PServerClient.Responses
 
       public override int LineCount { get { return 2; } }
       public override ResponseType ResponseType { get { return ResponseType.SetSticky; } }
+
       public override void ProcessResponse(IList<string> lines)
       {
          ModuleName = lines[0];

@@ -7,6 +7,7 @@
          RequestLines = new string[1];
          RequestLines[0] = RequestName;
       }
+
       public override bool ResponseExpected { get { return false; } }
    }
 }

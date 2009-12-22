@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -20,11 +19,13 @@ namespace PServerClient.Responses
       public string CheckSum { get { return _checkSum; } }
 
       public override ResponseType ResponseType { get { return ResponseType.CheckSum; } }
+
       public override void ProcessResponse(IList<string> lines)
       {
          _checkSum = lines[0];
          base.ProcessResponse(lines);
       }
+
       public override string DisplayResponse()
       {
          return _checkSum;
