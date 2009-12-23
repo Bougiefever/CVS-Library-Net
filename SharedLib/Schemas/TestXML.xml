@@ -1,0 +1,6 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<psvr:Lines xmlns:psvr='http://www.pserverclient.org' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+            xsi:schemaLocation='http://www.pserverclient.org XMLSchemaTest.xsd'>
+   <psvr:Line>my line</psvr:Line>
+   <psvr:Line>my line 2</psvr:Line>
+</psvr:Lines>

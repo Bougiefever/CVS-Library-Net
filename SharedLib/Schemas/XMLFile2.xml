@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Command>
+   <Name>CheckOut</Name>
+   <Type>0</Type>
+   <RequiredRequests>
+      <Request>
+         <Name>Auth</Name>
+         <Type>5</Type>
+           <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/usr/local/cvsroot/sandbox</Line>
+            <Line>abougie</Line>
+            <Line>AB4%o=wSobI4w</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+           <Responses>
+              <Response>
+               <Name>Auth</Name>
+               <Type>0</Type>
+                 <Lines>
+                  <Line>I LOVE YOU</Line>
+               </Lines>
+            </Response>
+         </Responses>
+      </Request>
+      <Request>
+         <Name>UseUnchanged</Name>
+         <Type>51</Type>
+          <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+         <Responses />
+      </Request>
+   </RequiredRequests>
+   <Requests>
+      <Request>
+         <Name>Root</Name>
+         <Type>41</Type>
+         <Lines>
+            <Line>Root /usr/local/cvsroot/sandbox</Line>
+         </Lines>
+         <Responses />
+      </Request>
+      <Request>
+         <Name>GlobalOption</Name>
+         <Type>17</Type>
+         <Lines>
+            <Line>Global_option -q</Line>
+         </Lines>
+         <Responses />
+      </Request>
+   </Requests>
+</Command>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.pserverclient.org"
+            xmlns="http://www.pserverclient.org"
+           attributeFormDefault="unqualified" elementFormDefault="qualified">
+   <xs:element name="Lines" type="LinesType"></xs:element>
+   <xs:complexType name="LinesType">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" minOccurs="1" name="Line" type="xs:string" />
+      </xs:sequence>
+   </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified" elementFormDefault="qualified">
+   <xs:element name="Command">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="Name" type="xs:string" />
+            <xs:element name="Type" type="xs:int" />
+            <xs:sequence>
+               <xs:element name="RequiredRequests" minOccurs="0" maxOccurs="1">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="Request" type="RequestType" maxOccurs="unbounded" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+            <xs:sequence>
+               <xs:element name="Requests" minOccurs="0" maxOccurs="1">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="Request" type="RequestType" maxOccurs="unbounded" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:complexType name="RequestType">
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string" />
+         <xs:element name="Type" type="xs:int" />
+         <xs:element name="Lines" type="LinesType" />
+         <xs:element name="File" type="FileType" maxOccurs="1" minOccurs="0" />
+         <xs:sequence>
+            <xs:element name="Responses">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="Response" type="ResponseType" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ResponseType">
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string" />
+         <xs:element name="Type" type="xs:int" />
+         <xs:element name="Lines" type="LinesType" />
+         <xs:element name="File" type="FileType" maxOccurs="1" minOccurs="0" />
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FileType">
+      <xs:sequence>
+         <xs:element name="Length" type="xs:int" />
+         <xs:element name="Contents" type="xs:string" />
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="LinesType">
+      <xs:sequence>
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" type="xs:string" />
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
