@@ -8,6 +8,6 @@
    public class WrapperSendmeRcsOptionsRequest : NoArgRequestBase
    {
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.WrapperSendmercsOptions; } }
+      public override RequestType RequestType { get { return RequestType.WrapperSendmeRcsOptions; } }
    }
 }

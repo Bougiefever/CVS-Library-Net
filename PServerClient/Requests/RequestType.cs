@@ -63,6 +63,6 @@ namespace PServerClient.Requests
       WatchOff = 58,
       WatchOn = 59,
       WatchRemove = 60,
-      WrapperSendmercsOptions = 61
+      WrapperSendmeRcsOptions = 61
    }
 }

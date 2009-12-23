@@ -134,10 +134,6 @@ namespace PServerClient.Tests
       {
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
          CheckoutCommand cmd = new CheckoutCommand(root);
-         XDocument xdoc = TestHelper.CommandRequestsToXML(cmd);
-         Console.WriteLine(xdoc.ToString());
-         bool result = TestHelper.ValidateCommandXML(xdoc);
-         Assert.IsTrue(result);
 
          // add responses to requests
          IResponse response = new AuthResponse();
@@ -159,9 +155,177 @@ namespace PServerClient.Tests
             request.Responses.Add(cor);
          }
 
-         xdoc = TestHelper.CommandRequestsToXML(cmd);
+         XDocument xdoc = TestHelper.CommandToXML(cmd);
          Console.WriteLine(xdoc.ToString());
-         result = TestHelper.ValidateCommandXML(xdoc);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
+      }
+
+      [Test]
+      public void XMLToCommandTest()
+      {
+         string xml = @"<Command>
+  <Name>CheckOut</Name>
+  <Type>0</Type>
+  <RequiredRequests>
+    <Request>
+      <Name>Auth</Name>
+      <Type>5</Type>
+      <Lines>
+        <Line>BEGIN AUTH REQUEST</Line>
+        <Line>/f1/f2/f3</Line>
+        <Line>username</Line>
+        <Line>A:yZZ30 e</Line>
+        <Line>END AUTH REQUEST</Line>
+      </Lines>
+      <Responses>
+        <Response>
+          <Name>Auth</Name>
+          <Type>0</Type>
+          <Lines>
+            <Line>I LOVE YOU</Line>
+          </Lines>
+        </Response>
+      </Responses>
+    </Request>
+    <Request>
+      <Name>UseUnchanged</Name>
+      <Type>51</Type>
+      <Lines>
+        <Line>UseUnchanged</Line>
+      </Lines>
+      <Responses />
+    </Request>
+    <Request>
+      <Name>ValidResponses</Name>
+      <Type>53</Type>
+      <Lines>
+        <Line>Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT</Line>
+      </Lines>
+      <Responses />
+    </Request>
+    <Request>
+      <Name>ValidRequests</Name>
+      <Type>52</Type>
+      <Lines>
+        <Line>valid-requests</Line>
+      </Lines>
+      <Responses>
+        <Response>
+          <Name>ValidRequests</Name>
+          <Type>4</Type>
+          <Lines>
+            <Line>Valid-requests Root Valid-responses valid-requests Global_option</Line>
+          </Lines>
+        </Response>
+      </Responses>
+    </Request>
+  </RequiredRequests>
+  <Requests>
+    <Request>
+      <Name>Root</Name>
+      <Type>41</Type>
+      <Lines>
+        <Line>Root /f1/f2/f3</Line>
+      </Lines>
+      <Responses />
+    </Request>
+    <Request>
+      <Name>GlobalOption</Name>
+      <Type>17</Type>
+      <Lines>
+        <Line>Global_option -q</Line>
+      </Lines>
+      <Responses />
+    </Request>
+    <Request>
+      <Name>Argument</Name>
+      <Type>3</Type>
+      <Lines>
+        <Line>Argument </Line>
+      </Lines>
+      <Responses />
+    </Request>
+    <Request>
+      <Name>Directory</Name>
+      <Type>11</Type>
+      <Lines>
+        <Line>Directory .</Line>
+        <Line>/f1/f2/f3/</Line>
+      </Lines>
+      <Responses />
+    </Request>
+    <Request>
+      <Name>CheckOut</Name>
+      <Type>9</Type>
+      <Lines>
+        <Line>co</Line>
+      </Lines>
+      <Responses>
+        <Response>
+          <Name>ModTime</Name>
+          <Type>23</Type>
+          <Lines>
+            <Line>Mod-time 8 Dec 2009 15:26:27 -0000</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <Name>MessageTag</Name>
+          <Type>19</Type>
+          <Lines>
+            <Line>MT +updated</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <Name>MessageTag</Name>
+          <Type>19</Type>
+          <Lines>
+            <Line>MT text U</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <Name>MessageTag</Name>
+          <Type>19</Type>
+          <Lines>
+            <Line>MT fname mymod/file1.cs</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <Name>MessageTag</Name>
+          <Type>19</Type>
+          <Lines>
+            <Line>MT newline</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <Name>MessageTag</Name>
+          <Type>19</Type>
+          <Lines>
+            <Line>MT -updated</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <Name>Updated</Name>
+          <Type>7</Type>
+          <Lines>
+            <Line>Updated Updated mymod/</Line>
+            <Line>/usr/local/cvsroot/sandbox/mymod/file1.cs</Line>
+            <Line>/file1.cs/1.1.1.1///</Line>
+            <Line>u=rw,g=rw,o=rw</Line>
+            <Line>5</Line>
+          </Lines>
+          <File>
+            <Length>5</Length>
+            <Contents>97,98,99,100,101</Contents>
+          </File>
+        </Response>
+      </Responses>
+    </Request>
+  </Requests>
+</Command>
+";
+         XDocument xdoc = XDocument.Parse(xml);
+
       }
 
       [Test]
@@ -343,5 +507,140 @@ namespace PServerClient.Tests
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
       }
+
+      [Test]
+      public void GetCommandByTypeTest()
+      {
+         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         CommandType t = CommandType.CheckOut;
+         ICommand cmd = TestHelper.GetCommandByType(t, root);
+         Assert.IsInstanceOf<CheckoutCommand>(cmd);
+
+         t = CommandType.Import;
+         cmd = TestHelper.GetCommandByType(t, root);
+         Assert.IsInstanceOf<ImportCommand>(cmd);
+
+         t = CommandType.Log;
+         cmd = TestHelper.GetCommandByType(t, root);
+         Assert.IsInstanceOf<LogCommand>(cmd);
+
+         t = CommandType.ValidRequestsList;
+         cmd = TestHelper.GetCommandByType(t, root);
+         Assert.IsInstanceOf<ValidRequestsListCommand>(cmd);
+
+         t = CommandType.VerifyAuth;
+         cmd = TestHelper.GetCommandByType(t, root);
+         Assert.IsInstanceOf<VerifyAuthCommand>(cmd);
+
+         t = CommandType.Version;
+         cmd = TestHelper.GetCommandByType(t, root);
+         Assert.IsInstanceOf<VersionCommand>(cmd);
+      }
+
+      [Test]
+      public void CommandXMLToCommandObjectTest()
+      {
+         string xml = @"<?xml version='1.0' encoding='utf-8'?>
+<Command>
+   <Name>CheckOut</Name>
+   <Type>0</Type>
+   <RequiredRequests>
+      <Request>
+         <Name>Auth</Name>
+         <Type>5</Type>
+           <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/usr/local/cvsroot/sandbox</Line>
+            <Line>abougie</Line>
+            <Line>AB4%o=wSobI4w</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+           <Responses>
+              <Response>
+               <Name>Auth</Name>
+               <Type>0</Type>
+                 <Lines>
+                  <Line>I LOVE YOU</Line>
+               </Lines>
+            </Response>
+         </Responses>
+      </Request>
+      <Request>
+         <Name>UseUnchanged</Name>
+         <Type>51</Type>
+          <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+         <Responses />
+      </Request>
+   </RequiredRequests>
+   <Requests>
+      <Request>
+         <Name>Root</Name>
+         <Type>41</Type>
+         <Lines>
+            <Line>Root /usr/local/cvsroot/sandbox</Line>
+         </Lines>
+         <Responses />
+      </Request>
+      <Request>
+         <Name>GlobalOption</Name>
+         <Type>17</Type>
+         <Lines>
+            <Line>Global_option -q</Line>
+         </Lines>
+         <Responses />
+      </Request>
+     <Request>
+       <Name>CheckOut</Name>
+       <Type>9</Type>
+       <Lines>
+         <Line>co</Line>
+       </Lines>
+       <Responses>
+         <Response>
+           <Name>ClearSticky</Name>
+           <Type>17</Type>
+           <Lines>
+             <Line>Clear-sticky abougie/</Line>
+             <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
+           </Lines>
+         </Response>
+         <Response>
+           <Name>SetStaticDirectory</Name>
+           <Type>14</Type>
+           <Lines>
+             <Line>Set-static-directory abougie/</Line>
+             <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
+           </Lines>
+         </Response>
+       </Responses>
+     </Request>
+   </Requests>
+</Command>";
+         XDocument xdoc = XDocument.Parse(xml);
+         TestHelper.ValidateCommandXML(xdoc);
+         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+
+         ICommand cmd = TestHelper.CommandXMLToCommandObject(xdoc, root);
+         Assert.IsInstanceOf<CheckoutCommand>(cmd);
+         
+         Assert.AreEqual(2, cmd.RequiredRequests.Count);
+         Assert.AreEqual(3, cmd.Requests.Count);
+
+      }
+
+      [Test]
+      public void GetRequestByTypeTest()
+      {
+         for (int i = 0; i < 62; i++)
+         {
+            RequestType t = (RequestType) i;
+            IRequest r = TestHelper.GetRequestByType(t);
+            Console.WriteLine(t.ToString());
+            Assert.AreEqual(t, r.RequestType);
+         }
+      }
+
    }
 }

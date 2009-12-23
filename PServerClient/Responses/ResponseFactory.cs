@@ -97,7 +97,6 @@ namespace PServerClient.Responses
             case ResponseType.Flush:
                response = new FlushResponse();
                break;
-               //case ResponseType.Unknown:
             default:
                response = new NullResponse();
                break;

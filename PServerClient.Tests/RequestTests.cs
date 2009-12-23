@@ -940,7 +940,7 @@ namespace PServerClient.Tests
          const string expected = "wrapper-sendme-rcsOptions\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(RequestType.WrapperSendmercsOptions, request.RequestType);
+         Assert.AreEqual(RequestType.WrapperSendmeRcsOptions, request.RequestType);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);

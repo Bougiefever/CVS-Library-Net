@@ -71,7 +71,7 @@ namespace PServerClient.Commands
 
       public IList<IRequest> Requests { get; set; }
       public Root Root { get; private set; }
-      public ExitCode ExitCode { get; private set; }
+      public ExitCode ExitCode { get; set; }
 
       public virtual void Execute()
       {
