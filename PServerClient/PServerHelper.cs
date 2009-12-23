@@ -215,21 +215,13 @@ namespace PServerClient
          {
             folderName = folders[i];
             Folder folder = null;
-            foreach (ICVSItem item in current)
-            {
-               if ((item is Folder) && item.Name == folderName)
-                  folder = (Folder) item;
-            }
-            if (folder == null)
-            {
                repository += "/" + folderName;
                di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
                folder = new Folder(di, cvsConnection, repository);
                current.AddItem(folder);
-            }
             current = folder;
          }
-         return current;
+         return root;
       }
    }
 }

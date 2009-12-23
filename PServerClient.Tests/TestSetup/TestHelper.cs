@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Requests;
 using PServerClient.Responses;
@@ -16,45 +17,42 @@ namespace PServerClient.Tests.TestSetup
    {
       public static bool ValidateResponseXML(XElement response)
       {
-         FileInfo fi = new FileInfo(@"..\..\SharedLib\ResponseSchema.xsd");
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Response.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
-
+         var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
          XmlSchemaSet schemas = new XmlSchemaSet();
-         schemas.Add("", reader);
+         schemas.Add(validateSchema);
          bool isValid = true;
-         XDocument xdoc = new XDocument(new XElement("Requests",
-                                                     new XElement("Request",
-                                                                  new XElement("Name", "AnyRequest"),
-                                                                  new XElement("Type", "100"),
-                                                                  new XElement("Lines", new XElement("Line", "my request")),
-                                                                  new XElement("Responses", response))));
-         //Console.WriteLine(xdoc.ToString());
+
+         XDocument xdoc = new XDocument(response);
          xdoc.Validate(schemas, (o, e) => { isValid = false; });
          return isValid;
       }
 
-      public static bool ValidateXML(XDocument response)
+      public static bool ValidateCommandXML(XDocument command)
       {
-         FileInfo fi = new FileInfo(@"..\..\SharedLib\ResponseSchema.xsd");
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
-
+         var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
          XmlSchemaSet schemas = new XmlSchemaSet();
-         schemas.Add("", reader);
-         bool isValid = true;
-         response.Validate(schemas, (o, e) => { isValid = false; });
-         return isValid;
+         schemas.Add(validateSchema);
+         //bool isValid = true;
+
+         command.Validate(schemas, (o, e) => Assert.Fail(e.Message));
+         //isValid = true;
+         return true;
       }
 
       public static bool ValidateRequestXML(XElement request)
       {
-         FileInfo fi = new FileInfo(@"..\..\SharedLib\ResponseSchema.xsd");
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Request.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
-
+         var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
          XmlSchemaSet schemas = new XmlSchemaSet();
-         schemas.Add("", reader);
+         schemas.Add(validateSchema);
          bool isValid = true;
-         XDocument xdoc = new XDocument(new XElement("Requests", request));
-         //Console.WriteLine(xdoc.ToString());
+
+         XDocument xdoc = new XDocument(request);
          xdoc.Validate(schemas, (o, e) => { isValid = false; });
          return isValid;
       }
@@ -73,7 +71,7 @@ namespace PServerClient.Tests.TestSetup
 
       public static IResponse XMLToResponse(XElement responseElement)
       {
-         ResponseType rtype = (ResponseType) Convert.ToInt32(responseElement.Element("ResponseType").Value);
+         ResponseType rtype = (ResponseType)Convert.ToInt32(responseElement.Element("ResponseType").Value);
          ResponseFactory factory = new ResponseFactory();
          IResponse response = factory.CreateResponse(rtype);
          IList<string> lines = new List<string>();
@@ -85,12 +83,12 @@ namespace PServerClient.Tests.TestSetup
          response.ProcessResponse(lines);
          if (response is IFileResponse)
          {
-            IFileResponse fileResponse = (IFileResponse) response;
+            IFileResponse fileResponse = (IFileResponse)response;
             XElement fileElement = responseElement.Descendants("ResponseFile").First();
             long len = Convert.ToInt64(fileElement.Element("Length").Value);
             string byteString = fileElement.Element("Contents").Value;
             byte[] buffer = new byte[len];
-            string[] bytes = byteString.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries);
+            string[] bytes = byteString.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < bytes.Length; i++)
             {
                buffer[i] = Convert.ToByte(bytes[i]);
@@ -116,7 +114,7 @@ namespace PServerClient.Tests.TestSetup
       {
          XElement responseElement = new XElement("Response",
                                                  new XElement("Name", response.ResponseType.ToString()),
-                                                 new XElement("Type", (int) response.ResponseType),
+                                                 new XElement("Type", (int)response.ResponseType),
                                                  new XElement("Lines"));
          XElement linesElement = responseElement.Descendants("Lines").First();
 
@@ -127,7 +125,7 @@ namespace PServerClient.Tests.TestSetup
          }
          if (response is IFileResponse)
          {
-            IFileResponse fileResponse = (IFileResponse) response;
+            IFileResponse fileResponse = (IFileResponse)response;
             string length = fileResponse.File.Length.ToString();
             string contents = ResponseHelper.FileContentsToByteArrayString(fileResponse.File.Contents);
             XElement responseFile = new XElement("File",
@@ -149,7 +147,6 @@ namespace PServerClient.Tests.TestSetup
       public static XDocument CommandRequestsToXML(ICommand command)
       {
          XElement requestsElement = new XElement("Requests");
-         XDocument xdoc = new XDocument(requestsElement);
          foreach (IRequest request in command.RequiredRequests)
          {
             requestsElement.Add(RequestToXML(request));
@@ -158,6 +155,10 @@ namespace PServerClient.Tests.TestSetup
          {
             requestsElement.Add(RequestToXML(request));
          }
+         XElement commandElement = new XElement("Command",
+                                                new XElement("Name", command.CommandType.ToString()),
+                                                new XElement("Type", (int)command.CommandType));
+         XDocument xdoc = new XDocument(commandElement);
          return xdoc;
       }
 
@@ -165,7 +166,7 @@ namespace PServerClient.Tests.TestSetup
       {
          XElement requestElement = new XElement("Request",
                                                 new XElement("Name", request.RequestType.ToString()),
-                                                new XElement("Type", (int) request.RequestType),
+                                                new XElement("Type", (int)request.RequestType),
                                                 new XElement("Lines"));
          XElement linesElement = requestElement.Descendants("Lines").First();
          foreach (string s in request.RequestLines)
@@ -187,7 +188,7 @@ namespace PServerClient.Tests.TestSetup
       {
          IList<IResponse> responses = new List<IResponse>();
          IResponse r = new ModTimeResponse();
-         r.ProcessResponse(new List<string> {time});
+         r.ProcessResponse(new List<string> { time });
          responses.Add(r);
          var list = (GetMockMTResponseGroup(path + file));
          foreach (IResponse response in list)
@@ -202,11 +203,11 @@ namespace PServerClient.Tests.TestSetup
       private static IList<IResponse> GetMockMTResponseGroup(string fname)
       {
          IList<IResponse> responses = new List<IResponse>();
-         string[] messages = new[] {"+updated", "text U", "fname " + fname, "newline", "-updated"};
+         string[] messages = new[] { "+updated", "text U", "fname " + fname, "newline", "-updated" };
          foreach (string s in messages)
          {
             MessageTagResponse m = new MessageTagResponse();
-            m.ProcessResponse(new List<string> {s});
+            m.ProcessResponse(new List<string> { s });
             responses.Add(m);
          }
          return responses;
@@ -229,6 +230,6 @@ namespace PServerClient.Tests.TestSetup
          return res;
       }
 
-      
+
    }
 }

@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
@@ -127,24 +130,24 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void RequestListToXMLTest()
+      public void CommandToXMLTest()
       {
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
          CheckoutCommand cmd = new CheckoutCommand(root);
          XDocument xdoc = TestHelper.CommandRequestsToXML(cmd);
-         //Console.WriteLine(xdoc.ToString());
-         bool result = TestHelper.ValidateXML(xdoc);
+         Console.WriteLine(xdoc.ToString());
+         bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
 
          // add responses to requests
          IResponse response = new AuthResponse();
-         IList<string> process = new List<string> {"I LOVE YOU"};
+         IList<string> process = new List<string> { "I LOVE YOU" };
          response.ProcessResponse(process);
          IRequest request = cmd.RequiredRequests.Where(r => r.RequestType == RequestType.Auth).First();
          request.Responses.Add(response);
 
          response = new ValidRequestResponse();
-         IList<string> lines = new List<string> {"Root Valid-responses valid-requests Global_option"};
+         IList<string> lines = new List<string> { "Root Valid-responses valid-requests Global_option" };
          response.ProcessResponse(lines);
          request = cmd.RequiredRequests.Where(r => r.RequestType == RequestType.ValidRequests).First();
          request.Responses.Add(response);
@@ -158,8 +161,7 @@ namespace PServerClient.Tests
 
          xdoc = TestHelper.CommandRequestsToXML(cmd);
          Console.WriteLine(xdoc.ToString());
-         result = TestHelper.ValidateXML(xdoc);
-         Assert.IsTrue(result);
+         result = TestHelper.ValidateCommandXML(xdoc);
       }
 
       [Test]
@@ -175,58 +177,48 @@ namespace PServerClient.Tests
       public void ValidateResponseXMLTest()
       {
          string xml = @"
-<Requests>
-   <Request>
-      <Name>CheckOut</Name>
-      <Type>9</Type>
-      <Lines>
-         <Line>co</Line>
-      </Lines>
-      <Responses>
-        <Response>
+         <Response>
           <Name>Auth</Name>
           <Type>0</Type>
           <Lines>
             <Line>I LOVE YOU</Line>
           </Lines>
-        </Response>
-      </Responses>
-   </Request>
-</Requests>";
-         XDocument xdoc = XDocument.Parse(xml);
-         bool result = TestHelper.ValidateXML(xdoc);
+        </Response>";
+         XElement response = XElement.Parse(xml);
+         bool result = TestHelper.ValidateResponseXML(response);
          Assert.IsTrue(result);
+      }
 
-         xml = @"
-<Requests>
-   <Request>
-      <Name>CheckOut</Name>
-      <Type>9</Type>
-      <Lines>
-         <Line>co</Line>
-      </Lines>
-      <Responses>
-        <Response>
-          <Name>Auth</Name>
-          <Type>0</Type>
-        </Response>
-      </Responses>
-   </Request>
-</Requests>";
-         xdoc = XDocument.Parse(xml);
-         result = TestHelper.ValidateXML(xdoc);
-         Assert.IsFalse(result);
+      [Test]
+      public void XMLSchemaWithTargetNamespsceTest()
+      {
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\XMLSchemaTest.xsd");
+         XmlReader reader = XmlReader.Create(fi.OpenRead());
+         //var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
+         XmlSchemaSet schemas = new XmlSchemaSet();
+         //schemas.Add(validateSchema);
+         schemas.Add("http://www.pserverclient.org", reader);
+         bool isValid = true;
+         string xml = @"<?xml version='1.0' encoding='utf-8'?>
+            <psvr:Lines xmlns:psvr='http://www.pserverclient.org' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+               xsi:schemaLocation='http://www.pserverclient.org XMLSchemaTest.xsd'>
+                  <psvr:Line>my line 1</psvr:Line>
+                  <psvr:Line>line 2</psvr:Line>
+            </psvr:Lines>";
+         XDocument xdoc = XDocument.Parse(xml);
+         xdoc.Validate(schemas, (o, e) => { isValid = false; Assert.Fail(e.Message); });
+         Assert.IsTrue(isValid);
+      }
 
-         xml = @"
-<Requests>
-   <Request>
-      <Name>CheckOut</Name>
-      <Type>9</Type>
-      <Lines>
-         <Line>co</Line>
-      </Lines>
-      <Responses>
-        <Response>
+      [Test]
+      public void ResponseSchemaTest()
+      {
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Response.xsd");
+         XmlReader reader = XmlReader.Create(fi.OpenRead());
+         var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
+         XmlSchemaSet schemas = new XmlSchemaSet();
+         schemas.Add(validateSchema);
+         string xml = @"<Response>
           <Name>CheckedIn</Name>
           <Type>5</Type>
           <Lines>
@@ -240,12 +232,115 @@ namespace PServerClient.Tests
             <Length>74</Length>
             <Contents>47,49,32,58,112,115,101,114,118,101,114,58,97,98,111,117,103,105,101,64,103,98,45,97,105,120,45,113,58,50,52,48,49,47,117,115,114,47,108,111,99,97,108,47,99,118,115,114,111,111,116,47,115,97,110,100,98,111,120,32,65,66,52,37,111,61,119,83,111,98,73,52,119,10</Contents>
           </File>
+        </Response>";
+         XDocument xdoc = XDocument.Parse(xml);
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message) );
+
+         xml = @"<Response>
+          <Name>CheckedIn</Name>
+          <Type>5</Type>
+          <Lines>
+            <Line>Checked-in mod1/</Line>
+            <Line>/usr/local/cvsroot/sandbox/mod1/file1.cs</Line>
+            <Line>/file1.cs/1.2.3.4///</Line>
+            <Line>u=rw,g=rw,o=rw</Line>
+            <Line>74</Line>
+          </Lines>
+        </Response>";
+         xdoc = XDocument.Parse(xml);
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
+      }
+
+      [Test]
+      public void RequestSchemaTest()
+      {
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Request.xsd");
+         XmlReader reader = XmlReader.Create(fi.OpenRead());
+         var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
+         XmlSchemaSet schemas = new XmlSchemaSet();
+         schemas.Add(validateSchema);
+         string xml = @"<Request>
+      <Name>CheckOut</Name>
+      <Type>9</Type>
+      <Lines>
+         <Line>co</Line>
+      </Lines>
+      <Responses>
+        <Response>
+          <Name>Auth</Name>
+          <Type>0</Type>
+          <Lines />
         </Response>
       </Responses>
-   </Request>
-</Requests>";
-         xdoc = XDocument.Parse(xml);
-         result = TestHelper.ValidateXML(xdoc);
+      </Request>";
+         XDocument xdoc = XDocument.Parse(xml);
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
+      }
+
+      [Test]
+      public void ValidateCommandXMLTest()
+      {
+         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
+         XmlReader reader = XmlReader.Create(fi.OpenRead());
+         var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
+         XmlSchemaSet schemas = new XmlSchemaSet();
+         schemas.Add(validateSchema);
+         string xml = @"<?xml version='1.0' encoding='utf-8'?>
+<Command>
+   <Name>CheckOut</Name>
+   <Type>0</Type>
+   <RequiredRequests>
+      <Request>
+         <Name>Auth</Name>
+         <Type>5</Type>
+           <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/usr/local/cvsroot/sandbox</Line>
+            <Line>abougie</Line>
+            <Line>AB4%o=wSobI4w</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+           <Responses>
+              <Response>
+               <Name>Auth</Name>
+               <Type>0</Type>
+                 <Lines>
+                  <Line>I LOVE YOU</Line>
+               </Lines>
+            </Response>
+         </Responses>
+      </Request>
+      <Request>
+         <Name>UseUnchanged</Name>
+         <Type>51</Type>
+          <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+         <Responses />
+      </Request>
+   </RequiredRequests>
+   <Requests>
+      <Request>
+         <Name>Root</Name>
+         <Type>41</Type>
+         <Lines>
+            <Line>Root /usr/local/cvsroot/sandbox</Line>
+         </Lines>
+         <Responses />
+      </Request>
+      <Request>
+         <Name>GlobalOption</Name>
+         <Type>17</Type>
+         <Lines>
+            <Line>Global_option -q</Line>
+         </Lines>
+         <Responses />
+      </Request>
+   </Requests>
+</Command>";
+         XDocument xdoc = XDocument.Parse(xml);
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
+         bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
       }
    }

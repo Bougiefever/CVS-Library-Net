@@ -46,7 +46,6 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      [Ignore]
       public void CreateModuleFolderStructureTest()
       {
          string module = "mymod/";
