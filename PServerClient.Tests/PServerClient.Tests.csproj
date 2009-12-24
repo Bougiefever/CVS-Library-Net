@@ -70,6 +70,7 @@
     <Compile Include="ResponseTests.cs" />
     <Compile Include="TestSetup\TestConfig.cs" />
     <Compile Include="TestSetup\TestHelper.cs" />
+    <Compile Include="TestSetup\TestStrings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PServerClient\PServerClient.csproj">

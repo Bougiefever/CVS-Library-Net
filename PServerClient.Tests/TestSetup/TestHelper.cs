@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -233,16 +234,33 @@ namespace PServerClient.Tests.TestSetup
 
       public static ICommand CommandXMLToCommandObject(XDocument xdoc, Root root)
       {
-         XElement commandElement = (XElement) xdoc.FirstNode;
-         CommandType type = (CommandType) Convert.ToInt32(commandElement.Element("Type").Value);
+         XElement commandElement = (XElement)xdoc.FirstNode;
+         CommandType commandType = (CommandType)Convert.ToInt32(commandElement.Element("Type").Value);
          PServerFactory factory = new PServerFactory();
-         ICommand command = factory.CreateCommand(type, new object[] {root});
-         XElement requiredRequestsElement = commandElement.Element("RequiredRequests");
-         foreach (XElement requestElement in requiredRequestsElement.Nodes())
+         ICommand command = factory.CreateCommand(commandType, new object[] { root });
+         XElement requestsElement = commandElement.Element("RequiredRequests");
+         foreach (XElement requestElement in requestsElement.Nodes())
          {
-            
+            IRequest request = RequestElementToObject(requestElement);
+            command.RequiredRequests.Add(request);
+         }
+         requestsElement = commandElement.Element("Requests");
+         foreach (XElement requestElement in requestsElement.Nodes())
+         {
+            IRequest request = RequestElementToObject(requestElement);
+            command.RequiredRequests.Add(request);
          }
          return command;
+      }
+
+      private static IRequest RequestElementToObject(XElement requestElement)
+      {
+         RequestType requestType = (RequestType)Convert.ToInt32(requestElement.Element("Type").Value);
+         IEnumerable<XElement> linesElements = requestElement.Element("Lines").Elements();
+         string[] lines = linesElements.Select(le => le.Value).ToArray();
+         PServerFactory factory = new PServerFactory();
+         IRequest request = factory.CreateRequest(requestType, lines);
+         return request;
       }
    }
 }
