@@ -22,6 +22,8 @@ namespace PServerClient.Tests
       {
          string xml = TestStrings.UpdatedResponseXML;
          XElement responseElement = XElement.Parse(xml);
+         bool result = TestHelper.ValidateResponseXML(responseElement);
+         Assert.IsTrue(result);
          IResponse response = TestHelper.XMLToResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<UpdatedResponse>(response);
@@ -60,13 +62,15 @@ namespace PServerClient.Tests
       {
          string xml = TestStrings.AuthResponseXML;
          XElement responseElement = XElement.Parse(xml);
+         bool result = TestHelper.ValidateResponseXML(responseElement);
+         Assert.IsTrue(result);
          IResponse response = TestHelper.XMLToResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<AuthResponse>(response);
          Assert.AreEqual("I LOVE YOU", response.DisplayResponse());
       }
 
-      [Test]
+      [Test][Ignore]
       public void GetResponsesFromXMLTest()
       {
          string xml = TestStrings.AuthCheckedInResponses;
@@ -115,14 +119,7 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
-      [Test]
-      public void XMLToCommandTest()
-      {
-         string xml = TestStrings.CommandXML;
-         XDocument xdoc = XDocument.Parse(xml);
-
-      }
-
+      
       [Test]
       public void RequestXMLTest()
       {
@@ -207,7 +204,8 @@ namespace PServerClient.Tests
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;
          XDocument xdoc = XDocument.Parse(xml);
-         TestHelper.ValidateCommandXML(xdoc);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
 
          ICommand cmd = TestHelper.CommandXMLToCommandObject(xdoc, root);

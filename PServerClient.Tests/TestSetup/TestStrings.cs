@@ -4,27 +4,27 @@ namespace PServerClient.Tests.TestSetup
    {
       public const string UpdatedResponseXML = @"<Response>
     <Name>Updated</Name>
-    <ResponseType>7</ResponseType>
-    <ProcessLines>
+    <Type>7</Type>
+    <Lines>
       <Line>Updated mod1/</Line>
       <Line>/usr/local/cvsroot/sandbox/mod1/file1.cs</Line>
       <Line>/file1.cs/1.2.3.4///</Line>
       <Line>u=rw,g=rw,o=rw</Line>
       <Line>74</Line>
-    </ProcessLines>
-    <ResponseFile>
+    </Lines>
+    <File>
       <Length>74</Length>
       <Contents>47,49,32,58,112,115,101,114,118,101,114,58,97,98,111,117,103,105,101,64,103,98,45,97,105,120,45,113,58,50,52,48,49,47,117,115,114,47,108,111,99,97,108,47,99,118,115,114,111,111,116,47,115,97,110,100,98,111,120,32,65,66,52,37,111,61,119,83,111,98,73,52,119,10</Contents>
-    </ResponseFile>
+    </File>
   </Response>";
 
       public const string AuthResponseXML = @"
   <Response>
-    <ResponseName>Auth</ResponseName>
-    <ResponseType>0</ResponseType>
-    <ProcessLines>
+    <Name>Auth</Name>
+    <Type>0</Type>
+    <Lines>
       <Line>I LOVE YOU</Line>
-    </ProcessLines>
+    </Lines>
   </Response>";
 
       public const string AuthCheckedInResponses = @"

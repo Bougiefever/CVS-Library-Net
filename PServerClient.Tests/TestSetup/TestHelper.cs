@@ -24,11 +24,9 @@ namespace PServerClient.Tests.TestSetup
          var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
          XmlSchemaSet schemas = new XmlSchemaSet();
          schemas.Add(validateSchema);
-         bool isValid = true;
-
          XDocument xdoc = new XDocument(response);
-         xdoc.Validate(schemas, (o, e) => { isValid = false; });
-         return isValid;
+         xdoc.Validate(schemas, (o, e) => { Assert.Fail(e.Message); });
+         return true;
       }
 
       public static bool ValidateCommandXML(XDocument command)
@@ -70,11 +68,11 @@ namespace PServerClient.Tests.TestSetup
 
       public static IResponse XMLToResponse(XElement responseElement)
       {
-         ResponseType rtype = (ResponseType)Convert.ToInt32(responseElement.Element("ResponseType").Value);
+         ResponseType rtype = (ResponseType)Convert.ToInt32(responseElement.Element("Type").Value);
          PServerFactory factory = new PServerFactory();
          IResponse response = factory.CreateResponse(rtype);
          IList<string> lines = new List<string>();
-         XElement linesElement = responseElement.Descendants("ProcessLines").First();
+         XElement linesElement = responseElement.Descendants("Lines").First();
          foreach (XElement lineElement in linesElement.Elements())
          {
             lines.Add(lineElement.Value);
@@ -83,7 +81,7 @@ namespace PServerClient.Tests.TestSetup
          if (response is IFileResponse)
          {
             IFileResponse fileResponse = (IFileResponse)response;
-            XElement fileElement = responseElement.Descendants("ResponseFile").First();
+            XElement fileElement = responseElement.Descendants("File").First();
             long len = Convert.ToInt64(fileElement.Element("Length").Value);
             string byteString = fileElement.Element("Contents").Value;
             byte[] buffer = new byte[len];
