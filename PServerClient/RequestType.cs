@@ -1,4 +1,4 @@
-namespace PServerClient.Requests
+namespace PServerClient
 {
    public enum RequestType
    {

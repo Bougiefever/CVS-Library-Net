@@ -50,9 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthStatus.cs" />
-    <Compile Include="Commands\CheckoutCommand.cs" />
+    <Compile Include="Commands\CheckOutCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\CommandType.cs" />
+    <Compile Include="CommandType.cs" />
     <Compile Include="CVS\ServerFileReceiver.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ImportCommand.cs" />
@@ -64,10 +64,11 @@
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
-    <Compile Include="Commands\ExitCode.cs" />
+    <Compile Include="ExitCode.cs" />
     <Compile Include="FileType.cs" />
+    <Compile Include="PServerFactory.cs" />
     <Compile Include="RequestHelper.cs" />
-    <Compile Include="Requests\RequestType.cs" />
+    <Compile Include="RequestType.cs" />
     <Compile Include="Requests\SendFile.cs" />
     <Compile Include="ResponseHelper.cs" />
     <Compile Include="CVS\Root.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Responses\ClearStickyResponse.cs" />
     <Compile Include="Responses\CopyFileResponse.cs" />
     <Compile Include="Responses\CreatedResponse.cs" />
+    <Compile Include="Responses\EMessageResponse.cs" />
     <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\FileResponseBase.cs" />
     <Compile Include="Responses\FlushResponse.cs" />
@@ -176,14 +178,13 @@
     <Compile Include="Responses\RemovedResponse.cs" />
     <Compile Include="Responses\RemoveEntryResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
-    <Compile Include="Responses\ResponseFactory.cs" />
-    <Compile Include="Responses\ResponseType.cs" />
+    <Compile Include="ResponseType.cs" />
     <Compile Include="Responses\SetStaticDirectoryResponse.cs" />
     <Compile Include="Responses\SetStickyResponse.cs" />
     <Compile Include="Responses\TemplateResponse.cs" />
     <Compile Include="Responses\UpdatedResponse.cs" />
     <Compile Include="Responses\UpdateExistingResponse.cs" />
-    <Compile Include="Responses\ValidRequestResponse.cs" />
+    <Compile Include="Responses\ValidRequestsResponse.cs" />
     <Compile Include="Responses\WrapperRscOptionResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

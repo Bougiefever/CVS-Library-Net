@@ -18,7 +18,7 @@ namespace PServerClient.Responses
       private string _checkSum;
       public string CheckSum { get { return _checkSum; } }
 
-      public override ResponseType ResponseType { get { return ResponseType.CheckSum; } }
+      public override ResponseType ResponseType { get { return ResponseType.Checksum; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

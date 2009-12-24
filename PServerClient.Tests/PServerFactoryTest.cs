@@ -1,12 +1,21 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
+using PServerClient.Commands;
+using PServerClient.CVS;
 using PServerClient.Responses;
+using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
    [TestFixture]
-   public class ResponseFactoryTests
+   public class PServerFactoryTest
    {
-      private readonly ResponseFactory _factory = new ResponseFactory();
+      private PServerFactory _factory;
+
+      [SetUp]
+      public void SetUp()
+      {
+         _factory = new PServerFactory();
+      }
 
       [Test]
       public void CreateResponsesTest()
@@ -25,7 +34,7 @@ namespace PServerClient.Tests
 
          type = ResponseType.EMessage;
          response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ErrorResponse>(response);
+         Assert.IsInstanceOf<EMessageResponse>(response);
 
          type = ResponseType.Message;
          response = _factory.CreateResponse(type);
@@ -37,7 +46,7 @@ namespace PServerClient.Tests
 
          type = ResponseType.ValidRequests;
          response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<ValidRequestResponse>(response);
+         Assert.IsInstanceOf<ValidRequestsResponse>(response);
 
          type = ResponseType.CheckedIn;
          response = _factory.CreateResponse(type);
@@ -59,7 +68,7 @@ namespace PServerClient.Tests
          response = _factory.CreateResponse(type);
          Assert.IsInstanceOf<PatchedResponse>(response);
 
-         type = ResponseType.CheckSum;
+         type = ResponseType.Checksum;
          response = _factory.CreateResponse(type);
          Assert.IsInstanceOf<ChecksumResponse>(response);
 
@@ -131,7 +140,7 @@ namespace PServerClient.Tests
          response = _factory.CreateResponse(type);
          Assert.IsInstanceOf<FlushResponse>(response);
 
-         type = ResponseType.Unknown;
+         type = ResponseType.Null;
          response = _factory.CreateResponse(type);
          Assert.IsInstanceOf<NullResponse>(response);
       }
@@ -141,7 +150,7 @@ namespace PServerClient.Tests
       {
          string test = "blah there is no Blah response\n";
          ResponseType result = _factory.GetResponseType(test);
-         Assert.AreEqual(ResponseType.Unknown, result);
+         Assert.AreEqual(ResponseType.Null, result);
 
          // auth
          test = "I LOVE YOU\n";
@@ -199,7 +208,7 @@ namespace PServerClient.Tests
          //ChecksumRegex,
          test = "Checksum 2345";
          result = _factory.GetResponseType(test);
-         Assert.AreEqual(ResponseType.CheckSum, result);
+         Assert.AreEqual(ResponseType.Checksum, result);
 
          //CopyFileRegex,
          test = "Copy-file path";
@@ -295,6 +304,41 @@ namespace PServerClient.Tests
          test = "F message text";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Flush, result);
+      }
+
+      [Test]
+      public void CreateCommandsTest()
+      {
+         //Checkout command
+         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         CommandType type = CommandType.CheckOut;
+         ICommand command = _factory.CreateCommand(type, new object[] { root });
+         Assert.IsInstanceOf<CheckOutCommand>(command);
+
+         //Import command
+         type = CommandType.Import;
+         command = _factory.CreateCommand(type, new object[] { root });
+         Assert.IsInstanceOf<ImportCommand>(command);
+
+         //Log command
+         type = CommandType.Log;
+         command = _factory.CreateCommand(type, new object[] { root });
+         Assert.IsInstanceOf<LogCommand>(command);
+
+         //ValidRequestList command
+         type = CommandType.ValidRequestsList;
+         command = _factory.CreateCommand(type, new object[] { root });
+         Assert.IsInstanceOf<ValidRequestsListCommand>(command);
+
+         //VerifyAuth command
+         type = CommandType.VerifyAuth;
+         command = _factory.CreateCommand(type, new object[] { root });
+         Assert.IsInstanceOf<VerifyAuthCommand>(command);
+
+         //Version command
+         type = CommandType.Version;
+         command = _factory.CreateCommand(type, new object[] { root });
+         Assert.IsInstanceOf<VersionCommand>(command);
       }
    }
 }

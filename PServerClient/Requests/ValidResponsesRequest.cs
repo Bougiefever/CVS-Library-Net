@@ -1,6 +1,4 @@
-﻿using PServerClient.Responses;
-
-namespace PServerClient.Requests
+﻿namespace PServerClient.Requests
 {
    /// <summary>
    /// Valid-responses request-list \n

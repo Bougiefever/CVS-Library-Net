@@ -148,7 +148,7 @@ namespace PServerClient.Commands
             ValidRequestsRequest validRequests = (ValidRequestsRequest) RequiredRequests.Where(rr => rr.RequestType == RequestType.ValidRequests).FirstOrDefault();
             if (validRequests != null)
             {
-               ValidRequestResponse vr = (ValidRequestResponse) validRequests.Responses[0];
+               ValidRequestsResponse vr = (ValidRequestsResponse) validRequests.Responses[0];
                ValidRequestTypes = vr.ValidRequestTypes;
             }
          }

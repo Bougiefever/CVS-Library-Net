@@ -31,7 +31,7 @@ namespace PServerClient.IntegrationTests
       [Test]
       public void CheckoutCommandExecuteTest()
       {
-         CheckoutCommand command = new CheckoutCommand(_root);
+         CheckOutCommand command = new CheckOutCommand(_root);
          command.Execute();
          TestHelper.SaveCommandConversation(command, @"c:\_junk\checkout.xml");
       }

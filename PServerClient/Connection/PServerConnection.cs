@@ -63,7 +63,7 @@ namespace PServerClient.Connection
             line = ReadLine();
             if (line != null)
             {
-               ResponseFactory factory = new ResponseFactory();
+               PServerFactory factory = new PServerFactory();
                ResponseType responseType = factory.GetResponseType(line);
                IResponse response = factory.CreateResponse(responseType);
                IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);

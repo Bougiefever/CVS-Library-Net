@@ -59,7 +59,7 @@ namespace PServerClient.Tests.Commands
          IList<IResponse> authResponses = new List<IResponse> {authResponse};
 
          IRequest vrReq = new ValidRequestsRequest();
-         ValidRequestResponse vrRes = new ValidRequestResponse();
+         ValidRequestsResponse vrRes = new ValidRequestsResponse();
          IList<IResponse> otherResponses = new List<IResponse> {vrRes};
          vrRes.ValidRequestTypes = new List<RequestType> {RequestType.Add, RequestType.CheckOut, RequestType.CheckIn, RequestType.Modified, RequestType.Argument, RequestType.Update};
 
@@ -120,7 +120,7 @@ namespace PServerClient.Tests.Commands
          IList<IResponse> authResponses = new List<IResponse> {authResponse};
 
          IRequest vrReq = new ValidRequestsRequest();
-         ValidRequestResponse vrRes = new ValidRequestResponse();
+         ValidRequestsResponse vrRes = new ValidRequestsResponse();
          IList<IResponse> otherResponses = new List<IResponse> {vrRes};
          vrRes.ValidRequestTypes = new List<RequestType> {RequestType.Add, RequestType.CheckOut, RequestType.CheckIn, RequestType.Modified, RequestType.Argument, RequestType.Update};
 
@@ -192,7 +192,7 @@ namespace PServerClient.Tests.Commands
       {
          //create mock request/responses
          ValidRequestsRequest vrrequest = new ValidRequestsRequest();
-         ValidRequestResponse vrresponse = new ValidRequestResponse();
+         ValidRequestsResponse vrresponse = new ValidRequestsResponse();
          string process = "Root Valid-responses valid-requests Repository Directory";
          vrresponse.ProcessResponse(new List<string> {process});
          vrrequest.Responses = new List<IResponse> {vrresponse};
@@ -205,7 +205,7 @@ namespace PServerClient.Tests.Commands
          r2.ProcessResponse(lines);
          corequest.Responses = new List<IResponse> {r1, r2};
 
-         CheckoutCommand cmd = new CheckoutCommand(_root);
+         CheckOutCommand cmd = new CheckOutCommand(_root);
          cmd.Requests = new List<IRequest> {vrrequest, corequest};
       }
    }

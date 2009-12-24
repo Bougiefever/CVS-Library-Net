@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Commands
+﻿namespace PServerClient
 {
    public enum ExitCode
    {

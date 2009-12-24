@@ -5,7 +5,7 @@ namespace PServerClient.Responses
    public class NullResponse : ResponseBase
    {
       public override int LineCount { get { return 1; } }
-      public override ResponseType ResponseType { get { return ResponseType.Unknown; } }
+      public override ResponseType ResponseType { get { return ResponseType.Null; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

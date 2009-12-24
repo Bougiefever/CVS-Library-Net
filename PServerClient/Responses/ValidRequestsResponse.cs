@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using PServerClient.Requests;
 
 namespace PServerClient.Responses
 {
@@ -11,7 +10,7 @@ namespace PServerClient.Responses
    //‘update-patches’ in this list. The ‘update-patches’ request does not actually
    //do anything.
    /// </summary>
-   public class ValidRequestResponse : ResponseBase
+   public class ValidRequestsResponse : ResponseBase
    {
       public override ResponseType ResponseType { get { return ResponseType.ValidRequests; } }
       public IList<RequestType> ValidRequestTypes { get; internal set; }

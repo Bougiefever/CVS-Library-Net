@@ -73,7 +73,7 @@ namespace PServerClient.Tests.TestSetup
       public static IResponse XMLToResponse(XElement responseElement)
       {
          ResponseType rtype = (ResponseType)Convert.ToInt32(responseElement.Element("ResponseType").Value);
-         ResponseFactory factory = new ResponseFactory();
+         PServerFactory factory = new PServerFactory();
          IResponse response = factory.CreateResponse(rtype);
          IList<string> lines = new List<string>();
          XElement linesElement = responseElement.Descendants("ProcessLines").First();
@@ -249,7 +249,7 @@ namespace PServerClient.Tests.TestSetup
          switch (type)
          {
             case CommandType.CheckOut:
-               command = new CheckoutCommand(root);
+               command = new CheckOutCommand(root);
                break;
             case CommandType.Import:
                command = new ImportCommand(root);

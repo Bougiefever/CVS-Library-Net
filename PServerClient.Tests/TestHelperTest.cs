@@ -133,7 +133,7 @@ namespace PServerClient.Tests
       public void CommandToXMLTest()
       {
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
-         CheckoutCommand cmd = new CheckoutCommand(root);
+         CheckOutCommand cmd = new CheckOutCommand(root);
 
          // add responses to requests
          IResponse response = new AuthResponse();
@@ -142,7 +142,7 @@ namespace PServerClient.Tests
          IRequest request = cmd.RequiredRequests.Where(r => r.RequestType == RequestType.Auth).First();
          request.Responses.Add(response);
 
-         response = new ValidRequestResponse();
+         response = new ValidRequestsResponse();
          IList<string> lines = new List<string> { "Root Valid-responses valid-requests Global_option" };
          response.ProcessResponse(lines);
          request = cmd.RequiredRequests.Where(r => r.RequestType == RequestType.ValidRequests).First();
@@ -514,7 +514,7 @@ namespace PServerClient.Tests
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
          CommandType t = CommandType.CheckOut;
          ICommand cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<CheckoutCommand>(cmd);
+         Assert.IsInstanceOf<CheckOutCommand>(cmd);
 
          t = CommandType.Import;
          cmd = TestHelper.GetCommandByType(t, root);
@@ -623,24 +623,11 @@ namespace PServerClient.Tests
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
 
          ICommand cmd = TestHelper.CommandXMLToCommandObject(xdoc, root);
-         Assert.IsInstanceOf<CheckoutCommand>(cmd);
+         Assert.IsInstanceOf<CheckOutCommand>(cmd);
          
          Assert.AreEqual(2, cmd.RequiredRequests.Count);
          Assert.AreEqual(3, cmd.Requests.Count);
 
       }
-
-      [Test]
-      public void GetRequestByTypeTest()
-      {
-         for (int i = 0; i < 62; i++)
-         {
-            RequestType t = (RequestType) i;
-            IRequest r = TestHelper.GetRequestByType(t);
-            Console.WriteLine(t.ToString());
-            Assert.AreEqual(t, r.RequestType);
-         }
-      }
-
    }
 }

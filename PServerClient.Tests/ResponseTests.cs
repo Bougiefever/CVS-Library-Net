@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
-using PServerClient.Requests;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
 
@@ -65,7 +64,7 @@ namespace PServerClient.Tests
       {
          ChecksumResponse response = new ChecksumResponse();
          Assert.AreEqual(1, response.LineCount);
-         Assert.AreEqual(ResponseType.CheckSum, response.ResponseType);
+         Assert.AreEqual(ResponseType.Checksum, response.ResponseType);
          response.ProcessResponse(new List<string> {"123"});
          Assert.AreEqual("123", response.DisplayResponse());
          Assert.AreEqual("123", response.CheckSum);
@@ -385,7 +384,7 @@ namespace PServerClient.Tests
       {
          NullResponse response = new NullResponse();
          Assert.AreEqual(1, response.LineCount);
-         Assert.AreEqual(ResponseType.Unknown, response.ResponseType);
+         Assert.AreEqual(ResponseType.Null, response.ResponseType);
          response.ProcessResponse(new List<string> {""});
          Assert.AreEqual("", response.DisplayResponse());
          XElement el = TestHelper.ResponseToXML(response);
@@ -554,7 +553,7 @@ namespace PServerClient.Tests
       [Test]
       public void ValidRequestResponseTest()
       {
-         ValidRequestResponse response = new ValidRequestResponse();
+         ValidRequestsResponse response = new ValidRequestsResponse();
          Assert.AreEqual(1, response.LineCount);
          Assert.AreEqual(ResponseType.ValidRequests, response.ResponseType);
          string process = "Root Valid-responses valid-requests Repository Directory";
@@ -569,7 +568,7 @@ namespace PServerClient.Tests
       [Test]
       public void ValidRequestsResponseProcessTest()
       {
-         ValidRequestResponse response = new ValidRequestResponse();
+         ValidRequestsResponse response = new ValidRequestsResponse();
          IList<string> lines = new List<string> {"Root Valid-responses valid-requests Global_option"};
          response.ProcessResponse(lines);
          Assert.AreEqual(4, response.ValidRequestTypes.Count);

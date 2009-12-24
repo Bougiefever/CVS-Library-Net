@@ -7,9 +7,9 @@ using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
-   public class CheckoutCommand : CommandBase
+   public class CheckOutCommand : CommandBase
    {
-      public CheckoutCommand(Root root)
+      public CheckOutCommand(Root root)
          : base(root)
       {
          Requests.Add(new RootRequest(root));
