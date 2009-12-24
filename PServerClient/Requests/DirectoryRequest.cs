@@ -1,4 +1,4 @@
-ï»¿using PServerClient.CVS;
+using PServerClient.CVS;
 
 namespace PServerClient.Requests
 {
@@ -11,7 +11,7 @@ namespace PServerClient.Requests
    //for each directory in which there will be an Entry or Modified, and then a final
    //Directory for the original directory, then the command. The local-directory
    //is relative to the top level at which the command is occurring (i.e. the last
-   //Directory which is sent before the command); to indicate that top level, â€˜.â€™
+   //Directory which is sent before the command); to indicate that top level, ‘.’
    //should be sent for local-directory.
    /// </summary>
    public class DirectoryRequest : RequestBase
@@ -22,8 +22,9 @@ namespace PServerClient.Requests
          RequestLines[0] = string.Format("{0} .", RequestName);
          RequestLines[1] = string.Format("{0}/{1}", root.RepositoryPath, root.Module);
       }
+      public DirectoryRequest(string[] lines) : base(lines){}
 
       public override bool ResponseExpected { get { return false; } }
-      public override RequestType RequestType { get { return RequestType.Directory; } }
+      public override RequestType Type { get { return RequestType.Directory; } }
    }
 }

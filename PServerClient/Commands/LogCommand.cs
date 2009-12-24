@@ -1,4 +1,4 @@
-﻿using PServerClient.CVS;
+using PServerClient.CVS;
 using PServerClient.Requests;
 
 namespace PServerClient.Commands
@@ -18,6 +18,6 @@ namespace PServerClient.Commands
       public bool DefaultBranch { get; set; }
       public bool Dates { get; set; }
 
-      public override CommandType CommandType { get { return CommandType.Log; } }
+      public override CommandType Type { get { return CommandType.Log; } }
    }
 }

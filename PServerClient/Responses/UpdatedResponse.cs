@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// Updated pathname \n
@@ -11,6 +11,6 @@
    /// </summary>
    public class UpdatedResponse : FileResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.Updated; } }
+      public override ResponseType Type { get { return ResponseType.Updated; } }
    }
 }

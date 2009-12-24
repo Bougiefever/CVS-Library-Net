@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// watch-add \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class WatchAddRequest : NoArgRequestBase
    {
+      public WatchAddRequest(){}
+      public WatchAddRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.WatchAdd; } }
+      public override RequestType Type { get { return RequestType.WatchAdd; } }
    }
 }

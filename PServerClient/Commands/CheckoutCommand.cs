@@ -19,16 +19,16 @@ namespace PServerClient.Commands
          Requests.Add(new CheckOutRequest());
       }
 
-      public override CommandType CommandType { get { return CommandType.CheckOut; } }
+      public override CommandType Type { get { return CommandType.CheckOut; } }
 
       public override void PostExecute()
       {
-         IList<IResponse> checkOutResponses = Requests.Where(r => r.RequestType == RequestType.CheckOut)
+         IList<IResponse> checkOutResponses = Requests.Where(r => r.Type == RequestType.CheckOut)
             .First()
             .Responses;
          foreach (IResponse response in checkOutResponses)
          {
-            Console.WriteLine(response.ResponseType + ": ");
+            Console.WriteLine(response.Type + ": ");
             Console.WriteLine(response.DisplayResponse());
          }
          ServerFileReceiver fileReceiver = new ServerFileReceiver(Root);

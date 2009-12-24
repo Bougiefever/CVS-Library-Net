@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Argument text \n
@@ -11,7 +11,8 @@
       public ArgumentRequest(string arg) : base(arg)
       {
       }
+      public ArgumentRequest(string[] lines) : base(lines) {}
 
-      public override RequestType RequestType { get { return RequestType.Argument; } }
+      public override RequestType Type { get { return RequestType.Argument; } }
    }
 }

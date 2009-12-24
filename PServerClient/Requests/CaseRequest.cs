@@ -1,4 +1,4 @@
-ï»¿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Case \n
@@ -11,7 +11,7 @@
    //what the user specifies. For example the filenames given in Entry and Modified
    //requests for the same file must match in case regardless of whether the Case
    //request is sent. The latter mechanism is more general (it could also be used for
-   //8.3 filenames, VMS filenames with more than one â€˜.â€™, and any other situation in
+   //8.3 filenames, VMS filenames with more than one ‘.’, and any other situation in
    //which there is a predictable mapping between filenames in the working directory
    //and filenames in the protocol), but there are some situations it cannot handle
    //(ignore patterns, or situations where the user specifies a filename and the client
@@ -21,12 +21,14 @@
    //this functionality via the test suite and client developers are encouraged not to
    //use it. Instead, please consider munging conflicting names and maintaining a
    //map for communicating with the server. For example, suppose the server sends
-   //files â€˜caseâ€™, â€˜CASEâ€™, and â€˜CaSeâ€™. The client could write all three files to names
-   //such as, â€˜caseâ€™, â€˜case_prefix_caseâ€™, and â€˜case_prefix_2_caseâ€™ and maintain
-   //a mapping between the file names in, for instance a new â€˜CVS/Mapâ€™ file.
+   //files ‘case’, ‘CASE’, and ‘CaSe’. The client could write all three files to names
+   //such as, ‘case’, ‘case_prefix_case’, and ‘case_prefix_2_case’ and maintain
+   //a mapping between the file names in, for instance a new ‘CVS/Map’ file.
    /// </summary>
    public class CaseRequest : NoArgRequestBase
    {
-      public override RequestType RequestType { get { return RequestType.Case; } }
+      public CaseRequest() {}
+      public CaseRequest(string[] lines) : base(lines) {}
+      public override RequestType Type { get { return RequestType.Case; } }
    }
 }

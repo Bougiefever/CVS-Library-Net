@@ -1,4 +1,4 @@
-ï»¿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -8,12 +8,12 @@ namespace PServerClient.Responses
    //is relative to cvsroot, unlike most pathnames in responses. pathname should
    //be used to look and see whether some or all of the module exists on the client
    //side; it is not necessarily suitable for passing as an argument to a co request
-   //(for example, if the modules file contains the â€˜-dâ€™ option, it will be the directory
-   //specified with â€˜-dâ€™, not the name of the module).
+   //(for example, if the modules file contains the ‘-d’ option, it will be the directory
+   //specified with ‘-d’, not the name of the module).
    /// </summary>
    public class ModuleExpansionResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.ModuleExpansion; } }
+      public override ResponseType Type { get { return ResponseType.ModuleExpansion; } }
       public string ModuleName { get; set; }
 
       public override void ProcessResponse(IList<string> lines)

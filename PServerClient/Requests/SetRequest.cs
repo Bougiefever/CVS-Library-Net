@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Set variable=value \n
@@ -12,8 +12,8 @@
          RequestLines = new string[1];
          RequestLines[0] = string.Format("{0} {1}={2}", RequestName, variableName, value);
       }
-
+      public SetRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return false; } }
-      public override RequestType RequestType { get { return RequestType.Set; } }
+      public override RequestType Type { get { return RequestType.Set; } }
    }
 }

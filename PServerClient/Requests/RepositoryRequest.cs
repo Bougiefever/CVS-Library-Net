@@ -1,4 +1,4 @@
-﻿using PServerClient.CVS;
+using PServerClient.CVS;
 
 namespace PServerClient.Requests
 {
@@ -9,8 +9,8 @@ namespace PServerClient.Requests
          RequestLines = new string[1];
          RequestLines[0] = string.Format("{0} {1}", RequestName, root.RepositoryPath);
       }
-
+      public RepositoryRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return false; } }
-      public override RequestType RequestType { get { return RequestType.Repository; } }
+      public override RequestType Type { get { return RequestType.Repository; } }
    }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace PServerClient.Requests
 {
@@ -31,7 +31,8 @@ namespace PServerClient.Requests
          RequestLines[0] = string.Format("{0} {1}", RequestName, time);
       }
 
+      public CheckinTimeRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return false; } }
-      public override RequestType RequestType { get { return RequestType.CheckinTime; } }
+      public override RequestType Type { get { return RequestType.CheckinTime; } }
    }
 }

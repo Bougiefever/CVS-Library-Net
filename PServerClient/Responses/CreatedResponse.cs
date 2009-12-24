@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// Created pathname \n
@@ -15,6 +15,6 @@
    /// </summary>
    public class CreatedResponse : FileResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.Created; } }
+      public override ResponseType Type { get { return ResponseType.Created; } }
    }
 }

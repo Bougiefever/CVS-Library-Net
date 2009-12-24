@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Gzip-stream level \n
@@ -14,7 +14,8 @@
       public GzipStreamRequest(string level) : base(level)
       {
       }
+      public GzipStreamRequest(string[] lines) : base(lines){}
 
-      public override RequestType RequestType { get { return RequestType.GzipStream; } }
+      public override RequestType Type { get { return RequestType.GzipStream; } }
    }
 }

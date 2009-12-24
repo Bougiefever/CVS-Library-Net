@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// rannotate \n
@@ -9,7 +9,9 @@
    /// </summary>
    public class RAnnotateRequest : NoArgRequestBase
    {
+      public RAnnotateRequest(){}
+      public RAnnotateRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.RAnnotate; } }
+      public override RequestType Type { get { return RequestType.RAnnotate; } }
    }
 }

@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -9,7 +9,7 @@ namespace PServerClient.Responses
    //should be supplied with the Sticky request for future operations. pathname
    //ends in a slash; its purpose is to specify a directory, not a file within a directory.
    //The client should store tagspec and pass it back to the server as-is, to allow for
-   //future expansion. The first character of tagspec is â€˜Tâ€™ for a tag, â€˜Dâ€™ for a date,
+   //future expansion. The first character of tagspec is ‘T’ for a tag, ‘D’ for a date,
    //or something else for future expansion. The remainder of tagspec contains the
    //actual tag or date.
    /// </summary>
@@ -19,7 +19,7 @@ namespace PServerClient.Responses
       public string RepositoryPath { get; set; }
 
       public override int LineCount { get { return 2; } }
-      public override ResponseType ResponseType { get { return ResponseType.SetSticky; } }
+      public override ResponseType Type { get { return ResponseType.SetSticky; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

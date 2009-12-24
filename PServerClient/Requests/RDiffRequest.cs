@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// rdiff \n
@@ -9,7 +9,9 @@
    /// </summary>
    public class RDiffRequest : NoArgRequestBase
    {
+      public RDiffRequest(){}
+      public RDiffRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.RDiff; } }
+      public override RequestType Type { get { return RequestType.RDiff; } }
    }
 }

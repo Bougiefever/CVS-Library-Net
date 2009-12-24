@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Kerberos-encrypt \n
@@ -15,6 +15,8 @@
    /// </summary>
    public class KerberosEncryptRequest : NoArgRequestBase
    {
-      public override RequestType RequestType { get { return RequestType.KerberosEncrypt; } }
+      public KerberosEncryptRequest(){}
+      public KerberosEncryptRequest(string [] lines):base(lines){}
+      public override RequestType Type { get { return RequestType.KerberosEncrypt; } }
    }
 }

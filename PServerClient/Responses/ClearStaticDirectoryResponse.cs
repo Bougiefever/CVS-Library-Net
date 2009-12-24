@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -9,7 +9,7 @@ namespace PServerClient.Responses
    /// </summary>
    public class ClearStaticDirectoryResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.ClearStaticDirectory; } }
+      public override ResponseType Type { get { return ResponseType.ClearStaticDirectory; } }
       public string ModuleName { get; set; }
       public string RepositoryPath { get; set; }
 

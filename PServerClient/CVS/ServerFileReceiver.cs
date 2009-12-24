@@ -17,7 +17,7 @@ namespace PServerClient.CVS
 
       public void ProcessCheckoutResponses(IList<IResponse> checkOutResponses)
       {
-         if (checkOutResponses.Where(r => r.ResponseType == ResponseType.MessageTag).Count() > 1)
+         if (checkOutResponses.Where(r => r.Type == ResponseType.MessageTag).Count() > 1)
          {
             ReceiveMTUpdatedResponses(checkOutResponses);
          }
@@ -44,14 +44,14 @@ namespace PServerClient.CVS
       {
          int i = 0;
          IResponse response = responses[i++];
-         while (response.ResponseType != ResponseType.Ok)
+         while (response.Type != ResponseType.Ok)
          {
             IList<IResponse> entryResponses;
-            if (response.ResponseType == ResponseType.ModTime)
+            if (response.Type == ResponseType.ModTime)
             {
                entryResponses = new List<IResponse> {response};
                response = responses[i++];
-               while (response.ResponseType == ResponseType.MessageTag)
+               while (response.Type == ResponseType.MessageTag)
                {
                   MessageTagResponse r = (MessageTagResponse) response;
                   if (r.Message.StartsWith("fname"))
@@ -80,7 +80,7 @@ namespace PServerClient.CVS
 
       public void AddNewEntry(IList<IResponse> entryResponses)
       {
-         IResponse res = entryResponses.Where(r => r.ResponseType == ResponseType.MessageTag).First();
+         IResponse res = entryResponses.Where(r => r.Type == ResponseType.MessageTag).First();
          string[] names = PServerHelper.GetUpdatedFnamePathFile(res.DisplayResponse());
          string[] folders = names[0].Split(new[] {@"/"}, StringSplitOptions.RemoveEmptyEntries);
          Folder current = CreateFolderStructure(folders);
@@ -88,9 +88,9 @@ namespace PServerClient.CVS
          string filename = names[1];
          FileInfo fi = new FileInfo(Path.Combine(current.Info.FullName, filename));
          Entry entry = new Entry(fi);
-         res = entryResponses.Where(r => r.ResponseType == ResponseType.ModTime).First();
+         res = entryResponses.Where(r => r.Type == ResponseType.ModTime).First();
          entry.ModTime = ((ModTimeResponse) res).ModTime;
-         UpdatedResponse ur = (UpdatedResponse) entryResponses.Where(r => r.ResponseType == ResponseType.Updated).First();
+         UpdatedResponse ur = (UpdatedResponse) entryResponses.Where(r => r.Type == ResponseType.Updated).First();
          if (entry.Name == ur.File.Name)
          {
             entry.Revision = ur.File.Revision;

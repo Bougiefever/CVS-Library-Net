@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// editors \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class EditorsRequest : NoArgRequestBase
    {
+      public EditorsRequest(){}
+      public EditorsRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Editors; } }
+      public override RequestType Type { get { return RequestType.Editors; } }
    }
 }

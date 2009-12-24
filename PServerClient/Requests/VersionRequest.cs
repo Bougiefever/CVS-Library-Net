@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// version \n
@@ -7,7 +7,9 @@
    /// </summary>
    public class VersionRequest : NoArgRequestBase
    {
+      public VersionRequest(){}
+      public VersionRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Version; } }
+      public override RequestType Type { get { return RequestType.Version; } }
    }
 }

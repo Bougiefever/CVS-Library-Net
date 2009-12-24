@@ -12,6 +12,6 @@ namespace PServerClient.Commands
          RequiredRequests.Add(new ValidRequestsRequest());
       }
 
-      public override CommandType CommandType { get { return CommandType.ValidRequestsList; } }
+      public override CommandType Type { get { return CommandType.ValidRequestsList; } }
    }
 }

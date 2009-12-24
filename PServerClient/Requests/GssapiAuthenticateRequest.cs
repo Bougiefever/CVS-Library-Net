@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Gssapi-authenticate \n
@@ -14,6 +14,8 @@
    /// </summary>
    public class GssapiAuthenticateRequest : NoArgRequestBase
    {
-      public override RequestType RequestType { get { return RequestType.GssapiAuthenticate; } }
+      public GssapiAuthenticateRequest(){}
+      public GssapiAuthenticateRequest(string[] lines) : base(lines){}
+      public override RequestType Type { get { return RequestType.GssapiAuthenticate; } }
    }
 }

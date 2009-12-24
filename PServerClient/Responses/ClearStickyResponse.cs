@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -9,7 +9,7 @@ namespace PServerClient.Responses
    /// </summary>
    public class ClearStickyResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.ClearSticky; } }
+      public override ResponseType Type { get { return ResponseType.ClearSticky; } }
       public string ModuleName { get; set; }
       public string RepositoryPath { get; set; }
 

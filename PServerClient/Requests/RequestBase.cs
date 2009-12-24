@@ -13,7 +13,12 @@ namespace PServerClient.Requests
          Responses = new List<IResponse>();
       }
 
-      public string RequestName { get { return RequestHelper.RequestNames[(int) RequestType]; } }
+      protected RequestBase(string[] lines)
+      {
+         RequestLines = lines;
+      }
+
+      public string RequestName { get { return RequestHelper.RequestNames[(int) Type]; } }
 
       #region IRequest Members
 
@@ -30,7 +35,7 @@ namespace PServerClient.Requests
          return request;
       }
 
-      public abstract RequestType RequestType { get; }
+      public abstract RequestType Type { get; }
       public string[] RequestLines { get; internal set; }
       public IList<IResponse> Responses { get; set; }
 

@@ -8,6 +8,6 @@ namespace PServerClient.Commands
       {
       }
 
-      public override CommandType CommandType { get { return CommandType.Import; } }
+      public override CommandType Type { get { return CommandType.Import; } }
    }
 }

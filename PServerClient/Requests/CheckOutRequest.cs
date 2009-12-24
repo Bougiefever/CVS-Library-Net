@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// co \n
@@ -11,7 +11,9 @@
    /// </summary>
    public class CheckOutRequest : NoArgRequestBase
    {
+      public CheckOutRequest() {}
+      public CheckOutRequest(string[] lines) : base(lines) {}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.CheckOut; } }
+      public override RequestType Type { get { return RequestType.CheckOut; } }
    }
 }

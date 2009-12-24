@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Empty-conflicts \n
@@ -11,7 +11,9 @@
    /// </summary>
    public class EmptyConflictsRequest : NoArgRequestBase
    {
+      public EmptyConflictsRequest(){}
+      public EmptyConflictsRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.EmptyConflicts; } }
+      public override RequestType Type { get { return RequestType.EmptyConflicts; } }
    }
 }

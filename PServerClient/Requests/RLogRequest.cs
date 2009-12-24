@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// rlog \n
@@ -9,7 +9,9 @@
    /// </summary>
    public class RLogRequest : NoArgRequestBase
    {
+      public RLogRequest(){}
+      public RLogRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.RLog; } }
+      public override RequestType Type { get { return RequestType.RLog; } }
    }
 }

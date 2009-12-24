@@ -1,11 +1,11 @@
-ï»¿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// log \n
    //Response expected: yes. Show information for past revisions. This uses any
    //previous Directory, Entry, or Modified requests, if they have been sent. The
    //last Directory sent specifies the working directory at the time of the operation.
-   //Also uses previous Argumentâ€™s of which the canonical forms are the following
+   //Also uses previous Argument’s of which the canonical forms are the following
    //(cvs 1.10 and older clients sent what the user specified, but clients are encour-
    //aged to use the canonical forms and other forms are deprecated):
    //-b, -h, -l, -N, -R, -t
@@ -16,33 +16,35 @@
    //(clients may specify dates such as 1 Jan 1970 or 1 Jan 2038 for
    //similar purposes but this is problematic as it makes assumptions
    //about what dates the server supports). Dates are in RFC822/1123
-   //format. The â€˜-dâ€™ is one Argument request and the date range is a
+   //format. The ‘-d’ is one Argument request and the date range is a
    //second one.
    //-d date1<=date2
    //Likewise but compare dates for equality.
    //-d singledate
    //Select the single, latest revision dated singledate or earlier.
-   //To include several date ranges and/or singledates, repeat the â€˜-dâ€™
+   //To include several date ranges and/or singledates, repeat the ‘-d’
    //option as many times as necessary.
    //-rrev1:rev2
    //-rbranch
    //-rbranch.
    //-r
    //Specify revisions (note that rev1 or rev2 can be omitted, or can
-   //refer to branches). Send both the â€˜-râ€™ and the revision information
+   //refer to branches). Send both the ‘-r’ and the revision information
    //in a single Argument request. To include several revision selections,
-   //repeat the â€˜-râ€™ option.
+   //repeat the ‘-r’ option.
    //-s state
    //-w
    //-wlogin
    //Select on states or users. To include more than one state or user,
-   //repeat the option. Send the â€˜-sâ€™ option as a separate argument
-   //from the state being selected. Send the â€˜-wâ€™ option as part of the
+   //repeat the option. Send the ‘-s’ option as a separate argument
+   //from the state being selected. Send the ‘-w’ option as part of the
    //same argument as the user being selected.
    /// </summary>
    public class LogRequest : NoArgRequestBase
    {
+      public LogRequest(){}
+      public LogRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Log; } }
+      public override RequestType Type { get { return RequestType.Log; } }
    }
 }

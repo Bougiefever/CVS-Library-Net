@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// watch-remove \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class WatchRemoveRequest : NoArgRequestBase
    {
+      public WatchRemoveRequest(){}
+      public WatchRemoveRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.WatchRemove; } }
+      public override RequestType Type { get { return RequestType.WatchRemove; } }
    }
 }

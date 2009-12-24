@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +25,11 @@ namespace PServerClient.Requests
          Responses = new List<IResponse>();
       }
 
+      protected AuthRequestBase(string[] lines)
+      {
+         RequestLines = lines;
+      }
+
       #region IAuthRequest Members
 
       public bool ResponseExpected { get { return true; } }
@@ -42,7 +47,7 @@ namespace PServerClient.Requests
       }
 
       public IList<IResponse> Responses { get; set; }
-      public abstract RequestType RequestType { get; }
+      public abstract RequestType Type { get; }
 
       public AuthStatus Status
       {

@@ -11,7 +11,7 @@ namespace PServerClient.Requests
       bool ResponseExpected { get; }
       IList<IResponse> Responses { get; set; }
       string[] RequestLines { get; }
-      RequestType RequestType { get; }
+      RequestType Type { get; }
       string GetRequestString();
    }
 

@@ -139,17 +139,17 @@ namespace PServerClient.Tests
          IResponse response = new AuthResponse();
          IList<string> process = new List<string> { "I LOVE YOU" };
          response.ProcessResponse(process);
-         IRequest request = cmd.RequiredRequests.Where(r => r.RequestType == RequestType.Auth).First();
+         IRequest request = cmd.RequiredRequests.Where(r => r.Type == RequestType.Auth).First();
          request.Responses.Add(response);
 
          response = new ValidRequestsResponse();
          IList<string> lines = new List<string> { "Root Valid-responses valid-requests Global_option" };
          response.ProcessResponse(lines);
-         request = cmd.RequiredRequests.Where(r => r.RequestType == RequestType.ValidRequests).First();
+         request = cmd.RequiredRequests.Where(r => r.Type == RequestType.ValidRequests).First();
          request.Responses.Add(response);
 
          IList<IResponse> coresponses = TestHelper.GetMockCheckoutResponses("8 Dec 2009 15:26:27 -0000", "mymod/", "file1.cs");
-         request = cmd.Requests.Where(r => r.RequestType == RequestType.CheckOut).First();
+         request = cmd.Requests.Where(r => r.Type == RequestType.CheckOut).First();
          foreach (IResponse cor in coresponses)
          {
             request.Responses.Add(cor);
@@ -509,35 +509,6 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void GetCommandByTypeTest()
-      {
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
-         CommandType t = CommandType.CheckOut;
-         ICommand cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<CheckOutCommand>(cmd);
-
-         t = CommandType.Import;
-         cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<ImportCommand>(cmd);
-
-         t = CommandType.Log;
-         cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<LogCommand>(cmd);
-
-         t = CommandType.ValidRequestsList;
-         cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<ValidRequestsListCommand>(cmd);
-
-         t = CommandType.VerifyAuth;
-         cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<VerifyAuthCommand>(cmd);
-
-         t = CommandType.Version;
-         cmd = TestHelper.GetCommandByType(t, root);
-         Assert.IsInstanceOf<VersionCommand>(cmd);
-      }
-
-      [Test]
       public void CommandXMLToCommandObjectTest()
       {
          string xml = @"<?xml version='1.0' encoding='utf-8'?>
@@ -627,7 +598,6 @@ namespace PServerClient.Tests
          
          Assert.AreEqual(2, cmd.RequiredRequests.Count);
          Assert.AreEqual(3, cmd.Requests.Count);
-
       }
    }
 }

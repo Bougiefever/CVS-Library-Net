@@ -1,4 +1,4 @@
-﻿using PServerClient.CVS;
+using PServerClient.CVS;
 
 namespace PServerClient.Requests
 {
@@ -7,7 +7,7 @@ namespace PServerClient.Requests
       public AuthRequest(Root root) : base(root, RequestType.Auth)
       {
       }
-
-      public override RequestType RequestType { get { return RequestType.Auth; } }
+      public AuthRequest(string[] lines) : base(lines) {}
+      public override RequestType Type { get { return RequestType.Auth; } }
    }
 }

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
    public class ModTimeResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.ModTime; } }
+      public override ResponseType Type { get { return ResponseType.ModTime; } }
       public DateTime ModTime { get; set; }
 
       public override void ProcessResponse(IList<string> lines)

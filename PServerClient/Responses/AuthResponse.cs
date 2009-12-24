@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -11,7 +11,7 @@ namespace PServerClient.Responses
 
       public AuthStatus Status { get; private set; }
       public override int LineCount { get { return 1; } }
-      public override ResponseType ResponseType { get { return ResponseType.Auth; } }
+      public override ResponseType Type { get { return ResponseType.Auth; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

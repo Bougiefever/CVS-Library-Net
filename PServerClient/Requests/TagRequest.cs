@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// tag \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class TagRequest : NoArgRequestBase
    {
+      public TagRequest(){}
+      public TagRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Tag; } }
+      public override RequestType Type { get { return RequestType.Tag; } }
    }
 }

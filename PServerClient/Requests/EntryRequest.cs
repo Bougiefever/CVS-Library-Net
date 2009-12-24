@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Entry entry-line \n
@@ -20,8 +20,9 @@
          RequestLines = new string[1];
          RequestLines[0] = string.Format("{0} {1}", RequestName, entryLine);
       }
+      public EntryRequest(string[] lines) : base(lines) {}
 
       public override bool ResponseExpected { get { return false; } }
-      public override RequestType RequestType { get { return RequestType.Entry; } }
+      public override RequestType Type { get { return RequestType.Entry; } }
    }
 }

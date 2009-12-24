@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Static-directory \n
@@ -10,6 +10,8 @@
    /// </summary>
    public class StaticDirectoryRequest : NoArgRequestBase
    {
-      public override RequestType RequestType { get { return RequestType.StaticDirectory; } }
+      public StaticDirectoryRequest(){}
+      public StaticDirectoryRequest(string[] lines):base(lines){}
+      public override RequestType Type { get { return RequestType.StaticDirectory; } }
    }
 }

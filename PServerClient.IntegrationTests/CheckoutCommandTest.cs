@@ -41,11 +41,11 @@ namespace PServerClient.IntegrationTests
          IList<IRequest> requests = command.Requests;
          foreach (IRequest request in requests)
          {
-            Console.WriteLine(request.RequestType + ":");
+            Console.WriteLine(request.Type + ":");
             if (request.ResponseExpected)
                foreach (IResponse response in request.Responses)
                {
-                  Console.WriteLine(response.ResponseType);
+                  Console.WriteLine(response.Type);
                   //Console.WriteLine(response.ResponseText);
                }
          }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -9,7 +9,7 @@ namespace PServerClient.Responses
       public string RepositoryPath { get; set; }
 
       public override int LineCount { get { return 2; } }
-      public override ResponseType ResponseType { get { return ResponseType.SetStaticDirectory; } }
+      public override ResponseType Type { get { return ResponseType.SetStaticDirectory; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

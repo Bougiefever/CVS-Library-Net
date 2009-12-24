@@ -28,7 +28,7 @@ namespace PServerClient.Tests
          const string expected = "add\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -44,7 +44,7 @@ namespace PServerClient.Tests
          const string expected = "admin\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -60,7 +60,7 @@ namespace PServerClient.Tests
          const string expected = "annotate\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -76,7 +76,7 @@ namespace PServerClient.Tests
          const string expected = "Argument -a\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -92,7 +92,7 @@ namespace PServerClient.Tests
          const string expected = "Argumentx -a\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -108,7 +108,7 @@ namespace PServerClient.Tests
          const string expected = "BEGIN AUTH REQUEST\n/f1/f2/f3\nusername\nA:yZZ30 e\nEND AUTH REQUEST\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -124,7 +124,7 @@ namespace PServerClient.Tests
          const string expected = "Case\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -140,7 +140,7 @@ namespace PServerClient.Tests
          const string expected = "ci\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -157,7 +157,7 @@ namespace PServerClient.Tests
          const string expected = "Checkin-time 06 Nov 2009 14:21:08 -0000\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -173,7 +173,7 @@ namespace PServerClient.Tests
          const string expected = "co\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -189,7 +189,7 @@ namespace PServerClient.Tests
          const string expected = "diff\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -205,7 +205,7 @@ namespace PServerClient.Tests
          const string expected = "Directory .\n/f1/f2/f3/mod1\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -221,7 +221,7 @@ namespace PServerClient.Tests
          const string expected = "editors\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -237,7 +237,7 @@ namespace PServerClient.Tests
          const string expected = "Empty-conflicts\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -253,7 +253,7 @@ namespace PServerClient.Tests
          const string expected = "Entry /file.cs/1.1.1/a/b/c\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -269,7 +269,7 @@ namespace PServerClient.Tests
          const string expected = "expand-modules\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -285,7 +285,7 @@ namespace PServerClient.Tests
          const string expected = "export\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -301,7 +301,7 @@ namespace PServerClient.Tests
          const string expected = "Global_option -o\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -317,7 +317,7 @@ namespace PServerClient.Tests
          const string expected = "Gssapi-authenticate\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -333,7 +333,7 @@ namespace PServerClient.Tests
          const string expected = "Gssapi-encrypt\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -349,7 +349,7 @@ namespace PServerClient.Tests
          const string expected = "gzip-file-contents 1\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -365,7 +365,7 @@ namespace PServerClient.Tests
          const string expected = "Gzip-stream 1\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -381,7 +381,7 @@ namespace PServerClient.Tests
          const string expected = "history\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -397,7 +397,7 @@ namespace PServerClient.Tests
          const string expected = "import\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -413,7 +413,7 @@ namespace PServerClient.Tests
          const string expected = "init sandbox\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -429,7 +429,7 @@ namespace PServerClient.Tests
          const string expected = "Is-modified file.cs\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -445,7 +445,7 @@ namespace PServerClient.Tests
          const string expected = "Kerberos-encrypt\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -461,7 +461,7 @@ namespace PServerClient.Tests
          const string expected = "Kopt -kb\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -477,7 +477,7 @@ namespace PServerClient.Tests
          const string expected = "log\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -493,7 +493,7 @@ namespace PServerClient.Tests
          const string expected = "Lost file.cs\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -509,7 +509,7 @@ namespace PServerClient.Tests
          const string expected = "Max-dotdot one\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -525,7 +525,7 @@ namespace PServerClient.Tests
          const string expected = "Modified file.cs\nu=rw,g=rw,o=rw\n6\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -541,7 +541,7 @@ namespace PServerClient.Tests
          const string expected = "noop\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -557,7 +557,7 @@ namespace PServerClient.Tests
          const string expected = "Notify file.cs\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -573,7 +573,7 @@ namespace PServerClient.Tests
          const string expected = "Questionable file.cs\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -589,7 +589,7 @@ namespace PServerClient.Tests
          const string expected = "rannotate\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -605,7 +605,7 @@ namespace PServerClient.Tests
          const string expected = "rdiff\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -621,7 +621,7 @@ namespace PServerClient.Tests
          const string expected = "release\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -637,7 +637,7 @@ namespace PServerClient.Tests
          const string expected = "remove\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -653,7 +653,7 @@ namespace PServerClient.Tests
          const string expected = "Repository /f1/f2/f3\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -679,7 +679,7 @@ namespace PServerClient.Tests
          const string expected = "rlog\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -695,7 +695,7 @@ namespace PServerClient.Tests
          const string expected = "Root /f1/f2/f3\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -711,7 +711,7 @@ namespace PServerClient.Tests
          const string expected = "rtag\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -727,7 +727,7 @@ namespace PServerClient.Tests
          const string expected = "Set rabbit=Peter\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -743,7 +743,7 @@ namespace PServerClient.Tests
          const string expected = "Static-directory\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -759,7 +759,7 @@ namespace PServerClient.Tests
          const string expected = "status\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -775,7 +775,7 @@ namespace PServerClient.Tests
          const string expected = "Sticky idk\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -791,7 +791,7 @@ namespace PServerClient.Tests
          const string expected = "tag\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -807,7 +807,7 @@ namespace PServerClient.Tests
          const string expected = "Unchanged file.cs\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -823,7 +823,7 @@ namespace PServerClient.Tests
          const string expected = "update-patches\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -839,7 +839,7 @@ namespace PServerClient.Tests
          const string expected = "update\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -855,7 +855,7 @@ namespace PServerClient.Tests
          const string expected = "UseUnchanged\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -871,7 +871,7 @@ namespace PServerClient.Tests
          const string expected = "valid-requests\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -887,7 +887,7 @@ namespace PServerClient.Tests
          const string expected = "Valid-responses ok MT E\n";
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -903,7 +903,7 @@ namespace PServerClient.Tests
          const string expected = "BEGIN VERIFICATION REQUEST\n/f1/f2/f3\nusername\nA:yZZ30 e\nEND VERIFICATION REQUEST\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -919,7 +919,7 @@ namespace PServerClient.Tests
          const string expected = "version\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -935,7 +935,7 @@ namespace PServerClient.Tests
          const string expected = "watch-add\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -951,7 +951,7 @@ namespace PServerClient.Tests
          const string expected = "watchers\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -967,7 +967,7 @@ namespace PServerClient.Tests
          const string expected = "watch-off\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -983,7 +983,7 @@ namespace PServerClient.Tests
          const string expected = "watch-on\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -999,7 +999,7 @@ namespace PServerClient.Tests
          const string expected = "watch-remove\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
@@ -1015,7 +1015,7 @@ namespace PServerClient.Tests
          const string expected = "wrapper-sendme-rcsOptions\n";
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
-         Assert.AreEqual(type, request.RequestType);
+         Assert.AreEqual(type, request.Type);
          XElement el = TestHelper.RequestToXML(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);

@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// valid-requests \n
@@ -7,7 +7,9 @@
    /// </summary>
    public class ValidRequestsRequest : NoArgRequestBase
    {
+      public ValidRequestsRequest(){}
+      public ValidRequestsRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.ValidRequests; } }
+      public override RequestType Type { get { return RequestType.ValidRequests; } }
    }
 }

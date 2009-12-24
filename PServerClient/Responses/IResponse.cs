@@ -5,7 +5,7 @@ namespace PServerClient.Responses
    public interface IResponse
    {
       int LineCount { get; }
-      ResponseType ResponseType { get; }
+      ResponseType Type { get; }
       string[] ResponseLines { get; }
       void ProcessResponse(IList<string> lines);
       string DisplayResponse();

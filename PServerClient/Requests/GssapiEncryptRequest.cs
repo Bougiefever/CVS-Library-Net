@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Gssapi-encrypt \n
@@ -12,6 +12,8 @@
    /// </summary>
    public class GssapiEncryptRequest : NoArgRequestBase
    {
-      public override RequestType RequestType { get { return RequestType.GssapiEncrypt; } }
+      public GssapiEncryptRequest(){}
+      public GssapiEncryptRequest(string[] lines) : base(lines){}
+      public override RequestType Type { get { return RequestType.GssapiEncrypt; } }
    }
 }

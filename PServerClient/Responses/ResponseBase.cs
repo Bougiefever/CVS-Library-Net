@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -12,12 +12,12 @@ namespace PServerClient.Responses
       public virtual void ProcessResponse(IList<string> lines)
       {
          ResponseLines = new string[LineCount];
-         ResponseLines[0] = ResponseHelper.ResponseNames[(int) ResponseType] + " " + lines[0];
+         ResponseLines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
          for (int i = 1; i < LineCount; i++)
             ResponseLines[i] = lines[i];
       }
 
-      public abstract ResponseType ResponseType { get; }
+      public abstract ResponseType Type { get; }
 
       public virtual string DisplayResponse()
       {

@@ -66,7 +66,7 @@ namespace PServerClient.Commands
 
       #region ICommand Members
 
-      public abstract CommandType CommandType { get; }
+      public abstract CommandType Type { get; }
       public IList<IRequest> RequiredRequests { get; internal set; }
 
       public IList<IRequest> Requests { get; set; }
@@ -87,7 +87,7 @@ namespace PServerClient.Commands
                foreach (IRequest request in Requests)
                {
                   request.Responses = Connection.DoRequest(request);
-                  if (request.Responses.Where(r => r.ResponseType == ResponseType.Error).Count() > 0)
+                  if (request.Responses.Where(r => r.Type == ResponseType.Error).Count() > 0)
                   {
                      ExitCode = ExitCode.Failed;
                      break;
@@ -131,21 +131,21 @@ namespace PServerClient.Commands
          if (status == AuthStatus.Authenticated)
          {
             code = ExitCode.Succeeded;
-            IEnumerable<IRequest> otherRequests = RequiredRequests.Where(r => r.RequestType != RequestType.Auth && r.RequestType != RequestType.VerifyAuth);
+            IEnumerable<IRequest> otherRequests = RequiredRequests.Where(r => r.Type != RequestType.Auth && r.Type != RequestType.VerifyAuth);
             foreach (IRequest request in otherRequests)
             {
                request.Responses = Connection.DoRequest(request);
-               if (request.Responses.Where(r => r.ResponseType == ResponseType.Error).Count() > 0)
+               if (request.Responses.Where(r => r.Type == ResponseType.Error).Count() > 0)
                {
                   code = ExitCode.Failed;
                   break;
                }
             }
          }
-         if (code == ExitCode.Succeeded && authRequest.RequestType == RequestType.Auth)
+         if (code == ExitCode.Succeeded && authRequest.Type == RequestType.Auth)
          {
             // set the valid request list
-            ValidRequestsRequest validRequests = (ValidRequestsRequest) RequiredRequests.Where(rr => rr.RequestType == RequestType.ValidRequests).FirstOrDefault();
+            ValidRequestsRequest validRequests = (ValidRequestsRequest) RequiredRequests.Where(rr => rr.Type == RequestType.ValidRequests).FirstOrDefault();
             if (validRequests != null)
             {
                ValidRequestsResponse vr = (ValidRequestsResponse) validRequests.Responses[0];
@@ -161,7 +161,7 @@ namespace PServerClient.Commands
          {
             if (ValidRequestTypes.Count > 0)
             {
-               if (!ValidRequestTypes.Contains(request.RequestType))
+               if (!ValidRequestTypes.Contains(request.Type))
                   return false;
             }
          }

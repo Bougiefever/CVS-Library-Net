@@ -78,7 +78,7 @@ namespace PServerClient.Tests.Commands
          Expect.Call(_connection.DoRequest(vrReq)).Return(otherResponses).Repeat.Once();
          Expect.Call(authRequest.Responses).PropertyBehavior();
          Expect.Call(authRequest.Status).Return(AuthStatus.Authenticated);
-         Expect.Call(authRequest.RequestType).Return(RequestType.Auth);
+         Expect.Call(authRequest.Type).Return(RequestType.Auth);
          Expect.Call(_connection.DoRequest(otherRequest)).Return(new List<IResponse>());
          Expect.Call(_connection.Close).Repeat.Once();
 
@@ -130,7 +130,7 @@ namespace PServerClient.Tests.Commands
          Expect.Call(_connection.DoRequest(vrReq)).Return(otherResponses).Repeat.Once();
          Expect.Call(authRequest.Responses).PropertyBehavior();
          Expect.Call(authRequest.Status).Return(AuthStatus.Authenticated);
-         Expect.Call(authRequest.RequestType).Return(RequestType.Auth);
+         Expect.Call(authRequest.Type).Return(RequestType.Auth);
 
          _mocks.ReplayAll();
          ExitCode result = cmd.ExecuteRequiredRequests();
@@ -176,7 +176,7 @@ namespace PServerClient.Tests.Commands
          Expect.Call(_connection.DoRequest(authRequest)).Return(authResponses).Repeat.Once();
          Expect.Call(authRequest.Responses).PropertyBehavior();
          Expect.Call(authRequest.Status).Return(AuthStatus.Authenticated);
-         Expect.Call(authRequest.RequestType).Return(RequestType.Auth);
+         Expect.Call(authRequest.Type).Return(RequestType.Auth);
          Expect.Call(otherRequest.Responses).PropertyBehavior();
          Expect.Call(_connection.DoRequest(otherRequest)).Return(errorResponse);
 

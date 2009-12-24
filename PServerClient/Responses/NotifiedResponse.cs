@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -12,7 +12,7 @@ namespace PServerClient.Responses
    public class NotifiedResponse : ResponseBase
    {
       public string RepositoryPath { get; private set; }
-      public override ResponseType ResponseType { get { return ResponseType.Notified; } }
+      public override ResponseType Type { get { return ResponseType.Notified; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

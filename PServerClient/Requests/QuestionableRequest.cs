@@ -1,11 +1,11 @@
-ï»¿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// Questionable filename \n
    //Response expected: no. Additional data: no. Tell the server to check whether
    //filename should be ignored, and if not, next time the server sends responses,
-   //send (in a M response) â€˜?â€™ followed by the directory and filename. filename must
-   //not contain â€˜/â€™; it needs to be a file in the directory named by the most recent
+   //send (in a M response) ‘?’ followed by the directory and filename. filename must
+   //not contain ‘/’; it needs to be a file in the directory named by the most recent
    //Directory request.
    /// </summary>
    public class QuestionableRequest : OneArgRequestBase
@@ -13,7 +13,7 @@
       public QuestionableRequest(string fileName) : base(fileName)
       {
       }
-
-      public override RequestType RequestType { get { return RequestType.Questionable; } }
+      public QuestionableRequest(string[] lines) : base(lines){}
+      public override RequestType Type { get { return RequestType.Questionable; } }
    }
 }

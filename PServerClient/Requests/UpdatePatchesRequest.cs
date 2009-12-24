@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// update-patches \n
@@ -9,7 +9,9 @@
    /// </summary>
    public class UpdatePatchesRequest : NoArgRequestBase
    {
+      public UpdatePatchesRequest(){}
+      public UpdatePatchesRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.UpdatePatches; } }
+      public override RequestType Type { get { return RequestType.UpdatePatches; } }
    }
 }

@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// UseUnchanged \n
@@ -8,6 +8,8 @@
    /// </summary>
    public class UseUnchangedRequest : NoArgRequestBase
    {
-      public override RequestType RequestType { get { return RequestType.UseUnchanged; } }
+      public UseUnchangedRequest(){}
+      public UseUnchangedRequest(string[] lines):base(lines){}
+      public override RequestType Type { get { return RequestType.UseUnchanged; } }
    }
 }

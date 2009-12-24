@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// Checked-in pathname \n
@@ -8,6 +8,6 @@
    /// </summary>
    public class CheckedInResponse : FileResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.CheckedIn; } }
+      public override ResponseType Type { get { return ResponseType.CheckedIn; } }
    }
 }

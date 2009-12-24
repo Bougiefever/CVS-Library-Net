@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// import \n 
@@ -14,7 +14,9 @@
    /// </summary>
    public class ImportRequest : NoArgRequestBase
    {
+      public ImportRequest(){}
+      public ImportRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Import; } }
+      public override RequestType Type { get { return RequestType.Import; } }
    }
 }

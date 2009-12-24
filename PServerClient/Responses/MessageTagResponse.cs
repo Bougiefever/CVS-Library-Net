@@ -1,4 +1,4 @@
-ï»¿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// MT tagname data \n
@@ -7,16 +7,16 @@
    //it without understanding the structure. The syntax is not SGML-like, however,
    //in order to fit into the CVS protocol better and (more importantly) to make it
    //easier to parse, especially in a language like perl or awk.
-   //The tagname can have several forms. If it starts with â€˜aâ€™ to â€˜zâ€™ or â€˜Aâ€™ to â€˜Zâ€™,
+   //The tagname can have several forms. If it starts with ‘a’ to ‘z’ or ‘A’ to ‘Z’,
    //then it represents tagged text. If the implementation recognizes tagname, then
    //it may interpret data in some particular fashion. If the implementation does
    //not recognize tagname, then it should simply treat data as text to be sent to the
-   //user (similar to an â€˜Mâ€™ response). There are two tags which are general purpose.
-   //The â€˜textâ€™ tag is similar to an unrecognized tag in that it provides text which
-   //will ordinarily be sent to the user. The â€˜newlineâ€™ tag is used without data and
+   //user (similar to an ‘M’ response). There are two tags which are general purpose.
+   //The ‘text’ tag is similar to an unrecognized tag in that it provides text which
+   //will ordinarily be sent to the user. The ‘newline’ tag is used without data and
    //indicates that a newline will ordinarily be sent to the user (there is no provision
    //for embedding newlines in the data of other tagged text responses).
-   //If tagname starts with â€˜+â€™ it indicates a start tag and if it starts with â€˜-â€™ it
+   //If tagname starts with ‘+’ it indicates a start tag and if it starts with ‘-’ it
    //indicates an end tag. The remainder of tagname should be the same for match-
    //ing start and end tags, and tags should be nested (for example one could have
    //tags in the following order +bold +italic text -italic -bold but not +bold
@@ -26,8 +26,8 @@
    //tagname and data; if there is more than one space, then the spaces beyond the
    //first are part of data.
    //Here is an example of some tagged text responses. Note that there is a trailing
-   //space after â€˜Checking inâ€™ and â€˜initial revision:â€™ and there are two trailing
-   //spaces after â€˜<--â€™. Such trailing spaces are, of course, part of data.
+   //space after ‘Checking in’ and ‘initial revision:’ and there are two trailing
+   //spaces after ‘<--’. Such trailing spaces are, of course, part of data.
    //MT +checking-in
    //MT text Checking in
    //MT fname gz.tst
@@ -44,7 +44,7 @@
    //MT text done
    //MT newline
    //MT -checking-in
-   //If the client does not support the â€˜MTâ€™ response, the same responses might be
+   //If the client does not support the ‘MT’ response, the same responses might be
    //sent as:
    //M Checking in gz.tst;
    //M /home/kingdon/zwork/cvsroot/foo/gz.tst,v <-- gz.tst
@@ -54,6 +54,6 @@
    /// </summary>
    public class MessageTagResponse : MessageResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.MessageTag; } }
+      public override ResponseType Type { get { return ResponseType.MessageTag; } }
    }
 }

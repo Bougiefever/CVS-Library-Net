@@ -1,4 +1,4 @@
-﻿using PServerClient.CVS;
+using PServerClient.CVS;
 using PServerClient.Requests;
 
 namespace PServerClient.Commands
@@ -12,6 +12,6 @@ namespace PServerClient.Commands
          Requests.Add(new VersionRequest());
       }
 
-      public override CommandType CommandType { get { return CommandType.Version; } }
+      public override CommandType Type { get { return CommandType.Version; } }
    }
 }

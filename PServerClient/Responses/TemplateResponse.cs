@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// Template pathname \n
@@ -12,7 +12,7 @@
    {
       #region IFileResponse Members
 
-      public override ResponseType ResponseType { get { return ResponseType.Template; } }
+      public override ResponseType Type { get { return ResponseType.Template; } }
 
       #endregion
    }

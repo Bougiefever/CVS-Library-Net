@@ -1,4 +1,4 @@
-ï»¿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// gzip-file-contents level \n
@@ -11,7 +11,7 @@
    //this request is not made, the server must not compress files.
    //This is only a hint to the server. It may still decide (for example, in the case
    //of very small files, or files that already appear to be compressed) not to do the
-   //compression. Compression is indicated by a â€˜zâ€™ preceding the file length.
+   //compression. Compression is indicated by a ‘z’ preceding the file length.
    //Availability of this request in the server indicates to the client that it may
    //compress files sent to the server, regardless of whether the client actually uses
    //this request.
@@ -21,7 +21,8 @@
       public GzipFileContentsRequest(string level) : base(level)
       {
       }
+      public GzipFileContentsRequest(string[] lines) : base(lines){}
 
-      public override RequestType RequestType { get { return RequestType.GzipFileContents; } }
+      public override RequestType Type { get { return RequestType.GzipFileContents; } }
    }
 }

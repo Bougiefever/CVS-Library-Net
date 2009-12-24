@@ -1,4 +1,4 @@
-ï»¿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// expand-modules \n
@@ -30,12 +30,14 @@
    //C: expand-modules
    //S: Module-expansion 1dir
    //S: ok
-   //and then it knows to check the â€˜1dirâ€™ directory and send requests such as Entry
+   //and then it knows to check the ‘1dir’ directory and send requests such as Entry
    //and Modified for the files in that directory.
    /// </summary>
    public class ExpandModulesRequest : NoArgRequestBase
    {
+      public ExpandModulesRequest(){}
+      public ExpandModulesRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.ExpandModules; } }
+      public override RequestType Type { get { return RequestType.ExpandModules; } }
    }
 }

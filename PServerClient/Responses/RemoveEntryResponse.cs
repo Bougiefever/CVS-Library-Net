@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -11,7 +11,7 @@ namespace PServerClient.Responses
    public class RemoveEntryResponse : ResponseBase
    {
       public string RepositoryPath { get; private set; }
-      public override ResponseType ResponseType { get { return ResponseType.RemoveEntry; } }
+      public override ResponseType Type { get { return ResponseType.RemoveEntry; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

@@ -9,7 +9,7 @@ namespace PServerClient.Commands
       IList<IRequest> Requests { get; set; }
       Root Root { get; }
       ExitCode ExitCode { get; set; }
-      CommandType CommandType { get; }
+      CommandType Type { get; }
       IList<IRequest> RequiredRequests { get; }
       void Execute();
    }

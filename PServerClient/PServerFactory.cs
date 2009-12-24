@@ -38,6 +38,14 @@ namespace PServerClient
          return request;
       }
 
+      public IRequest CreateRequest(RequestType requestType, string[] lines)
+      {
+         string requestName = GetRequestClassNameFromType(requestType);
+         Type type = Type.GetType(requestName);
+         IRequest request = (IRequest)Activator.CreateInstance(type, new object[] { lines });
+         return request;
+      }
+
       public ICommand CreateCommand(CommandType commandType, object[] args)
       {
          string commandName = GetCommandClassNameFromType(commandType);

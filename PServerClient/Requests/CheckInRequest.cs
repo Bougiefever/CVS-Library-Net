@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// ci \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class CheckInRequest : NoArgRequestBase
    {
+      public CheckInRequest() {}
+      public CheckInRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.CheckIn; } }
+      public override RequestType Type { get { return RequestType.CheckIn; } }
    }
 }

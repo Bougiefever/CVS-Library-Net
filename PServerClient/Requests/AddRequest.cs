@@ -57,7 +57,9 @@
    /// </summary>
    public class AddRequest : NoArgRequestBase
    {
+      public AddRequest() {}
+      public AddRequest(string[] lines) : base(lines) {}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Add; } }
+      public override RequestType Type { get { return RequestType.Add; } }
    }
 }

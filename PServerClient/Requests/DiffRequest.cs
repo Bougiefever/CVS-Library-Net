@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// diff \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class DiffRequest : NoArgRequestBase
    {
+      public DiffRequest(){}
+      public DiffRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Diff; } }
+      public override RequestType Type { get { return RequestType.Diff; } }
    }
 }

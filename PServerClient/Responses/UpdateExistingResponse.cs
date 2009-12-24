@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// Update-existing pathname \n
@@ -8,10 +8,10 @@
    //OK to overwrite the previous contents of the file specified by pathname. Pro-
    //vided that the client has correctly sent Modified or Is-modified requests for
    //a modified file, and the file was not modified while CVS was running, the server
-   //can ensure that a user’s modifications are not lost.
+   //can ensure that a user�s modifications are not lost.
    /// </summary>
    public class UpdateExistingResponse : FileResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.UpdateExisting; } }
+      public override ResponseType Type { get { return ResponseType.UpdateExisting; } }
    }
 }

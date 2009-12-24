@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -18,7 +18,7 @@ namespace PServerClient.Responses
       private string _originalFileName;
       public string OriginalFileName { get { return _originalFileName; } }
       public string NewFileName { get { return _newFileName; } }
-      public override ResponseType ResponseType { get { return ResponseType.CopyFile; } }
+      public override ResponseType Type { get { return ResponseType.CopyFile; } }
       public override int LineCount { get { return 2; } }
 
       public override void ProcessResponse(IList<string> lines)

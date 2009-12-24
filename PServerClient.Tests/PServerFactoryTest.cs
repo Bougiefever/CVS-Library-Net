@@ -1,8 +1,10 @@
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
+using PServerClient.Requests;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
+using System.Linq;
 
 namespace PServerClient.Tests
 {
@@ -339,6 +341,22 @@ namespace PServerClient.Tests
          type = CommandType.Version;
          command = _factory.CreateCommand(type, new object[] { root });
          Assert.IsInstanceOf<VersionCommand>(command);
+      }
+
+      [Test]
+      public void CreateRequestByLinesTest()
+      {
+         PServerFactory factory = new PServerFactory();
+         string[] lines = new[] {"line 1", "line 2"};
+         for (int i = 0; i < 62; i++)
+         {
+            RequestType requestType = (RequestType) i;
+            IRequest request = factory.CreateRequest(requestType, lines);
+            Assert.AreEqual(requestType, request.Type);
+            Assert.AreEqual(2, request.RequestLines.Count());
+            Assert.AreEqual("line 1", request.RequestLines[0]);
+            Assert.AreEqual("line 2", request.RequestLines[1]);
+         }
       }
    }
 }

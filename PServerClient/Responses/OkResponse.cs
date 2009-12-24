@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// ok \n
@@ -6,6 +6,6 @@
    /// </summary>
    public class OkResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.Ok; } }
+      public override ResponseType Type { get { return ResponseType.Ok; } }
    }
 }

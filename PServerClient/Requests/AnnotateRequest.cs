@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// annotate \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class AnnotateRequest : NoArgRequestBase
    {
+      public AnnotateRequest() {}
+      public AnnotateRequest(string[] lines) : base(lines) {}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.Annotate; } }
+      public override RequestType Type { get { return RequestType.Annotate; } }
    }
 }

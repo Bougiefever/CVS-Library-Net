@@ -1,13 +1,13 @@
-ï»¿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// E text \n Same as M but send to stderr not stdout.
    /// 
-   /// error errno-code â€˜ â€™ text \n
+   /// error errno-code ‘ ’ text \n
    //The command completed with an error. errno-code is a symbolic error code
-   //(e.g. ENOENT); if the server doesnâ€™t support this feature, or if itâ€™s not appropriate
+   //(e.g. ENOENT); if the server doesn’t support this feature, or if it’s not appropriate
    //for this particular message, it just omits the errno-code (in that case there are
-   //two spaces after â€˜errorâ€™). Text is an error message such as that provided by
+   //two spaces after ‘error’). Text is an error message such as that provided by
    //strerror(), or any other message the server wants to use. The text is like the M
    //response, in the sense that it is not particularly intended to be machine-parsed;
    //servers may wish to print an error message with MT responses, and then issue
@@ -17,6 +17,6 @@
    /// </summary>
    public class ErrorResponse : MessageResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.Error; } }
+      public override ResponseType Type { get { return ResponseType.Error; } }
    }
 }

@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    /// <summary>
    /// history \n
@@ -10,7 +10,9 @@
    /// </summary>
    public class HistoryRequest : NoArgRequestBase
    {
+      public HistoryRequest(){}
+      public HistoryRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
-      public override RequestType RequestType { get { return RequestType.History; } }
+      public override RequestType Type { get { return RequestType.History; } }
    }
 }

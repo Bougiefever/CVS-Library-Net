@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -7,7 +7,7 @@ namespace PServerClient.Responses
    {
       #region IFileResponse Members
 
-      public abstract override ResponseType ResponseType { get; }
+      public abstract override ResponseType Type { get; }
 
       public override string DisplayResponse()
       {
@@ -37,7 +37,7 @@ namespace PServerClient.Responses
                       Length = Convert.ToInt64(fileLength)
                    };
          ResponseLines = new string[LineCount];
-         ResponseLines[0] = ResponseHelper.ResponseNames[(int) ResponseType] + " " + lines[0];
+         ResponseLines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
          for (int i = 1; i < LineCount; i++)
             ResponseLines[i] = lines[i];
       }

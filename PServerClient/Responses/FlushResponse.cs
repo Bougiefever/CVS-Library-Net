@@ -1,4 +1,4 @@
-﻿namespace PServerClient.Responses
+namespace PServerClient.Responses
 {
    /// <summary>
    /// F \n
@@ -8,6 +8,6 @@
    /// </summary>
    public class FlushResponse : ResponseBase
    {
-      public override ResponseType ResponseType { get { return ResponseType.Flush; } }
+      public override ResponseType Type { get { return ResponseType.Flush; } }
    }
 }

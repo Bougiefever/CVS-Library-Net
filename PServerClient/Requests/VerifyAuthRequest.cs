@@ -1,4 +1,4 @@
-﻿using PServerClient.CVS;
+using PServerClient.CVS;
 
 namespace PServerClient.Requests
 {
@@ -7,7 +7,7 @@ namespace PServerClient.Requests
       public VerifyAuthRequest(Root root) : base(root, RequestType.VerifyAuth)
       {
       }
-
-      public override RequestType RequestType { get { return RequestType.VerifyAuth; } }
+      public VerifyAuthRequest(string[] lines):base(lines){}
+      public override RequestType Type { get { return RequestType.VerifyAuth; } }
    }
 }

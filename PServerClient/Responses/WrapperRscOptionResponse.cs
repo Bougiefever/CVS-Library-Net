@@ -1,15 +1,15 @@
-ï»¿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
    /// <summary>
-   /// Wrapper-rcsOption pattern -k â€™optionâ€™ \n
+   /// Wrapper-rcsOption pattern -k ’option’ \n
    //Transmit to the client a filename pattern which implies a certain keyword ex-
-   //pansion mode. The pattern is a wildcard pattern (for example, â€˜*.exeâ€™. The
-   //option is â€˜bâ€™ for binary, and so on. Note that although the syntax happens to
+   //pansion mode. The pattern is a wildcard pattern (for example, ‘*.exe’. The
+   //option is ‘b’ for binary, and so on. Note that although the syntax happens to
    //resemble the syntax in certain CVS configuration files, it is more constrained;
-   //there must be exactly one space between pattern and â€˜-kâ€™ and exactly one
-   //space between â€˜-kâ€™ and â€˜â€™â€™, and no string is permitted in place of â€˜-kâ€™ (exten-
+   //there must be exactly one space between pattern and ‘-k’ and exactly one
+   //space between ‘-k’ and ‘’’, and no string is permitted in place of ‘-k’ (exten-
    //sions should be done with new responses, not by extending this one, for graceful
    //handling of Valid-responses).
    /// </summary>
@@ -17,7 +17,7 @@ namespace PServerClient.Responses
    {
       public string Pattern { get; private set; }
       public string Option { get; private set; }
-      public override ResponseType ResponseType { get { return ResponseType.WrapperRscOption; } }
+      public override ResponseType Type { get { return ResponseType.WrapperRscOption; } }
 
       public override void ProcessResponse(IList<string> lines)
       {

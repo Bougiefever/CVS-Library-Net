@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
@@ -11,7 +11,7 @@ namespace PServerClient.Responses
    {
       public string FileName { get; private set; }
       public string Revision { get; private set; }
-      public override ResponseType ResponseType { get { return ResponseType.NewEntry; } }
+      public override ResponseType Type { get { return ResponseType.NewEntry; } }
       public override int LineCount { get { return 2; } }
 
       public override void ProcessResponse(IList<string> lines)
