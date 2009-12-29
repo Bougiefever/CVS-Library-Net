@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.Linq;
 using PServerClient.CVS;
 using PServerClient.Requests;
 
@@ -12,5 +13,6 @@ namespace PServerClient.Commands
       CommandType Type { get; }
       IList<IRequest> RequiredRequests { get; set; }
       void Execute();
+      XDocument GetXDocument();
    }
 }

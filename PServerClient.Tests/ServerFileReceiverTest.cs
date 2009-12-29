@@ -50,7 +50,7 @@ namespace PServerClient.Tests
       public void AddNewEntryTest()
       {
          ModTimeResponse mod = new ModTimeResponse();
-         mod.ProcessResponse(new List<string> {"27 Nov 2009 14:21:06 -0000"});
+         mod.Process(new List<string> {"27 Nov 2009 14:21:06 -0000"});
          MessageTagResponse mt = new MessageTagResponse {Message = "fname mymod/file1.cs"};
          UpdatedResponse udr = TestHelper.GetMockUpdatedResponse("mymod/", "file1.cs");
 

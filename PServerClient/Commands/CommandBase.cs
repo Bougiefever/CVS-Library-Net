@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using log4net;
 using log4net.Config;
 using PServerClient.Connection;
@@ -106,6 +107,27 @@ namespace PServerClient.Commands
          {
             Connection.Close();
          }
+      }
+
+      public XDocument GetXDocument()
+      {
+         XElement commandElement = new XElement("Command",
+                                       new XElement("ClassName", GetType().FullName)
+                                       );
+         XElement requestsElement = new XElement("RequiredRequests");
+         foreach (IRequest request in RequiredRequests)
+         {
+            requestsElement.Add(request.GetXElement());
+         }
+         commandElement.Add(requestsElement);
+         requestsElement = new XElement("Requests");
+         foreach (IRequest request in Requests)
+         {
+            requestsElement.Add(request.GetXElement());
+         }
+         commandElement.Add(requestsElement);
+         XDocument xdoc = new XDocument(commandElement);
+         return xdoc;
       }
 
       #endregion

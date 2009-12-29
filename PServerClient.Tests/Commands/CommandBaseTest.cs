@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
@@ -194,15 +194,15 @@ namespace PServerClient.Tests.Commands
          ValidRequestsRequest vrrequest = new ValidRequestsRequest();
          ValidRequestsResponse vrresponse = new ValidRequestsResponse();
          string process = "Root Valid-responses valid-requests Repository Directory";
-         vrresponse.ProcessResponse(new List<string> {process});
+         vrresponse.Process(new List<string> {process});
          vrrequest.Responses = new List<IResponse> {vrresponse};
 
          CheckOutRequest corequest = new CheckOutRequest();
          IList<string> lines = new List<string> {"module/", "/f1/f2/f3/"};
          IResponse r1 = new ClearStickyResponse();
-         r1.ProcessResponse(lines);
+         r1.Process(lines);
          IResponse r2 = new ClearStaticDirectoryResponse();
-         r2.ProcessResponse(lines);
+         r2.Process(lines);
          corequest.Responses = new List<IResponse> {r1, r2};
 
          CheckOutCommand cmd = new CheckOutCommand(_root);

@@ -13,7 +13,7 @@ namespace PServerClient.Responses
       public override int LineCount { get { return 1; } }
       public override ResponseType Type { get { return ResponseType.Auth; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          if (lines[0].Contains(AuthenticatePass))
          {
@@ -23,13 +23,13 @@ namespace PServerClient.Responses
          {
             Status = AuthStatus.NotAuthenticated;
          }
-         ResponseLines = new string[1];
-         ResponseLines[0] = lines[0];
+         Lines = new string[1];
+         Lines[0] = lines[0];
       }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
-         return ResponseLines[0];
+         return Lines[0];
       }
 
       #endregion

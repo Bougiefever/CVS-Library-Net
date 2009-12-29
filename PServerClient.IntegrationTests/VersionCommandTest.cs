@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -34,7 +34,7 @@ namespace PServerClient.IntegrationTests
             if (req.ResponseExpected)
                foreach (IResponse res in req.Responses)
                {
-                  Console.Write("S: {0}", res.DisplayResponse());
+                  Console.Write("S: {0}", res.Display());
                }
          }
       }

@@ -27,8 +27,8 @@ namespace PServerClient.Requests
       public CheckinTimeRequest(DateTime checkinTime)
       {
          string time = checkinTime.ToRfc822();
-         RequestLines = new string[1];
-         RequestLines[0] = string.Format("{0} {1}", RequestName, time);
+         Lines = new string[1];
+         Lines[0] = string.Format("{0} {1}", RequestName, time);
       }
 
       public CheckinTimeRequest(string[] lines) : base(lines){}

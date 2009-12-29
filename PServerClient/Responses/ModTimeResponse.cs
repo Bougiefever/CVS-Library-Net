@@ -8,14 +8,14 @@ namespace PServerClient.Responses
       public override ResponseType Type { get { return ResponseType.ModTime; } }
       public DateTime ModTime { get; set; }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          string date = lines[0];
          ModTime = date.Rfc822ToDateTime();
-         base.ProcessResponse(lines);
+         base.Process(lines);
       }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
          return ModTime.ToString();
       }

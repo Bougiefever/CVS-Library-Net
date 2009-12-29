@@ -12,13 +12,13 @@ namespace PServerClient.Responses
       public string Mode { get; private set; }
       public override ResponseType Type { get { return ResponseType.Mode; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          Mode = lines[0];
-         base.ProcessResponse(lines);
+         base.Process(lines);
       }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
          return Mode;
       }

@@ -19,11 +19,11 @@ namespace PServerClient.Responses
       public string Option { get; private set; }
       public override ResponseType Type { get { return ResponseType.WrapperRscOption; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          Pattern = "to-do";
          Option = "to-do";
-         base.ProcessResponse(lines);
+         base.Process(lines);
       }
    }
 }

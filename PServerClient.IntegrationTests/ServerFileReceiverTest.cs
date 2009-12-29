@@ -164,7 +164,7 @@ namespace PServerClient.IntegrationTests
       {
          IList<IResponse> responses = new List<IResponse>();
          IResponse r = new ModTimeResponse();
-         r.ProcessResponse(new List<string> { time });
+         r.Process(new List<string> { time });
          responses.Add(r);
          var list = (GetMockMTResponseGroup(path + file));
          foreach (IResponse response in list)
@@ -198,7 +198,7 @@ namespace PServerClient.IntegrationTests
                                      "u=rw,g=rw,o=rw",
                                      "5"
                                   };
-         res.ProcessResponse(lines);
+         res.Process(lines);
          string text = "abcde";
          res.File.Contents = text.Encode();
          return res;

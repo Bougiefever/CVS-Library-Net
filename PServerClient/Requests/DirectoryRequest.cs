@@ -18,9 +18,9 @@ namespace PServerClient.Requests
    {
       public DirectoryRequest(Root root)
       {
-         RequestLines = new string[2];
-         RequestLines[0] = string.Format("{0} .", RequestName);
-         RequestLines[1] = string.Format("{0}/{1}", root.RepositoryPath, root.Module);
+         Lines = new string[2];
+         Lines[0] = string.Format("{0} .", RequestName);
+         Lines[1] = string.Format("{0}/{1}", root.RepositoryPath, root.Module);
       }
       public DirectoryRequest(string[] lines) : base(lines){}
 

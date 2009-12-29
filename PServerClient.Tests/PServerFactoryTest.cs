@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
@@ -322,6 +323,27 @@ namespace PServerClient.Tests
       }
 
       [Test]
+      public void CreateCommandFromXMLTest()
+      {
+         string xml = TestStrings.CommandXMLFileWithManyItems;
+         XDocument xdoc = XDocument.Parse(xml);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
+         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+
+         PServerFactory factory = new PServerFactory();
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] {root});
+         Assert.IsInstanceOf<CheckOutCommand>(cmd);
+
+         Assert.AreEqual(2, cmd.RequiredRequests.Count);
+         Assert.AreEqual(3, cmd.Requests.Count);
+
+         AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().First();
+         Assert.AreEqual(1, authRequest.Responses.Count);
+         Assert.AreEqual(AuthStatus.Authenticated, authRequest.Status);
+      }
+
+      [Test]
       public void CreateRequestTest()
       {
          PServerFactory factory = new PServerFactory();
@@ -332,9 +354,9 @@ namespace PServerClient.Tests
             string className = string.Format("PServerClient.Requests.{0}Request", requestType);
             IRequest request = factory.CreateRequest(className, lines);
             Assert.AreEqual(requestType, request.Type);
-            Assert.AreEqual(2, request.RequestLines.Count());
-            Assert.AreEqual("line 1", request.RequestLines[0]);
-            Assert.AreEqual("line 2", request.RequestLines[1]);
+            Assert.AreEqual(2, request.Lines.Count());
+            Assert.AreEqual("line 1", request.Lines[0]);
+            Assert.AreEqual("line 2", request.Lines[1]);
          }
       }
 

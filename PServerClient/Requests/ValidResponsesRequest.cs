@@ -10,8 +10,8 @@ namespace PServerClient.Requests
    {
       public ValidResponsesRequest(ResponseType[] validResponses)
       {
-         RequestLines = new string[1];
-         RequestLines[0] = string.Format("{0} {1}", RequestName, ResponseHelper.GetValidResponsesString(validResponses));
+         Lines = new string[1];
+         Lines[0] = string.Format("{0} {1}", RequestName, ResponseHelper.GetValidResponsesString(validResponses));
       }
       public ValidResponsesRequest(string[] lines) :base(lines){}
       public override bool ResponseExpected { get { return false; } }

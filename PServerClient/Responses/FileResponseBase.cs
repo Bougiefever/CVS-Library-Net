@@ -9,14 +9,14 @@ namespace PServerClient.Responses
 
       public abstract override ResponseType Type { get; }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
          return File.RepositoryPath;
       }
 
       public override int LineCount { get { return 5; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          string module = lines[0];
          string cvsPath = lines[1];
@@ -36,10 +36,10 @@ namespace PServerClient.Responses
                       Properties = fileProperties,
                       Length = Convert.ToInt64(fileLength)
                    };
-         ResponseLines = new string[LineCount];
-         ResponseLines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
+         Lines = new string[LineCount];
+         Lines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
          for (int i = 1; i < LineCount; i++)
-            ResponseLines[i] = lines[i];
+            Lines[i] = lines[i];
       }
 
       public ReceiveFile File { get; set; }

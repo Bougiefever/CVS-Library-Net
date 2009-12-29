@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PServerClient.CVS;
@@ -29,7 +29,7 @@ namespace PServerClient.Commands
          foreach (IResponse response in checkOutResponses)
          {
             Console.WriteLine(response.Type + ": ");
-            Console.WriteLine(response.DisplayResponse());
+            Console.WriteLine(response.Display());
          }
          ServerFileReceiver fileReceiver = new ServerFileReceiver(Root);
          fileReceiver.ProcessCheckoutResponses(checkOutResponses);

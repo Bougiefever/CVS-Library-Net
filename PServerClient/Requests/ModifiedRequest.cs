@@ -13,10 +13,10 @@ namespace PServerClient.Requests
       public ModifiedRequest(string fileName, string mode, long fileLength)
       {
          FileLength = fileLength;
-         RequestLines = new string[3];
-         RequestLines[0] = string.Format("{0} {1}", RequestName, fileName);
-         RequestLines[1] = mode;
-         RequestLines[2] = fileLength.ToString();
+         Lines = new string[3];
+         Lines[0] = string.Format("{0} {1}", RequestName, fileName);
+         Lines[1] = mode;
+         Lines[2] = fileLength.ToString();
       }
       public ModifiedRequest(string[] lines):base(lines){}
 

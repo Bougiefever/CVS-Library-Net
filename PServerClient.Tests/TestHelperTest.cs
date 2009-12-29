@@ -24,7 +24,8 @@ namespace PServerClient.Tests
          XElement responseElement = XElement.Parse(xml);
          bool result = TestHelper.ValidateResponseXML(responseElement);
          Assert.IsTrue(result);
-         IResponse response = TestHelper.ResponseXElementToIResponse(responseElement);
+         PServerFactory factory = new PServerFactory();
+         IResponse response = factory.ResponseXElementToIResponse(responseElement);  //TestHelper.ResponseXElementToIResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<UpdatedResponse>(response);
          IFileResponse fileResponse = (IFileResponse) response;
@@ -64,10 +65,11 @@ namespace PServerClient.Tests
          XElement responseElement = XElement.Parse(xml);
          bool result = TestHelper.ValidateResponseXML(responseElement);
          Assert.IsTrue(result);
-         IResponse response = TestHelper.ResponseXElementToIResponse(responseElement);
+         PServerFactory factory = new PServerFactory();
+         IResponse response = factory.ResponseXElementToIResponse(responseElement);  //TestHelper.ResponseXElementToIResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<AuthResponse>(response);
-         Assert.AreEqual("I LOVE YOU", response.DisplayResponse());
+         Assert.AreEqual("I LOVE YOU", response.Display());
       }
 
       [Test]
@@ -87,13 +89,13 @@ namespace PServerClient.Tests
          // add responses to requests
          IResponse response = new AuthResponse();
          IList<string> process = new List<string> { "I LOVE YOU" };
-         response.ProcessResponse(process);
+         response.Process(process);
          IRequest request = cmd.RequiredRequests.Where(r => r.Type == RequestType.Auth).First();
          request.Responses.Add(response);
 
          response = new ValidRequestsResponse();
          IList<string> lines = new List<string> { "Root Valid-responses valid-requests Global_option" };
-         response.ProcessResponse(lines);
+         response.Process(lines);
          request = cmd.RequiredRequests.Where(r => r.Type == RequestType.ValidRequests).First();
          request.Responses.Add(response);
 
@@ -104,19 +106,9 @@ namespace PServerClient.Tests
             request.Responses.Add(cor);
          }
 
-         XDocument xdoc = TestHelper.ICommandToXDocument(cmd);
+         XDocument xdoc = cmd.GetXDocument();
          Console.WriteLine(xdoc.ToString());
          bool result = TestHelper.ValidateCommandXML(xdoc);
-         Assert.IsTrue(result);
-      }
-
-      
-      [Test]
-      public void RequestXMLTest()
-      {
-         IRequest request = new CheckOutRequest();
-         XElement requestElement = TestHelper.IRequestToXElement(request);
-         bool result = TestHelper.ValidateRequestXML(requestElement);
          Assert.IsTrue(result);
       }
 
@@ -198,8 +190,8 @@ namespace PServerClient.Tests
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
-
-         ICommand cmd = TestHelper.CommandXElementToICommand(xdoc, root);
+         PServerFactory factory =new PServerFactory();
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root }); //TestHelper.CommandXElementToICommand(xdoc, root);
          Assert.IsInstanceOf<CheckOutCommand>(cmd);
          
          Assert.AreEqual(2, cmd.RequiredRequests.Count);

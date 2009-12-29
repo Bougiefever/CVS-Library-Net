@@ -4,8 +4,8 @@ namespace PServerClient.Requests
    {
       public LostRequest(string fileName)
       {
-         RequestLines = new string[1];
-         RequestLines[0] = string.Format("{0} {1}", RequestName, fileName);
+         Lines = new string[1];
+         Lines[0] = string.Format("{0} {1}", RequestName, fileName);
       }
       public LostRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return false; } }

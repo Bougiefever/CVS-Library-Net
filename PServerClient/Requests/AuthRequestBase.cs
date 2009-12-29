@@ -7,47 +7,40 @@ using PServerClient.Responses;
 
 namespace PServerClient.Requests
 {
-   public abstract class AuthRequestBase : IAuthRequest
+   public abstract class AuthRequestBase : RequestBase, IAuthRequest
    {
-      private const string lineEnd = "\n";
       private readonly Root _root;
 
       protected AuthRequestBase(Root root, RequestType type)
       {
          _root = root;
-         RequestLines = new string[5];
+         Lines = new string[5];
          string requestName = RequestHelper.RequestNames[(int) type];
-         RequestLines[0] = string.Format("BEGIN {0} REQUEST", requestName);
-         RequestLines[1] = _root.RepositoryPath;
-         RequestLines[2] = _root.Username;
-         RequestLines[3] = _root.Password;
-         RequestLines[4] = string.Format("END {0} REQUEST", requestName);
+         Lines[0] = string.Format("BEGIN {0} REQUEST", requestName);
+         Lines[1] = _root.RepositoryPath;
+         Lines[2] = _root.Username;
+         Lines[3] = _root.Password;
+         Lines[4] = string.Format("END {0} REQUEST", requestName);
          Responses = new List<IResponse>();
       }
 
       protected AuthRequestBase(string[] lines)
       {
-         RequestLines = lines;
+         Lines = lines;
       }
 
-      #region IAuthRequest Members
+      public override bool ResponseExpected { get { return true; } }
 
-      public bool ResponseExpected { get { return true; } }
-      public string[] RequestLines { get; internal set; }
-
-      public virtual string GetRequestString()
+      public override string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
-         for (int i = 0; i < RequestLines.Length; i++)
+         for (int i = 0; i < Lines.Length; i++)
          {
-            sb.Append(RequestLines[i]).Append(lineEnd);
+            sb.Append(Lines[i]).Append(LineEnd);
          }
          string request = sb.ToString();
          return request;
       }
-
-      public IList<IResponse> Responses { get; set; }
-      public abstract RequestType Type { get; }
 
       public AuthStatus Status
       {
@@ -64,7 +57,5 @@ namespace PServerClient.Requests
             }
          }
       }
-
-      #endregion
    }
 }

@@ -12,13 +12,13 @@ namespace PServerClient.Responses
       public string RepositoryPath { get; private set; }
       public override ResponseType Type { get { return ResponseType.Removed; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          RepositoryPath = lines[0];
-         base.ProcessResponse(lines);
+         base.Process(lines);
       }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
          return RepositoryPath;
       }

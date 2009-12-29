@@ -20,13 +20,13 @@ namespace PServerClient.Responses
 
       public override ResponseType Type { get { return ResponseType.Checksum; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          _checkSum = lines[0];
-         base.ProcessResponse(lines);
+         base.Process(lines);
       }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
          return _checkSum;
       }

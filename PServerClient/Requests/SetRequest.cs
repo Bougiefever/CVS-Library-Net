@@ -9,8 +9,8 @@ namespace PServerClient.Requests
    {
       public SetRequest(string variableName, string value)
       {
-         RequestLines = new string[1];
-         RequestLines[0] = string.Format("{0} {1}={2}", RequestName, variableName, value);
+         Lines = new string[1];
+         Lines[0] = string.Format("{0} {1}={2}", RequestName, variableName, value);
       }
       public SetRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return false; } }

@@ -21,14 +21,14 @@ namespace PServerClient.Responses
       public override int LineCount { get { return 2; } }
       public override ResponseType Type { get { return ResponseType.SetSticky; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
          ModuleName = lines[0];
          RepositoryPath = lines[1];
-         base.ProcessResponse(lines);
+         base.Process(lines);
       }
 
-      public override string DisplayResponse()
+      public override string Display()
       {
          return ModuleName + Environment.NewLine + RepositoryPath;
       }

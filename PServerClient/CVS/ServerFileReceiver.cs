@@ -81,7 +81,7 @@ namespace PServerClient.CVS
       public void AddNewEntry(IList<IResponse> entryResponses)
       {
          IResponse res = entryResponses.Where(r => r.Type == ResponseType.MessageTag).First();
-         string[] names = PServerHelper.GetUpdatedFnamePathFile(res.DisplayResponse());
+         string[] names = PServerHelper.GetUpdatedFnamePathFile(res.Display());
          string[] folders = names[0].Split(new[] {@"/"}, StringSplitOptions.RemoveEmptyEntries);
          Folder current = CreateFolderStructure(folders);
 

@@ -18,8 +18,8 @@ namespace PServerClient.Requests
    {
       public RootRequest(Root root)
       {
-         RequestLines = new string[1];
-         RequestLines[0] = string.Format("{0} {1}", RequestName, root.RepositoryPath);
+         Lines = new string[1];
+         Lines[0] = string.Format("{0} {1}", RequestName, root.RepositoryPath);
       }
       public RootRequest(string[] lines) :base(lines){}
 

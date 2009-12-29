@@ -1,11 +1,11 @@
-﻿namespace PServerClient.Requests
+namespace PServerClient.Requests
 {
    public abstract class NoArgRequestBase : RequestBase
    {
       protected NoArgRequestBase()
       {
-         RequestLines = new string[1];
-         RequestLines[0] = RequestName;
+         Lines = new string[1];
+         Lines[0] = RequestName;
       }
 
       protected NoArgRequestBase(string[] lines) : base(lines)

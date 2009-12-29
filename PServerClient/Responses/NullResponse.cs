@@ -7,12 +7,12 @@ namespace PServerClient.Responses
       public override int LineCount { get { return 1; } }
       public override ResponseType Type { get { return ResponseType.Null; } }
 
-      public override void ProcessResponse(IList<string> lines)
+      public override void Process(IList<string> lines)
       {
-         ResponseLines = new string[lines.Count];
+         Lines = new string[lines.Count];
          for (int i = 0; i < lines.Count; i++)
          {
-            ResponseLines[i] = lines[i];
+            Lines[i] = lines[i];
          }
       }
    }

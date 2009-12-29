@@ -70,7 +70,7 @@ namespace PServerClient.Connection
                ResponseType responseType = factory.GetResponseType(line);
                IResponse response = factory.CreateResponse(responseType);
                IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
-               response.ProcessResponse(responseLines);
+               response.Process(responseLines);
                if (response is IFileResponse)
                {
                   IFileResponse fileResponse = (IFileResponse) response;

@@ -7,9 +7,10 @@ namespace PServerClient.Responses
    {
       int LineCount { get; }
       ResponseType Type { get; }
-      string[] ResponseLines { get; }
-      void ProcessResponse(IList<string> lines);
-      string DisplayResponse();
+      string[] Lines { get; }
+      void Process(IList<string> lines);
+      string Display();
+      XElement GetXElement();
    }
 
    public interface IAuthResponse : IResponse

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using PServerClient.Responses;
 
 namespace PServerClient.Requests
@@ -10,9 +11,10 @@ namespace PServerClient.Requests
    {
       bool ResponseExpected { get; }
       IList<IResponse> Responses { get; set; }
-      string[] RequestLines { get; }
+      string[] Lines { get; }
       RequestType Type { get; }
       string GetRequestString();
+      XElement GetXElement();
    }
 
    /// <summary>

@@ -17,8 +17,8 @@ namespace PServerClient.Requests
       public EntryRequest(string name, string version, string conflict, string options, string tagOrDate)
       {
          string entryLine = string.Format("/{0}/{1}/{2}/{3}/{4}", name, version, conflict, options, tagOrDate);
-         RequestLines = new string[1];
-         RequestLines[0] = string.Format("{0} {1}", RequestName, entryLine);
+         Lines = new string[1];
+         Lines[0] = string.Format("{0} {1}", RequestName, entryLine);
       }
       public EntryRequest(string[] lines) : base(lines) {}
 
