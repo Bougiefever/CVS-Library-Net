@@ -67,7 +67,7 @@ namespace PServerClient.Commands
       #region ICommand Members
 
       public abstract CommandType Type { get; }
-      public IList<IRequest> RequiredRequests { get; internal set; }
+      public IList<IRequest> RequiredRequests { get; set; }
 
       public IList<IRequest> Requests { get; set; }
       public Root Root { get; private set; }

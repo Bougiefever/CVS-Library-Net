@@ -4,8 +4,8 @@
    <xs:element name="Request" type="RequestType"/>
    <xs:complexType name="RequestType">
       <xs:sequence>
-         <xs:element name="Name" type="xs:string" />
-         <xs:element name="Type" type="xs:int" />
+         <xs:element name="ClassName" type="xs:string" />
+         <!--<xs:element name="Type" type="xs:int" />-->
          <xs:element name="Lines" type="LinesType" />
          <xs:element name="File" type="FileType" maxOccurs="1" minOccurs="0" />
          <xs:sequence>
@@ -21,8 +21,8 @@
    </xs:complexType>
    <xs:complexType name="ResponseType">
       <xs:sequence>
-         <xs:element name="Name" type="xs:string" />
-         <xs:element name="Type" type="xs:int" />
+         <xs:element name="ClassName" type="xs:string" />
+         <!--<xs:element name="Type" type="xs:int" />-->
          <xs:element name="Lines" type="LinesType" />
          <xs:element name="File" type="FileType" maxOccurs="1" minOccurs="0" />
       </xs:sequence>

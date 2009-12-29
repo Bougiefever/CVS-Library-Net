@@ -29,9 +29,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
+         Assert.AreEqual("PServerClient.Requests.AddRequest", el.Element("ClassName").Value);
          Console.WriteLine(el.ToString());
       }
 
@@ -45,7 +46,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -61,7 +62,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -77,7 +78,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -93,7 +94,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -109,7 +110,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -125,7 +126,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -141,7 +142,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -158,7 +159,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -174,7 +175,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -190,7 +191,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -206,7 +207,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -222,7 +223,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -238,7 +239,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -254,7 +255,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -270,7 +271,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -286,7 +287,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -302,7 +303,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -318,7 +319,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -334,7 +335,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -350,7 +351,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -366,7 +367,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -382,7 +383,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -398,7 +399,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -414,7 +415,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -430,7 +431,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -446,7 +447,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -462,7 +463,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -478,7 +479,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -494,7 +495,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -510,7 +511,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -526,7 +527,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -542,7 +543,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -558,7 +559,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -574,7 +575,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -590,7 +591,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -606,7 +607,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -622,7 +623,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -638,7 +639,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -654,7 +655,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -680,7 +681,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -696,7 +697,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -712,7 +713,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -728,7 +729,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -744,7 +745,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -760,7 +761,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -776,7 +777,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -792,7 +793,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -808,7 +809,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -824,7 +825,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -840,7 +841,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -856,7 +857,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -872,7 +873,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -888,7 +889,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsFalse(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -904,7 +905,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -920,7 +921,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -936,7 +937,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -952,7 +953,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -968,7 +969,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -984,7 +985,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -1000,7 +1001,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());
@@ -1016,7 +1017,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, actual);
          Assert.IsTrue(request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = TestHelper.RequestToXML(request);
+         XElement el = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());

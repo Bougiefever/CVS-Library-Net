@@ -4,8 +4,8 @@
    <xs:element name="Response" type="ResponseType"/>
    <xs:complexType name="ResponseType">
       <xs:sequence>
-         <xs:element name="Name" type="xs:string" />
-         <xs:element name="Type" type="xs:int" />
+         <xs:element name="ClassName" type="xs:string" />
+         <!--<xs:element name="Type" type="xs:int" />-->
          <xs:element name="Lines" type="LinesType" />
          <xs:element name="File" type="FileType" maxOccurs="1" minOccurs="0" />
       </xs:sequence>

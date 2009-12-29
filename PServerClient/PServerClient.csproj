@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthStatus.cs" />
+    <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\CheckOutCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DiffCommand.cs" />
+    <Compile Include="Commands\ExportCommand.cs" />
     <Compile Include="CommandType.cs" />
     <Compile Include="CVS\ServerFileReceiver.cs" />
     <Compile Include="Commands\ICommand.cs" />

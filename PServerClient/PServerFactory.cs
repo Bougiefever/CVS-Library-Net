@@ -18,6 +18,13 @@ namespace PServerClient
          return response;
       }
 
+      public IResponse CreateResponse(string className)
+      {
+         Type type = Type.GetType(className);
+         IResponse response = (IResponse) Activator.CreateInstance(type);
+         return response;
+      }
+
       public ResponseType GetResponseType(string rawResponse)
       {
          ResponseType responseType = ResponseType.Null;
@@ -38,22 +45,20 @@ namespace PServerClient
          return request;
       }
 
-      public IRequest CreateRequest(RequestType requestType, string[] lines)
+      public IRequest CreateRequest(string className, string[] lines)
       {
-         string requestName = GetRequestClassNameFromType(requestType);
-         Type type = Type.GetType(requestName);
+         Type type = Type.GetType(className);
          IRequest request = (IRequest)Activator.CreateInstance(type, new object[] { lines });
          return request;
       }
 
-      public ICommand CreateCommand(CommandType commandType, object[] args)
+      public ICommand CreateCommand(string className, object[] args)
       {
-         string commandName = GetCommandClassNameFromType(commandType);
-         Type type = Type.GetType(commandName);
-         ICommand cmd = (ICommand) Activator.CreateInstance(type, args);
+         Type type = Type.GetType(className);
+         ICommand cmd = (ICommand)Activator.CreateInstance(type, args);
          return cmd;
-      }
-
+      }      
+      
       private static string GetResponseClassNameFromType(ResponseType type)
       {
          string responseName = "PServerClient.Responses." + type + "Response";
@@ -71,5 +76,7 @@ namespace PServerClient
          string commandName = "PServerClient.Commands." + type + "Command";
          return commandName;
       }
+
+
    }
 }

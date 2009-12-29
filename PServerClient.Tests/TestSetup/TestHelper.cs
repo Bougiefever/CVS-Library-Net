@@ -17,6 +17,8 @@ namespace PServerClient.Tests.TestSetup
 {
    public static class TestHelper
    {
+      #region XML Validation
+
       public static bool ValidateResponseXML(XElement response)
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Response.xsd");
@@ -25,7 +27,7 @@ namespace PServerClient.Tests.TestSetup
          XmlSchemaSet schemas = new XmlSchemaSet();
          schemas.Add(validateSchema);
          XDocument xdoc = new XDocument(response);
-         xdoc.Validate(schemas, (o, e) => { Assert.Fail(e.Message); });
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
          return true;
       }
 
@@ -50,27 +52,162 @@ namespace PServerClient.Tests.TestSetup
          bool isValid = true;
 
          XDocument xdoc = new XDocument(request);
-         xdoc.Validate(schemas, (o, e) => { isValid = false; });
-         return isValid;
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
+         return true;
       }
 
-      public static IList<IResponse> XMLToResponseList(XDocument xdoc)
+      #endregion
+
+      #region Objects to XML
+
+      public static void SaveCommandConversation(ICommand command, string path)
+      {
+         FileInfo fi = new FileInfo(path);
+         XDocument xdoc = ICommandToXDocument(command);
+         StreamWriter writer = fi.CreateText();
+         xdoc.Save(writer);
+      }
+
+      public static XDocument ICommandToXDocument(ICommand command)
+      {
+         XElement commandElement = new XElement("Command",
+                                                new XElement("ClassName", command.GetType().FullName)
+                                                //new XElement("Type", (int)command.Type)
+                                                );
+         XElement requestsElement = new XElement("RequiredRequests");
+         foreach (IRequest request in command.RequiredRequests)
+         {
+            requestsElement.Add(IRequestToXElement(request));
+         }
+         commandElement.Add(requestsElement);
+         requestsElement = new XElement("Requests");
+         foreach (IRequest request in command.Requests)
+         {
+            requestsElement.Add(IRequestToXElement(request));
+         }
+         commandElement.Add(requestsElement);
+         XDocument xdoc = new XDocument(commandElement);
+         return xdoc;
+      }
+
+      public static IList<IRequest> IRequestListFromRequestsXElement(XElement requestsElement)
+      {
+         IList<IRequest> requests = new List<IRequest>();
+         foreach (XElement requestElement in requestsElement.Nodes())
+         {
+            IRequest request = RequestXElementToIRequest(requestElement);
+            requests.Add(request);
+            XElement responsesElement = requestElement.Element("Responses");
+            request.Responses = IResponseListFromResponsesXElement(responsesElement);
+         }
+         return requests;
+      }
+
+      public static XElement IRequestToXElement(IRequest request)
+      {
+         //var classname = request.GetType();
+         XElement requestElement = new XElement("Request",
+                                                new XElement("ClassName", request.GetType().FullName),
+                                                //new XElement("Type", (int)request.Type),
+                                                new XElement("Lines"));
+         XElement linesElement = requestElement.Descendants("Lines").First();
+         foreach (string s in request.RequestLines)
+         {
+            XElement line = new XElement("Line", s);
+            linesElement.Add(line);
+         }
+         XElement responsesElement = new XElement("Responses");
+         requestElement.Add(responsesElement);
+         foreach (IResponse response in request.Responses)
+         {
+            XElement responseElement = IResponseToXElement(response);
+            responsesElement.Add(responseElement);
+         }
+         return requestElement;
+      }
+
+      public static IList<IResponse> IResponseListFromResponsesXElement(XElement responsesElement)
       {
          IList<IResponse> responses = new List<IResponse>();
-         IEnumerable<XElement> responseElements = xdoc.Element("Responses").Elements("Response");
-         foreach (XElement element in responseElements)
+         foreach (XElement responseElement in responsesElement.Nodes())
          {
-            IResponse response = XMLToResponse(element);
+            IResponse response = ResponseXElementToIResponse(responseElement);
             responses.Add(response);
          }
          return responses;
       }
 
-      public static IResponse XMLToResponse(XElement responseElement)
+      public static XElement IResponseToXElement(IResponse response)
       {
-         ResponseType rtype = (ResponseType)Convert.ToInt32(responseElement.Element("Type").Value);
+         XElement responseElement = new XElement("Response",
+                                                 new XElement("ClassName", response.GetType().FullName),
+                                                 //new XElement("Type", (int)response.Type),
+                                                 new XElement("Lines"));
+         XElement linesElement = responseElement.Descendants("Lines").First();
+
+         foreach (string s in response.ResponseLines)
+         {
+            XElement line = new XElement("Line", s);
+            linesElement.Add(line);
+         }
+         if (response is IFileResponse)
+         {
+            IFileResponse fileResponse = (IFileResponse)response;
+            string length = fileResponse.File.Length.ToString();
+            string contents = ResponseHelper.FileContentsToByteArrayString(fileResponse.File.Contents);
+            XElement responseFile = new XElement("File",
+                                                 new XElement("Length", length),
+                                                 new XElement("Contents", contents));
+            responseElement.Add(responseFile);
+         }
+         return responseElement;
+      }
+
+      public static string FileContentsToByteArrayString(byte[] fileContents)
+      {
+         StringBuilder sb = new StringBuilder();
+         sb.Append(fileContents[0]);
+         for (int i = 1; i < fileContents.Length; i++)
+         {
+            sb.Append(",").Append(fileContents[i]);
+         }
+         return sb.ToString();
+      }
+
+      #endregion
+
+      #region XML to Objects
+
+      public static ICommand CommandXElementToICommand(XDocument xdoc, Root root)
+      {
+         XElement commandElement = (XElement)xdoc.FirstNode;
+         string className = commandElement.Element("ClassName").Value;
          PServerFactory factory = new PServerFactory();
-         IResponse response = factory.CreateResponse(rtype);
+         ICommand command = factory.CreateCommand(className, new object[] {root});
+         command.RequiredRequests.Clear();
+         command.Requests.Clear();
+         XElement requestsElement = commandElement.Element("RequiredRequests");
+         command.RequiredRequests = IRequestListFromRequestsXElement(requestsElement);
+         requestsElement = commandElement.Element("Requests");
+         command.Requests = IRequestListFromRequestsXElement(requestsElement);
+         return command;
+      }
+
+      public static IRequest RequestXElementToIRequest(XElement requestElement)
+      {
+         string className = requestElement.Element("ClassName").Value;
+         IEnumerable<XElement> linesElements = requestElement.Element("Lines").Elements();
+         string[] lines = linesElements.Select(le => le.Value).ToArray();
+         PServerFactory factory = new PServerFactory();
+         IRequest request = factory.CreateRequest(className, lines);
+         return request;
+      }
+
+      public static IResponse ResponseXElementToIResponse(XElement responseElement)
+      {
+         PServerFactory factory = new PServerFactory();
+         string className = responseElement.Element("ClassName").Value;
+         IResponse response = factory.CreateResponse(className);
          IList<string> lines = new List<string>();
          XElement linesElement = responseElement.Descendants("Lines").First();
          foreach (XElement lineElement in linesElement.Elements())
@@ -96,93 +233,9 @@ namespace PServerClient.Tests.TestSetup
          return response;
       }
 
-      public static string FileContentsToByteArrayString(byte[] fileContents)
-      {
-         StringBuilder sb = new StringBuilder();
-         sb.Append(fileContents[0]);
-         for (int i = 1; i < fileContents.Length; i++)
-         {
-            sb.Append(",").Append(fileContents[i]);
-         }
-         return sb.ToString();
-      }
+      #endregion
 
-      public static XElement ResponseToXML(IResponse response)
-      {
-         XElement responseElement = new XElement("Response",
-                                                 new XElement("Name", response.Type.ToString()),
-                                                 new XElement("Type", (int)response.Type),
-                                                 new XElement("Lines"));
-         XElement linesElement = responseElement.Descendants("Lines").First();
-
-         foreach (string s in response.ResponseLines)
-         {
-            XElement line = new XElement("Line", s);
-            linesElement.Add(line);
-         }
-         if (response is IFileResponse)
-         {
-            IFileResponse fileResponse = (IFileResponse)response;
-            string length = fileResponse.File.Length.ToString();
-            string contents = ResponseHelper.FileContentsToByteArrayString(fileResponse.File.Contents);
-            XElement responseFile = new XElement("File",
-                                                 new XElement("Length", length),
-                                                 new XElement("Contents", contents));
-            responseElement.Add(responseFile);
-         }
-         return responseElement;
-      }
-
-      public static void SaveCommandConversation(ICommand command, string path)
-      {
-         FileInfo fi = new FileInfo(path);
-         XDocument xdoc = CommandToXML(command);
-         StreamWriter writer = fi.CreateText();
-         xdoc.Save(writer);
-      }
-
-      public static XDocument CommandToXML(ICommand command)
-      {
-         XElement commandElement = new XElement("Command",
-                                                new XElement("Name", command.Type.ToString()),
-                                                new XElement("Type", (int)command.Type));
-         XElement requestsElement = new XElement("RequiredRequests");
-         foreach (IRequest request in command.RequiredRequests)
-         {
-            requestsElement.Add(RequestToXML(request));
-         }
-         commandElement.Add(requestsElement);
-         requestsElement = new XElement("Requests");
-         foreach (IRequest request in command.Requests)
-         {
-            requestsElement.Add(RequestToXML(request));
-         }
-         commandElement.Add(requestsElement);
-         XDocument xdoc = new XDocument(commandElement);
-         return xdoc;
-      }
-
-      public static XElement RequestToXML(IRequest request)
-      {
-         XElement requestElement = new XElement("Request",
-                                                new XElement("Name", request.Type.ToString()),
-                                                new XElement("Type", (int)request.Type),
-                                                new XElement("Lines"));
-         XElement linesElement = requestElement.Descendants("Lines").First();
-         foreach (string s in request.RequestLines)
-         {
-            XElement line = new XElement("Line", s);
-            linesElement.Add(line);
-         }
-         XElement responsesElement = new XElement("Responses");
-         requestElement.Add(responsesElement);
-         foreach (IResponse response in request.Responses)
-         {
-            XElement responseElement = ResponseToXML(response);
-            responsesElement.Add(responseElement);
-         }
-         return requestElement;
-      }
+      #region Mocking
 
       public static IList<IResponse> GetMockCheckoutResponses(string time, string path, string file)
       {
@@ -200,7 +253,7 @@ namespace PServerClient.Tests.TestSetup
          return responses;
       }
 
-      private static IList<IResponse> GetMockMTResponseGroup(string fname)
+      public static IList<IResponse> GetMockMTResponseGroup(string fname)
       {
          IList<IResponse> responses = new List<IResponse>();
          string[] messages = new[] { "+updated", "text U", "fname " + fname, "newline", "-updated" };
@@ -218,7 +271,7 @@ namespace PServerClient.Tests.TestSetup
          UpdatedResponse res = new UpdatedResponse();
          IList<string> lines = new List<string>
                                   {
-                                     "Updated " + path,
+                                     path,
                                      "/usr/local/cvsroot/sandbox/" + path + name,
                                      "/" + name + "/1.1.1.1///",
                                      "u=rw,g=rw,o=rw",
@@ -230,35 +283,6 @@ namespace PServerClient.Tests.TestSetup
          return res;
       }
 
-      public static ICommand CommandXMLToCommandObject(XDocument xdoc, Root root)
-      {
-         XElement commandElement = (XElement)xdoc.FirstNode;
-         CommandType commandType = (CommandType)Convert.ToInt32(commandElement.Element("Type").Value);
-         PServerFactory factory = new PServerFactory();
-         ICommand command = factory.CreateCommand(commandType, new object[] { root });
-         XElement requestsElement = commandElement.Element("RequiredRequests");
-         foreach (XElement requestElement in requestsElement.Nodes())
-         {
-            IRequest request = RequestElementToObject(requestElement);
-            command.RequiredRequests.Add(request);
-         }
-         requestsElement = commandElement.Element("Requests");
-         foreach (XElement requestElement in requestsElement.Nodes())
-         {
-            IRequest request = RequestElementToObject(requestElement);
-            command.RequiredRequests.Add(request);
-         }
-         return command;
-      }
-
-      private static IRequest RequestElementToObject(XElement requestElement)
-      {
-         RequestType requestType = (RequestType)Convert.ToInt32(requestElement.Element("Type").Value);
-         IEnumerable<XElement> linesElements = requestElement.Element("Lines").Elements();
-         string[] lines = linesElements.Select(le => le.Value).ToArray();
-         PServerFactory factory = new PServerFactory();
-         IRequest request = factory.CreateRequest(requestType, lines);
-         return request;
-      }
+      #endregion
    }
 }

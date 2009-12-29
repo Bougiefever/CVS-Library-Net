@@ -16,11 +16,10 @@ namespace PServerClient.Requests
       protected RequestBase(string[] lines)
       {
          RequestLines = lines;
+         Responses = new List<IResponse>();
       }
 
       public string RequestName { get { return RequestHelper.RequestNames[(int) Type]; } }
-
-      #region IRequest Members
 
       public abstract bool ResponseExpected { get; }
 
@@ -38,7 +37,5 @@ namespace PServerClient.Requests
       public abstract RequestType Type { get; }
       public string[] RequestLines { get; internal set; }
       public IList<IResponse> Responses { get; set; }
-
-      #endregion
    }
 }

@@ -8,68 +8,77 @@ namespace PServerClient
 {
    public static class ResponseHelper
    {
-      private const string AuthName = "";
-      private const string AuthRegex = @"(I LOVE YOU|I HATE YOU)(.*)";
-      private const string CheckedInName = "Checked-in";
-      private const string CheckedInRegex = @"^Checked-in\s(.*)";
-      private const string ChecksumName = "Checksum";
-      private const string ChecksumRegex = @"^Checksum\s(.*)";
-      private const string ClearStaticDirectoryName = "Clear-static-directory";
-      private const string ClearStaticDirectoryRegex = @"^Clear-static-directory\s(.*)";
-      private const string ClearStickyName = "Clear-sticky";
-      private const string ClearStickyRegex = @"^Clear-sticky\s(.*)";
-      private const string CopyFileName = "Copy-file";
-      private const string CopyFileRegex = @"^Copy-file\s(.*)";
-      private const string CreatedName = "Created";
-      private const string CreatedRegex = @"^Created\s(.*)";
-      private const string EMessageName = "E";
-      private const string EMessageRegex = @"^E\s(.*)";
-      private const string ErrorName = "error";
-      private const string ErrorRegex = @"^error\s(.*)";
-      private const string FMessageName = "F";
-      private const string FMessageRegex = @"^F\s(.*)";
-      private const string MbinaryName = "Mbinary";
-      private const string MbinaryRegex = @"^Mbinary\s(.*)";
-      private const string MergedName = "Merged";
-      private const string MergedRegex = @"^Merged\s(.*)";
-      private const string MessageName = "M";
-      private const string MessageRegex = @"^M\s(.*)";
-      private const string MessageTagName = "MT";
-      private const string MessageTagRegex = @"^MT\s(.*)";
-      private const string ModeName = "Mode";
-      private const string ModeRegex = @"^Mode\s(.*)";
-      private const string ModTimeName = "Mod-time";
-      private const string ModTimeRegex = @"^Mod-time\s(.*)";
-      private const string ModuleExpansionName = "Module-expansion";
-      private const string ModuleExpansionRegex = @"^Module-expansion\s(.*)";
-      private const string NewEntryName = "New-entry";
-      private const string NewEntryRegex = @"^New-entry\s(.*)";
-      private const string NotifiedName = "Notified";
-      private const string NotifiedRegex = @"^Notified\s(.*)";
-      private const string OkName = "ok";
-      private const string OkRegex = @"^ok(.*)";
-      private const string PatchedName = "Patched";
-      private const string PatchedRegex = @"^Patched\s(.*)";
-      private const string RcsDiffName = "Rcs-diff";
-      private const string RcsDiffRegex = @"^Rcs-diff\s(.*)";
-      private const string RemovedName = "Removed";
-      private const string RemovedRegex = @"^Removed\s(.*)";
-      private const string RemoveEntryName = "Remove-entry";
-      private const string RemoveEntryRegex = @"^Remove-entry\s(.*)";
-      private const string SetStaticDirectoryName = "Set-static-directory";
-      private const string SetStaticDirectoryRegex = @"^Set-static-directory\s(.*)";
-      private const string SetStickyName = "Set-sticky";
-      private const string SetStickyRegex = @"^Set-sticky\s(.*)";
-      private const string TemplateName = "Template";
-      private const string TemplateRegex = @"^Template\s(.*)";
-      private const string UpdatedName = "Updated";
-      private const string UpdatedRegex = @"^Updated\s(.*)";
-      private const string UpdateExistingName = "Update-existing";
-      private const string UpdateExistingRegex = @"^Update-existing\s(.*)";
-      private const string ValidRequestsName = "Valid-requests";
-      private const string ValidRequestsRegex = @"^Valid-requests\s(.*)";
-      private const string WrapperRscOptionName = "Wrapper-rcsOption";
-      private const string WrapperRscOptionRegex = @"^Wrapper-rcsOption\s(.*)";
+      #region Response cvs name
+
+      private const string NameAuth = "";
+      private const string NameCheckedIn = "Checked-in";
+      private const string NameChecksum = "Checksum";
+      private const string NameClearStaticDirectory = "Clear-static-directory";
+      private const string NameClearSticky = "Clear-sticky";
+      private const string NameCopyFile = "Copy-file";
+      private const string NameCreated = "Created";
+      private const string NameEMessage = "E";
+      private const string NameError = "error";
+      private const string NameFlush = "F";
+      private const string NameMbinary = "Mbinary";
+      private const string NameMerged = "Merged";
+      private const string NameMessage = "M";
+      private const string NameMessageTag = "MT";
+      private const string NameMode = "Mode";
+      private const string NameModTime = "Mod-time";
+      private const string NameModuleExpansion = "Module-expansion";
+      private const string NameNewEntry = "New-entry";
+      private const string NameNotified = "Notified";
+      private const string NameOk = "ok";
+      private const string NamePatched = "Patched";
+      private const string NameRcsDiff = "Rcs-diff";
+      private const string NameRemoved = "Removed";
+      private const string NameRemoveEntry = "Remove-entry";
+      private const string NameSetStaticDirectory = "Set-static-directory";
+      private const string NameSetSticky = "Set-sticky";
+      private const string NameTemplate = "Template";
+      private const string NameUpdated = "Updated";
+      private const string NameUpdateExisting = "Update-existing";
+      private const string NameValidRequests = "Valid-requests";
+      private const string NameWrapperRscOption = "Wrapper-rcsOption";
+
+      #endregion
+
+      #region Regular expressions pattern to match response name
+
+      private const string RegexAuth = @"(I LOVE YOU|I HATE YOU)(.*)";
+      private const string RegexCheckedIn = @"^Checked-in\s(.*)";
+      private const string RegexChecksum = @"^Checksum\s(.*)";
+      private const string RegexClearStaticDirectory = @"^Clear-static-directory\s(.*)";
+      private const string RegexClearSticky = @"^Clear-sticky\s(.*)";
+      private const string RegexCopyFile = @"^Copy-file\s(.*)";
+      private const string RegexCreated = @"^Created\s(.*)";
+      private const string RegexEMessage = @"^E\s(.*)";
+      private const string RegexError = @"^error\s(.*)";
+      private const string RegexFlush = @"^F\s(.*)";
+      private const string RegexMbinary = @"^Mbinary\s(.*)";
+      private const string RegexMerged = @"^Merged\s(.*)";
+      private const string RegexMessage = @"^M\s(.*)";
+      private const string RegexMessageTag = @"^MT\s(.*)";
+      private const string RegexMode = @"^Mode\s(.*)";
+      private const string RegexModTime = @"^Mod-time\s(.*)";
+      private const string RegexModuleExpansion = @"^Module-expansion\s(.*)";
+      private const string RegexNewEntry = @"^New-entry\s(.*)";
+      private const string RegexNotified = @"^Notified\s(.*)";
+      private const string RegexOk = @"^ok(.*)";
+      private const string RegexPatched = @"^Patched\s(.*)";
+      private const string RegexRcsDiff = @"^Rcs-diff\s(.*)";
+      private const string RegexRemoved = @"^Removed\s(.*)";
+      private const string RegexRemoveEntry = @"^Remove-entry\s(.*)";
+      private const string RegexSetStaticDirectory = @"^Set-static-directory\s(.*)";
+      private const string RegexSetSticky = @"^Set-sticky\s(.*)";
+      private const string RegexTemplate = @"^Template\s(.*)";
+      private const string RegexUpdated = @"^Updated\s(.*)";
+      private const string RegexUpdateExisting = @"^Update-existing\s(.*)";
+      private const string RegexValidRequests = @"^Valid-requests\s(.*)";
+      private const string RegexWrapperRscOption = @"^Wrapper-rcsOption\s(.*)";
+
+      #endregion
 
       public static readonly string[] ResponseNames;
       public static readonly string[] ResponsePatterns;
@@ -78,72 +87,72 @@ namespace PServerClient
       {
          ResponsePatterns = new[]
                                {
-                                  AuthRegex,
-                                  OkRegex,
-                                  ErrorRegex,
-                                  MessageRegex,
-                                  ValidRequestsRegex,
-                                  CheckedInRegex,
-                                  NewEntryRegex,
-                                  UpdatedRegex,
-                                  MergedRegex,
-                                  PatchedRegex,
-                                  ChecksumRegex,
-                                  CopyFileRegex,
-                                  RemovedRegex,
-                                  RemoveEntryRegex,
-                                  SetStaticDirectoryRegex,
-                                  ClearStaticDirectoryRegex,
-                                  SetStickyRegex,
-                                  ClearStickyRegex,
-                                  CreatedRegex,
-                                  MessageTagRegex,
-                                  UpdateExistingRegex,
-                                  RcsDiffRegex,
-                                  ModeRegex,
-                                  ModTimeRegex,
-                                  TemplateRegex,
-                                  NotifiedRegex,
-                                  ModuleExpansionRegex,
-                                  MbinaryRegex,
-                                  EMessageRegex,
-                                  FMessageRegex,
-                                  WrapperRscOptionRegex
+                                  RegexAuth,
+                                  RegexCheckedIn,
+                                  RegexChecksum,
+                                  RegexClearStaticDirectory,
+                                  RegexClearSticky,
+                                  RegexCopyFile,
+                                  RegexCreated,
+                                  RegexEMessage,
+                                  RegexError,
+                                  RegexFlush,
+                                  RegexMbinary,
+                                  RegexMerged,
+                                  RegexMessage,
+                                  RegexMessageTag,
+                                  RegexMode,
+                                  RegexModTime,
+                                  RegexModuleExpansion,
+                                  RegexNewEntry,
+                                  RegexNotified,
+                                  RegexOk,
+                                  RegexPatched,
+                                  RegexRcsDiff,
+                                  RegexRemoved,
+                                  RegexRemoveEntry,
+                                  RegexSetStaticDirectory,
+                                  RegexSetSticky,
+                                  RegexTemplate,
+                                  RegexUpdated,
+                                  RegexUpdateExisting,
+                                  RegexValidRequests,
+                                  RegexWrapperRscOption
                                };
 
          ResponseNames = new[]
                             {
-                               AuthName,
-                               OkName,
-                               ErrorName,
-                               MessageName,
-                               ValidRequestsName,
-                               CheckedInName,
-                               NewEntryName,
-                               UpdatedName,
-                               MergedName,
-                               PatchedName,
-                               ChecksumName,
-                               CopyFileName,
-                               RemovedName,
-                               RemoveEntryName,
-                               SetStaticDirectoryName,
-                               ClearStaticDirectoryName,
-                               SetStickyName,
-                               ClearStickyName,
-                               CreatedName,
-                               MessageTagName,
-                               UpdateExistingName,
-                               RcsDiffName,
-                               ModeName,
-                               ModTimeName,
-                               TemplateName,
-                               NotifiedName,
-                               ModuleExpansionName,
-                               MbinaryName,
-                               EMessageName,
-                               FMessageName,
-                               WrapperRscOptionName
+                                  NameAuth,
+                                  NameCheckedIn,
+                                  NameChecksum,
+                                  NameClearStaticDirectory,
+                                  NameClearSticky,
+                                  NameCopyFile,
+                                  NameCreated,
+                                  NameEMessage,
+                                  NameError,
+                                  NameFlush,
+                                  NameMbinary,
+                                  NameMerged,
+                                  NameMessage,
+                                  NameMessageTag,
+                                  NameMode,
+                                  NameModTime,
+                                  NameModuleExpansion,
+                                  NameNewEntry,
+                                  NameNotified,
+                                  NameOk,
+                                  NamePatched,
+                                  NameRcsDiff,
+                                  NameRemoved,
+                                  NameRemoveEntry,
+                                  NameSetStaticDirectory,
+                                  NameSetSticky,
+                                  NameTemplate,
+                                  NameUpdated,
+                                  NameUpdateExisting,
+                                  NameValidRequests,
+                                  NameWrapperRscOption
                             };
       }
 

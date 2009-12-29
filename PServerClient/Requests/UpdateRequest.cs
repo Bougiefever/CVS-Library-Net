@@ -10,6 +10,7 @@ namespace PServerClient.Requests
    /// </summary>
    public class UpdateRequest : NoArgRequestBase
    {
+      public UpdateRequest(){}
       public UpdateRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return true; } }
       public override RequestType Type { get { return RequestType.Update; } }

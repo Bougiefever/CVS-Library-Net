@@ -13,14 +13,14 @@ namespace PServerClient.Tests
    {
       private PServerFactory _factory;
 
-      [SetUp]
+      [TestFixtureSetUp]
       public void SetUp()
       {
          _factory = new PServerFactory();
       }
 
       [Test]
-      public void CreateResponsesTest()
+      public void CreateResponsesFromTypeTest()
       {
          ResponseType type = ResponseType.Auth;
          IResponse response = _factory.CreateResponse(type);
@@ -309,53 +309,44 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void CreateCommandsTest()
+      public void CreateCommandTest()
       {
-         //Checkout command
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
-         CommandType type = CommandType.CheckOut;
-         ICommand command = _factory.CreateCommand(type, new object[] { root });
-         Assert.IsInstanceOf<CheckOutCommand>(command);
-
-         //Import command
-         type = CommandType.Import;
-         command = _factory.CreateCommand(type, new object[] { root });
-         Assert.IsInstanceOf<ImportCommand>(command);
-
-         //Log command
-         type = CommandType.Log;
-         command = _factory.CreateCommand(type, new object[] { root });
-         Assert.IsInstanceOf<LogCommand>(command);
-
-         //ValidRequestList command
-         type = CommandType.ValidRequestsList;
-         command = _factory.CreateCommand(type, new object[] { root });
-         Assert.IsInstanceOf<ValidRequestsListCommand>(command);
-
-         //VerifyAuth command
-         type = CommandType.VerifyAuth;
-         command = _factory.CreateCommand(type, new object[] { root });
-         Assert.IsInstanceOf<VerifyAuthCommand>(command);
-
-         //Version command
-         type = CommandType.Version;
-         command = _factory.CreateCommand(type, new object[] { root });
-         Assert.IsInstanceOf<VersionCommand>(command);
+         for (int i = 0; i < 9; i++)
+         {
+            CommandType type = (CommandType) i;
+            string className = string.Format("PServerClient.Commands.{0}Command", type);
+            ICommand command = _factory.CreateCommand(className, new object[] { root });
+            Assert.AreEqual(type, command.Type);
+         }
       }
 
       [Test]
-      public void CreateRequestByLinesTest()
+      public void CreateRequestTest()
       {
          PServerFactory factory = new PServerFactory();
          string[] lines = new[] {"line 1", "line 2"};
          for (int i = 0; i < 62; i++)
          {
             RequestType requestType = (RequestType) i;
-            IRequest request = factory.CreateRequest(requestType, lines);
+            string className = string.Format("PServerClient.Requests.{0}Request", requestType);
+            IRequest request = factory.CreateRequest(className, lines);
             Assert.AreEqual(requestType, request.Type);
             Assert.AreEqual(2, request.RequestLines.Count());
             Assert.AreEqual("line 1", request.RequestLines[0]);
             Assert.AreEqual("line 2", request.RequestLines[1]);
+         }
+      }
+
+      [Test]
+      public void CreateResponseByClassNameTest()
+      {
+         for (int i = 0; i < 31; i++)
+         {
+            ResponseType type = (ResponseType) i;
+            string className = string.Format("PServerClient.Responses.{0}Response", type);
+            IResponse response = _factory.CreateResponse(className);
+            Assert.AreEqual(type, response.Type);
          }
       }
    }

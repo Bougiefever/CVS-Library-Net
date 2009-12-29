@@ -7,5 +7,9 @@ namespace PServerClient.Responses
    public class OkResponse : ResponseBase
    {
       public override ResponseType Type { get { return ResponseType.Ok; } }
+      public override string DisplayResponse()
+      {
+         return "ok";
+      }
    }
 }

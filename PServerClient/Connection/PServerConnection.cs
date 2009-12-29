@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using PServerClient.CVS;
@@ -35,6 +36,7 @@ namespace PServerClient.Connection
       public IList<IResponse> DoRequest(IRequest request)
       {
          string requestString = request.GetRequestString();
+         Console.WriteLine("C: " + requestString);
          byte[] sendBuffer = requestString.Encode();
          TcpClient.Write(sendBuffer);
          // do file stuff for request here
@@ -61,6 +63,7 @@ namespace PServerClient.Connection
          do
          {
             line = ReadLine();
+            Console.WriteLine("S: " + line);
             if (line != null)
             {
                PServerFactory factory = new PServerFactory();

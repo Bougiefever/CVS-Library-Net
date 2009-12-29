@@ -24,7 +24,7 @@ namespace PServerClient.Tests
          XElement responseElement = XElement.Parse(xml);
          bool result = TestHelper.ValidateResponseXML(responseElement);
          Assert.IsTrue(result);
-         IResponse response = TestHelper.XMLToResponse(responseElement);
+         IResponse response = TestHelper.ResponseXElementToIResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<UpdatedResponse>(response);
          IFileResponse fileResponse = (IFileResponse) response;
@@ -64,19 +64,10 @@ namespace PServerClient.Tests
          XElement responseElement = XElement.Parse(xml);
          bool result = TestHelper.ValidateResponseXML(responseElement);
          Assert.IsTrue(result);
-         IResponse response = TestHelper.XMLToResponse(responseElement);
+         IResponse response = TestHelper.ResponseXElementToIResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<AuthResponse>(response);
          Assert.AreEqual("I LOVE YOU", response.DisplayResponse());
-      }
-
-      [Test][Ignore]
-      public void GetResponsesFromXMLTest()
-      {
-         string xml = TestStrings.AuthCheckedInResponses;
-         XDocument xdoc = XDocument.Parse(xml);
-         IList<IResponse> responses = TestHelper.XMLToResponseList(xdoc);
-         Assert.AreEqual(2, responses.Count);
       }
 
       [Test]
@@ -113,7 +104,7 @@ namespace PServerClient.Tests
             request.Responses.Add(cor);
          }
 
-         XDocument xdoc = TestHelper.CommandToXML(cmd);
+         XDocument xdoc = TestHelper.ICommandToXDocument(cmd);
          Console.WriteLine(xdoc.ToString());
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
@@ -124,7 +115,7 @@ namespace PServerClient.Tests
       public void RequestXMLTest()
       {
          IRequest request = new CheckOutRequest();
-         XElement requestElement = TestHelper.RequestToXML(request);
+         XElement requestElement = TestHelper.IRequestToXElement(request);
          bool result = TestHelper.ValidateRequestXML(requestElement);
          Assert.IsTrue(result);
       }
@@ -208,7 +199,7 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
 
-         ICommand cmd = TestHelper.CommandXMLToCommandObject(xdoc, root);
+         ICommand cmd = TestHelper.CommandXElementToICommand(xdoc, root);
          Assert.IsInstanceOf<CheckOutCommand>(cmd);
          
          Assert.AreEqual(2, cmd.RequiredRequests.Count);
@@ -216,6 +207,8 @@ namespace PServerClient.Tests
 
          AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().First();
          Assert.AreEqual(1, authRequest.Responses.Count);
+         Assert.AreEqual(AuthStatus.Authenticated, authRequest.Status);
+
       }
    }
 }
