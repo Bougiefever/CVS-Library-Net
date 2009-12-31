@@ -31,12 +31,6 @@ namespace PServerClient.Tests
       [Test]
       public void GetModuleFolderTest()
       {
-         //string hostName = "host-name";
-         //int port = 1;
-         //string user = "username";
-         //string pwd = "password";
-         //string repoPath = "/f1/f2/f3";
-
          Root root = new Root(_hostName, _port, _user, _pwd, _repoPath);
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;
@@ -47,12 +41,6 @@ namespace PServerClient.Tests
       [Test]
       public void GetModuleFolderWithMultipleNamesInPathTest()
       {
-         //string hostName = "host-name";
-         //int port = 1;
-         //string user = "username";
-         //string pwd = "password";
-         //string repoPath = "/f1/f2/f3";
-
          Root root = new Root(_hostName, _port, _user, _pwd, _repoPath);
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;

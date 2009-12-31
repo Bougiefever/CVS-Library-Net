@@ -7,7 +7,7 @@ namespace PServerClient.Responses
 {
    public abstract class ResponseBase : IResponse
    {
-      public IList<string> Lines { get; internal set; }
+      public IList<string> Lines { get; set; }
 
       public virtual void Process(IList<string> lines)
       {

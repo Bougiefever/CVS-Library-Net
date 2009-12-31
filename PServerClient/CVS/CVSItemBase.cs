@@ -9,12 +9,13 @@ namespace PServerClient.CVS
    /// </summary>
    public abstract class CVSItemBase : ICVSItem
    {
-      protected CVSItemBase(FileSystemInfo info)
+      protected CVSItemBase(FileSystemInfo info, ICVSItem parent)
       {
          Info = info;
          Revision = string.Empty;
          Properties = string.Empty;
          StickyOption = string.Empty;
+         Parent = parent;
       }
 
       #region ICVSItem Members
@@ -36,6 +37,8 @@ namespace PServerClient.CVS
       {
          throw new NotSupportedException();
       }
+
+      public ICVSItem Parent { get; protected set; }
 
       public virtual ICVSItem this[int idx] { get { throw new NotSupportedException(); } }
 

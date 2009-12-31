@@ -80,12 +80,12 @@ namespace PServerClient.CVS
                {
                   DirectoryInfo di = new DirectoryInfo(path);
                   string repo = _cvsRepository + "/" + entryName;
-                  item = new Folder(di, _cvsConnection, repo);
+                  item = new Folder(di, _cvsConnection, repo, (ICVSItem) this);
                }
                else
                {
                   FileInfo fi = new FileInfo(path);
-                  item = new Entry(fi)
+                  item = new Entry(fi, (ICVSItem) this)
                             {
                                Revision = revision,
                                ModTime = date.EntryToDateTime(),

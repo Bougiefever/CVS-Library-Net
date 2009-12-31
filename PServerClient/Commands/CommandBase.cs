@@ -18,7 +18,7 @@ namespace PServerClient.Commands
 
       internal IList<RequestType> ValidRequestTypes;
 
-      protected CommandBase(Root root)
+      protected CommandBase(IRoot root)
       {
          BasicConfigurator.Configure();
          _logger = LogManager.GetLogger(typeof (CommandBase));
@@ -71,7 +71,7 @@ namespace PServerClient.Commands
       public IList<IRequest> RequiredRequests { get; set; }
 
       public IList<IRequest> Requests { get; set; }
-      public Root Root { get; private set; }
+      public IRoot Root { get; private set; }
       public ExitCode ExitCode { get; set; }
 
       public virtual void Execute()
@@ -93,6 +93,7 @@ namespace PServerClient.Commands
                      ExitCode = ExitCode.Failed;
                      break;
                   }
+                  PostProcessRequest();
                }
             }
             if (ExitCode == ExitCode.Succeeded)
@@ -132,12 +133,17 @@ namespace PServerClient.Commands
 
       #endregion
 
-      public virtual void PreExecute()
+      protected internal virtual void PreExecute()
       {
          // default is do nothing
       }
 
-      public virtual void PostExecute()
+      protected internal virtual void PostProcessRequest()
+      {
+         // default is do nothing
+      }
+
+      protected internal virtual void PostExecute()
       {
          // default is do nothing
       }

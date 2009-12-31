@@ -16,7 +16,7 @@ namespace PServerClient.Requests
    /// </summary>
    public class RootRequest : RequestBase
    {
-      public RootRequest(Root root)
+      public RootRequest(IRoot root)
       {
          Lines = new string[1];
          Lines[0] = string.Format("{0} {1}", RequestName, root.RepositoryPath);

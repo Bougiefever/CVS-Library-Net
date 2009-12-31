@@ -16,7 +16,7 @@ namespace PServerClient.Requests
    /// </summary>
    public class DirectoryRequest : RequestBase
    {
-      public DirectoryRequest(Root root)
+      public DirectoryRequest(IRoot root)
       {
          Lines = new string[2];
          Lines[0] = string.Format("{0} .", RequestName);

@@ -58,6 +58,12 @@ namespace PServerClient.Requests
          return requestElement;
       }
 
+      public void CollapseResponses()
+      {
+         IList<IResponse> newResponses = ResponseHelper.CollapseMessagesInResponses(Responses);
+         Responses = newResponses;
+      }
+
       public abstract RequestType Type { get; }
       public string[] Lines { get; internal set; }
       public IList<IResponse> Responses { get; set; }

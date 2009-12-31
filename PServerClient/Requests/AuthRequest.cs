@@ -4,7 +4,7 @@ namespace PServerClient.Requests
 {
    public class AuthRequest : AuthRequestBase
    {
-      public AuthRequest(Root root) : base(root, RequestType.Auth)
+      public AuthRequest(IRoot root) : base(root, RequestType.Auth)
       {
       }
       public AuthRequest(string[] lines) : base(lines) {}

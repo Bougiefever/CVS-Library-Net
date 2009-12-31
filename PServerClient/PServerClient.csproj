@@ -55,6 +55,8 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DiffCommand.cs" />
     <Compile Include="Commands\ExportCommand.cs" />
+    <Compile Include="Commands\IFileResponseGroup.cs" />
+    <Compile Include="Commands\ResponseProcessor.cs" />
     <Compile Include="Commands\TagCommand.cs" />
     <Compile Include="CommandType.cs" />
     <Compile Include="CVS\CVSFileReceiver.cs" />

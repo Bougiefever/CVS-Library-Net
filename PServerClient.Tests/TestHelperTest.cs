@@ -218,9 +218,13 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void CollapseMessagesInResponsesTest()
+      public void ImportXMLResponseWithMultpleLinesTest()
       {
-
+         string xml = TestStrings.MTResponse;
+         XElement responseElement = XElement.Parse(xml);
+         PServerFactory factory = new PServerFactory();
+         IResponse response = factory.ResponseXElementToIResponse(responseElement);
+         Assert.AreEqual(5, response.Lines.Count);
       }
    }
 }

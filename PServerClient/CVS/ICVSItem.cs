@@ -14,7 +14,10 @@ namespace PServerClient.CVS
       /// whether instance is an Entry or Folder object
       /// </summary>
       FileSystemInfo Info { get; }
-
+      /// <summary>
+      /// The parent folder item
+      /// </summary>
+      ICVSItem Parent { get; }
       /// <summary>
       /// List of Entries or Folders contained by the current item
       /// Entry does not support this because files do not have 

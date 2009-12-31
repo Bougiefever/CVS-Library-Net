@@ -8,7 +8,7 @@ namespace PServerClient.CVS
    /// </summary>
    public class Entry : CVSItemBase
    {
-      public Entry(FileSystemInfo info) : base(info)
+      public Entry(FileSystemInfo info, ICVSItem parent) : base(info, parent)
       {
       }
 

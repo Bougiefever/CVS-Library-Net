@@ -15,6 +15,7 @@ namespace PServerClient.Requests
       RequestType Type { get; }
       string GetRequestString();
       XElement GetXElement();
+      void CollapseResponses();
    }
 
    /// <summary>
@@ -25,7 +26,7 @@ namespace PServerClient.Requests
       AuthStatus Status { get; }
    }
 
-   public interface IFileRequest : IRequest
+   public interface ISubmitFileRequest : IRequest
    {
       long FileLength { get; }
       byte[] FileContents { get; set; }

@@ -125,11 +125,16 @@ namespace PServerClient
          IResponse response = factory.CreateResponse(className);
          IList<string> lines = new List<string>();
          XElement linesElement = responseElement.Descendants("Lines").First();
+
          foreach (XElement lineElement in linesElement.Elements())
          {
             lines.Add(lineElement.Value);
          }
-         response.Process(lines);
+         if (response is IMessageResponse)
+            response.Lines = lines;
+         else
+            response.Process(lines);
+
          if (response is IFileResponse)
          {
             IFileResponse fileResponse = (IFileResponse)response;

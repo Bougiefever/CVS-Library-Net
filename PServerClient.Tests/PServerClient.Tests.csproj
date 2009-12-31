@@ -55,6 +55,7 @@
     <Compile Include="Commands\CheckoutCommandTest.cs" />
     <Compile Include="Commands\CommandBaseTest.cs" />
     <Compile Include="PServerFactoryTest.cs" />
+    <Compile Include="ResponseProcessorTest.cs" />
     <Compile Include="TestHelperTest.cs" />
     <Compile Include="ServerFileReceiverTest.cs" />
     <Compile Include="Commands\ExportCommandTest.cs" />
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestSetup\CheckOutModule.xml" />
+    <Content Include="TestSetup\ExportCommandWithEMessages.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

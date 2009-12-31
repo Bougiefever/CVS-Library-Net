@@ -12,7 +12,7 @@ namespace PServerClient.Connection
    public class PServerConnection : IConnection
    {
       private ICvsTcpClient _cvsTcpClient;
-      private Root _root;
+      private IRoot _root;
 
       #region IConnection Members
 
@@ -27,7 +27,7 @@ namespace PServerClient.Connection
          set { _cvsTcpClient = value; }
       }
 
-      public void Connect(Root root)
+      public void Connect(IRoot root)
       {
          _root = root;
          TcpClient.Connect(root.Host, root.Port);

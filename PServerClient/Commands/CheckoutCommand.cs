@@ -9,7 +9,7 @@ namespace PServerClient.Commands
 {
    public class CheckOutCommand : CommandBase
    {
-      public CheckOutCommand(Root root)
+      public CheckOutCommand(IRoot root)
          : base(root)
       {
          Requests.Add(new RootRequest(root));
@@ -21,16 +21,16 @@ namespace PServerClient.Commands
 
       public override CommandType Type { get { return CommandType.CheckOut; } }
 
-      public override void PostExecute()
+      protected internal override void PostExecute()
       {
          IList<IResponse> checkOutResponses = Requests.Where(r => r.Type == RequestType.CheckOut)
             .First()
             .Responses;
-         foreach (IResponse response in checkOutResponses)
-         {
-            Console.WriteLine(response.Type + ": ");
-            Console.WriteLine(response.Display());
-         }
+         //foreach (IResponse response in checkOutResponses)
+         //{
+         //   Console.WriteLine(response.Type + ": ");
+         //   Console.WriteLine(response.Display());
+         //}
          CVSFileReceiver fileReceiver = new CVSFileReceiver(Root);
          fileReceiver.ProcessCheckoutResponses(checkOutResponses);
       }

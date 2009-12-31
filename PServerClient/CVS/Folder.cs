@@ -13,7 +13,7 @@ namespace PServerClient.CVS
       private readonly IList<ICVSItem> _childItems;
       private readonly CVSFolder _cvsFolder;
 
-      public Folder(FileSystemInfo info, string cvsRoot, string cvsModule) : base(info)
+      public Folder(FileSystemInfo info, string cvsRoot, string cvsModule, ICVSItem parent) : base(info, parent)
       {
          _cvsFolder = new CVSFolder((DirectoryInfo) Info, cvsRoot, cvsModule);
          _childItems = new List<ICVSItem>();

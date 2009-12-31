@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace PServerClient.Responses
@@ -7,7 +7,7 @@ namespace PServerClient.Responses
    {
       int LineCount { get; }
       ResponseType Type { get; }
-      IList<string> Lines { get; }
+      IList<string> Lines { get; set; }
       void Process(IList<string> lines);
       string Display();
       XElement GetXElement();

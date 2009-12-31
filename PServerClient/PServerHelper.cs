@@ -208,20 +208,20 @@ namespace PServerClient
          string[] folders = module.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries);
          string folderName = folders[0];
          DirectoryInfo di = new DirectoryInfo(working.FullName + "\\" + folderName);
-         Folder root = new Folder(di, cvsConnection, folderName);
+         Folder rootModuleFolder = new Folder(di, cvsConnection, folderName, null);
          string repository = folderName;
-         Folder current = root;
+         Folder current = rootModuleFolder;
          for (int i = 1; i < folders.Length; i++)
          {
             folderName = folders[i];
             Folder folder = null;
                repository += "/" + folderName;
                di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
-               folder = new Folder(di, cvsConnection, repository);
+               folder = new Folder(di, cvsConnection, repository, current);
                current.AddItem(folder);
             current = folder;
          }
-         return root;
+         return rootModuleFolder;
       }
    }
 }

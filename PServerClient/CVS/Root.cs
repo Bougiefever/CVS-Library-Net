@@ -2,12 +2,45 @@ using System.IO;
 
 namespace PServerClient.CVS
 {
+   public interface IRoot
+   {
+      DirectoryInfo WorkingDirectory { get; set; }
+      Folder ModuleFolder { get; }
+      string Username { get; set; }
+      string Password { get; set; }
+
+      /// <summary>
+      /// Pserver connection string for Cvs
+      /// </summary>
+      string CVSConnectionString { get; set; }
+
+      /// <summary>
+      /// Cvs root folder on unix machine
+      /// </summary>
+      string RepositoryPath { get; set; }
+
+      /// <summary>
+      /// Name of Cvs module being interacted with
+      /// </summary>
+      string Module { get; set; }
+
+      /// <summary>
+      /// Name of host machine
+      /// </summary>
+      string Host { get; set; }
+
+      /// <summary>
+      /// Port for Cvs on host machine
+      /// </summary>
+      int Port { get; set; }
+   }
+
    /// <summary>
    /// CVS Root object contains information about the CVS repository.
    /// Also contains the local working directory and the CVS module folder,
    /// which is the entry point for the hierarchy of the repository module items
    /// </summary>
-   public class Root
+   public class Root : IRoot
    {
       private Folder _moduleFolder;
 

@@ -8,9 +8,9 @@ namespace PServerClient.CVS
 {
    public class CVSFileReceiver
    {
-      private readonly Root _root;
+      private readonly IRoot _root;
 
-      public CVSFileReceiver(Root root)
+      public CVSFileReceiver(IRoot root)
       {
          _root = root;
       }
@@ -87,7 +87,7 @@ namespace PServerClient.CVS
 
          string filename = names[1];
          FileInfo fi = new FileInfo(Path.Combine(current.Info.FullName, filename));
-         Entry entry = new Entry(fi);
+         Entry entry = new Entry(fi, current);
          res = entryResponses.Where(r => r.Type == ResponseType.ModTime).First();
          entry.ModTime = ((ModTimeResponse) res).ModTime;
          UpdatedResponse ur = (UpdatedResponse) entryResponses.Where(r => r.Type == ResponseType.Updated).First();
@@ -119,7 +119,7 @@ namespace PServerClient.CVS
             {
                repository += "/" + folderName;
                DirectoryInfo di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
-               folder = new Folder(di, _root.CVSConnectionString, repository);
+               folder = new Folder(di, _root.CVSConnectionString, repository, current);
                current.AddItem(folder);
             }
             current = folder;

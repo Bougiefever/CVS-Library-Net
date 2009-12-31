@@ -14,6 +14,7 @@
       <Responses>
         <Response>
           <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+           <Name/>
           <Lines>
             <Line>I LOVE YOU</Line>
           </Lines>
@@ -42,12 +43,14 @@
       <Responses>
         <Response>
           <ClassName>PServerClient.Responses.ValidRequestsResponse</ClassName>
+           <Name>Valid-requests</Name>
           <Lines>
             <Line>Root Valid-responses valid-requests Repository Directory Max-dotdot Static-directory Sticky Entry Kopt Checkin-time Modified Is-modified Empty-conflicts UseUnchanged Unchanged Notify Questionable Argument Argumentx Global_option Gzip-stream wrapper-sendme-rcsOptions Set expand-modules ci co update diff log rlog add remove update-patches gzip-file-contents status rdiff tag rtag import admin export history release watch-on watch-off watch-add watch-remove watchers editors init annotate rannotate noop version</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.OkResponse</ClassName>
+           <Name>ok</Name>
           <Lines>
             <Line></Line>
           </Lines>
@@ -107,6 +110,7 @@
       <Responses>
 	    <Response>
           <ClassName>PServerClient.Responses.ClearStaticDirectoryResponse</ClassName>
+          <Name>Clear-static-directory</Name>
           <Lines>
             <Line>abougie/cvstest/</Line>
             <Line>/usr/local/cvsroot/sandbox/abougie/cvstest/</Line>
@@ -114,6 +118,7 @@
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.SetStickyResponse</ClassName>
+           <Name>Set-sticky</Name>
           <Lines>
             <Line>abougie/cvstest/</Line>
             <Line>/usr/local/cvsroot/sandbox/abougie/cvstest/</Line>
@@ -121,79 +126,92 @@
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <Name>E</Name>
           <Lines>
             <Line>cvs server: invalid option -- P</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>Usage: cvs export [-NRfln] [-r tag] [-D date] [-d dir] [-k kopt] module...</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>	-N	Don't shorten module paths if -d specified.</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>	-f	Force a head revision match if tag/date not found.</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <Name>E</Name>
           <Lines>
             <Line>	-l	Local directory only, not recursive</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <Name>E</Name>
           <Lines>
             <Line>	-R	Process directories recursively (default).</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+           <Name>E</Name>
           <Lines>
             <Line>	-n	Do not run module program (if any).</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>	-r tag	Export tagged revisions.</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>	-D date	Export revisions as of date.</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>	-d dir	Export into dir instead of module name.</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>	-k kopt	Use RCS kopt -k option on checkout.</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
+           <Name>E</Name>
+           <Lines>
             <Line>(Specify the --help global option for a list of other help options)</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.ErrorResponse</ClassName>
-          <Lines>
+           <Name>error</Name>
+           <Lines>
             <Line> </Line>
           </Lines>
         </Response>

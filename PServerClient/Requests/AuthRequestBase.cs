@@ -9,9 +9,9 @@ namespace PServerClient.Requests
 {
    public abstract class AuthRequestBase : RequestBase, IAuthRequest
    {
-      private readonly Root _root;
+      private readonly IRoot _root;
 
-      protected AuthRequestBase(Root root, RequestType type)
+      protected AuthRequestBase(IRoot root, RequestType type)
       {
          _root = root;
          Lines = new string[5];

@@ -381,6 +381,8 @@ namespace PServerClient.Tests
          FileInfo fi = new FileInfo(Path.Combine(di.FullName, "TestSetup\\ExportCommandWithEMessages.xml"));
          TextReader reader = fi.OpenText();
          XDocument xdoc = XDocument.Load(reader);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
          PServerFactory factory = new PServerFactory();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, DateTime.Now });
@@ -390,6 +392,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(4, condensed.Count);
          IMessageResponse message = (IMessageResponse) condensed[2];
          Assert.AreEqual(12, message.Lines.Count);
+         Console.WriteLine(message.Display());
       }
 
       private void ResponseTest(IResponse response, ResponseType expectedType, int lineCount, string expectedDisplay, IList<string> lines)

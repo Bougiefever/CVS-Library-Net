@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
@@ -38,6 +40,31 @@ namespace PServerClient.IntegrationTests
          string mydate = cmd.GetExportDate(date);
       }
 
+      [Test]
+      public void ProcessFilesTest()
+      {
+         DirectoryInfo di = Directory.GetParent(Environment.CurrentDirectory);
+         FileInfo fi = new FileInfo(Path.Combine(di.FullName, "TestSetup\\ExportCommand.xml"));
+         TextReader reader = fi.OpenText();
+         XDocument xdoc = XDocument.Load(reader);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
+         PServerFactory factory = new PServerFactory();
+         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         DateTime date = new DateTime();
+         ExportCommand cmd = (ExportCommand)factory.CreateCommand(xdoc, new object[] { root, date });
+         cmd.PostExecute();
+         Assert.AreEqual(4, cmd.FileGroups.Count);
+
+      }
+
+      [Test]
+      public void TestTest()
+      {
+         _root.WorkingDirectory = new DirectoryInfo(@"c:\_cvs\TestWorking");
+         
+
+      }
       
    }
 }

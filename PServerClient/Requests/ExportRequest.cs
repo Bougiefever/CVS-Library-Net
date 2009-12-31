@@ -1,3 +1,5 @@
+using System;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -18,5 +20,6 @@ namespace PServerClient.Requests
       public ExportRequest(string[] lines) : base(lines){}
       public override bool ResponseExpected { get { return true; } }
       public override RequestType Type { get { return RequestType.Export; } }
+
    }
 }

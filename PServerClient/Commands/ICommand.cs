@@ -8,7 +8,7 @@ namespace PServerClient.Commands
    public interface ICommand
    {
       IList<IRequest> Requests { get; set; }
-      Root Root { get; }
+      IRoot Root { get; }
       ExitCode ExitCode { get; set; }
       CommandType Type { get; }
       IList<IRequest> RequiredRequests { get; set; }

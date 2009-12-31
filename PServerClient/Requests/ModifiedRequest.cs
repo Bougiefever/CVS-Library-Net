@@ -8,7 +8,7 @@ namespace PServerClient.Requests
    //operating on only some files in a directory, only those files need to be included.
    //This can also be sent without Entry, if there is no entry for the file.
    /// </summary>
-   public class ModifiedRequest : RequestBase, IFileRequest
+   public class ModifiedRequest : RequestBase, ISubmitFileRequest
    {
       public ModifiedRequest(string fileName, string mode, long fileLength)
       {

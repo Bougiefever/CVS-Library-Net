@@ -457,5 +457,16 @@ namespace PServerClient.Tests.TestSetup
      </Request>
    </Requests>
 </Command>";
+      public const string MTResponse = @"<Response>
+          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <Name>MT</Name>
+          <Lines>
+            <Line>+updated</Line>
+            <Line>text U </Line>
+            <Line>fname abougie/cvstest/NewTestApp.sln</Line>
+            <Line>newline</Line>
+            <Line>-updated</Line>
+          </Lines>
+        </Response>";
    }
 }

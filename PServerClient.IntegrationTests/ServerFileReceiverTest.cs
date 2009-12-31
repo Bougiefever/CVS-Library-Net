@@ -75,26 +75,26 @@ namespace PServerClient.IntegrationTests
       public void SaveFoldersWithEntriesTest()
       {
          DirectoryInfo dimodule = new DirectoryInfo(@"c:\_temp\mymod");
-         Folder module = new Folder(dimodule, "connection string", "mymod");
+         Folder module = new Folder(dimodule, "connection string", "mymod", null);
 
          FileInfo fi1 = new FileInfo(@"c:\_temp\mymod\file1.cs");
-         Entry file1 = new Entry(fi1) { Length = 1, FileContents = new byte[] { 97 } };
+         Entry file1 = new Entry(fi1, module) { Length = 1, FileContents = new byte[] { 97 } };
          module.AddItem(file1);
 
          DirectoryInfo disub1 = new DirectoryInfo(@"c:\_temp\mymod\sub1");
-         Folder sub1 = new Folder(disub1, "connection string", "mymod/sub1");
+         Folder sub1 = new Folder(disub1, "connection string", "mymod/sub1", null);
          module.AddItem(sub1);
 
          FileInfo fi2 = new FileInfo(@"c:\_temp\mymod\sub1\file2.cs");
-         Entry file2 = new Entry(fi2) { Length = 1, FileContents = new byte[] { 97 } };
+         Entry file2 = new Entry(fi2, module) { Length = 1, FileContents = new byte[] { 97 } };
          sub1.AddItem(file2);
 
          DirectoryInfo disub2 = new DirectoryInfo(@"c:\_temp\mymod\sub1\sub2");
-         Folder sub2 = new Folder(disub2, "connection string", "mymod/sub1/sub2");
+         Folder sub2 = new Folder(disub2, "connection string", "mymod/sub1/sub2", null);
          sub1.AddItem(sub2);
 
          FileInfo fi3 = new FileInfo(@"c:\_temp\mymod\sub1\sub2\file3.cs");
-         Entry file3 = new Entry(fi3) { Length = 1, FileContents = new byte[] { 97 } };
+         Entry file3 = new Entry(fi3, null) { Length = 1, FileContents = new byte[] { 97 } };
          sub2.AddItem(file3);
          PrintWorkingDirStructure(module);
 
