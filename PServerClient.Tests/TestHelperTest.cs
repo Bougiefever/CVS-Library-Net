@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -200,6 +201,26 @@ namespace PServerClient.Tests
          AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().First();
          Assert.AreEqual(1, authRequest.Responses.Count);
          Assert.AreEqual(AuthStatus.Authenticated, authRequest.Status);
+
+      }
+
+      [Test]
+      public void RegexTest()
+      {
+         string test = "Valid-requests Root Valid-responses";
+         string pattern = @"^Valid-requests\s(?<data>.*)";
+         Match m = Regex.Match(test, pattern);
+         string data = m.Groups["data"].Value;
+         Assert.AreEqual("Root Valid-responses", data);
+         pattern = @"(?<data>.*)";
+         m = Regex.Match(test, pattern);
+         data = m.Groups["data"].Value;
+         Assert.AreEqual("Valid-requests Root Valid-responses", data);
+      }
+
+      [Test]
+      public void CollapseMessagesInResponsesTest()
+      {
 
       }
    }

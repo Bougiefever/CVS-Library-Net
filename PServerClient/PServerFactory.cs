@@ -37,9 +37,13 @@ namespace PServerClient
          ResponseType responseType = ResponseType.Null;
          for (int i = 0; i < ResponseHelper.ResponsePatterns.Length; i++)
          {
-            Match m = Regex.Match(rawResponse, ResponseHelper.ResponsePatterns[i]);
+            string pattern = ResponseHelper.ResponsePatterns[i];
+            Match m = Regex.Match(rawResponse, pattern);
             if (m.Success)
+            {
                responseType = (ResponseType)i;
+               break;
+            }
          }
          return responseType;
       }

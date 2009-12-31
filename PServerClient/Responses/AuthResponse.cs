@@ -23,8 +23,8 @@ namespace PServerClient.Responses
          {
             Status = AuthStatus.NotAuthenticated;
          }
-         Lines = new string[1];
-         Lines[0] = lines[0];
+         Lines = new List<string>(1);
+         Lines.Add(lines[0]);
       }
 
       public override string Display()

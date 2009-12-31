@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="CheckoutCommandTest.cs" />
     <Compile Include="CvsFolderTest.cs" />
+    <Compile Include="ExportCommandTest.cs" />
     <Compile Include="ServerFileReceiverTest.cs" />
     <Compile Include="LogCommandTest.cs" />
     <Compile Include="ReaderWriterTest.cs" />

@@ -30,7 +30,7 @@ namespace PServerClient.Responses
 
       public override string Display()
       {
-         return ModuleName + Environment.NewLine + RepositoryPath;
+         return RepositoryPath;
       }
    }
 }

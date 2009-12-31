@@ -63,7 +63,6 @@ namespace PServerClient.Connection
          do
          {
             line = ReadLine();
-            Console.WriteLine("S: " + line);
             if (line != null)
             {
                PServerFactory factory = new PServerFactory();
@@ -86,7 +85,7 @@ namespace PServerClient.Connection
       {
          string pattern = ResponseHelper.ResponsePatterns[(int) responseType];
          Match m = Regex.Match(line, pattern);
-         string responseLine = m.Groups[1].ToString();
+         string responseLine = m.Groups["data"].Value;
          IList<string> responseLines = new List<string> {responseLine};
          if (lineCount > 0)
          {
@@ -114,6 +113,7 @@ namespace PServerClient.Connection
          } while (i != 0 && i != 10 && i != -1);
          if (sb.Length > 0)
             line = sb.ToString();
+         Console.WriteLine("S: " + (line ?? string.Empty));
          return line;
       }
    }

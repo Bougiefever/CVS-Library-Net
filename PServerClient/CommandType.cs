@@ -10,6 +10,7 @@ namespace PServerClient
       Add = 5,
       Export = 6,
       Log = 7,
-      Diff = 8
+      Diff = 8,
+      Tag = 9
    }
 }

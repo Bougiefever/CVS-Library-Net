@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PServerClient.Responses
 {
-   public abstract class MessageResponseBase : ResponseBase
+   public abstract class MessageResponseBase : ResponseBase, IMessageResponse
    {
       public string Message { get; internal set; }
 
@@ -10,11 +10,6 @@ namespace PServerClient.Responses
       {
          Message = lines[0];
          base.Process(lines);
-      }
-
-      public override string Display()
-      {
-         return Message;
       }
    }
 }

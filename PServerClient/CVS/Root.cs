@@ -3,7 +3,7 @@ using System.IO;
 namespace PServerClient.CVS
 {
    /// <summary>
-   /// CVSRoot object contains information about the CVS repository.
+   /// CVS Root object contains information about the CVS repository.
    /// Also contains the local working directory and the CVS module folder,
    /// which is the entry point for the hierarchy of the repository module items
    /// </summary>

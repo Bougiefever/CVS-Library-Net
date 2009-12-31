@@ -7,21 +7,21 @@ namespace PServerClient.Responses
 {
    public abstract class ResponseBase : IResponse
    {
-      public string[] Lines { get; internal set; }
+      public IList<string> Lines { get; internal set; }
 
       public virtual void Process(IList<string> lines)
       {
-         Lines = new string[LineCount];
+         Lines = new List<string>(LineCount);
          //ResponseLines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
          for (int i = 0; i < LineCount; i++)
-            Lines[i] = lines[i];
+            Lines.Add(lines[i]);
       }
 
       public abstract ResponseType Type { get; }
 
       public virtual string Display()
       {
-         string response = String.Join("\n", Lines);
+         string response = String.Join("\n", Lines.ToArray());
          return response;
       }
 

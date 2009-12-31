@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using PServerClient.Responses;
 
 namespace PServerClient
 {
@@ -41,42 +42,44 @@ namespace PServerClient
       private const string NameUpdateExisting = "Update-existing";
       private const string NameValidRequests = "Valid-requests";
       private const string NameWrapperRscOption = "Wrapper-rcsOption";
+      private const string NameNull = "";
 
       #endregion
 
       #region Regular expressions pattern to match response name
 
-      private const string RegexAuth = @"(I LOVE YOU|I HATE YOU)(.*)";
-      private const string RegexCheckedIn = @"^Checked-in\s(.*)";
-      private const string RegexChecksum = @"^Checksum\s(.*)";
-      private const string RegexClearStaticDirectory = @"^Clear-static-directory\s(.*)";
-      private const string RegexClearSticky = @"^Clear-sticky\s(.*)";
-      private const string RegexCopyFile = @"^Copy-file\s(.*)";
-      private const string RegexCreated = @"^Created\s(.*)";
-      private const string RegexEMessage = @"^E\s(.*)";
-      private const string RegexError = @"^error\s(.*)";
-      private const string RegexFlush = @"^F\s(.*)";
-      private const string RegexMbinary = @"^Mbinary\s(.*)";
-      private const string RegexMerged = @"^Merged\s(.*)";
-      private const string RegexMessage = @"^M\s(.*)";
-      private const string RegexMessageTag = @"^MT\s(.*)";
-      private const string RegexMode = @"^Mode\s(.*)";
-      private const string RegexModTime = @"^Mod-time\s(.*)";
-      private const string RegexModuleExpansion = @"^Module-expansion\s(.*)";
-      private const string RegexNewEntry = @"^New-entry\s(.*)";
-      private const string RegexNotified = @"^Notified\s(.*)";
-      private const string RegexOk = @"^ok(.*)";
-      private const string RegexPatched = @"^Patched\s(.*)";
-      private const string RegexRcsDiff = @"^Rcs-diff\s(.*)";
-      private const string RegexRemoved = @"^Removed\s(.*)";
-      private const string RegexRemoveEntry = @"^Remove-entry\s(.*)";
-      private const string RegexSetStaticDirectory = @"^Set-static-directory\s(.*)";
-      private const string RegexSetSticky = @"^Set-sticky\s(.*)";
-      private const string RegexTemplate = @"^Template\s(.*)";
-      private const string RegexUpdated = @"^Updated\s(.*)";
-      private const string RegexUpdateExisting = @"^Update-existing\s(.*)";
-      private const string RegexValidRequests = @"^Valid-requests\s(.*)";
-      private const string RegexWrapperRscOption = @"^Wrapper-rcsOption\s(.*)";
+      private const string RegexAuth = @"(?<data>I LOVE YOU|I HATE YOU).*";
+      private const string RegexCheckedIn = @"^Checked-in\s(?<data>.*)";
+      private const string RegexChecksum = @"^Checksum\s(?<data>.*)";
+      private const string RegexClearStaticDirectory = @"^Clear-static-directory\s(?<data>.*)";
+      private const string RegexClearSticky = @"^Clear-sticky\s(?<data>.*)";
+      private const string RegexCopyFile = @"^Copy-file\s(?<data>.*)";
+      private const string RegexCreated = @"^Created\s(?<data>.*)";
+      private const string RegexEMessage = @"^E\s(?<data>.*)";
+      private const string RegexError = @"^error\s(?<data>.*)";
+      private const string RegexFlush = @"^F\s(?<data>.*)";
+      private const string RegexMbinary = @"^Mbinary\s(?<data>.*)";
+      private const string RegexMerged = @"^Merged\s(?<data>.*)";
+      private const string RegexMessage = @"^M\s(?<data>.*)";
+      private const string RegexMessageTag = @"^MT\s(?<data>.*)";
+      private const string RegexMode = @"^Mode\s(?<data>.*)";
+      private const string RegexModTime = @"^Mod-time\s(?<data>.*)";
+      private const string RegexModuleExpansion = @"^Module-expansion\s(?<data>.*)";
+      private const string RegexNewEntry = @"^New-entry\s(?<data>.*)";
+      private const string RegexNotified = @"^Notified\s(?<data>.*)";
+      private const string RegexOk = @"^ok(?<data>.*)";
+      private const string RegexPatched = @"^Patched\s(?<data>.*)";
+      private const string RegexRcsDiff = @"^Rcs-diff\s(?<data>.*)";
+      private const string RegexRemoved = @"^Removed\s(?<data>.*)";
+      private const string RegexRemoveEntry = @"^Remove-entry\s(?<data>.*)";
+      private const string RegexSetStaticDirectory = @"^Set-static-directory\s(?<data>.*)";
+      private const string RegexSetSticky = @"^Set-sticky\s(?<data>.*)";
+      private const string RegexTemplate = @"^Template\s(?<data>.*)";
+      private const string RegexUpdated = @"^Updated\s(?<data>.*)";
+      private const string RegexUpdateExisting = @"^Update-existing\s(?<data>.*)";
+      private const string RegexValidRequests = @"^Valid-requests\s(?<data>.*)";
+      private const string RegexWrapperRscOption = @"^Wrapper-rcsOption\s(?<data>.*)";
+      private const string RegexNull = @"(?<data>.*)"; // matches anything
 
       #endregion
 
@@ -117,7 +120,8 @@ namespace PServerClient
                                   RegexUpdated,
                                   RegexUpdateExisting,
                                   RegexValidRequests,
-                                  RegexWrapperRscOption
+                                  RegexWrapperRscOption,
+                                  RegexNull
                                };
 
          ResponseNames = new[]
@@ -152,7 +156,8 @@ namespace PServerClient
                                   NameUpdated,
                                   NameUpdateExisting,
                                   NameValidRequests,
-                                  NameWrapperRscOption
+                                  NameWrapperRscOption,
+                                  NameNull
                             };
       }
 
@@ -176,7 +181,7 @@ namespace PServerClient
 
       public static string GetValidResponsesString(ResponseType[] validResponses)
       {
-         IEnumerable<string> responses = validResponses.Select(vr => ResponseNames[(int) vr]);
+         IEnumerable<string> responses = validResponses.Select(vr => ResponseNames[(int)vr]);
          string resString = String.Join(" ", responses.ToArray());
          return resString;
       }
@@ -190,6 +195,30 @@ namespace PServerClient
             sb.Append(",").Append(fileContents[i]);
          }
          return sb.ToString();
+      }
+
+      public static IList<IResponse> CollapseMessagesInResponses(IList<IResponse> responses)
+      {
+         IList<IResponse> condensed = new List<IResponse>();
+         Type type = null;
+         IMessageResponse firstMessage = null;
+         for (int i = 0; i < responses.Count; i++)
+         {
+            IResponse response = responses[i];
+            if (type == response.GetType() && response is IMessageResponse)
+            {
+               // add the lines to the first message response in group
+               if (firstMessage != null) firstMessage.Lines.Add(response.Lines[0]);
+            }
+            else
+            {
+               condensed.Add(response);
+               if (response is IMessageResponse)
+                  firstMessage = (IMessageResponse) response;
+            }
+            type = response.GetType();
+         }
+         return condensed;
       }
    }
 }

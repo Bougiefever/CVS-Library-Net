@@ -33,6 +33,6 @@ namespace PServerClient
       UpdateExisting = 28,
       ValidRequests = 29,
       WrapperRscOption = 30,
-      Null = 100
+      Null = 31
    }
 }

@@ -36,10 +36,11 @@ namespace PServerClient.Responses
                       Properties = fileProperties,
                       Length = Convert.ToInt64(fileLength)
                    };
-         Lines = new string[LineCount];
-         Lines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
+         Lines = new List<string>(LineCount);
+         string line =string.Format("{0} {1}", ResponseHelper.ResponseNames[(int) Type],lines[0]);
+         Lines.Add(line);
          for (int i = 1; i < LineCount; i++)
-            Lines[i] = lines[i];
+            Lines.Add(lines[i]);
       }
 
       public ReceiveFile File { get; set; }

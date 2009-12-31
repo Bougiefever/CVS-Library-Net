@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
@@ -162,6 +163,9 @@ namespace PServerClient.Tests
          test = "I HATE YOU blah blah \n";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Auth, result);
+         test = "I LOVE YOU";
+         result = _factory.GetResponseType(test);
+         Assert.AreEqual(ResponseType.Auth, result);
 
          //Ok
          test = "ok \n";
@@ -307,19 +311,77 @@ namespace PServerClient.Tests
          test = "F message text";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Flush, result);
+
+         //Null
+         test = "D2001.01.01.00.00.00";
+         result = _factory.GetResponseType(test);
+         Assert.AreEqual(ResponseType.Null, result);
       }
 
       [Test]
       public void CreateCommandTest()
       {
          Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
-         for (int i = 0; i < 9; i++)
-         {
-            CommandType type = (CommandType) i;
-            string className = string.Format("PServerClient.Commands.{0}Command", type);
-            ICommand command = _factory.CreateCommand(className, new object[] { root });
-            Assert.AreEqual(type, command.Type);
-         }
+         
+         //CheckOut
+         CommandType type = CommandType.CheckOut;
+         string className = "PServerClient.Commands.CheckOutCommand";
+         ICommand command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+
+         //Import
+         type = CommandType.Import;
+         className = "PServerClient.Commands.ImportCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+
+         //ValidRequestsList
+         type = CommandType.ValidRequestsList;
+         className = "PServerClient.Commands.ValidRequestsListCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+
+         //VerifyAuth
+         type = CommandType.VerifyAuth;
+         className = "PServerClient.Commands.VerifyAuthCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+         
+         //Version
+         type = CommandType.Version;
+         className = "PServerClient.Commands.VersionCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+         
+         //Add
+         type = CommandType.Add;
+         className = "PServerClient.Commands.AddCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+         
+         //Export
+         type = CommandType.Export;
+         className = "PServerClient.Commands.ExportCommand";
+         command = _factory.CreateCommand(className, new object[] {root, DateTime.Now });
+         Assert.AreEqual(type, command.Type);
+         
+         //Log
+         type = CommandType.Log;
+         className = "PServerClient.Commands.LogCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+         
+         //Diff
+         type = CommandType.Diff;
+         className = "PServerClient.Commands.DiffCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
+         
+         //Tag
+         type = CommandType.Tag;
+         className = "PServerClient.Commands.TagCommand";
+         command = _factory.CreateCommand(className, new object[] { root });
+         Assert.AreEqual(type, command.Type);
       }
 
       [Test]
@@ -363,7 +425,7 @@ namespace PServerClient.Tests
       [Test]
       public void CreateResponseByClassNameTest()
       {
-         for (int i = 0; i < 31; i++)
+         for (int i = 0; i < 32; i++)
          {
             ResponseType type = (ResponseType) i;
             string className = string.Format("PServerClient.Responses.{0}Response", type);

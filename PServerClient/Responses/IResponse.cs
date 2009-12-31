@@ -7,7 +7,7 @@ namespace PServerClient.Responses
    {
       int LineCount { get; }
       ResponseType Type { get; }
-      string[] Lines { get; }
+      IList<string> Lines { get; }
       void Process(IList<string> lines);
       string Display();
       XElement GetXElement();
@@ -21,5 +21,10 @@ namespace PServerClient.Responses
    public interface IFileResponse : IResponse
    {
       ReceiveFile File { get; set; }
+   }
+
+   public interface IMessageResponse : IResponse
+   {
+      string Message { get; }
    }
 }

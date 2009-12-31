@@ -440,5 +440,86 @@ namespace PServerClient.Tests.TestSetup
      </Request>
    </Requests>
 </Command>";
+
+      public const string MessageResponses = @"      <Responses>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>cvs server: invalid option -- P</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>Usage: cvs export [-NRfln] [-r tag] [-D date] [-d dir] [-k kopt] module...</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-N	Don't shorten module paths if -d specified.</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-f	Force a head revision match if tag/date not found.</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-l	Local directory only, not recursive</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-R	Process directories recursively (default).</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-n	Do not run module program (if any).</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-r tag	Export tagged revisions.</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-D date	Export revisions as of date.</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-d dir	Export into dir instead of module name.</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>	-k kopt	Use RCS kopt -k option on checkout.</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
+          <Lines>
+            <Line>(Specify the --help global option for a list of other help options)</Line>
+          </Lines>
+        </Response>
+        <Response>
+          <ClassName>PServerClient.Responses.ErrorResponse</ClassName>
+          <Lines>
+            <Line> </Line>
+          </Lines>
+        </Response>
+      </Responses>";
    }
 }

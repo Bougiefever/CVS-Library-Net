@@ -61,9 +61,7 @@ namespace PServerClient.Tests.TestSetup
          xdoc.Save(writer);
       }
 
-
       #endregion
-
 
       #region Mocking
 
