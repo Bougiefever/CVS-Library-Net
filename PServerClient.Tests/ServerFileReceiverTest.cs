@@ -23,7 +23,7 @@ namespace PServerClient.Tests
          _working = new DirectoryInfo(@"c:\_temp");
          _root.WorkingDirectory = _working;
          _root.Module = _module;
-         _fileReceiver = new ServerFileReceiver(_root);
+         _fileReceiver = new CVSFileReceiver(_root);
       }
 
       #endregion
@@ -31,7 +31,7 @@ namespace PServerClient.Tests
       private Root _root;
       private DirectoryInfo _working;
       private string _module = "mymod";
-      private ServerFileReceiver _fileReceiver;
+      private CVSFileReceiver _fileReceiver;
 
       private static void PrintWorkingDirStructure(ICVSItem working)
       {

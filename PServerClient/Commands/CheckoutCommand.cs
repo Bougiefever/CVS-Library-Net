@@ -31,7 +31,7 @@ namespace PServerClient.Commands
             Console.WriteLine(response.Type + ": ");
             Console.WriteLine(response.Display());
          }
-         ServerFileReceiver fileReceiver = new ServerFileReceiver(Root);
+         CVSFileReceiver fileReceiver = new CVSFileReceiver(Root);
          fileReceiver.ProcessCheckoutResponses(checkOutResponses);
       }
    }

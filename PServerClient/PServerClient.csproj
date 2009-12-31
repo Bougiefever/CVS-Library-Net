@@ -57,7 +57,7 @@
     <Compile Include="Commands\ExportCommand.cs" />
     <Compile Include="Commands\TagCommand.cs" />
     <Compile Include="CommandType.cs" />
-    <Compile Include="CVS\ServerFileReceiver.cs" />
+    <Compile Include="CVS\CVSFileReceiver.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ImportCommand.cs" />
     <Compile Include="Commands\LogCommand.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
+    <Compile Include="CVS\CVSFileSender.cs" />
     <Compile Include="ExitCode.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="PServerFactory.cs" />
@@ -174,7 +175,7 @@
     <Compile Include="Responses\ModuleExpansionResponse.cs" />
     <Compile Include="Responses\NewEntryResponse.cs" />
     <Compile Include="Responses\NotifiedResponse.cs" />
-    <Compile Include="Responses\NullResponse.cs" />
+    <Compile Include="Responses\UnknownResponse.cs" />
     <Compile Include="Responses\OkResponse.cs" />
     <Compile Include="Responses\PatchedResponse.cs" />
     <Compile Include="Responses\RcsDiffResponse.cs" />

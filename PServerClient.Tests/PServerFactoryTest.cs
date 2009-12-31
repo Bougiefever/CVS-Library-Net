@@ -144,9 +144,9 @@ namespace PServerClient.Tests
          response = _factory.CreateResponse(type);
          Assert.IsInstanceOf<FlushResponse>(response);
 
-         type = ResponseType.Null;
+         type = ResponseType.Unknown;
          response = _factory.CreateResponse(type);
-         Assert.IsInstanceOf<NullResponse>(response);
+         Assert.IsInstanceOf<UnknownResponse>(response);
       }
 
       [Test]
@@ -154,7 +154,7 @@ namespace PServerClient.Tests
       {
          string test = "blah there is no Blah response\n";
          ResponseType result = _factory.GetResponseType(test);
-         Assert.AreEqual(ResponseType.Null, result);
+         Assert.AreEqual(ResponseType.Unknown, result);
 
          // auth
          test = "I LOVE YOU\n";
@@ -312,10 +312,10 @@ namespace PServerClient.Tests
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Flush, result);
 
-         //Null
+         //Unknown
          test = "D2001.01.01.00.00.00";
          result = _factory.GetResponseType(test);
-         Assert.AreEqual(ResponseType.Null, result);
+         Assert.AreEqual(ResponseType.Unknown, result);
       }
 
       [Test]

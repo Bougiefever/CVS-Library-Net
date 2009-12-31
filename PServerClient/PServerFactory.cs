@@ -34,7 +34,7 @@ namespace PServerClient
 
       public ResponseType GetResponseType(string rawResponse)
       {
-         ResponseType responseType = ResponseType.Null;
+         ResponseType responseType = ResponseType.Unknown;
          for (int i = 0; i < ResponseHelper.ResponsePatterns.Length; i++)
          {
             string pattern = ResponseHelper.ResponsePatterns[i];

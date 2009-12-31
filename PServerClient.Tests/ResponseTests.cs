@@ -228,11 +228,11 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void NullResponseTest()
+      public void UnknownResponseTest()
       {
-         NullResponse response = new NullResponse();
+         UnknownResponse response = new UnknownResponse();
          IList<string> lines = new List<string> {"D2009.12.31.13.46.32"};
-         ResponseTest(response, ResponseType.Null, 1, "D2009.12.31.13.46.32", lines);
+         ResponseTest(response, ResponseType.Unknown, 1, "D2009.12.31.13.46.32", lines);
       }
 
       [Test]
