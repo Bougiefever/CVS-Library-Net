@@ -410,7 +410,12 @@ namespace PServerClient.Tests
          XElement el = response.GetXElement(); 
          bool result = TestHelper.ValidateResponseXML(el);
          Assert.IsTrue(result);
-         Console.WriteLine(el.ToString());         
+         Console.WriteLine(el.ToString());
+         Console.WriteLine("Lines:");
+         foreach (string s in response.Lines)
+         {
+            Console.WriteLine(s);
+         }
       }
    }
 }

@@ -201,7 +201,6 @@ namespace PServerClient.Tests
          AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().First();
          Assert.AreEqual(1, authRequest.Responses.Count);
          Assert.AreEqual(AuthStatus.Authenticated, authRequest.Status);
-
       }
 
       [Test]

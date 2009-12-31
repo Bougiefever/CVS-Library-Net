@@ -29,6 +29,7 @@ namespace PServerClient.Responses
       {
          XElement responseElement = new XElement("Response",
                                                  new XElement("ClassName", GetType().FullName),
+                                                 new XElement("Name", ResponseHelper.ResponseNames[(int)Type]),
                                                  new XElement("Lines"));
          XElement linesElement = responseElement.Descendants("Lines").First();
 

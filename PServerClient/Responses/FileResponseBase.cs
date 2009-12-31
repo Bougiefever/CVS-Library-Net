@@ -37,9 +37,9 @@ namespace PServerClient.Responses
                       Length = Convert.ToInt64(fileLength)
                    };
          Lines = new List<string>(LineCount);
-         string line =string.Format("{0} {1}", ResponseHelper.ResponseNames[(int) Type],lines[0]);
-         Lines.Add(line);
-         for (int i = 1; i < LineCount; i++)
+         //string line =string.Format("{0} {1}", ResponseHelper.ResponseNames[(int) Type],lines[0]);
+         //Lines.Add(line);
+         for (int i = 0; i < LineCount; i++)
             Lines.Add(lines[i]);
       }
 

@@ -4,6 +4,7 @@ namespace PServerClient.Tests.TestSetup
    {
       public const string UpdatedResponseXML = @"<Response>
     <ClassName>PServerClient.Responses.UpdatedResponse</ClassName>
+    <Name>Updated</Name>
     <Lines>
       <Line>Updated mod1/</Line>
       <Line>/usr/local/cvsroot/sandbox/mod1/file1.cs</Line>
@@ -20,6 +21,7 @@ namespace PServerClient.Tests.TestSetup
       public const string AuthResponseXML = @"
   <Response>
     <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+    <Name/>
     <Lines>
       <Line>I LOVE YOU</Line>
     </Lines>
@@ -191,22 +193,24 @@ namespace PServerClient.Tests.TestSetup
                   <psvr:Line>line 2</psvr:Line>
             </psvr:Lines>";
       public const string CheckedInWithFileContentsResponse = @"<Response>
-          <ClassName>PServerClient.Responses.CheckedInResponse</ClassName>
-          <Lines>
-            <Line>Checked-in mod1/</Line>
-            <Line>/usr/local/cvsroot/sandbox/mod1/file1.cs</Line>
-            <Line>/file1.cs/1.2.3.4///</Line>
-            <Line>u=rw,g=rw,o=rw</Line>
-            <Line>74</Line>
-          </Lines>
-          <File>
-            <Length>74</Length>
-            <Contents>47,49,32,58,112,115,101,114,118,101,114,58,97,98,111,117,103,105,101,64,103,98,45,97,105,120,45,113,58,50,52,48,49,47,117,115,114,47,108,111,99,97,108,47,99,118,115,114,111,111,116,47,115,97,110,100,98,111,120,32,65,66,52,37,111,61,119,83,111,98,73,52,119,10</Contents>
-          </File>
-        </Response>";
+  <ClassName>PServerClient.Responses.CheckedInResponse</ClassName>
+  <Name>Checked-in</Name>
+  <Lines>
+    <Line>mod1/</Line>
+    <Line>/usr/local/cvsroot/sandbox/mod1/file1.cs</Line>
+    <Line>/file1.cs/1.2.3.4///</Line>
+    <Line>u=rw,g=rw,o=rw</Line>
+    <Line>74</Line>
+  </Lines>
+  <File>
+    <Length>74</Length>
+    <Contents>47,49,32,58,112,115,101,114,118,101,114,58,97,98,111,117,103,105,101,64,103,98,45,97,105,120,45,113,58,50,52,48,49,47,117,115,114,47,108,111,99,97,108,47,99,118,115,114,111,111,116,47,115,97,110,100,98,111,120,32,65,66,52,37,111,61,119,83,111,98,73,52,119,10</Contents>
+  </File>
+</Response>";
 
       public const string CheckedInResponse = @"<Response>
           <ClassName>PServerClient.Responses.CheckedInResponse</ClassName>
+          <Name>Checked-in</Name>
           <Lines>
             <Line>Checked-in mod1/</Line>
             <Line>/usr/local/cvsroot/sandbox/mod1/file1.cs</Line>
@@ -224,6 +228,7 @@ namespace PServerClient.Tests.TestSetup
       <Responses>
         <Response>
           <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+          <Name/>
           <Lines />
         </Response>
       </Responses>
@@ -245,6 +250,7 @@ namespace PServerClient.Tests.TestSetup
       <Responses>
         <Response>
           <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+          <Name/>
           <Lines>
             <Line>I LOVE YOU</Line>
           </Lines>
@@ -273,6 +279,7 @@ namespace PServerClient.Tests.TestSetup
       <Responses>
         <Response>
           <ClassName>PServerClient.Responses.ValidRequestsResponse</ClassName>
+          <Name>Valid-requests</Name>
           <Lines>
             <Line>Root Valid-responses valid-requests Global_option</Line>
           </Lines>
@@ -318,42 +325,49 @@ namespace PServerClient.Tests.TestSetup
       <Responses>
         <Response>
           <ClassName>PServerClient.Responses.ModTimeResponse</ClassName>
+          <Name>Mod-time</Name>
           <Lines>
             <Line>8 Dec 2009 15:26:27 -0000</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <Name>MT</Name>
           <Lines>
             <Line>+updated</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <Name>MT</Name>
           <Lines>
             <Line>text U</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <Name>MT</Name>
           <Lines>
             <Line>fname mymod/file1.cs</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <Name>MT</Name>
           <Lines>
             <Line>newline</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <Name>MT</Name>
           <Lines>
             <Line>-updated</Line>
           </Lines>
         </Response>
         <Response>
           <ClassName>PServerClient.Responses.UpdatedResponse</ClassName>
+          <Name>Updated</Name>
           <Lines>
             <Line>Updated mymod/</Line>
             <Line>/usr/local/cvsroot/sandbox/mymod/file1.cs</Line>
@@ -377,7 +391,7 @@ namespace PServerClient.Tests.TestSetup
    <RequiredRequests>
       <Request>
          <ClassName>PServerClient.Requests.AuthRequest</ClassName>
-           <Lines>
+         <Lines>
             <Line>BEGIN AUTH REQUEST</Line>
             <Line>/usr/local/cvsroot/sandbox</Line>
             <Line>abougie</Line>
@@ -387,15 +401,16 @@ namespace PServerClient.Tests.TestSetup
            <Responses>
               <Response>
                <ClassName>PServerClient.Responses.AuthResponse</ClassName>
-                 <Lines>
-                  <Line>I LOVE YOU</Line>
+               <Name/>
+               <Lines>
+                 <Line>I LOVE YOU</Line>
                </Lines>
             </Response>
          </Responses>
       </Request>
       <Request>
          <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
-          <Lines>
+         <Lines>
             <Line>UseUnchanged</Line>
          </Lines>
          <Responses />
@@ -424,6 +439,7 @@ namespace PServerClient.Tests.TestSetup
        <Responses>
          <Response>
            <ClassName>PServerClient.Responses.ClearStickyResponse</ClassName>
+           <Name>Clear-sticky</Name>
            <Lines>
              <Line>Clear-sticky abougie/</Line>
              <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
@@ -431,6 +447,7 @@ namespace PServerClient.Tests.TestSetup
          </Response>
          <Response>
            <ClassName>PServerClient.Responses.SetStaticDirectoryResponse</ClassName>
+           <Name>Set-static-directory</Name>
            <Lines>
              <Line>Set-static-directory abougie/</Line>
              <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
@@ -440,86 +457,5 @@ namespace PServerClient.Tests.TestSetup
      </Request>
    </Requests>
 </Command>";
-
-      public const string MessageResponses = @"      <Responses>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>cvs server: invalid option -- P</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>Usage: cvs export [-NRfln] [-r tag] [-D date] [-d dir] [-k kopt] module...</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-N	Don't shorten module paths if -d specified.</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-f	Force a head revision match if tag/date not found.</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-l	Local directory only, not recursive</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-R	Process directories recursively (default).</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-n	Do not run module program (if any).</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-r tag	Export tagged revisions.</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-D date	Export revisions as of date.</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-d dir	Export into dir instead of module name.</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>	-k kopt	Use RCS kopt -k option on checkout.</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.EMessageResponse</ClassName>
-          <Lines>
-            <Line>(Specify the --help global option for a list of other help options)</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.ErrorResponse</ClassName>
-          <Lines>
-            <Line> </Line>
-          </Lines>
-        </Response>
-      </Responses>";
    }
 }
