@@ -10,6 +10,7 @@ namespace PServerClient.IntegrationTests
    {
       private DirectoryInfo _moduleDI;
       private CVSFolder _cvsFolder;
+      private Folder _parent;
       private readonly string _connection = ":pserver:user@gb-aix-q:/usr/local/cvsroot/sandbox";
       private readonly string _module = "mymod";
 
@@ -24,7 +25,8 @@ namespace PServerClient.IntegrationTests
          _moduleDI.Refresh();
          _moduleDI.Create();
          _moduleDI.Refresh();
-         _cvsFolder = new CVSFolder(_moduleDI, _connection, _module);
+         _parent = new Folder(_moduleDI, _connection, "mymod");
+         _cvsFolder = new CVSFolder(_parent);
          _cvsFolder.CVSDirectory.Create();
       }
 
@@ -49,7 +51,7 @@ namespace PServerClient.IntegrationTests
       [ExpectedException(typeof (IOException))]
       public void GetRootStringWhenRootFileDoesNotExistTest()
       {
-         CVSFolder cvsFolder = new CVSFolder(_moduleDI, ":pserver:abougie@gb-aix-q:/usr/local/cvsroot/sandbox", "rwtesting");
+         CVSFolder cvsFolder = new CVSFolder(_parent);
          string result = cvsFolder.ReadRootFile();
       }
 

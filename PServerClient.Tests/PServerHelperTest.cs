@@ -51,18 +51,19 @@ namespace PServerClient.Tests
          string module = "mymod/";
 
          DirectoryInfo di = new DirectoryInfo(@"c:\_test");
-         Folder mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string", module);
+         Folder mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string");
          Assert.AreEqual("mymod", mod.Name);
          Assert.AreEqual(0, mod.Count);
+         Assert.IsNull(mod.Parent);
 
          module = "rootmod/mymod";
-         mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string", module);
+         mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string");
          Assert.AreEqual("rootmod", mod.Name);
          Assert.AreEqual(1, mod.Count);
          Assert.AreEqual("mymod", mod[0].Name);
 
          module = "rootfolder/teamfolder/myproject";
-         mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string", module);
+         mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string");
          Assert.AreEqual("rootfolder", mod.Name);
          Assert.AreEqual(1, mod.Count);
          Assert.AreEqual("teamfolder", mod[0].Name);

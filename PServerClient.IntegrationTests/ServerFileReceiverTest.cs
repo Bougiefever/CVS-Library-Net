@@ -56,14 +56,14 @@ namespace PServerClient.IntegrationTests
          folders = new[] { "module", "sub1", "sub22" };
          _fileReceiver.CreateFolderStructure(folders);
 
-         _fileReceiver.WriteToDisk(_root.ModuleFolder);
+         _fileReceiver.WriteToDisk(_root.RootFolder);
 
-         Folder sub1 = (Folder)_root.ModuleFolder[0];
+         Folder sub1 = (Folder)_root.RootFolder[0];
          Folder sub2 = (Folder)sub1[0];
          Folder sub22 = (Folder)sub1[1];
          Folder sub3 = (Folder)sub2[0];
 
-         PrintWorkingDirStructure(_root.ModuleFolder);
+         PrintWorkingDirStructure(_root.RootFolder);
 
          Assert.IsTrue(sub1.Info.Exists);
          Assert.IsTrue(sub2.Info.Exists);
@@ -71,42 +71,42 @@ namespace PServerClient.IntegrationTests
          Assert.IsTrue(sub3.Info.Exists);
       }
 
-      [Test]
-      public void SaveFoldersWithEntriesTest()
-      {
-         DirectoryInfo dimodule = new DirectoryInfo(@"c:\_temp\mymod");
-         Folder module = new Folder(dimodule, "connection string", "mymod", null);
+      //[Test]
+      //public void SaveFoldersWithEntriesTest()
+      //{
+      //   DirectoryInfo dimodule = new DirectoryInfo(@"c:\_temp\mymod");
+      //   Folder module = new Folder(dimodule, "connection string", "mymod", null);
 
-         FileInfo fi1 = new FileInfo(@"c:\_temp\mymod\file1.cs");
-         Entry file1 = new Entry(fi1, module) { Length = 1, FileContents = new byte[] { 97 } };
-         module.AddItem(file1);
+      //   FileInfo fi1 = new FileInfo(@"c:\_temp\mymod\file1.cs");
+      //   Entry file1 = new Entry(fi1, module) { Length = 1, FileContents = new byte[] { 97 } };
+      //   module.AddItem(file1);
 
-         DirectoryInfo disub1 = new DirectoryInfo(@"c:\_temp\mymod\sub1");
-         Folder sub1 = new Folder(disub1, "connection string", "mymod/sub1", null);
-         module.AddItem(sub1);
+      //   DirectoryInfo disub1 = new DirectoryInfo(@"c:\_temp\mymod\sub1");
+      //   Folder sub1 = new Folder(disub1, "connection string", "mymod/sub1", null);
+      //   module.AddItem(sub1);
 
-         FileInfo fi2 = new FileInfo(@"c:\_temp\mymod\sub1\file2.cs");
-         Entry file2 = new Entry(fi2, module) { Length = 1, FileContents = new byte[] { 97 } };
-         sub1.AddItem(file2);
+      //   FileInfo fi2 = new FileInfo(@"c:\_temp\mymod\sub1\file2.cs");
+      //   Entry file2 = new Entry(fi2, module) { Length = 1, FileContents = new byte[] { 97 } };
+      //   sub1.AddItem(file2);
 
-         DirectoryInfo disub2 = new DirectoryInfo(@"c:\_temp\mymod\sub1\sub2");
-         Folder sub2 = new Folder(disub2, "connection string", "mymod/sub1/sub2", null);
-         sub1.AddItem(sub2);
+      //   DirectoryInfo disub2 = new DirectoryInfo(@"c:\_temp\mymod\sub1\sub2");
+      //   Folder sub2 = new Folder(disub2, "connection string", "mymod/sub1/sub2", null);
+      //   sub1.AddItem(sub2);
 
-         FileInfo fi3 = new FileInfo(@"c:\_temp\mymod\sub1\sub2\file3.cs");
-         Entry file3 = new Entry(fi3, null) { Length = 1, FileContents = new byte[] { 97 } };
-         sub2.AddItem(file3);
-         PrintWorkingDirStructure(module);
+      //   FileInfo fi3 = new FileInfo(@"c:\_temp\mymod\sub1\sub2\file3.cs");
+      //   Entry file3 = new Entry(fi3, null) { Length = 1, FileContents = new byte[] { 97 } };
+      //   sub2.AddItem(file3);
+      //   PrintWorkingDirStructure(module);
 
-         _fileReceiver.WriteToDisk(module);
+      //   _fileReceiver.WriteToDisk(module);
 
-         Assert.IsTrue(module.Info.Exists);
-         Assert.IsTrue(file1.Info.Exists);
-         Assert.IsTrue(sub1.Info.Exists);
-         Assert.IsTrue(file2.Info.Exists);
-         Assert.IsTrue(sub2.Info.Exists);
-         Assert.IsTrue(file3.Info.Exists);
-      }
+      //   Assert.IsTrue(module.Info.Exists);
+      //   Assert.IsTrue(file1.Info.Exists);
+      //   Assert.IsTrue(sub1.Info.Exists);
+      //   Assert.IsTrue(file2.Info.Exists);
+      //   Assert.IsTrue(sub2.Info.Exists);
+      //   Assert.IsTrue(file3.Info.Exists);
+      //}
 
       [Test]
       public void ReceiveCheckoutResponsesTest()
@@ -134,11 +134,11 @@ namespace PServerClient.IntegrationTests
 
          _fileReceiver.ProcessCheckoutResponses(coresponses);
 
-         Assert.AreEqual(3, _root.ModuleFolder.Count);
-         Assert.IsTrue(_root.ModuleFolder.Info.Exists);
-         Entry file1 = (Entry) _root.ModuleFolder[0];
-         Entry file2 = (Entry) _root.ModuleFolder[1];
-         Folder sub1 = (Folder) _root.ModuleFolder[2];
+         Assert.AreEqual(3, _root.RootFolder.Count);
+         Assert.IsTrue(_root.RootFolder.Info.Exists);
+         Entry file1 = (Entry) _root.RootFolder[0];
+         Entry file2 = (Entry) _root.RootFolder[1];
+         Folder sub1 = (Folder) _root.RootFolder[2];
          Entry file3 = (Entry) sub1[0];
          Assert.IsTrue(file1.Info.Exists);
          Assert.IsTrue(file2.Info.Exists);

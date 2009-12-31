@@ -13,20 +13,23 @@ namespace PServerClient.Tests
    [TestFixture]
    public class CVSFolderTest
    {
+       private readonly MockRepository _mocks = new MockRepository();
+      private IReaderWriter _rw;
+      private CVSFolder _cvsFolder;
+      private Folder _parent;
+      private readonly string _connection = ":pserver:user@gb-aix-q:/usr/local/cvsroot/sandbox";
+      private readonly string _module = "mymod";     
+      
       [SetUp]
       public void Setup()
       {
          _rw = _mocks.DynamicMock<IReaderWriter>();
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp\mymod"); // containing folder
-         _cvsFolder = new CVSFolder(di, _connection, _module);
+
+         _parent = new Folder(di, _connection, _module);
+         _cvsFolder = new CVSFolder(_parent);
          ReaderWriter.Current = _rw;
       }
-
-      private readonly MockRepository _mocks = new MockRepository();
-      private IReaderWriter _rw;
-      private CVSFolder _cvsFolder;
-      private readonly string _connection = ":pserver:user@gb-aix-q:/usr/local/cvsroot/sandbox";
-      private readonly string _module = "mymod";
 
       [Test]
       public void ConstructorTest()
@@ -36,6 +39,8 @@ namespace PServerClient.Tests
          Assert.AreEqual(_cvsFolder.EntriesFile.FullName, @"c:\_temp\mymod\CVS\Entries");
          Assert.AreEqual(_cvsFolder.RepositoryFile.FullName, @"c:\_temp\mymod\CVS\Repository");
       }
+
+
 
       [Test]
       public void ReadEntriesTest()
@@ -102,14 +107,13 @@ namespace PServerClient.Tests
       [Test]
       public void WriteEntriesTest()
       {
-         
-         ICVSItem parentFolder = new Folder(new DirectoryInfo(@"c:\_temp|mymod"), null, "mymod", null);
+         Folder parentFolder = new Folder(new DirectoryInfo(@"c:\_temp\mymod"), "connection", "mymod");
          FileInfo fi1 = new FileInfo(@"c:\_temp\mymod\myfile");
          ICVSItem e1 = new Entry(fi1, parentFolder) {Revision = "1.1", ModTime = DateTime.Parse("1/1/2010 1:15:30")};
          FileInfo fi2 = new FileInfo(@"c:\_temp\mymod\New Text Document.txt");
          ICVSItem e2 = new Entry(fi2, parentFolder) {Revision = "1.2", ModTime = DateTime.Parse("1/2/2010 2:30:45 PM")};
          DirectoryInfo d1 = new DirectoryInfo(@"c:\_temp\mymod\Properties");
-         ICVSItem f1 = new Folder(d1, _connection, _module, parentFolder);
+         ICVSItem f1 = new Folder(d1, parentFolder);
          IList<ICVSItem> items = new List<ICVSItem> {e1, e2, f1};
 
          DirectoryInfo dir = new DirectoryInfo(@"c:\_temp\mymod");

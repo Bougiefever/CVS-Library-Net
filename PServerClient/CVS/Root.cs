@@ -5,7 +5,7 @@ namespace PServerClient.CVS
    public interface IRoot
    {
       DirectoryInfo WorkingDirectory { get; set; }
-      Folder ModuleFolder { get; }
+      Folder RootFolder { get; set; }
       string Username { get; set; }
       string Password { get; set; }
 
@@ -42,8 +42,14 @@ namespace PServerClient.CVS
    /// </summary>
    public class Root : IRoot
    {
-      private Folder _moduleFolder;
-
+      /// <summary>
+      /// Root constructor for commands that don't interact with the local file system
+      /// </summary>
+      /// <param name="host">machine name of host machine</param>
+      /// <param name="port">port of cvs server on host</param>
+      /// <param name="username">cvs login credentials</param>
+      /// <param name="password">cvs login credentials</param>
+      /// <param name="repositoryPath"></param>
       public Root(string host, int port, string username, string password, string repositoryPath)
       {
          RepositoryPath = repositoryPath;
@@ -55,19 +61,7 @@ namespace PServerClient.CVS
       }
 
       public DirectoryInfo WorkingDirectory { get; set; }
-
-      public Folder ModuleFolder
-      {
-         get
-         {
-            if (_moduleFolder == null)
-            {
-               _moduleFolder = PServerHelper.CreateModuleFolderStructure(WorkingDirectory, CVSConnectionString, Module);
-            }
-            return _moduleFolder;
-         }
-      }
-
+      public Folder RootFolder { get; set; }
       public string Username { get; set; }
       public string Password { get; set; }
 

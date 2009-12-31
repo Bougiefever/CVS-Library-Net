@@ -12,19 +12,18 @@ namespace PServerClient.CVS
    public class CVSFolder
    {
       private const string EntryRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
-      private readonly string _cvsConnection;
-      private readonly string _cvsRepository;
-      private readonly DirectoryInfo _parent;
+      //private readonly string _cvsConnection;
+      //private readonly string _cvsRepository;
+      private readonly Folder _parent;
 
-      public CVSFolder(DirectoryInfo parentFolder, string cvsConnection, string cvsRepository)
+      public CVSFolder(Folder parentFolder)
       {
          _parent = parentFolder;
-         CVSDirectory = new DirectoryInfo(Path.Combine(parentFolder.FullName, "CVS"));
+         CVSDirectory = new DirectoryInfo(Path.Combine(parentFolder.Info.FullName, "CVS"));
          RepositoryFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Repository"));
          EntriesFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Entries"));
          RootFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Root"));
-         _cvsConnection = cvsConnection;
-         _cvsRepository = cvsRepository;
+         //_cvsConnection = cvsConnection;
       }
 
       public DirectoryInfo CVSDirectory { get; private set; }
@@ -41,7 +40,7 @@ namespace PServerClient.CVS
 
       public void WriteRootFile()
       {
-         byte[] buffer = _cvsConnection.Encode();
+         byte[] buffer = _parent.CVSConnectionString.Encode();
          ReaderWriter.Current.WriteFile(RootFile, buffer);
       }
 
@@ -54,7 +53,7 @@ namespace PServerClient.CVS
 
       public void WriteRepositoryFile()
       {
-         byte[] buffer = _cvsRepository.Encode();
+         byte[] buffer = _parent.Repository.Encode();
          ReaderWriter.Current.WriteFile(RepositoryFile, buffer);
       }
 
@@ -75,17 +74,17 @@ namespace PServerClient.CVS
                string stickyOption = m.Groups[6].ToString();
 
                ICVSItem item;
-               string path = Path.Combine(_parent.FullName, entryName);
+               string path = Path.Combine(_parent.Info.FullName, entryName);
                if (code == "D")
                {
                   DirectoryInfo di = new DirectoryInfo(path);
-                  string repo = _cvsRepository + "/" + entryName;
-                  item = new Folder(di, _cvsConnection, repo, (ICVSItem) this);
+                  string repo = _parent.Repository + "/" + entryName;
+                  item = new Folder(di, _parent);
                }
                else
                {
                   FileInfo fi = new FileInfo(path);
-                  item = new Entry(fi, (ICVSItem) this)
+                  item = new Entry(fi, _parent)
                             {
                                Revision = revision,
                                ModTime = date.EntryToDateTime(),

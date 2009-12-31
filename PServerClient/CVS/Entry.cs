@@ -8,8 +8,9 @@ namespace PServerClient.CVS
    /// </summary>
    public class Entry : CVSItemBase
    {
-      public Entry(FileSystemInfo info, ICVSItem parent) : base(info, parent)
+      public Entry(FileSystemInfo info, Folder parent) : base(info, parent)
       {
+         parent.AddItem(this);
       }
 
       public override void Read()

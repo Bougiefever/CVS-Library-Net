@@ -54,6 +54,7 @@
     <Compile Include="Commands\AddCommandTest.cs" />
     <Compile Include="Commands\CheckoutCommandTest.cs" />
     <Compile Include="Commands\CommandBaseTest.cs" />
+    <Compile Include="CVSItemTest.cs" />
     <Compile Include="PServerFactoryTest.cs" />
     <Compile Include="ResponseProcessorTest.cs" />
     <Compile Include="TestHelperTest.cs" />

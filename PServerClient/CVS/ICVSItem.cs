@@ -14,10 +14,17 @@ namespace PServerClient.CVS
       /// whether instance is an Entry or Folder object
       /// </summary>
       FileSystemInfo Info { get; }
+
       /// <summary>
       /// The parent folder item
       /// </summary>
-      ICVSItem Parent { get; }
+      Folder Parent { get; }
+
+      /// <summary>
+      /// This is the repository string that goes in the CVS repository file
+      /// </summary>
+      string Repository { get; }
+
       /// <summary>
       /// List of Entries or Folders contained by the current item
       /// Entry does not support this because files do not have 
@@ -85,7 +92,7 @@ namespace PServerClient.CVS
       /// Add a child item
       /// </summary>
       /// <param name="item"></param>
-      void AddItem(ICVSItem item);
+      ///void AddItem(ICVSItem item);
 
       /// <summary>
       /// Remove a child item

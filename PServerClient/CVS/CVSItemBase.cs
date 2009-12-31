@@ -9,7 +9,7 @@ namespace PServerClient.CVS
    /// </summary>
    public abstract class CVSItemBase : ICVSItem
    {
-      protected CVSItemBase(FileSystemInfo info, ICVSItem parent)
+      protected CVSItemBase(FileSystemInfo info, Folder parent)
       {
          Info = info;
          Revision = string.Empty;
@@ -18,27 +18,37 @@ namespace PServerClient.CVS
          Parent = parent;
       }
 
+      protected CVSItemBase(FileSystemInfo info)
+      {
+         Info = info;
+         Revision = string.Empty;
+         Properties = string.Empty;
+         StickyOption = string.Empty;
+         Parent = null;
+      }
+
       #region ICVSItem Members
 
       public abstract void Write();
       public virtual CVSFolder CvsFolder { get { throw new NotSupportedException(); } }
+      public virtual string Repository { get { throw new NotSupportedException(); } }
 
       public virtual void Read()
       {
          throw new NotSupportedException();
       }
 
-      public virtual void AddItem(ICVSItem item)
-      {
-         throw new NotSupportedException();
-      }
+      //protected virtual void AddItem(ICVSItem item)
+      //{
+      //   throw new NotSupportedException();
+      //}
 
       public virtual void RemoveItem(ICVSItem item)
       {
          throw new NotSupportedException();
       }
 
-      public ICVSItem Parent { get; protected set; }
+      public Folder Parent { get; protected set; }
 
       public virtual ICVSItem this[int idx] { get { throw new NotSupportedException(); } }
 

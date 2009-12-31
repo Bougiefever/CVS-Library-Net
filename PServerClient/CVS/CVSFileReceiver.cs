@@ -99,12 +99,12 @@ namespace PServerClient.CVS
             entry.Properties = ur.File.Properties;
             entry.FileContents = ur.File.Contents;
          }
-         current.AddItem(entry);
+         //current.AddItem(entry);
       }
 
       public Folder CreateFolderStructure(string[] folders)
       {
-         Folder current = _root.ModuleFolder;
+         Folder current = _root.RootFolder;
          string repository = _root.Module;
          for (int i = 1; i < folders.Length; i++)
          {
@@ -119,8 +119,8 @@ namespace PServerClient.CVS
             {
                repository += "/" + folderName;
                DirectoryInfo di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
-               folder = new Folder(di, _root.CVSConnectionString, repository, current);
-               current.AddItem(folder);
+               folder = new Folder(di, current);
+               //current.AddItem(folder);
             }
             current = folder;
          }

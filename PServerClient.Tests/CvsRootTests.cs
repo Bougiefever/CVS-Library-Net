@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using NUnit.Framework;
 using PServerClient.CVS;
 using PServerClient.Tests.TestSetup;
@@ -35,7 +35,7 @@ namespace PServerClient.Tests
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;
          root.Module = "mymod";
-         Assert.AreEqual(root.ModuleFolder.Info.FullName, @"c:\_temp\mymod");
+         Assert.AreEqual(root.RootFolder.Info.FullName, @"c:\_temp\mymod");
       }
 
       [Test]
@@ -45,7 +45,7 @@ namespace PServerClient.Tests
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;
          root.Module = "rootmod/mymod";
-         Folder modFolder = root.ModuleFolder;
+         Folder modFolder = root.RootFolder;
       }
    }
 }

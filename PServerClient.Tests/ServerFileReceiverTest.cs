@@ -58,7 +58,7 @@ namespace PServerClient.Tests
          IList<IResponse> responses = new List<IResponse> {mod, mt, udr};
 
          _fileReceiver.AddNewEntry(responses);
-         ICVSItem entry = _root.ModuleFolder[0];
+         ICVSItem entry = _root.RootFolder[0];
          Assert.IsInstanceOf(typeof (Entry), entry);
          Assert.AreEqual("file1.cs", entry.Name);
       }
@@ -68,7 +68,7 @@ namespace PServerClient.Tests
       {
          string[] folders = new[] {"mymod", "sub1", "sub2"};
          _fileReceiver.CreateFolderStructure(folders);
-         Folder sub1 = (Folder) _root.ModuleFolder[0];
+         Folder sub1 = (Folder) _root.RootFolder[0];
          Assert.AreEqual("sub1", sub1.Name);
          Folder sub2 = (Folder) sub1[0];
          Assert.AreEqual("sub2", sub2.Name);
@@ -78,12 +78,12 @@ namespace PServerClient.Tests
 
          folders = new[] {"module", "sub1", "sub22"};
          _fileReceiver.CreateFolderStructure(folders);
-         Folder sub22 = (Folder) _root.ModuleFolder[0][1];
+         Folder sub22 = (Folder) _root.RootFolder[0][1];
          Assert.AreEqual("sub22", sub22.Name);
 
-         Folder sub3 = (Folder) _root.ModuleFolder[0][0][0];
+         Folder sub3 = (Folder) _root.RootFolder[0][0][0];
          Assert.AreEqual("sub3", sub3.Name);
-         PrintWorkingDirStructure(_root.ModuleFolder);
+         PrintWorkingDirStructure(_root.RootFolder);
       }
 
       [Test]
@@ -112,41 +112,41 @@ namespace PServerClient.Tests
 
          _fileReceiver.ReceiveMTUpdatedResponses(coresponses);
 
-         Folder module = _root.ModuleFolder;
+         Folder module = _root.RootFolder;
          Assert.AreEqual(3, module.Count);
-         Assert.AreEqual("file1.cs", _root.ModuleFolder[0].Name);
-         Folder sub1 = (Folder) _root.ModuleFolder[2];
+         Assert.AreEqual("file1.cs", _root.RootFolder[0].Name);
+         Folder sub1 = (Folder) _root.RootFolder[2];
          Assert.AreEqual(1, sub1.Count);
          Entry entry = (Entry) sub1[0];
          Assert.AreEqual("file3.cs", entry.Name);
-         PrintWorkingDirStructure(_root.ModuleFolder);
+         PrintWorkingDirStructure(_root.RootFolder);
       }
 
       [Test]
       public void SaveFolderTest()
       {
          DirectoryInfo dimodule = new DirectoryInfo(@"c:\_temp\mymod");
-         Folder module = new Folder(dimodule, "connection string", "mymod", null);
+         Folder module = new Folder(dimodule, "connection string", "mymod");
 
          FileInfo fi1 = new FileInfo(@"c:\_temp\mymod\file1.cs");
          Entry file1 = new Entry(fi1, module) {Length = 1, FileContents = new byte[] {97}};
-         module.AddItem(file1);
+         //module.AddItem(file1);
 
          DirectoryInfo disub1 = new DirectoryInfo(@"c:\_temp\mymod\sub1");
-         Folder sub1 = new Folder(disub1, "connection string", "mymod/sub1", null);
-         module.AddItem(sub1);
+         Folder sub1 = new Folder(disub1, "connection string", "mymod/sub1");
+         //module.AddItem(sub1);
 
          FileInfo fi2 = new FileInfo(@"c:\_temp\mymod\sub1\file2.cs");
          Entry file2 = new Entry(fi2, module) {Length = 1, FileContents = new byte[] {97}};
-         sub1.AddItem(file2);
+         //sub1.AddItem(file2);
 
          DirectoryInfo disub2 = new DirectoryInfo(@"c:\_temp\mymod\sub1\sub2");
-         Folder sub2 = new Folder(disub2, "connection string", "mymod/sub1/sub2", null);
-         sub1.AddItem(sub2);
+         Folder sub2 = new Folder(disub2, "connection string", "mymod/sub1/sub2");
+         //sub1.AddItem(sub2);
 
          FileInfo fi3 = new FileInfo(@"c:\_temp\mymod\sub1\sub2\file3.cs");
          Entry file3 = new Entry(fi3, module) {Length = 1, FileContents = new byte[] {97}};
-         sub2.AddItem(file3);
+         //sub2.AddItem(file3);
 
          MockRepository mocks = new MockRepository();
          IReaderWriter rw = mocks.DynamicMock<IReaderWriter>();
