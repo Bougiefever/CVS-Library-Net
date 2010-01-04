@@ -5,7 +5,7 @@ namespace PServerClient.Commands
 {
    public class TagCommand : CommandBase
    {
-      public TagCommand(Root root) : base(root)
+      public TagCommand(IRoot root) : base(root)
       {
 
       }

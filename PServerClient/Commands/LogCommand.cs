@@ -5,10 +5,10 @@ namespace PServerClient.Commands
 {
    public class LogCommand : CommandBase
    {
-      public LogCommand(Root root) : base(root)
+      public LogCommand(IRoot root) : base(root)
       {
          Requests.Add(new AuthRequest(root));
-         Requests.Add(new RootRequest(root));
+         Requests.Add(new RootRequest(root.Repository));
          if (LocalOnly)
             Requests.Add(new ArgumentRequest("-l"));
          Requests.Add(new LogRequest());

@@ -5,7 +5,7 @@ namespace PServerClient.Commands
 {
    public class DiffCommand : CommandBase
    {
-      public DiffCommand(Root root) : base(root)
+      public DiffCommand(IRoot root) : base(root)
       {
       }
 

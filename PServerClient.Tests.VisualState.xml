@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1012]PServerClient.Tests.Commands.VerifyAuthCommandTest</TopNode>
-  <SelectedNode>[0-1120]PServerClient.Tests.RequestTests</SelectedNode>
+  <TopNode>[0-1000]C:\_code\Testing\PServerClient\PServerClient.Tests.nunit</TopNode>
+  <SelectedNode>[0-1176]PServerClient.Tests.CVSTest.FolderTest</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]C:\_code\Testing\PServerClient\PServerClient.Tests.nunit" Expanded="true" />
-    <Node UniqueName="[0-1191]C:\_code\Testing\PServerClient\PServerClient.Tests\bin\PServerClient.Tests.dll" Expanded="true" />
-    <Node UniqueName="[0-1192]PServerClient" Expanded="true" />
-    <Node UniqueName="[0-1193]PServerClient.Tests" Expanded="true" />
-    <Node UniqueName="[0-1194]PServerClient.Tests.Commands" Expanded="true" />
-    <Node UniqueName="[0-1120]PServerClient.Tests.RequestTests" Expanded="true" />
-    <Node UniqueName="[0-1102]PServerClient.Tests.TestHelperTest" Expanded="true" />
+    <Node UniqueName="[0-1178]C:\_code\Testing\PServerClient\PServerClient.Tests\bin\PServerClient.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1179]PServerClient" Expanded="true" />
+    <Node UniqueName="[0-1180]PServerClient.Tests" Expanded="true" />
+    <Node UniqueName="[0-1181]PServerClient.Tests.Commands" Expanded="true" />
+    <Node UniqueName="[0-1174]PServerClient.Tests.CVSTest" Expanded="true" />
+    <Node UniqueName="[0-1039]PServerClient.Tests.ResponseProcessorTest" Expanded="true" />
   </Nodes>
 </VisualState>

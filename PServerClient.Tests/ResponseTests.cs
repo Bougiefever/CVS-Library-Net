@@ -115,9 +115,11 @@ namespace PServerClient.Tests
          IList<string> lines = new List<string> { "mod1/mod2/mod3/", "/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Process(lines);
          ReceiveFile file = response.File;
-         Assert.AreEqual("mod1", file.Path[0]);
-         Assert.AreEqual("mod2", file.Path[1]);
-         Assert.AreEqual("mod3", file.Path[2]);
+         //Assert.AreEqual("mod1", file.Path[0]);
+         //Assert.AreEqual("mod2", file.Path[1]);
+         //Assert.AreEqual("mod3", file.Path[2]);
+         Assert.AreEqual("mod1/mod2/mod3/", file.Module);
+         Assert.AreEqual("/file1.cs/1.2.3.4///", file.EntryLine);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", file.RepositoryPath);
          Assert.AreEqual("file1.cs", file.Name);
          Assert.AreEqual("1.2.3.4", file.Revision);
@@ -133,7 +135,9 @@ namespace PServerClient.Tests
          IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Process(lines);
          ReceiveFile file = response.File;
-         Assert.AreEqual("mod1", file.Path[0]);
+         //Assert.AreEqual("mod1", file.Path[0]);
+         Assert.AreEqual("mod1/", file.Module);
+         Assert.AreEqual("/file1.cs/1.2.3.4///", file.EntryLine);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", file.RepositoryPath);
          Assert.AreEqual("file1.cs", file.Name);
          Assert.AreEqual("1.2.3.4", file.Revision);
@@ -383,7 +387,7 @@ namespace PServerClient.Tests
          XDocument xdoc = XDocument.Load(reader);
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          PServerFactory factory = new PServerFactory();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, DateTime.Now });
          IRequest export = cmd.Requests.OfType<ExportRequest>().First();

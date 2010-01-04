@@ -13,25 +13,40 @@ namespace PServerClient.CVS
    {
       private readonly IList<ICVSItem> _childItems;
       private readonly CVSFolder _cvsFolder;
-      private string _cvsModule;
-      private string _cvsConnectionString;
+      private string _module;
+      private string _repository;
+      private string _connection;
 
-      public Folder(FileSystemInfo info, Folder parent) : base(info, parent)
+      /// <summary>
+      /// Constructor for folders under the root. The directory info uses the parent folder as its base
+      /// </summary>
+      /// <param name="name">Name of the folder. This also is added to the module name of the parent</param>
+      /// <param name="parent">Parent folder</param>
+      public Folder(string name, Folder parent) : base(parent)
       {
+         DirectoryInfo di = new DirectoryInfo(Path.Combine(parent.Info.FullName, name));
+         Info = di;
          _childItems = new List<ICVSItem>();
          _cvsFolder = new CVSFolder(this);
-         parent.AddItem(this);
       }
 
-      public Folder(FileSystemInfo info, string cvsConnectionString, string cvsModule) : base(info)
+      /// <summary>
+      /// Constructor for root folder
+      /// </summary>
+      /// <param name="info">DirectoryInfo of local folder that is the root folder for the CVS module</param>
+      /// <param name="connection">CVS connection string - used to write the CVS Root file</param>
+      /// <param name="repository">CVS repository</param>
+      /// <param name="module">CVS module for current folder</param>
+      public Folder(FileSystemInfo info, string connection, string repository, string module) : base(info)
       {
          _cvsFolder = new CVSFolder(this);
          _childItems = new List<ICVSItem>();
-         CVSModule = cvsModule;
-         CVSConnectionString = cvsConnectionString;
+         _module = module;
+         _repository = repository;
+         _connection = connection;
       }
 
-      public override CVSFolder CvsFolder { get { return _cvsFolder; } }
+      public override CVSFolder CVSFolder { get { return _cvsFolder; } }
       public override int Count { get { return _childItems.Count; } }
       public override ICVSItem this[int idx] { get { return _childItems[idx]; } }
       public override string Repository
@@ -39,40 +54,35 @@ namespace PServerClient.CVS
          get
          {
             if (Parent == null)
-               return CVSModule + "/";
-            return Parent.Repository + Info.Name + "/";
+               return _repository;
+            return Parent.Repository;
          }
       }
 
-      public string CVSModule
+      public string Connection
       {
          get
          {
             if (Parent == null)
-               return _cvsModule;
-            return Parent.CVSModule;
+               return _connection;
+            return Parent.Connection;
          } 
-         private set
-         {
-            _cvsModule = value;
-         }
       }
 
-      public string CVSConnectionString
+      public override string Module
       {
-         get
+         get 
          {
+            string module;
             if (Parent == null)
-               return _cvsConnectionString;
-            return Parent.CVSConnectionString;
-         } 
-         private set
-         {
-            _cvsConnectionString = value;
+               module = _module;
+            else
+               module = Parent.Module + "/" + Info.Name;
+            return module;
          }
       }
 
-      public void AddItem(ICVSItem item)
+      public override void AddItem(ICVSItem item)
       {
          _childItems.Add(item);
       }

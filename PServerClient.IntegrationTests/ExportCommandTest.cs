@@ -11,13 +11,13 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class ExportCommandTest
    {
-      private Root _root;
+      private IRoot _root;
 
       [SetUp]
       public void SetUp()
       {
 
-         _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword(), TestConfig.RepositoryPath);
+         _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _root.Module = TestConfig.ModuleName;
       }
@@ -50,7 +50,7 @@ namespace PServerClient.IntegrationTests
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
          PServerFactory factory = new PServerFactory();
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          DateTime date = new DateTime();
          ExportCommand cmd = (ExportCommand)factory.CreateCommand(xdoc, new object[] { root, date });
          cmd.PostExecute();

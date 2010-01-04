@@ -20,6 +20,9 @@ namespace PServerClient.Responses
 
    public interface IFileResponse : IResponse
    {
+      string ModuleName { get; set; }
+      string RepositoryPath { get; set; }
+      string EntryLine { get; set; }
       ReceiveFile File { get; set; }
    }
 

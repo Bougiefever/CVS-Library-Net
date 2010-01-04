@@ -72,7 +72,7 @@ namespace PServerClient.Tests.TestSetup
          get
          {
             string path = ConfigurationManager.AppSettings["Repository Path"];
-            path = path ?? "/f1/f2/f3";
+            path = path ?? "/usr/local/cvsroot/sandbox";
             return path;
          }
       }

@@ -4,7 +4,7 @@ namespace PServerClient.Commands
 {
    public class ImportCommand : CommandBase
    {
-      public ImportCommand(Root root) : base(root)
+      public ImportCommand(IRoot root) : base(root)
       {
       }
 

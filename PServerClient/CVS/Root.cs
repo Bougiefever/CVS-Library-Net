@@ -4,30 +4,32 @@ namespace PServerClient.CVS
 {
    public interface IRoot
    {
-      DirectoryInfo WorkingDirectory { get; set; }
-      Folder RootFolder { get; set; }
+      string Protocol { get; set; }
       string Username { get; set; }
       string Password { get; set; }
-
-      /// <summary>
-      /// Pserver connection string for Cvs
-      /// </summary>
-      string CVSConnectionString { get; set; }
-
-      /// <summary>
-      /// Cvs root folder on unix machine
-      /// </summary>
-      string RepositoryPath { get; set; }
-
-      /// <summary>
-      /// Name of Cvs module being interacted with
-      /// </summary>
-      string Module { get; set; }
 
       /// <summary>
       /// Name of host machine
       /// </summary>
       string Host { get; set; }
+
+      /// <summary>
+      /// CVS Repository 
+      /// </summary>
+      string Repository { get; set; }
+
+      /// <summary>
+      /// Name of Cvs module being interacted with
+      /// </summary>
+      string Module { get; set; }   
+   
+      DirectoryInfo WorkingDirectory { get; set; }
+      Folder RootFolder { get; set; }
+
+      /// <summary>
+      /// Pserver connection string for Cvs
+      /// </summary>
+      string CVSConnectionString { get; }
 
       /// <summary>
       /// Port for Cvs on host machine
@@ -50,10 +52,11 @@ namespace PServerClient.CVS
       /// <param name="username">cvs login credentials</param>
       /// <param name="password">cvs login credentials</param>
       /// <param name="repositoryPath"></param>
-      public Root(string host, int port, string username, string password, string repositoryPath)
+      public Root(string repository, string module, string host, int port, string username, string password)
       {
-         RepositoryPath = repositoryPath;
-         CVSConnectionString = string.Format(":pserver:{0}@{1}:{2}", username, host, repositoryPath);
+         Protocol = "pserver";
+         Repository = repository;
+         Module = module;
          Host = host;
          Port = port;
          Username = username;
@@ -69,12 +72,14 @@ namespace PServerClient.CVS
       /// <summary>
       /// Pserver connection string for Cvs
       /// </summary>
-      public string CVSConnectionString { get; set; }
-
-      /// <summary>
-      /// Cvs root folder on unix machine
-      /// </summary>
-      public string RepositoryPath { get; set; }
+      public string CVSConnectionString 
+      {
+         get
+         {
+            string connection = string.Format(":{0}:{1}@{2}:{3}", Protocol, Username, Host, Repository);
+            return connection;
+         }
+      }
 
       /// <summary>
       /// Name of Cvs module being interacted with
@@ -90,5 +95,8 @@ namespace PServerClient.CVS
       /// Port for Cvs on host machine
       /// </summary>
       public int Port { get; set; }
+      public string Protocol { get; set; }
+
+      public string Repository { get; set; }
    }
 }

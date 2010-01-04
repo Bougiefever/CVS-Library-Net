@@ -203,26 +203,16 @@ namespace PServerClient
          return names;
       }
 
-      public static Folder CreateModuleFolderStructure(DirectoryInfo working, string cvsConnection)
+      public static DirectoryInfo GetRootModuleFolderPath(DirectoryInfo workingDirectory, string moduleName)
       {
-         //string[] folders = module.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries);
-         //string folderName = folders[0];
-         //DirectoryInfo di = new DirectoryInfo(working.FullName + "\\" + folderName);
-         //Folder rootModuleFolder = new Folder(di, cvsConnection, null);
-         //string repository = folderName;
-         //Folder current = rootModuleFolder;
-         //for (int i = 1; i < folders.Length; i++)
-         //{
-         //   folderName = folders[i];
-         //   Folder folder = null;
-         //      repository += "/" + folderName;
-         //      di = new DirectoryInfo(Path.Combine(current.Info.FullName, folderName));
-         //      folder = new Folder(di, cvsConnection, current);
-         //      //current.AddItem(folder);
-         //   current = folder;
-         //}
-         //return rootModuleFolder;
-         return null;
+         string[] folders = moduleName.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
+         string path = workingDirectory.FullName;
+         for (int i = 0; i < folders.Length; i++)
+         {
+            path = Path.Combine(path, folders[i]);
+         }
+         DirectoryInfo di = new DirectoryInfo(path);
+         return di;
       }
    }
 }

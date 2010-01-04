@@ -59,7 +59,6 @@
     <Compile Include="Commands\ResponseProcessor.cs" />
     <Compile Include="Commands\TagCommand.cs" />
     <Compile Include="CommandType.cs" />
-    <Compile Include="CVS\CVSFileReceiver.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ImportCommand.cs" />
     <Compile Include="Commands\LogCommand.cs" />

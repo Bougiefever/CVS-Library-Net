@@ -12,10 +12,10 @@ namespace PServerClient.Commands
       public CheckOutCommand(IRoot root)
          : base(root)
       {
-         Requests.Add(new RootRequest(root));
+         Requests.Add(new RootRequest(root.Repository));
          Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
          Requests.Add(new ArgumentRequest(root.Module));
-         Requests.Add(new DirectoryRequest(root));
+         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
          Requests.Add(new CheckOutRequest());
       }
 
@@ -31,8 +31,8 @@ namespace PServerClient.Commands
          //   Console.WriteLine(response.Type + ": ");
          //   Console.WriteLine(response.Display());
          //}
-         CVSFileReceiver fileReceiver = new CVSFileReceiver(Root);
-         fileReceiver.ProcessCheckoutResponses(checkOutResponses);
+         //CVSFileReceiver fileReceiver = new CVSFileReceiver(Root);
+         //fileReceiver.ProcessCheckoutResponses(checkOutResponses);
       }
    }
 }

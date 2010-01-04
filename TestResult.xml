@@ -1,81 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\_code\Testing\PServerClient\PServerClient.Tests.nunit" total="63" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2009-12-24" time="11:33:26">
+<test-results name="C:\_code\Testing\PServerClient\PServerClient.Tests.nunit" total="3" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-01-04" time="15:46:38">
   <environment nunit-version="2.5.2.9222" clr-version="2.0.50727.3603" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\_code\Testing\PServerClient\PServerClient.IntegrationTests\bin" machine-name="WICL9MGHZK1" user="abougie" user-domain="AAH" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite name="C:\_code\Testing\PServerClient\PServerClient.Tests.nunit" executed="True" success="True" time="0.080" asserts="0">
+  <test-suite name="C:\_code\Testing\PServerClient\PServerClient.Tests.nunit" executed="True" success="True" time="0.190" asserts="0">
     <results>
-      <test-suite name="C:\_code\Testing\PServerClient\PServerClient.Tests\bin\PServerClient.Tests.dll" executed="True" success="True" time="0.080" asserts="0">
+      <test-suite name="C:\_code\Testing\PServerClient\PServerClient.Tests\bin\PServerClient.Tests.dll" executed="True" success="True" time="0.180" asserts="0">
         <results>
-          <test-suite name="PServerClient" executed="True" success="True" time="0.080" asserts="0">
+          <test-suite name="PServerClient" executed="True" success="True" time="0.180" asserts="0">
             <results>
-              <test-suite name="Tests" executed="True" success="True" time="0.080" asserts="0">
+              <test-suite name="Tests" executed="True" success="True" time="0.180" asserts="0">
                 <results>
-                  <test-suite name="RequestTests" executed="True" success="True" time="0.080" asserts="0">
+                  <test-suite name="CVSTest" executed="True" success="True" time="0.180" asserts="0">
                     <results>
-                      <test-case name="PServerClient.Tests.RequestTests.AddRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.AdminRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.AnnotateRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ArgumentRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ArgumentxRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.AuthRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.CaseRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.CheckInRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.CheckinTimeRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.CheckoutRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.DiffRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.DirectoryRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.EditorsRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.EmptyConflictsRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.EntryRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ExpandModulesRequestTest" executed="True" success="True" time="0.010" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ExportRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.GlobalOptionRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.GssapiAuthenticateRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.GssapiEncryptRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.GzipFileContentsRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.GzipStreamRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.HistoryRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ImportRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.InitRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.IsModifiedRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.KerberosEncryptRequestTest" executed="True" success="True" time="0.010" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.KoptRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.LogRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.LostRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.MaxDotRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ModifiedRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.NoopRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.NotifyRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.QuestionableRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RAnnotateRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RDiffRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ReleaseRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RemoveRequestTest" executed="True" success="True" time="0.010" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RepositoryRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RequestsToTypesTest" executed="True" success="True" time="0.000" asserts="3" />
-                      <test-case name="PServerClient.Tests.RequestTests.RLogRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RootRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.RTagRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.SetRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.StaticDirectoryRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.StatusRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.StickyRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.TagRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.UnchangedRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.UpdatePatchesTest" executed="True" success="True" time="0.010" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.UpdateRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.UseUnchangedRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ValidRequestsRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.ValidResponsesRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.VerifyAuthRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.VersionRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.WatchAddRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.WatchersRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.WatchOffRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.WatchOnRequestTest" executed="True" success="True" time="0.010" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.WatchRemoveRequestTest" executed="True" success="True" time="0.000" asserts="4" />
-                      <test-case name="PServerClient.Tests.RequestTests.WrapperSendmeRcsOptionsRequestTest" executed="True" success="True" time="0.000" asserts="4" />
+                      <test-case name="PServerClient.Tests.CVSTest.EntryTest" executed="True" success="True" time="0.170" asserts="5" />
+                      <test-case name="PServerClient.Tests.CVSTest.FolderTest" executed="True" success="True" time="0.010" asserts="17" />
+                      <test-case name="PServerClient.Tests.CVSTest.RootTest" executed="True" success="True" time="0.000" asserts="1" />
                     </results>
                   </test-suite>
                 </results>

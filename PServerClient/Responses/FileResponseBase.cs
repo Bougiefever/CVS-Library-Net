@@ -19,20 +19,22 @@ namespace PServerClient.Responses
       public override void Process(IList<string> lines)
       {
          string module = lines[0];
-         string cvsPath = lines[1];
-         string fileNameRevision = lines[2];
+         string repositoryPath = lines[1];
+         string entryLine = lines[2];
          string fileProperties = lines[3];
          string fileLength = lines[4];
 
-         string fileName = ResponseHelper.GetFileNameFromUpdatedLine(fileNameRevision);
-         string revision = ResponseHelper.GetRevisionFromUpdatedLine(fileNameRevision);
+         string fileName = ResponseHelper.GetFileNameFromEntryLine(entryLine);
+         string revision = ResponseHelper.GetRevisionFromEntryLine(entryLine);
 
          File = new ReceiveFile
                    {
                       Name = fileName,
                       Revision = revision,
-                      RepositoryPath = cvsPath,
-                      Path = module.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries),
+                      RepositoryPath = repositoryPath,
+                      //Path = module.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries),
+                      EntryLine = entryLine,
+                      Module = module,
                       Properties = fileProperties,
                       Length = Convert.ToInt64(fileLength)
                    };
@@ -41,9 +43,23 @@ namespace PServerClient.Responses
          //Lines.Add(line);
          for (int i = 0; i < LineCount; i++)
             Lines.Add(lines[i]);
+
+         ModuleName = module;
+         RepositoryPath = repositoryPath;
+         EntryLine = entryLine;
       }
 
       public ReceiveFile File { get; set; }
+
+      #endregion
+
+      #region IFileResponse Members
+
+      public string ModuleName { get; set; }
+
+      public string RepositoryPath { get; set; }
+
+      public string EntryLine { get; set; }
 
       #endregion
    }

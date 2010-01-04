@@ -5,7 +5,7 @@ namespace PServerClient.Commands
 {
    public class AddCommand : CommandBase
    {
-      public AddCommand(Root root) : base(root)
+      public AddCommand(IRoot root) : base(root)
       {
       }
 

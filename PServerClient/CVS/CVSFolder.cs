@@ -12,8 +12,6 @@ namespace PServerClient.CVS
    public class CVSFolder
    {
       private const string EntryRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
-      //private readonly string _cvsConnection;
-      //private readonly string _cvsRepository;
       private readonly Folder _parent;
 
       public CVSFolder(Folder parentFolder)
@@ -23,7 +21,6 @@ namespace PServerClient.CVS
          RepositoryFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Repository"));
          EntriesFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Entries"));
          RootFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Root"));
-         //_cvsConnection = cvsConnection;
       }
 
       public DirectoryInfo CVSDirectory { get; private set; }
@@ -40,7 +37,7 @@ namespace PServerClient.CVS
 
       public void WriteRootFile()
       {
-         byte[] buffer = _parent.CVSConnectionString.Encode();
+         byte[] buffer = _parent.Connection.Encode();
          ReaderWriter.Current.WriteFile(RootFile, buffer);
       }
 
@@ -61,64 +58,64 @@ namespace PServerClient.CVS
       {
          IList<string> entryLines = ReaderWriter.Current.ReadFileLines(EntriesFile);
          IList<ICVSItem> items = new List<ICVSItem>();
-         foreach (string s in entryLines)
-         {
-            Match m = Regex.Match(s, EntryRegex);
-            if (m.Success)
-            {
-               string code = m.Groups[1].ToString();
-               string entryName = m.Groups[2].ToString();
-               string revision = m.Groups[3].ToString();
-               string date = m.Groups[4].ToString();
-               string keywordMode = m.Groups[5].ToString();
-               string stickyOption = m.Groups[6].ToString();
+         //foreach (string s in entryLines)
+         //{
+         //   Match m = Regex.Match(s, EntryRegex);
+         //   if (m.Success)
+         //   {
+         //      string code = m.Groups[1].ToString();
+         //      string entryName = m.Groups[2].ToString();
+         //      string revision = m.Groups[3].ToString();
+         //      string date = m.Groups[4].ToString();
+         //      string keywordMode = m.Groups[5].ToString();
+         //      string stickyOption = m.Groups[6].ToString();
 
-               ICVSItem item;
-               string path = Path.Combine(_parent.Info.FullName, entryName);
-               if (code == "D")
-               {
-                  DirectoryInfo di = new DirectoryInfo(path);
-                  string repo = _parent.Repository + "/" + entryName;
-                  item = new Folder(di, _parent);
-               }
-               else
-               {
-                  FileInfo fi = new FileInfo(path);
-                  item = new Entry(fi, _parent)
-                            {
-                               Revision = revision,
-                               ModTime = date.EntryToDateTime(),
-                               Properties = keywordMode,
-                               StickyOption = stickyOption
-                            };
-               }
-               items.Add(item);
-            }
-         }
+         //      ICVSItem item;
+         //      string path = Path.Combine(_parent.Info.FullName, entryName);
+         //      if (code == "D")
+         //      {
+         //         DirectoryInfo di = new DirectoryInfo(path);
+         //         string repo = _parent.Repository + "/" + entryName;
+         //         item = new Folder(_parent);
+         //      }
+         //      else
+         //      {
+         //         FileInfo fi = new FileInfo(path);
+         //         item = new Entry(fi, _parent)
+         //                   {
+         //                      Revision = revision,
+         //                      ModTime = date.EntryToDateTime(),
+         //                      Properties = keywordMode,
+         //                      StickyOption = stickyOption
+         //                   };
+         //      }
+         //      items.Add(item);
+         //   }
+         //}
          return items;
       }
 
       public void WriteEntries(IList<ICVSItem> items)
       {
-         IList<string> lines = new List<string>();
-         foreach (ICVSItem item in items)
-         {
-            string code = item is Folder ? "D" : string.Empty;
-            string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
-                                             item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
-            Console.WriteLine(entryLine);
-            lines.Add(entryLine);
-         }
-         ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
+         //IList<string> lines = new List<string>();
+         //foreach (ICVSItem item in items)
+         //{
+         //   string code = item is Folder ? "D" : string.Empty;
+         //   string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
+         //                                    item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
+         //   Console.WriteLine(entryLine);
+         //   lines.Add(entryLine);
+         //}
+         //ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
       }
 
       public void SaveCVSFolder(IList<ICVSItem> items)
       {
-         // create CVS folder if it doesn't exist
-         ReaderWriter.Current.CreateDirectory(CVSDirectory);
-         WriteRootFile();
-         WriteRepositoryFile();
-         WriteEntries(items);
+         //// create CVS folder if it doesn't exist
+         //ReaderWriter.Current.CreateDirectory(CVSDirectory);
+         //WriteRootFile();
+         //WriteRepositoryFile();
+         //WriteEntries(items);
       }
    }
 }

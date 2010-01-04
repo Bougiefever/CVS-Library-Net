@@ -161,7 +161,7 @@ namespace PServerClient
                             };
       }
 
-      public static string GetFileNameFromUpdatedLine(string line)
+      public static string GetFileNameFromEntryLine(string line)
       {
          string regex = @"^/(.+?)/";
          Match m = Regex.Match(line, regex);
@@ -170,7 +170,7 @@ namespace PServerClient
          return m.Groups[1].ToString();
       }
 
-      public static string GetRevisionFromUpdatedLine(string line)
+      public static string GetRevisionFromEntryLine(string line)
       {
          string regex = @"/(\d.+?)/";
          Match m = Regex.Match(line, regex);

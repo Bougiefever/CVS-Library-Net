@@ -321,7 +321,7 @@ namespace PServerClient.Tests
       [Test]
       public void CreateCommandTest()
       {
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          
          //CheckOut
          CommandType type = CommandType.CheckOut;
@@ -391,7 +391,7 @@ namespace PServerClient.Tests
          XDocument xdoc = XDocument.Parse(xml);
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
 
          PServerFactory factory = new PServerFactory();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] {root});

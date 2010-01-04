@@ -4,10 +4,10 @@ namespace PServerClient.Requests
 {
    public class RepositoryRequest : RequestBase
    {
-      public RepositoryRequest(Root root)
+      public RepositoryRequest(IRoot root)
       {
          Lines = new string[1];
-         Lines[0] = string.Format("{0} {1}", RequestName, root.RepositoryPath);
+         Lines[0] = string.Format("{0} {1}", RequestName, "");
       }
       public RepositoryRequest(string[] lines):base(lines){}
       public override bool ResponseExpected { get { return false; } }

@@ -16,8 +16,8 @@ namespace PServerClient.Responses
 
       public override void Process(IList<string> lines)
       {
-         FileName = ResponseHelper.GetFileNameFromUpdatedLine(lines[1]);
-         Revision = ResponseHelper.GetRevisionFromUpdatedLine(lines[1]);
+         FileName = ResponseHelper.GetFileNameFromEntryLine(lines[1]);
+         Revision = ResponseHelper.GetRevisionFromEntryLine(lines[1]);
          base.Process(lines);
       }
    }

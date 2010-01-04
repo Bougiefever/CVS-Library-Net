@@ -12,7 +12,7 @@ namespace PServerClient.Tests
    public class RequestTests
    {
       // ReSharper disable PossibleNullReferenceException
-      private readonly Root _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+      private readonly IRoot _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
       private readonly PServerFactory _factory = new PServerFactory();
 
       public RequestTests()

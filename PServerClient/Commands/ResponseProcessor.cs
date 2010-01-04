@@ -1,5 +1,7 @@
+using System.IO;
 using System.Collections.Generic;
 using PServerClient.Responses;
+using PServerClient.CVS;
 
 namespace PServerClient.Commands
 {
@@ -27,9 +29,27 @@ namespace PServerClient.Commands
                   files.Add(file);
                }
             }
-
          }
          return files;
+      }
+
+      public Folder ModuleFolder(IRoot root, IList<IFileResponseGroup> fileGroups)
+      {
+         DirectoryInfo di = PServerHelper.GetRootModuleFolderPath(root.WorkingDirectory, root.Module);
+         Folder rootFolder = new Folder(di, root.CVSConnectionString, root.Repository, root.Module);
+         Folder parent = rootFolder;
+         foreach (IFileResponseGroup fileGroup in fileGroups)
+         {
+            string module = fileGroup.FileResponse.ModuleName;
+            if (module != parent.Module) // add file to current folder
+            {
+               string name = module.Substring(module.IndexOf(parent.Module) + parent.Module.Length + 1);
+               Folder folder = new Folder(name, parent);
+               parent = folder;
+            }
+            Entry entry = new Entry(fileGroup.FileResponse.File.Name, parent);
+         }
+         return rootFolder;
       }
    }
 }

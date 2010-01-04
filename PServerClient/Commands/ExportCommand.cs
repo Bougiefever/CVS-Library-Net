@@ -8,28 +8,28 @@ namespace PServerClient.Commands
 {
    public class ExportCommand : CommandBase
    {
-      public ExportCommand(Root root, DateTime exportDate) : base(root)
+      public ExportCommand(IRoot root, DateTime exportDate) : base(root)
       {
-         Requests.Add(new RootRequest(root));
+         Requests.Add(new RootRequest(root.Repository));
          Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
          string dateArg = GetExportDate(exportDate);
          Requests.Add(new ArgumentRequest(dateArg));
          Requests.Add(new ArgumentRequest("-R"));
          Requests.Add(new ArgumentRequest(root.Module));
-         Requests.Add(new DirectoryRequest(root));
+         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
 
          Requests.Add(new ExportRequest());
       }
 
-      public ExportCommand(Root root, string tag) : base(root)
+      public ExportCommand(IRoot root, string tag) : base(root)
       {
-         Requests.Add(new RootRequest(root));
+         Requests.Add(new RootRequest(root.Repository));
          Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
          string tagArg = "-r " + tag;
          Requests.Add(new ArgumentRequest(tagArg));
          Requests.Add(new ArgumentRequest("-R"));
          Requests.Add(new ArgumentRequest(root.Module));
-         Requests.Add(new DirectoryRequest(root));
+         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
 
          Requests.Add(new ExportRequest());
       }
@@ -42,6 +42,7 @@ namespace PServerClient.Commands
          export.CollapseResponses();
          ResponseProcessor processor = new ResponseProcessor();
          FileGroups = processor.CreateFileGroupsFromResponses(export.Responses);
+
       }
 
       public IList<IFileResponseGroup> FileGroups { get; set; }

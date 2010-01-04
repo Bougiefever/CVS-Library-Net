@@ -5,7 +5,7 @@ namespace PServerClient.Commands
 {
    public class VerifyAuthCommand : CommandBase
    {
-      public VerifyAuthCommand(Root root) : base(root)
+      public VerifyAuthCommand(IRoot root) : base(root)
       {
          RequiredRequests.Clear();
          RequiredRequests.Add(new VerifyAuthRequest(root));

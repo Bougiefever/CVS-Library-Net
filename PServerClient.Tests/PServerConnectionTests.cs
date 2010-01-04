@@ -71,7 +71,7 @@ namespace PServerClient.Tests
          string user = TestConfig.Username;
          string pwd = TestConfig.Password;
          string path = TestConfig.RepositoryPath;
-         Root root = new Root(host, port, user, pwd, path);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password); 
          _connection.Connect(root);
          _mocks.VerifyAll();
       }

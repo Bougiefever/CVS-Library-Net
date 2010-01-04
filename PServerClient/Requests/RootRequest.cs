@@ -14,16 +14,16 @@ namespace PServerClient.Requests
    ///requests other than Valid-responses, valid-requests, UseUnchanged, Set,
    ///Global_option, init, noop, or version.
    /// </summary>
-   public class RootRequest : RequestBase
+   public class RootRequest : OneArgRequestBase
    {
-      public RootRequest(IRoot root)
+      public RootRequest(string root) : base(root)
       {
-         Lines = new string[1];
-         Lines[0] = string.Format("{0} {1}", RequestName, root.RepositoryPath);
+         //Lines = new string[1];
+         //Lines[0] = string.Format("{0} {1}", RequestName, root);
       }
       public RootRequest(string[] lines) :base(lines){}
 
-      public override bool ResponseExpected { get { return false; } }
+      //public override bool ResponseExpected { get { return false; } }
       public override RequestType Type { get { return RequestType.Root; } }
    }
 }

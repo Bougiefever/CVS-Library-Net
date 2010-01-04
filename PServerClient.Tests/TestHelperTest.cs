@@ -53,8 +53,8 @@ namespace PServerClient.Tests
       public void GetInfoFromUpdatedTest()
       {
          string test = "/.cvspass/1.1.1.1///";
-         string name = ResponseHelper.GetFileNameFromUpdatedLine(test);
-         string revision = ResponseHelper.GetRevisionFromUpdatedLine(test);
+         string name = ResponseHelper.GetFileNameFromEntryLine(test);
+         string revision = ResponseHelper.GetRevisionFromEntryLine(test);
          Assert.AreEqual(".cvspass", name);
          Assert.AreEqual("1.1.1.1", revision);
       }
@@ -84,7 +84,7 @@ namespace PServerClient.Tests
       [Test]
       public void CommandToXMLTest()
       {
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          CheckOutCommand cmd = new CheckOutCommand(root);
 
          // add responses to requests
@@ -190,7 +190,7 @@ namespace PServerClient.Tests
          XDocument xdoc = XDocument.Parse(xml);
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
-         Root root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password, TestConfig.RepositoryPath);
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          PServerFactory factory =new PServerFactory();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] { root }); //TestHelper.CommandXElementToICommand(xdoc, root);
          Assert.IsInstanceOf<CheckOutCommand>(cmd);

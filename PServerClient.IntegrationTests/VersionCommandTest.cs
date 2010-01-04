@@ -13,12 +13,12 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class VersionCommandTest
    {
-      private Root _root;
+      private IRoot _root;
 
       [SetUp]
       public void SetUp()
       {
-         _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword(), TestConfig.RepositoryPath);
+         _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
       }
       [Test]
       public void ExecuteTest()

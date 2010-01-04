@@ -16,13 +16,14 @@ namespace PServerClient.Requests
    /// </summary>
    public class DirectoryRequest : RequestBase
    {
-      public DirectoryRequest(IRoot root)
+      public DirectoryRequest(string name, string directory)
       {
          Lines = new string[2];
-         Lines[0] = string.Format("{0} .", RequestName);
-         Lines[1] = string.Format("{0}/{1}", root.RepositoryPath, root.Module);
+         Lines[0] = string.Format("{0} {1}", RequestName, name);
+         Lines[1] = directory;
       }
-      public DirectoryRequest(string[] lines) : base(lines){}
+
+      public DirectoryRequest(string[] lines) : base(lines) { }
 
       public override bool ResponseExpected { get { return false; } }
       public override RequestType Type { get { return RequestType.Directory; } }

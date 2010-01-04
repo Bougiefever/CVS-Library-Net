@@ -54,16 +54,14 @@
     <Compile Include="Commands\AddCommandTest.cs" />
     <Compile Include="Commands\CheckoutCommandTest.cs" />
     <Compile Include="Commands\CommandBaseTest.cs" />
-    <Compile Include="CVSItemTest.cs" />
+    <Compile Include="CVSTest.cs" />
     <Compile Include="PServerFactoryTest.cs" />
     <Compile Include="ResponseProcessorTest.cs" />
     <Compile Include="TestHelperTest.cs" />
-    <Compile Include="ServerFileReceiverTest.cs" />
     <Compile Include="Commands\ExportCommandTest.cs" />
     <Compile Include="Commands\UpdateCommandTest.cs" />
     <Compile Include="Commands\ValidRequestsListCommandTest.cs" />
     <Compile Include="Commands\VerifyAuthCommandTest.cs" />
-    <Compile Include="CvsFolderTest.cs" />
     <Compile Include="CvsRootTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PServerConnectionTests.cs" />

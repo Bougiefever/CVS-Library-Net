@@ -15,7 +15,7 @@ namespace PServerClient.IntegrationTests
    [TestFixture]
    public class CheckoutCommandTest
    {
-      private Root _root;
+      private IRoot _root;
 
       private const string lineend = "\n";
 
@@ -23,9 +23,8 @@ namespace PServerClient.IntegrationTests
       public void SetUp()
       {
 
-         _root = new Root(TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword(), TestConfig.RepositoryPath);
+         _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword());
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
-         _root.Module = TestConfig.ModuleName;
       }
 
       [Test]

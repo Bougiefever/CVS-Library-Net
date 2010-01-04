@@ -9,62 +9,32 @@ namespace PServerClient.CVS
    /// </summary>
    public abstract class CVSItemBase : ICVSItem
    {
-      protected CVSItemBase(FileSystemInfo info, Folder parent)
+      protected CVSItemBase(Folder parent)
       {
-         Info = info;
-         Revision = string.Empty;
-         Properties = string.Empty;
-         StickyOption = string.Empty;
          Parent = parent;
+         Parent.AddItem(this);
       }
 
       protected CVSItemBase(FileSystemInfo info)
       {
          Info = info;
-         Revision = string.Empty;
-         Properties = string.Empty;
-         StickyOption = string.Empty;
          Parent = null;
       }
 
-      #region ICVSItem Members
-
       public abstract void Write();
-      public virtual CVSFolder CvsFolder { get { throw new NotSupportedException(); } }
-      public virtual string Repository { get { throw new NotSupportedException(); } }
-
-      public virtual void Read()
-      {
-         throw new NotSupportedException();
-      }
-
-      //protected virtual void AddItem(ICVSItem item)
-      //{
-      //   throw new NotSupportedException();
-      //}
-
-      public virtual void RemoveItem(ICVSItem item)
-      {
-         throw new NotSupportedException();
-      }
-
-      public Folder Parent { get; protected set; }
-
+      public abstract string Repository { get; }
+      public abstract string Module { get; }
+      public abstract CVSFolder CVSFolder { get; } 
+      
+      public virtual void Read() { throw new NotSupportedException(); }
+      public virtual void AddItem(ICVSItem item) { throw new NotSupportedException(); }
+      public virtual void RemoveItem(ICVSItem item) { throw new NotSupportedException(); }
       public virtual ICVSItem this[int idx] { get { throw new NotSupportedException(); } }
-
-      public virtual IEnumerator GetEnumerator()
-      {
-         throw new NotSupportedException();
-      }
-
+      public virtual IEnumerator GetEnumerator() { throw new NotSupportedException(); }
       public virtual int Count { get { throw new NotSupportedException(); } }
 
-      /// <summary>
-      /// This is the file or folder
-      /// </summary>
-      public FileSystemInfo Info { get; private set; }
-
-      public string Name { get { return Info.Name; } }
+      public FileSystemInfo Info { get; protected set; }
+      public Folder Parent { get; protected set; }
       public DateTime ModTime { get; set; }
       public string Revision { get; set; }
       public string Properties { get; set; }
@@ -72,6 +42,5 @@ namespace PServerClient.CVS
       public long Length { get; set; }
       public byte[] FileContents { get; set; }
 
-      #endregion
    }
 }

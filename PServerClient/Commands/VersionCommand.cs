@@ -5,7 +5,7 @@ namespace PServerClient.Commands
 {
    public class VersionCommand : CommandBase
    {
-      public VersionCommand(Root root) : base(root)
+      public VersionCommand(IRoot root) : base(root)
       {
          RequiredRequests.Clear();
          RequiredRequests.Add(new AuthRequest(root));

@@ -3,18 +3,19 @@ using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
 using PServerClient.Requests;
+using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests.Commands
 {
    [TestFixture]
    public class ValidRequestsListCommandTest
    {
-      private Root _root;
+      private IRoot _root;
 
       [TestFixtureSetUp]
       public void TestFixtureSetUp()
       {
-         _root = new Root("host-name", 1, "username", "password", "/f1/f2/f3");
+         _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
       }
 
       [Test]

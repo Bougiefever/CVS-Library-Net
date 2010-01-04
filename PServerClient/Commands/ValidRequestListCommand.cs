@@ -5,7 +5,7 @@ namespace PServerClient.Commands
 {
    public class ValidRequestsListCommand : CommandBase
    {
-      public ValidRequestsListCommand(Root root) : base(root)
+      public ValidRequestsListCommand(IRoot root) : base(root)
       {
          RequiredRequests.Clear();
          RequiredRequests.Add(new AuthRequest(root));

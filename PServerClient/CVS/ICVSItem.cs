@@ -5,7 +5,7 @@ using System.IO;
 namespace PServerClient.CVS
 {
    /// <summary>
-   /// This the interface for both local Cvs folders and Cvs entry files
+   /// This the interface for both folders and entry files
    /// </summary>
    public interface ICVSItem : IEnumerable
    {
@@ -24,6 +24,7 @@ namespace PServerClient.CVS
       /// This is the repository string that goes in the CVS repository file
       /// </summary>
       string Repository { get; }
+      string Module { get; }
 
       /// <summary>
       /// List of Entries or Folders contained by the current item
@@ -37,10 +38,10 @@ namespace PServerClient.CVS
       /// </summary>
       int Count { get; }
 
-      /// <summary>
-      /// Name of folder or file
-      /// </summary>
-      string Name { get; }
+      ///// <summary>
+      ///// Name of folder or file
+      ///// </summary>
+      //string Name { get; }
 
       /// <summary>
       /// for Entry type, Cvs modification time
@@ -75,7 +76,7 @@ namespace PServerClient.CVS
       /// <summary>
       /// CVS hidden folder for repository information
       /// </summary>
-      CVSFolder CvsFolder { get; }
+      CVSFolder CVSFolder { get; }
 
       /// <summary>
       /// Write the FileContents to the Entry file if item is Entry type
@@ -92,7 +93,7 @@ namespace PServerClient.CVS
       /// Add a child item
       /// </summary>
       /// <param name="item"></param>
-      ///void AddItem(ICVSItem item);
+      void AddItem(ICVSItem item);
 
       /// <summary>
       /// Remove a child item
