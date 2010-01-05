@@ -9,7 +9,7 @@ namespace PServerClient.CVS
    /// <summary>
    /// Represents a folder in the cvs repository
    /// </summary>
-   public class Folder : CVSItemBase
+   public class Folder : CVSItemBase, IEnumerable
    {
       private readonly IList<ICVSItem> _childItems;
       private readonly CVSFolder _cvsFolder;
@@ -47,9 +47,9 @@ namespace PServerClient.CVS
       }
 
       public override CVSFolder CVSFolder { get { return _cvsFolder; } }
-      public override int Count { get { return _childItems.Count; } }
-      public override ICVSItem this[int idx] { get { return _childItems[idx]; } }
-      public override string Repository
+      public int Count { get { return _childItems.Count; } }
+      public ICVSItem this[int idx] { get { return _childItems[idx]; } }
+      public string Repository
       {
          get
          {
@@ -69,7 +69,7 @@ namespace PServerClient.CVS
          } 
       }
 
-      public override string Module
+      public string Module
       {
          get 
          {
@@ -82,17 +82,17 @@ namespace PServerClient.CVS
          }
       }
 
-      public override void AddItem(ICVSItem item)
+      public void AddItem(ICVSItem item)
       {
          _childItems.Add(item);
       }
 
-      public override void RemoveItem(ICVSItem item)
+      public void RemoveItem(ICVSItem item)
       {
          _childItems.Remove(item);
       }
 
-      public override IEnumerator GetEnumerator()
+      public IEnumerator GetEnumerator()
       {
          return _childItems.GetEnumerator();
       }
@@ -100,6 +100,18 @@ namespace PServerClient.CVS
       public override void Write()
       {
          ReaderWriter.Current.CreateDirectory((DirectoryInfo) Info);
+      }
+
+      public override void Save(bool recursive)
+      {
+         Write();
+         if (recursive)
+         {
+            foreach (ICVSItem item in this)
+            {
+               item.Save(true);
+            }
+         }
       }
    }
 }

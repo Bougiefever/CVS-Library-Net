@@ -42,6 +42,7 @@ namespace PServerClient.CVS
       public override void Write()
       {
          ReaderWriter.Current.WriteFile((FileInfo) Info, FileContents);
+         FileContents = new byte[Length]; // clear the array to save memory
       }
 
       public override CVSFolder CVSFolder
@@ -49,16 +50,18 @@ namespace PServerClient.CVS
          get { return Parent.CVSFolder; }
       }
 
-      public override string Module
+      public override void Save(bool recursive)
       {
-         get { return Parent.Module; }
-      }
-
-      public override string Repository
-      {
-         get { return Parent.Repository; }
+         Write();
       }
 
       public string EntryLine { get; set; }
+      public DateTime ModTime { get; set; }
+      public string Revision { get; set; }
+      public string Properties { get; set; }
+      public string StickyOption { get; set; }
+      public long Length { get; set; }
+      public byte[] FileContents { get; set; }
+      public FileType Type { get; set; }
    }
 }

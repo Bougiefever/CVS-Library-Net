@@ -107,7 +107,7 @@ namespace PServerClient.Tests.TestSetup
                                   };
          res.Process(lines);
          string text = "abcde";
-         res.File.Contents = text.Encode();
+         res.Contents = text.Encode();
          return res;
       }
 

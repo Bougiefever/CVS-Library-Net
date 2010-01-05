@@ -76,7 +76,7 @@ namespace PServerClient.CVS
       {
          get
          {
-            string connection = string.Format(":{0}:{1}@{2}:{3}", Protocol, Username, Host, Repository);
+            string connection = string.Format(":{0}:{1}@{2}:{3}{4}", Protocol, Username, Host, Port, Repository);
             return connection;
          }
       }

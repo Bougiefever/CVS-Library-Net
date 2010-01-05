@@ -30,10 +30,10 @@ namespace PServerClient.Tests
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<UpdatedResponse>(response);
          IFileResponse fileResponse = (IFileResponse) response;
-         ReceiveFile file = fileResponse.File;
-         Assert.AreEqual(74, file.Length);
+         //ReceiveFile file = fileResponse.File;
+         Assert.AreEqual(74, fileResponse.Length);
          string expected = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
-         string fileContents = file.Contents.Decode();
+         string fileContents = fileResponse.Contents.Decode();
          Assert.AreEqual(expected, fileContents);
       }
 

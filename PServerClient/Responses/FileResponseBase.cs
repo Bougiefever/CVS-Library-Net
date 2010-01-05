@@ -5,13 +5,15 @@ namespace PServerClient.Responses
 {
    public abstract class FileResponseBase : ResponseBase, IFileResponse
    {
-      #region IFileResponse Members
+      private string _name;
+      private string _revision;
+      private string _properties;
 
       public abstract override ResponseType Type { get; }
 
       public override string Display()
       {
-         return File.RepositoryPath;
+         return RepositoryPath;
       }
 
       public override int LineCount { get { return 5; } }
@@ -24,43 +26,45 @@ namespace PServerClient.Responses
          string fileProperties = lines[3];
          string fileLength = lines[4];
 
-         string fileName = ResponseHelper.GetFileNameFromEntryLine(entryLine);
-         string revision = ResponseHelper.GetRevisionFromEntryLine(entryLine);
+         _name = ResponseHelper.GetFileNameFromEntryLine(entryLine);
+         _revision = ResponseHelper.GetRevisionFromEntryLine(entryLine);
+         _properties = fileProperties;
 
-         File = new ReceiveFile
-                   {
-                      Name = fileName,
-                      Revision = revision,
-                      RepositoryPath = repositoryPath,
+         //File = new ReceiveFile
+         //          {
+                      //Name = fileName,
+                      //Revision = revision,
+                      //RepositoryPath = repositoryPath,
                       //Path = module.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries),
-                      EntryLine = entryLine,
-                      Module = module,
-                      Properties = fileProperties,
-                      Length = Convert.ToInt64(fileLength)
-                   };
+                      //EntryLine = entryLine,
+                      //Module = module,
+                      //Properties = fileProperties,
+                      Length = Convert.ToInt64(fileLength);
+                      FileType = FileType.Text;
+                   //};
          Lines = new List<string>(LineCount);
          //string line =string.Format("{0} {1}", ResponseHelper.ResponseNames[(int) Type],lines[0]);
          //Lines.Add(line);
          for (int i = 0; i < LineCount; i++)
             Lines.Add(lines[i]);
 
-         ModuleName = module;
+         Module = module;
          RepositoryPath = repositoryPath;
          EntryLine = entryLine;
       }
 
-      public ReceiveFile File { get; set; }
-
-      #endregion
-
-      #region IFileResponse Members
-
-      public string ModuleName { get; set; }
+      public string Module { get; set; }
 
       public string RepositoryPath { get; set; }
 
       public string EntryLine { get; set; }
 
-      #endregion
+      public string Name { get { return _name; } }
+      public string Revision { get { return _revision; } }
+      public string Properties { get { return _properties; } }
+      public long Length { get; set; }
+      public byte[] Contents { get; set; }
+      public FileType FileType { get; set; }
+
    }
 }

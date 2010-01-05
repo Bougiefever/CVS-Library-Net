@@ -56,6 +56,7 @@
     <Compile Include="Commands\CommandBaseTest.cs" />
     <Compile Include="CVSTest.cs" />
     <Compile Include="PServerFactoryTest.cs" />
+    <Compile Include="ResponseHelperTest.cs" />
     <Compile Include="ResponseProcessorTest.cs" />
     <Compile Include="TestHelperTest.cs" />
     <Compile Include="Commands\ExportCommandTest.cs" />

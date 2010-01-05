@@ -147,8 +147,8 @@ namespace PServerClient
             {
                buffer[i] = Convert.ToByte(bytes[i]);
             }
-            fileResponse.File.Length = len;
-            fileResponse.File.Contents = buffer;
+            fileResponse.Length = len;
+            fileResponse.Contents = buffer;
          }
          return response;
       }

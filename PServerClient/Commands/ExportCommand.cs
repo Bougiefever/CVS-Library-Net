@@ -42,7 +42,8 @@ namespace PServerClient.Commands
          export.CollapseResponses();
          ResponseProcessor processor = new ResponseProcessor();
          FileGroups = processor.CreateFileGroupsFromResponses(export.Responses);
-
+         Root.RootFolder = processor.CreateCVSFileStructure(Root, FileGroups);
+         Root.RootFolder.Save(true);
       }
 
       public IList<IFileResponseGroup> FileGroups { get; set; }

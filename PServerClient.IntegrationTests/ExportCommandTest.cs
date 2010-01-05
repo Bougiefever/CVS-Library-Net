@@ -51,6 +51,7 @@ namespace PServerClient.IntegrationTests
          Assert.IsTrue(result);
          PServerFactory factory = new PServerFactory();
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         root.WorkingDirectory = TestConfig.WorkingDirectory;
          DateTime date = new DateTime();
          ExportCommand cmd = (ExportCommand)factory.CreateCommand(xdoc, new object[] { root, date });
          cmd.PostExecute();

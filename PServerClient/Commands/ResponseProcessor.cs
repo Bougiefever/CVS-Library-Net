@@ -33,21 +33,24 @@ namespace PServerClient.Commands
          return files;
       }
 
-      public Folder ModuleFolder(IRoot root, IList<IFileResponseGroup> fileGroups)
+      public Folder CreateCVSFileStructure(IRoot root, IList<IFileResponseGroup> fileGroups)
       {
          DirectoryInfo di = PServerHelper.GetRootModuleFolderPath(root.WorkingDirectory, root.Module);
          Folder rootFolder = new Folder(di, root.CVSConnectionString, root.Repository, root.Module);
          Folder parent = rootFolder;
          foreach (IFileResponseGroup fileGroup in fileGroups)
          {
-            string module = fileGroup.FileResponse.ModuleName;
+            IFileResponse response = fileGroup.FileResponse;
+            string module = ResponseHelper.FixResponseModuleSlashes(response.Module);
             if (module != parent.Module) // add file to current folder
             {
-               string name = module.Substring(module.IndexOf(parent.Module) + parent.Module.Length + 1);
+               string name = ResponseHelper.GetLastModuleName(response.Module);
                Folder folder = new Folder(name, parent);
                parent = folder;
             }
-            Entry entry = new Entry(fileGroup.FileResponse.File.Name, parent);
+            Entry entry = new Entry(fileGroup.FileResponse.Name, parent);
+            entry.Length = response.Length;
+            entry.FileContents = response.Contents;
          }
          return rootFolder;
       }

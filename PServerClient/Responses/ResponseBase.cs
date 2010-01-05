@@ -41,8 +41,8 @@ namespace PServerClient.Responses
          if (this is IFileResponse)
          {
             IFileResponse fileResponse = (IFileResponse)this;
-            string length = fileResponse.File.Length.ToString();
-            string contents = ResponseHelper.FileContentsToByteArrayString(fileResponse.File.Contents);
+            string length = fileResponse.Length.ToString();
+            string contents = ResponseHelper.FileContentsToByteArrayString(fileResponse.Contents);
             XElement responseFile = new XElement("File",
                                                  new XElement("Length", length),
                                                  new XElement("Contents", contents));

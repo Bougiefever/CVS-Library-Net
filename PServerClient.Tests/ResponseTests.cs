@@ -114,17 +114,17 @@ namespace PServerClient.Tests
          UpdatedResponse response = new UpdatedResponse();
          IList<string> lines = new List<string> { "mod1/mod2/mod3/", "/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Process(lines);
-         ReceiveFile file = response.File;
+         //ReceiveFile file = response.File;
          //Assert.AreEqual("mod1", file.Path[0]);
          //Assert.AreEqual("mod2", file.Path[1]);
          //Assert.AreEqual("mod3", file.Path[2]);
-         Assert.AreEqual("mod1/mod2/mod3/", file.Module);
-         Assert.AreEqual("/file1.cs/1.2.3.4///", file.EntryLine);
-         Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", file.RepositoryPath);
-         Assert.AreEqual("file1.cs", file.Name);
-         Assert.AreEqual("1.2.3.4", file.Revision);
-         Assert.AreEqual("u=rw,g=rw,o=rw", file.Properties);
-         Assert.AreEqual(74, file.Length);
+         Assert.AreEqual("mod1/mod2/mod3/", response.Module);
+         Assert.AreEqual("/file1.cs/1.2.3.4///", response.EntryLine);
+         Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", response.RepositoryPath);
+         Assert.AreEqual("file1.cs", response.Name);
+         Assert.AreEqual("1.2.3.4", response.Revision);
+         Assert.AreEqual("u=rw,g=rw,o=rw", response.Properties);
+         Assert.AreEqual(74, response.Length);
          Assert.AreEqual(5, response.LineCount);
       }
 
@@ -134,15 +134,15 @@ namespace PServerClient.Tests
          UpdatedResponse response = new UpdatedResponse();
          IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Process(lines);
-         ReceiveFile file = response.File;
+         //ReceiveFile file = response.File;
          //Assert.AreEqual("mod1", file.Path[0]);
-         Assert.AreEqual("mod1/", file.Module);
-         Assert.AreEqual("/file1.cs/1.2.3.4///", file.EntryLine);
-         Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", file.RepositoryPath);
-         Assert.AreEqual("file1.cs", file.Name);
-         Assert.AreEqual("1.2.3.4", file.Revision);
-         Assert.AreEqual("u=rw,g=rw,o=rw", file.Properties);
-         Assert.AreEqual(74, file.Length);
+         Assert.AreEqual("mod1/", response.Module);
+         Assert.AreEqual("/file1.cs/1.2.3.4///", response.EntryLine);
+         Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
+         Assert.AreEqual("file1.cs", response.Name);
+         Assert.AreEqual("1.2.3.4", response.Revision);
+         Assert.AreEqual("u=rw,g=rw,o=rw", response.Properties);
+         Assert.AreEqual(74, response.Length);
          Assert.AreEqual(5, response.LineCount);
       }
 
@@ -410,7 +410,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(expectedType, response.Type);
          response.Process(lines);
          if (response is IFileResponse)
-            ((IFileResponse)response).File.Contents = fileContents.Encode();
+            ((IFileResponse)response).Contents = fileContents.Encode();
          string display = response.Display();
          Console.WriteLine(display);
          Assert.AreEqual(expectedDisplay, display);

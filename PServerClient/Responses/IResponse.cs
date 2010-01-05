@@ -20,10 +20,15 @@ namespace PServerClient.Responses
 
    public interface IFileResponse : IResponse
    {
-      string ModuleName { get; set; }
+      string Module { get; set; }
       string RepositoryPath { get; set; }
       string EntryLine { get; set; }
-      ReceiveFile File { get; set; }
+      string Name { get; }
+      string Revision { get; }
+      string Properties { get; }
+      long Length { get; set; }
+      byte[] Contents { get; set; }
+      FileType FileType { get; set; }
    }
 
    public interface IMessageResponse : IResponse

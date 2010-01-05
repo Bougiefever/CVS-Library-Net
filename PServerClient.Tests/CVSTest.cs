@@ -64,11 +64,9 @@ namespace PServerClient.Tests
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp\working\team\mymod");
          Folder rootModuleFolder = new Folder(di, _connection, _repository, _module);
          Entry file1 = new Entry("file1.cs", rootModuleFolder);
+         Assert.AreSame(rootModuleFolder, file1.Parent);
          Assert.AreSame(file1.CVSFolder, rootModuleFolder.CVSFolder);
          Assert.AreEqual(@"c:\_temp\working\team\mymod\file1.cs", file1.Info.FullName);
-         Assert.AreEqual("mymod", file1.Module);
-         Assert.AreEqual(_repository, file1.Repository);
-         Assert.AreSame(rootModuleFolder, file1.Parent);
       }
    }
 }

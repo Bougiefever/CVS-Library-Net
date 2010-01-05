@@ -170,6 +170,14 @@ namespace PServerClient
          return m.Groups[1].ToString();
       }
 
+      public static string FixResponseModuleSlashes(string module)
+      { 
+         string newModule = module;
+         if (module.Substring(module.Length - 1, 1) == "/")
+            newModule = module.Substring(0, module.Length - 1);
+         return newModule;
+      }
+
       public static string GetRevisionFromEntryLine(string line)
       {
          string regex = @"/(\d.+?)/";
@@ -219,6 +227,17 @@ namespace PServerClient
             type = response.GetType();
          }
          return condensed;
+      }
+
+      public static string GetLastModuleName(string module)
+      {
+         string mod = FixResponseModuleSlashes(module);
+         string name;
+         if (mod.LastIndexOf("/") > 0)
+            name = mod.Substring(mod.LastIndexOf("/")+1);
+         else
+            name = mod;
+         return name;
       }
    }
 }

@@ -22,25 +22,12 @@ namespace PServerClient.CVS
       }
 
       public abstract void Write();
-      public abstract string Repository { get; }
-      public abstract string Module { get; }
-      public abstract CVSFolder CVSFolder { get; } 
+      public abstract CVSFolder CVSFolder { get; }
+      public abstract void Save(bool recursive);
       
       public virtual void Read() { throw new NotSupportedException(); }
-      public virtual void AddItem(ICVSItem item) { throw new NotSupportedException(); }
-      public virtual void RemoveItem(ICVSItem item) { throw new NotSupportedException(); }
-      public virtual ICVSItem this[int idx] { get { throw new NotSupportedException(); } }
-      public virtual IEnumerator GetEnumerator() { throw new NotSupportedException(); }
-      public virtual int Count { get { throw new NotSupportedException(); } }
 
       public FileSystemInfo Info { get; protected set; }
       public Folder Parent { get; protected set; }
-      public DateTime ModTime { get; set; }
-      public string Revision { get; set; }
-      public string Properties { get; set; }
-      public string StickyOption { get; set; }
-      public long Length { get; set; }
-      public byte[] FileContents { get; set; }
-
    }
 }

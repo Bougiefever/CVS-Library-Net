@@ -7,7 +7,7 @@ namespace PServerClient.CVS
    /// <summary>
    /// This the interface for both folders and entry files
    /// </summary>
-   public interface ICVSItem : IEnumerable
+   public interface ICVSItem 
    {
       /// <summary>
       /// Either FileInfo or DirectoryInfo object depending on
@@ -19,59 +19,6 @@ namespace PServerClient.CVS
       /// The parent folder item
       /// </summary>
       Folder Parent { get; }
-
-      /// <summary>
-      /// This is the repository string that goes in the CVS repository file
-      /// </summary>
-      string Repository { get; }
-      string Module { get; }
-
-      /// <summary>
-      /// List of Entries or Folders contained by the current item
-      /// Entry does not support this because files do not have 
-      /// child items
-      /// </summary>
-      ICVSItem this[int idx] { get; }
-
-      /// <summary>
-      /// Count of child items
-      /// </summary>
-      int Count { get; }
-
-      ///// <summary>
-      ///// Name of folder or file
-      ///// </summary>
-      //string Name { get; }
-
-      /// <summary>
-      /// for Entry type, Cvs modification time
-      /// </summary>
-      DateTime ModTime { get; set; }
-
-      /// <summary>
-      /// For Entry type, Cvs revision string
-      /// </summary>
-      string Revision { get; set; }
-
-      /// <summary>
-      /// For Entry type, the cvs properties string
-      /// </summary>
-      string Properties { get; set; }
-
-      /// <summary>
-      /// For Entry type
-      /// </summary>
-      string StickyOption { get; set; }
-
-      /// <summary>
-      /// For entry type, length in bytes of file contents
-      /// </summary>
-      long Length { get; set; }
-
-      /// <summary>
-      /// byte array of contents that is Length long
-      /// </summary>
-      byte[] FileContents { get; set; }
 
       /// <summary>
       /// CVS hidden folder for repository information
@@ -90,15 +37,9 @@ namespace PServerClient.CVS
       void Read();
 
       /// <summary>
-      /// Add a child item
+      /// Save to disk
       /// </summary>
-      /// <param name="item"></param>
-      void AddItem(ICVSItem item);
-
-      /// <summary>
-      /// Remove a child item
-      /// </summary>
-      /// <param name="item"></param>
-      void RemoveItem(ICVSItem item);
+      /// <param name="recursive"></param>
+      void Save(bool recursive);
    }
 }

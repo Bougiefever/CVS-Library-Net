@@ -69,7 +69,6 @@
     <Compile Include="Connection\ICvsTcpClient.cs" />
     <Compile Include="Connection\CvsTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
-    <Compile Include="CVS\CVSFileSender.cs" />
     <Compile Include="ExitCode.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="PServerFactory.cs" />
@@ -180,7 +179,6 @@
     <Compile Include="Responses\OkResponse.cs" />
     <Compile Include="Responses\PatchedResponse.cs" />
     <Compile Include="Responses\RcsDiffResponse.cs" />
-    <Compile Include="Responses\ReceiveFile.cs" />
     <Compile Include="Responses\RemovedResponse.cs" />
     <Compile Include="Responses\RemoveEntryResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
