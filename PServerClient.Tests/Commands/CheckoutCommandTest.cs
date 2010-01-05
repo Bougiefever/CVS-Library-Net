@@ -17,9 +17,9 @@ namespace PServerClient.Tests.Commands
       //   _root.WorkingDirectory = workingDir;
       //}
 
-      //[Test]
-      //public void Test()
-      //{
-      //}
+      [Test]
+      public void Test()
+      {
+      }
    }
 }

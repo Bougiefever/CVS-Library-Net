@@ -17,7 +17,7 @@ namespace PServerClient.Requests
          Lines = new string[5];
          string requestName = RequestHelper.RequestNames[(int) type];
          Lines[0] = string.Format("BEGIN {0} REQUEST", requestName);
-         //Lines[1] = _root.RepositoryPath;
+         Lines[1] = _root.Repository;
          Lines[2] = _root.Username;
          Lines[3] = _root.Password;
          Lines[4] = string.Format("END {0} REQUEST", requestName);
