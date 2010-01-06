@@ -14,7 +14,6 @@ namespace PServerClient.Tests.Commands
    [TestFixture]
    public class VerifyAuthCommandTest
    {
-      #region Setup/Teardown
 
       [SetUp]
       public void SetUp()
@@ -22,8 +21,6 @@ namespace PServerClient.Tests.Commands
          _mocks = new MockRepository();
          _connection = _mocks.DynamicMock<IConnection>();
       }
-
-      #endregion
 
       private MockRepository _mocks;
       private IConnection _connection;
@@ -36,25 +33,9 @@ namespace PServerClient.Tests.Commands
       }
 
       [Test]
-      public void CommandBaseStatusTest()
-      {
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
-         IAuthRequest request = (IAuthRequest) command.RequiredRequests[0];
-         IAuthResponse response = _mocks.DynamicMock<IAuthResponse>();
-         request.Responses = new List<IResponse> {response};
-
-         Expect.Call(response.Status).Return(AuthStatus.NotAuthenticated);
-         _mocks.ReplayAll();
-
-         AuthStatus result = command.AuthStatus;
-         _mocks.VerifyAll();
-         Assert.AreEqual(AuthStatus.NotAuthenticated, result);
-      }
-
-      [Test]
       public void VerifyAuthCommandConstructorTest()
       {
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
+         VerifyAuthCommand command = new VerifyAuthCommand(_root, _connection);
          int count = command.RequiredRequests.OfType<IAuthRequest>().Count();
          Assert.IsTrue(count == 1);
          count = command.Requests.Count();

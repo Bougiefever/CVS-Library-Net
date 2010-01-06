@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Tests.TestSetup;
 
@@ -12,6 +13,7 @@ namespace PServerClient.IntegrationTests
    public class ExportCommandTest
    {
       private IRoot _root;
+      private IConnection _connection;
 
       [SetUp]
       public void SetUp()
@@ -20,13 +22,14 @@ namespace PServerClient.IntegrationTests
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _root.Module = TestConfig.ModuleName;
+         _connection = new PServerConnection();
       }
 
       [Test]
       public void ExecuteCommandTest()
       {
          DateTime date = DateTime.Now.AddDays(1);
-         ExportCommand cmd = new ExportCommand(_root, date);
+         ExportCommand cmd = new ExportCommand(_root,_connection, date);
          cmd.Execute();
          TestHelper.SaveCommandConversation(cmd, @"c:\_junk\ExportCommand.xml");
 
@@ -36,7 +39,7 @@ namespace PServerClient.IntegrationTests
       public void ExportDateTest()
       {
          DateTime date = DateTime.Parse("12/30/2009 16:00:00");
-         ExportCommand cmd = new ExportCommand(_root, date);
+         ExportCommand cmd = new ExportCommand(_root, _connection, date);
          string mydate = cmd.GetExportDate(date);
       }
 
@@ -54,7 +57,7 @@ namespace PServerClient.IntegrationTests
          root.WorkingDirectory = TestConfig.WorkingDirectory;
          DateTime date = new DateTime();
          ExportCommand cmd = (ExportCommand)factory.CreateCommand(xdoc, new object[] { root, date });
-         cmd.PostExecute();
+         cmd.AfterExecute();
          Assert.AreEqual(4, cmd.FileGroups.Count);
 
       }

@@ -20,10 +20,10 @@ namespace PServerClient.Responses
 
       public override ResponseType Type { get { return ResponseType.Checksum; } }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         _checkSum = lines[0];
-         base.Process(lines);
+         _checkSum = Lines[0];
+         base.Process();
       }
 
       public override string Display()

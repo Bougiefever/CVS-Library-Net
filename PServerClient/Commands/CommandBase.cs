@@ -14,14 +14,18 @@ namespace PServerClient.Commands
    public abstract class CommandBase : ICommand
    {
       private readonly ILog _logger;
-      private IConnection _connection;
+      private AuthStatus _status;
 
+      protected IConnection Connection;
       internal IList<RequestType> ValidRequestTypes;
 
-      protected CommandBase(IRoot root)
+      protected CommandBase(IRoot root, IConnection connection)
       {
          BasicConfigurator.Configure();
-         _logger = LogManager.GetLogger(typeof (CommandBase));
+         _logger = LogManager.GetLogger(typeof(CommandBase));
+         Connection = connection;
+         Responses = new List<IResponse>();
+         UserMessages = new List<string>();
 
          Root = root;
          Requests = new List<IRequest>();
@@ -34,43 +38,15 @@ namespace PServerClient.Commands
          ValidRequestTypes = new List<RequestType>();
       }
 
-      public IConnection Connection
-      {
-         get
-         {
-            if (_connection == null)
-               _connection = new PServerConnection();
-            return _connection;
-         }
-         set { _connection = value; }
-      }
+      public AuthStatus AuthStatus { get { return _status; } }
 
-      public AuthStatus AuthStatus
-      {
-         get
-         {
-            AuthStatus status;
-            try
-            {
-               IAuthRequest authRequest = RequiredRequests.OfType<IAuthRequest>().First();
-               IAuthResponse response = (IAuthResponse) authRequest.Responses[0];
-               status = response.Status;
-            }
-            catch (Exception e)
-            {
-               _logger.Error("Not Authenticated", e);
-               status = AuthStatus.Error;
-            }
-            return status;
-         }
-      }
-
-      #region ICommand Members
 
       public abstract CommandType Type { get; }
       public IList<IRequest> RequiredRequests { get; set; }
 
       public IList<IRequest> Requests { get; set; }
+      public IList<IResponse> Responses { get; set; }
+      public IList<string> UserMessages { get; private set; }
       public IRoot Root { get; private set; }
       public ExitCode ExitCode { get; set; }
 
@@ -84,20 +60,17 @@ namespace PServerClient.Commands
             {
                if (!AllRequestsAreValid())
                   throw new Exception("Request list contains invalid requests");
-               PreExecute();
+               BeforeExecute();
                foreach (IRequest request in Requests)
                {
-                  request.Responses = Connection.DoRequest(request);
-                  if (request.Responses.Where(r => r.Type == ResponseType.Error).Count() > 0)
+                  Connection.DoRequest(request);
+                  if (request.ResponseExpected)
                   {
-                     ExitCode = ExitCode.Failed;
-                     break;
+                     AfterRequest(request);
                   }
-                  PostProcessRequest();
                }
             }
-            if (ExitCode == ExitCode.Succeeded)
-               PostExecute();
+            AfterExecute();
          }
          catch (Exception e)
          {
@@ -127,25 +100,41 @@ namespace PServerClient.Commands
             requestsElement.Add(request.GetXElement());
          }
          commandElement.Add(requestsElement);
+         XElement responsesElement = new XElement("Responses");
+         commandElement.Add(responsesElement);
+         foreach (IResponse response in Responses)
+         {
+            XElement responseElement = response.GetXElement();
+            responsesElement.Add(responseElement);
+         }
          XDocument xdoc = new XDocument(commandElement);
          return xdoc;
       }
 
-      #endregion
 
-      protected internal virtual void PreExecute()
+      protected internal virtual void BeforeExecute()
       {
-         // default is do nothing
+         //
       }
 
-      protected internal virtual void PostProcessRequest()
+      protected internal virtual void AfterRequest(IRequest request)
       {
-         // default is do nothing
+         ProcessRequestResponses(request);
       }
 
-      protected internal virtual void PostExecute()
+      private void ProcessRequestResponses(IRequest request)
       {
-         // default is do nothing
+           var responses = Connection.GetAllResponses();
+           foreach (IResponse res in responses)
+           {
+              res.Process();
+              Responses.Add(res);
+           }
+      }
+
+      protected internal virtual void AfterExecute()
+      {
+         ProcessMessages();
       }
 
       internal ExitCode ExecuteRequiredRequests()
@@ -153,33 +142,42 @@ namespace PServerClient.Commands
          // execute authentication request and check authentication status
          // before executing other requests
          IAuthRequest authRequest = RequiredRequests.OfType<IAuthRequest>().First();
-         authRequest.Responses = Connection.DoRequest(authRequest);
-         AuthStatus status = authRequest.Status;
-         ExitCode code = ExitCode.Failed;
-         if (status == AuthStatus.Authenticated)
+         Connection.DoRequest(authRequest);
+         IResponse response = Connection.GetResponse();
+         if (response is IAuthResponse)
          {
-            code = ExitCode.Succeeded;
+            response.Process();
+            _status = ((IAuthResponse)response).Status;
+         }
+         else
+         {
+            Responses.Add(response);
+            var responses = Connection.GetAllResponses();
+            Responses = Responses.Union(responses).ToList();
+            _status = AuthStatus.Error;
+         }
+         if (_status == AuthStatus.Authenticated)
+         {
             IEnumerable<IRequest> otherRequests = RequiredRequests.Where(r => r.Type != RequestType.Auth && r.Type != RequestType.VerifyAuth);
             foreach (IRequest request in otherRequests)
             {
-               request.Responses = Connection.DoRequest(request);
-               if (request.Responses.Where(r => r.Type == ResponseType.Error).Count() > 0)
+               Connection.DoRequest(request);
+               if (request.ResponseExpected)
                {
-                  code = ExitCode.Failed;
-                  break;
+                  ProcessRequestResponses(request);
                }
             }
          }
-         if (code == ExitCode.Succeeded && authRequest.Type == RequestType.Auth)
+         // set the valid requests list
+         var validRequestResponse = (ValidRequestsResponse)Responses.Where(r => r.Type == ResponseType.ValidRequests).FirstOrDefault();
+         if (validRequestResponse != null)
          {
-            // set the valid request list
-            ValidRequestsRequest validRequests = (ValidRequestsRequest) RequiredRequests.Where(rr => rr.Type == RequestType.ValidRequests).FirstOrDefault();
-            if (validRequests != null)
-            {
-               ValidRequestsResponse vr = (ValidRequestsResponse) validRequests.Responses[0];
-               ValidRequestTypes = vr.ValidRequestTypes;
-            }
+            ValidRequestTypes = validRequestResponse.ValidRequestTypes;
          }
+         ProcessMessages();
+         ExitCode code = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? ExitCode.Failed : ExitCode.Succeeded;
+         Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
+         RequiredRequests.Clear(); // remove requests already processed
          return code;
       }
 
@@ -195,5 +193,18 @@ namespace PServerClient.Commands
          }
          return true;
       }
-   }
+
+      internal void ProcessMessages()
+      {
+         IEnumerable<IMessageResponse> messages = Responses.OfType<IMessageResponse>();
+         foreach (IMessageResponse message in messages)
+         {
+            if (!message.Processed)
+            {
+               message.Process();
+            }
+            UserMessages.Add(message.Message);
+         }
+      }
+    }
 }

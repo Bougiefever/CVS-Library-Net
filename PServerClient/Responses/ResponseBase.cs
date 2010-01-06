@@ -9,12 +9,18 @@ namespace PServerClient.Responses
    {
       public IList<string> Lines { get; set; }
 
-      public virtual void Process(IList<string> lines)
+      public virtual void Initialize(IList<string> lines)
       {
          Lines = new List<string>(LineCount);
          //ResponseLines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
          for (int i = 0; i < LineCount; i++)
             Lines.Add(lines[i]);
+         Processed = false;
+      }
+
+      public virtual void Process()
+      {
+         Processed = true;
       }
 
       public abstract ResponseType Type { get; }
@@ -50,6 +56,8 @@ namespace PServerClient.Responses
          }
          return responseElement;
       }
+
+      public bool Processed { get; set; }
 
       public virtual int LineCount { get { return 1; } }
    }

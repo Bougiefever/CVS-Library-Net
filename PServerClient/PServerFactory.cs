@@ -92,7 +92,7 @@ namespace PServerClient
             IRequest request = RequestXElementToIRequest(requestElement);
             requests.Add(request);
             XElement responsesElement = requestElement.Element("Responses");
-            request.Responses = IResponseListFromResponsesXElement(responsesElement);
+            //request.Responses = IResponseListFromResponsesXElement(responsesElement);
          }
          return requests;
       }
@@ -133,7 +133,7 @@ namespace PServerClient
          if (response is IMessageResponse)
             response.Lines = lines;
          else
-            response.Process(lines);
+            response.Initialize(lines);
 
          if (response is IFileResponse)
          {

@@ -7,8 +7,10 @@ namespace PServerClient.Responses
    {
       int LineCount { get; }
       ResponseType Type { get; }
+      bool Processed { get; set; }
       IList<string> Lines { get; set; }
-      void Process(IList<string> lines);
+      void Initialize(IList<string> lines);
+      void Process();
       string Display();
       XElement GetXElement();
    }

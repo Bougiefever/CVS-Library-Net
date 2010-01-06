@@ -1,11 +1,14 @@
 using System;
+using PServerClient.Connection;
 using PServerClient.CVS;
+using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
    public class DiffCommand : CommandBase
    {
-      public DiffCommand(IRoot root) : base(root)
+      public DiffCommand(IRoot root, IConnection connection)
+         : base(root, connection)
       {
       }
 
@@ -13,5 +16,7 @@ namespace PServerClient.Commands
       {
          get { return CommandType.Diff; }
       }
+
+
    }
 }

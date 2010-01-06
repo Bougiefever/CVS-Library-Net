@@ -6,12 +6,10 @@ namespace PServerClient.Responses
    {
       public string Message { get; internal set; }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         Message = lines[0];
-         base.Process(lines);
+         Message = Lines[0];
+         base.Process();
       }
-
-      
    }
 }

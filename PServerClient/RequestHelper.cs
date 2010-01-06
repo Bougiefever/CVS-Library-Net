@@ -165,7 +165,7 @@ namespace PServerClient
                          ResponseType.ModuleExpansion,
                          ResponseType.Message,
                          ResponseType.EMessage,
-                         ResponseType.MessageTag
+                         ResponseType.MTMessage
                       };
          }
       }

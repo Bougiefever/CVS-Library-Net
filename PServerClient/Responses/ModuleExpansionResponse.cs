@@ -16,10 +16,10 @@ namespace PServerClient.Responses
       public override ResponseType Type { get { return ResponseType.ModuleExpansion; } }
       public string ModuleName { get; set; }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         ModuleName = lines[0];
-         base.Process(lines);
+         ModuleName = Lines[0];
+         base.Process();
       }
 
       public override string Display()

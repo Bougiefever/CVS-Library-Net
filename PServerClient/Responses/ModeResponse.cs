@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -12,10 +13,10 @@ namespace PServerClient.Responses
       public string Mode { get; private set; }
       public override ResponseType Type { get { return ResponseType.Mode; } }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         Mode = lines[0];
-         base.Process(lines);
+         Mode = Lines[0];
+         base.Process();
       }
 
       public override string Display()

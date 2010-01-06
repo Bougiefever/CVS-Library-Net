@@ -27,165 +27,7 @@ namespace PServerClient.Tests.TestSetup
     </Lines>
   </Response>";
 
-      public const string CommandXML = @"<Command>
-  <Name>CheckOut</Name>
-  <Type>0</Type>
-  <RequiredRequests>
-    <Request>
-      <Name>Auth</Name>
-      <Type>5</Type>
-      <Lines>
-        <Line>BEGIN AUTH REQUEST</Line>
-        <Line>/f1/f2/f3</Line>
-        <Line>username</Line>
-        <Line>A:yZZ30 e</Line>
-        <Line>END AUTH REQUEST</Line>
-      </Lines>
-      <Responses>
-        <Response>
-          <Name>Auth</Name>
-          <Type>0</Type>
-          <Lines>
-            <Line>I LOVE YOU</Line>
-          </Lines>
-        </Response>
-      </Responses>
-    </Request>
-    <Request>
-      <Name>UseUnchanged</Name>
-      <Type>51</Type>
-      <Lines>
-        <Line>UseUnchanged</Line>
-      </Lines>
-      <Responses />
-    </Request>
-    <Request>
-      <Name>ValidResponses</Name>
-      <Type>53</Type>
-      <Lines>
-        <Line>Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT</Line>
-      </Lines>
-      <Responses />
-    </Request>
-    <Request>
-      <Name>ValidRequests</Name>
-      <Type>52</Type>
-      <Lines>
-        <Line>valid-requests</Line>
-      </Lines>
-      <Responses>
-        <Response>
-          <Name>ValidRequests</Name>
-          <Type>4</Type>
-          <Lines>
-            <Line>Valid-requests Root Valid-responses valid-requests Global_option</Line>
-          </Lines>
-        </Response>
-      </Responses>
-    </Request>
-  </RequiredRequests>
-  <Requests>
-    <Request>
-      <Name>Root</Name>
-      <Type>41</Type>
-      <Lines>
-        <Line>Root /f1/f2/f3</Line>
-      </Lines>
-      <Responses />
-    </Request>
-    <Request>
-      <Name>GlobalOption</Name>
-      <Type>17</Type>
-      <Lines>
-        <Line>Global_option -q</Line>
-      </Lines>
-      <Responses />
-    </Request>
-    <Request>
-      <Name>Argument</Name>
-      <Type>3</Type>
-      <Lines>
-        <Line>Argument </Line>
-      </Lines>
-      <Responses />
-    </Request>
-    <Request>
-      <Name>Directory</Name>
-      <Type>11</Type>
-      <Lines>
-        <Line>Directory .</Line>
-        <Line>/f1/f2/f3/</Line>
-      </Lines>
-      <Responses />
-    </Request>
-    <Request>
-      <Name>CheckOut</Name>
-      <Type>9</Type>
-      <Lines>
-        <Line>co</Line>
-      </Lines>
-      <Responses>
-        <Response>
-          <Name>ModTime</Name>
-          <Type>23</Type>
-          <Lines>
-            <Line>Mod-time 8 Dec 2009 15:26:27 -0000</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <Name>MessageTag</Name>
-          <Type>19</Type>
-          <Lines>
-            <Line>MT +updated</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <Name>MessageTag</Name>
-          <Type>19</Type>
-          <Lines>
-            <Line>MT text U</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <Name>MessageTag</Name>
-          <Type>19</Type>
-          <Lines>
-            <Line>MT fname mymod/file1.cs</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <Name>MessageTag</Name>
-          <Type>19</Type>
-          <Lines>
-            <Line>MT newline</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <Name>MessageTag</Name>
-          <Type>19</Type>
-          <Lines>
-            <Line>MT -updated</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <Name>Updated</Name>
-          <Type>7</Type>
-          <Lines>
-            <Line>Updated Updated mymod/</Line>
-            <Line>/usr/local/cvsroot/sandbox/mymod/file1.cs</Line>
-            <Line>/file1.cs/1.1.1.1///</Line>
-            <Line>u=rw,g=rw,o=rw</Line>
-            <Line>5</Line>
-          </Lines>
-          <File>
-            <Length>5</Length>
-            <Contents>97,98,99,100,101</Contents>
-          </File>
-        </Response>
-      </Responses>
-    </Request>
-  </Requests>
-</Command>";
+
       public const string XMLWithTargetNamespace = @"<?xml version='1.0' encoding='utf-8'?>
             <psvr:Lines xmlns:psvr='http://www.pserverclient.org' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
                xsi:schemaLocation='http://www.pserverclient.org XMLSchemaTest.xsd'>
@@ -225,13 +67,6 @@ namespace PServerClient.Tests.TestSetup
       <Lines>
          <Line>co</Line>
       </Lines>
-      <Responses>
-        <Response>
-          <ClassName>PServerClient.Responses.AuthResponse</ClassName>
-          <Name/>
-          <Lines />
-        </Response>
-      </Responses>
       </Request>";
 
       public const string CommandXMLFile = @"<?xml version='1.0' encoding='utf-8'?>
@@ -247,44 +82,24 @@ namespace PServerClient.Tests.TestSetup
         <Line>A:yZZ30 e</Line>
         <Line>END AUTH REQUEST</Line>
       </Lines>
-      <Responses>
-        <Response>
-          <ClassName>PServerClient.Responses.AuthResponse</ClassName>
-          <Name/>
-          <Lines>
-            <Line>I LOVE YOU</Line>
-          </Lines>
-        </Response>
-      </Responses>
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
       <Lines>
         <Line>UseUnchanged</Line>
       </Lines>
-      <Responses />
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.ValidResponsesRequest</ClassName>
       <Lines>
         <Line>Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT</Line>
       </Lines>
-      <Responses />
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.ValidRequestsRequest</ClassName>
       <Lines>
         <Line>valid-requests</Line>
       </Lines>
-      <Responses>
-        <Response>
-          <ClassName>PServerClient.Responses.ValidRequestsResponse</ClassName>
-          <Name>Valid-requests</Name>
-          <Lines>
-            <Line>Root Valid-responses valid-requests Global_option</Line>
-          </Lines>
-        </Response>
-      </Responses>
     </Request>
   </RequiredRequests>
   <Requests>
@@ -293,21 +108,18 @@ namespace PServerClient.Tests.TestSetup
       <Lines>
         <Line>Root /f1/f2/f3</Line>
       </Lines>
-      <Responses />
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.GlobalOptionRequest</ClassName>
       <Lines>
         <Line>Global_option -q</Line>
       </Lines>
-      <Responses />
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.ArgumentRequest</ClassName>
       <Lines>
         <Line>Argument </Line>
       </Lines>
-      <Responses />
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.DirectoryRequest</ClassName>
@@ -315,14 +127,29 @@ namespace PServerClient.Tests.TestSetup
         <Line>Directory .</Line>
         <Line>/f1/f2/f3/</Line>
       </Lines>
-      <Responses />
     </Request>
     <Request>
       <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
       <Lines>
         <Line>co</Line>
       </Lines>
-      <Responses>
+    </Request>
+  </Requests>
+   <Responses>
+     <Response>
+       <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+       <Name/>
+       <Lines>
+         <Line>I LOVE YOU</Line>
+       </Lines>
+     </Response>        
+     <Response>
+       <ClassName>PServerClient.Responses.ValidRequestsResponse</ClassName>
+       <Name>Valid-requests</Name>
+       <Lines>
+         <Line>Root Valid-responses valid-requests Global_option</Line>
+       </Lines>
+     </Response>
         <Response>
           <ClassName>PServerClient.Responses.ModTimeResponse</ClassName>
           <Name>Mod-time</Name>
@@ -331,35 +158,35 @@ namespace PServerClient.Tests.TestSetup
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>
           <Lines>
             <Line>+updated</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>
           <Lines>
             <Line>text U</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>
           <Lines>
             <Line>fname mymod/file1.cs</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>
           <Lines>
             <Line>newline</Line>
           </Lines>
         </Response>
         <Response>
-          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>
           <Lines>
             <Line>-updated</Line>
@@ -380,9 +207,7 @@ namespace PServerClient.Tests.TestSetup
             <Contents>97,98,99,100,101</Contents>
           </File>
         </Response>
-      </Responses>
-    </Request>
-  </Requests>
+   </Responses>
 </Command>";
 
       public const string CommandXMLFileWithManyItems = @"<?xml version='1.0' encoding='utf-8'?>
@@ -458,7 +283,7 @@ namespace PServerClient.Tests.TestSetup
    </Requests>
 </Command>";
       public const string MTResponse = @"<Response>
-          <ClassName>PServerClient.Responses.MessageTagResponse</ClassName>
+          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>
           <Lines>
             <Line>+updated</Line>

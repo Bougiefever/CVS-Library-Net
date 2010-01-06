@@ -12,7 +12,6 @@ namespace PServerClient.Connection
    public class PServerConnection : IConnection
    {
       private ICvsTcpClient _cvsTcpClient;
-      private IRoot _root;
 
       #region IConnection Members
 
@@ -29,24 +28,16 @@ namespace PServerClient.Connection
 
       public void Connect(IRoot root)
       {
-         _root = root;
          TcpClient.Connect(root.Host, root.Port);
       }
 
-      public IList<IResponse> DoRequest(IRequest request)
+      public void DoRequest(IRequest request)
       {
          string requestString = request.GetRequestString();
          Console.WriteLine("C: " + requestString);
          byte[] sendBuffer = requestString.Encode();
          TcpClient.Write(sendBuffer);
          // do file stuff for request here
-
-         IList<IResponse> responses;
-         if (request.ResponseExpected)
-            responses = GetResponses();
-         else
-            responses = new List<IResponse>();
-         return responses;
       }
 
       public void Close()
@@ -56,7 +47,28 @@ namespace PServerClient.Connection
 
       #endregion
 
-      internal IList<IResponse> GetResponses()
+      public IResponse GetResponse()
+      {
+         string line;
+         IResponse response = null;
+         line = ReadLine();
+         if (line != null)
+         {
+            PServerFactory factory = new PServerFactory();
+            ResponseType responseType = factory.GetResponseType(line);
+            response = factory.CreateResponse(responseType);
+            IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
+            response.Initialize(responseLines);
+            if (response is IFileResponse)
+            {
+               IFileResponse fileResponse = (IFileResponse)response;
+               fileResponse.Contents = TcpClient.ReadBytes((int)fileResponse.Length);
+            }
+         }
+         return response;
+      }
+
+      public IList<IResponse> GetAllResponses()
       {
          IList<IResponse> responses = new List<IResponse>();
          string line;
@@ -69,11 +81,11 @@ namespace PServerClient.Connection
                ResponseType responseType = factory.GetResponseType(line);
                IResponse response = factory.CreateResponse(responseType);
                IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
-               response.Process(responseLines);
+               response.Initialize(responseLines);
                if (response is IFileResponse)
                {
-                  IFileResponse fileResponse = (IFileResponse) response;
-                  fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
+                  IFileResponse fileResponse = (IFileResponse)response;
+                  fileResponse.Contents = TcpClient.ReadBytes((int)fileResponse.Length);
                }
                responses.Add(response);
             }
@@ -83,10 +95,10 @@ namespace PServerClient.Connection
 
       internal IList<string> GetResponseLines(string line, ResponseType responseType, int lineCount)
       {
-         string pattern = ResponseHelper.ResponsePatterns[(int) responseType];
+         string pattern = ResponseHelper.ResponsePatterns[(int)responseType];
          Match m = Regex.Match(line, pattern);
          string responseLine = m.Groups["data"].Value;
-         IList<string> responseLines = new List<string> {responseLine};
+         IList<string> responseLines = new List<string> { responseLine };
          if (lineCount > 0)
          {
             for (int i = 1; i < lineCount; i++)
@@ -108,7 +120,7 @@ namespace PServerClient.Connection
             i = TcpClient.ReadByte();
             if (i != 0 && i != 10 && i != -1)
             {
-               sb.Append((char) i);
+               sb.Append((char)i);
             }
          } while (i != 0 && i != 10 && i != -1);
          if (sb.Length > 0)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -14,11 +15,11 @@ namespace PServerClient.Responses
       public override ResponseType Type { get { return ResponseType.NewEntry; } }
       public override int LineCount { get { return 2; } }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         FileName = ResponseHelper.GetFileNameFromEntryLine(lines[1]);
-         Revision = ResponseHelper.GetRevisionFromEntryLine(lines[1]);
-         base.Process(lines);
+         FileName = ResponseHelper.GetFileNameFromEntryLine(Lines[1]);
+         Revision = ResponseHelper.GetRevisionFromEntryLine(Lines[1]);
+         base.Process();
       }
    }
 }

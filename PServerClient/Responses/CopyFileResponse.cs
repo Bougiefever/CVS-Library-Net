@@ -21,11 +21,11 @@ namespace PServerClient.Responses
       public override ResponseType Type { get { return ResponseType.CopyFile; } }
       public override int LineCount { get { return 2; } }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         _originalFileName = lines[0];
-         _newFileName = lines[1];
-         base.Process(lines);
+         _originalFileName = Lines[0];
+         _newFileName = Lines[1];
+         base.Process();
       }
    }
 }

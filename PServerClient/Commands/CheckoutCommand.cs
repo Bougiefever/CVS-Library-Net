@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
@@ -9,8 +10,7 @@ namespace PServerClient.Commands
 {
    public class CheckOutCommand : CommandBase
    {
-      public CheckOutCommand(IRoot root)
-         : base(root)
+      public CheckOutCommand(IRoot root, IConnection connection) : base(root, connection)
       {
          Requests.Add(new RootRequest(root.Repository));
          Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
@@ -21,11 +21,11 @@ namespace PServerClient.Commands
 
       public override CommandType Type { get { return CommandType.CheckOut; } }
 
-      protected internal override void PostExecute()
+      protected internal override void AfterExecute()
       {
-         IList<IResponse> checkOutResponses = Requests.Where(r => r.Type == RequestType.CheckOut)
-            .First()
-            .Responses;
+         //IList<IResponse> checkOutResponses = Requests.Where(r => r.Type == RequestType.CheckOut)
+         //   .First()
+         //   .Responses;
          //foreach (IResponse response in checkOutResponses)
          //{
          //   Console.WriteLine(response.Type + ": ");

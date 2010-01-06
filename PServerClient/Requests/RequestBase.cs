@@ -13,13 +13,13 @@ namespace PServerClient.Requests
 
       protected RequestBase()
       {
-         Responses = new List<IResponse>();
+         //Responses = new List<IResponse>();
       }
 
       protected RequestBase(string[] lines)
       {
          Lines = lines;
-         Responses = new List<IResponse>();
+         //Responses = new List<IResponse>();
       }
 
       public string RequestName { get { return RequestHelper.RequestNames[(int) Type]; } }
@@ -48,24 +48,24 @@ namespace PServerClient.Requests
             XElement line = new XElement("Line", s);
             linesElement.Add(line);
          }
-         XElement responsesElement = new XElement("Responses");
-         requestElement.Add(responsesElement);
-         foreach (IResponse response in Responses)
-         {
-            XElement responseElement = response.GetXElement();
-            responsesElement.Add(responseElement);
-         }
+         //XElement responsesElement = new XElement("Responses");
+         //requestElement.Add(responsesElement);
+         //foreach (IResponse response in Responses)
+         //{
+         //   XElement responseElement = response.GetXElement();
+         //   responsesElement.Add(responseElement);
+         //}
          return requestElement;
       }
 
-      public void CollapseResponses()
-      {
-         IList<IResponse> newResponses = ResponseHelper.CollapseMessagesInResponses(Responses);
-         Responses = newResponses;
-      }
+      //public void CollapseResponses()
+      //{
+      //   IList<IResponse> newResponses = ResponseHelper.CollapseMessagesInResponses(Responses);
+      //   Responses = newResponses;
+      //}
 
       public abstract RequestType Type { get; }
       public string[] Lines { get; internal set; }
-      public IList<IResponse> Responses { get; set; }
+      //public IList<IResponse> Responses { get; set; }
    }
 }

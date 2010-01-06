@@ -15,7 +15,7 @@ namespace PServerClient
       Mbinary = 10,
       Merged = 11,
       Message = 12,
-      MessageTag = 13,
+      MTMessage = 13,
       Mode = 14,
       ModTime = 15,
       ModuleExpansion = 16,

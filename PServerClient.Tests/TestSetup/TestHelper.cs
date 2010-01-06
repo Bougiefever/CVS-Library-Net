@@ -69,7 +69,7 @@ namespace PServerClient.Tests.TestSetup
       {
          IList<IResponse> responses = new List<IResponse>();
          IResponse r = new ModTimeResponse();
-         r.Process(new List<string> { time });
+         r.Initialize(new List<string> { time });
          responses.Add(r);
          var list = (GetMockMTResponseGroup(path + file));
          foreach (IResponse response in list)
@@ -87,8 +87,8 @@ namespace PServerClient.Tests.TestSetup
          string[] messages = new[] { "+updated", "text U", "fname " + fname, "newline", "-updated" };
          foreach (string s in messages)
          {
-            MessageTagResponse m = new MessageTagResponse();
-            m.Process(new List<string> { s });
+            MTMessageResponse m = new MTMessageResponse();
+            m.Initialize(new List<string> { s });
             responses.Add(m);
          }
          return responses;
@@ -105,7 +105,7 @@ namespace PServerClient.Tests.TestSetup
                                      "u=rw,g=rw,o=rw",
                                      "5"
                                   };
-         res.Process(lines);
+         res.Initialize(lines);
          string text = "abcde";
          res.Contents = text.Encode();
          return res;

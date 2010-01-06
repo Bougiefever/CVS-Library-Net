@@ -169,7 +169,7 @@
     <Compile Include="Responses\MergedResponse.cs" />
     <Compile Include="Responses\MessageResponse.cs" />
     <Compile Include="Responses\MessageResponseBase.cs" />
-    <Compile Include="Responses\MessageTagResponse.cs" />
+    <Compile Include="Responses\MTMessageResponse.cs" />
     <Compile Include="Responses\ModeResponse.cs" />
     <Compile Include="Responses\ModTimeResponse.cs" />
     <Compile Include="Responses\ModuleExpansionResponse.cs" />

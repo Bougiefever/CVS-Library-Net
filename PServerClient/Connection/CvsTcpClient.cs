@@ -22,7 +22,7 @@ namespace PServerClient.Connection
       {
          _tcpClient.Connect(host, port);
          _stream = _tcpClient.GetStream();
-         _stream.ReadTimeout = 1000;
+         _stream.ReadTimeout = 100;
       }
 
       public void Write(byte[] buffer)

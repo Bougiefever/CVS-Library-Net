@@ -513,7 +513,7 @@ namespace PServerClient.Tests
       public void ValidResponsesRequestTest()
       {
          RequestType type = RequestType.ValidResponses;
-         IRequest request = new ValidResponsesRequest(new[] { ResponseType.Ok, ResponseType.MessageTag, ResponseType.EMessage });
+         IRequest request = new ValidResponsesRequest(new[] { ResponseType.Ok, ResponseType.MTMessage, ResponseType.EMessage });
          const string expected = "Valid-responses ok MT E\n";
          RequestTest(type, request, expected, false);
       }

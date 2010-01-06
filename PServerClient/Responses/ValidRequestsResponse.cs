@@ -15,10 +15,10 @@ namespace PServerClient.Responses
       public override ResponseType Type { get { return ResponseType.ValidRequests; } }
       public IList<RequestType> ValidRequestTypes { get; internal set; }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         ValidRequestTypes = RequestHelper.RequestsToRequestTypes(lines[0]);
-         base.Process(lines);
+         ValidRequestTypes = RequestHelper.RequestsToRequestTypes(Lines[0]);
+         base.Process();
       }
 
       public override string Display()

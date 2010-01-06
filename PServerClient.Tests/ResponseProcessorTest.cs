@@ -30,7 +30,7 @@ namespace PServerClient.Tests
          DateTime date = new DateTime();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] {root, date});
          IRequest request = cmd.Requests.OfType<ExportRequest>().First();
-         IList<IResponse> responses = request.Responses;
+         IList<IResponse> responses = cmd.Responses;
          IList<IFileResponseGroup> files = processor.CreateFileGroupsFromResponses(responses);
          Assert.AreEqual(4, files.Count);
          IFileResponseGroup file = files[0];
@@ -50,18 +50,18 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          string module = "mymod/";
          IList<string> lines = new List<string> {module, "/usr/local/cvsroot/sandbox/mymod/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
-         file1.Process(lines);
+         file1.Initialize(lines);
          file1.Contents = contents.Encode();
 
          IFileResponse file2 = new UpdatedResponse();
          lines = new List<string> { module, "/usr/local/cvsroot/sandbox/mymod/file2.cs", "/file2.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
-         file2.Process(lines);
+         file2.Initialize(lines);
          file2.Contents = contents.Encode();
 
          IFileResponse file3 = new UpdatedResponse();
          module = "mymod/Properties/";
          lines = new List<string> { module, "/usr/local/cvsroot/sandbox/mymod/Properties/AssemblyInfo.cs", "/AssemblyInfo.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
-         file3.Process(lines);
+         file3.Initialize(lines);
          file3.Contents = contents.Encode();
 
          IFileResponseGroup fg1 = new FileResponseGroup() { FileResponse = file1 };

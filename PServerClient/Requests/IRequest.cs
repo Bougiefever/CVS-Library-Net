@@ -10,12 +10,12 @@ namespace PServerClient.Requests
    public interface IRequest
    {
       bool ResponseExpected { get; }
-      IList<IResponse> Responses { get; set; }
+      //IList<IResponse> Responses { get; set; }
       string[] Lines { get; }
       RequestType Type { get; }
       string GetRequestString();
       XElement GetXElement();
-      void CollapseResponses();
+      //void CollapseResponses();
    }
 
    /// <summary>
@@ -23,7 +23,7 @@ namespace PServerClient.Requests
    /// </summary>
    public interface IAuthRequest : IRequest
    {
-      AuthStatus Status { get; }
+      //AuthStatus Status { get; }
    }
 
    public interface ISubmitFileRequest : IRequest

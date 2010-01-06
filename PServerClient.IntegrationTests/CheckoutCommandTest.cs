@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.Sockets;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
@@ -16,7 +17,7 @@ namespace PServerClient.IntegrationTests
    public class CheckoutCommandTest
    {
       private IRoot _root;
-
+      private IConnection _connection;
       private const string lineend = "\n";
 
       [SetUp]
@@ -25,29 +26,15 @@ namespace PServerClient.IntegrationTests
 
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword());
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
+         _connection = new PServerConnection();
       }
 
       [Test]
       public void CheckoutCommandExecuteTest()
       {
-         CheckOutCommand command = new CheckOutCommand(_root);
+         CheckOutCommand command = new CheckOutCommand(_root, _connection);
          command.Execute();
          TestHelper.SaveCommandConversation(command, @"c:\_junk\checkout.xml");
-      }
-
-      private void WriteResponses(ICommand command)
-      {
-         IList<IRequest> requests = command.Requests;
-         foreach (IRequest request in requests)
-         {
-            Console.WriteLine(request.Type + ":");
-            if (request.ResponseExpected)
-               foreach (IResponse response in request.Responses)
-               {
-                  Console.WriteLine(response.Type);
-                  //Console.WriteLine(response.ResponseText);
-               }
-         }
       }
 
       [Test]

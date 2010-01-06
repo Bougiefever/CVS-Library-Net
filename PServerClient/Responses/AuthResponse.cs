@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PServerClient.Responses
@@ -7,22 +8,25 @@ namespace PServerClient.Responses
       private const string AuthenticateFail = "I HATE YOU";
       private const string AuthenticatePass = "I LOVE YOU";
 
-      #region IAuthResponse Members
-
       public AuthStatus Status { get; private set; }
       public override int LineCount { get { return 1; } }
-      public override ResponseType Type { get { return ResponseType.Auth; } }
-
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         if (lines[0].Contains(AuthenticatePass))
+         if (Lines[0].Contains(AuthenticatePass))
          {
             Status = AuthStatus.Authenticated;
          }
-         if (lines[0].Contains(AuthenticateFail))
+         if (Lines[0].Contains(AuthenticateFail))
          {
             Status = AuthStatus.NotAuthenticated;
          }
+         base.Process();
+      }
+
+      public override ResponseType Type { get { return ResponseType.Auth; } }
+
+      public override void Initialize(IList<string> lines)
+      {
          Lines = new List<string>(1) {lines[0]};
       }
 
@@ -30,7 +34,5 @@ namespace PServerClient.Responses
       {
          return Lines[0];
       }
-
-      #endregion
    }
 }

@@ -23,6 +23,15 @@
                   </xs:complexType>
                </xs:element>
             </xs:sequence>
+            <xs:sequence>
+               <xs:element name="Responses">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="Response" type="ResponseType" maxOccurs="unbounded" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -31,15 +40,6 @@
          <xs:element name="ClassName" type="xs:string" />
          <xs:element name="Lines" type="LinesType" />
          <xs:element name="File" type="FileType" maxOccurs="1" minOccurs="0" />
-         <xs:sequence>
-            <xs:element name="Responses">
-               <xs:complexType>
-                  <xs:sequence>
-                     <xs:element name="Response" type="ResponseType" maxOccurs="unbounded" minOccurs="0"/>
-                  </xs:sequence>
-               </xs:complexType>
-            </xs:element>
-         </xs:sequence>
       </xs:sequence>
    </xs:complexType>
    <xs:complexType name="ResponseType">

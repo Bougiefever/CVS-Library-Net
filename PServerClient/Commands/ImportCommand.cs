@@ -1,10 +1,14 @@
+using System;
+using PServerClient.Connection;
 using PServerClient.CVS;
+using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
    public class ImportCommand : CommandBase
    {
-      public ImportCommand(IRoot root) : base(root)
+      public ImportCommand(IRoot root, IConnection connection)
+         : base(root, connection)
       {
       }
 

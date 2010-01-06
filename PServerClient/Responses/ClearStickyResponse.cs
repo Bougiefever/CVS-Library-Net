@@ -20,11 +20,11 @@ namespace PServerClient.Responses
          return RepositoryPath;
       }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         ModuleName = lines[0];
-         RepositoryPath = lines[1];
-         base.Process(lines);
+         ModuleName = Lines[0];
+         RepositoryPath = Lines[1];
+         base.Process();
       }
    }
 }

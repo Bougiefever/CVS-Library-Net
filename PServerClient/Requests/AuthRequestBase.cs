@@ -21,7 +21,7 @@ namespace PServerClient.Requests
          Lines[2] = _root.Username;
          Lines[3] = _root.Password;
          Lines[4] = string.Format("END {0} REQUEST", requestName);
-         Responses = new List<IResponse>();
+         //Responses = new List<IResponse>();
       }
 
       protected AuthRequestBase(string[] lines)
@@ -42,20 +42,20 @@ namespace PServerClient.Requests
          return request;
       }
 
-      public AuthStatus Status
-      {
-         get
-         {
-            try
-            {
-               IAuthResponse authResponse = Responses.OfType<IAuthResponse>().First();
-               return authResponse.Status;
-            }
-            catch (InvalidOperationException)
-            {
-               return AuthStatus.Error;
-            }
-         }
-      }
+      //public AuthStatus Status
+      //{
+      //   get
+      //   {
+      //      try
+      //      {
+      //         IAuthResponse authResponse = Responses.OfType<IAuthResponse>().First();
+      //         return authResponse.Status;
+      //      }
+      //      catch (InvalidOperationException)
+      //      {
+      //         return AuthStatus.Error;
+      //      }
+      //   }
+      //}
    }
 }

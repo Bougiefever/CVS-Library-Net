@@ -1,3 +1,5 @@
+using System;
+
 namespace PServerClient.Responses
 {
    /// <summary>

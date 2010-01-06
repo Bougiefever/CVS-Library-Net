@@ -14,10 +14,10 @@ namespace PServerClient.Responses
       public string RepositoryPath { get; private set; }
       public override ResponseType Type { get { return ResponseType.Notified; } }
 
-      public override void Process(IList<string> lines)
+      public override void Process()
       {
-         RepositoryPath = lines[0];
-         base.Process(lines);
+         RepositoryPath = Lines[0];
+         base.Process();
       }
 
       public override string Display()

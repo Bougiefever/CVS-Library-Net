@@ -9,7 +9,9 @@ namespace PServerClient.Connection
    {
       ICvsTcpClient TcpClient { get; set; }
       void Connect(IRoot root);
-      IList<IResponse> DoRequest(IRequest request);
+      void DoRequest(IRequest request);
+      IResponse GetResponse();
+      IList<IResponse> GetAllResponses();
       void Close();
    }
 }

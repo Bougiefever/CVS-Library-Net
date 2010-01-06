@@ -12,17 +12,19 @@ namespace PServerClient.IntegrationTests
    public class VerifyAuthCommandTest
    {
       private IRoot _root;
+      private IConnection _connection;
 
       [SetUp]
       public void SetUp()
       {
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         _connection = new PServerConnection();
       }
 
       [Test]
       public void AuthenticateSuccessTest()
       {
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
+         VerifyAuthCommand command = new VerifyAuthCommand(_root, _connection);
          command.Execute();
          AuthStatus status = command.AuthStatus;
          Assert.AreEqual(AuthStatus.Authenticated, status);
@@ -32,7 +34,7 @@ namespace PServerClient.IntegrationTests
       public void AuthenticateErrorTest()
       {
          _root.Username = "no-such-user";
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
+         VerifyAuthCommand command = new VerifyAuthCommand(_root, _connection);
          command.Execute();
          Assert.AreEqual(AuthStatus.Error, command.AuthStatus);
       }
@@ -41,7 +43,7 @@ namespace PServerClient.IntegrationTests
       public void AuthenticateNotAuthenticatedTest()
       {
          _root.Password = "A:yZZ30 e";
-         VerifyAuthCommand command = new VerifyAuthCommand(_root);
+         VerifyAuthCommand command = new VerifyAuthCommand(_root, _connection);
          command.Execute();
          Assert.AreEqual(AuthStatus.NotAuthenticated, command.AuthStatus);
       }
@@ -68,7 +70,9 @@ namespace PServerClient.IntegrationTests
          AuthRequest auth = new AuthRequest(_root);
          PServerConnection connection = new PServerConnection();
          connection.Connect(_root);
-         var result = connection.DoRequest(auth);
+         connection.DoRequest(auth);
+         var response = connection.GetResponse();
+         Console.WriteLine(response.Display());
          connection.Close();
       }
    }

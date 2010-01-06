@@ -24,7 +24,7 @@ namespace PServerClient
       private const string NameMbinary = "Mbinary";
       private const string NameMerged = "Merged";
       private const string NameMessage = "M";
-      private const string NameMessageTag = "MT";
+      private const string NameMTMessage = "MT";
       private const string NameMode = "Mode";
       private const string NameModTime = "Mod-time";
       private const string NameModuleExpansion = "Module-expansion";
@@ -61,7 +61,7 @@ namespace PServerClient
       private const string RegexMbinary = @"^Mbinary\s(?<data>.*)";
       private const string RegexMerged = @"^Merged\s(?<data>.*)";
       private const string RegexMessage = @"^M\s(?<data>.*)";
-      private const string RegexMessageTag = @"^MT\s(?<data>.*)";
+      private const string RegexMTMessage = @"^MT\s(?<data>.*)";
       private const string RegexMode = @"^Mode\s(?<data>.*)";
       private const string RegexModTime = @"^Mod-time\s(?<data>.*)";
       private const string RegexModuleExpansion = @"^Module-expansion\s(?<data>.*)";
@@ -103,7 +103,7 @@ namespace PServerClient
                                   RegexMbinary,
                                   RegexMerged,
                                   RegexMessage,
-                                  RegexMessageTag,
+                                  RegexMTMessage,
                                   RegexMode,
                                   RegexModTime,
                                   RegexModuleExpansion,
@@ -139,7 +139,7 @@ namespace PServerClient
                                   NameMbinary,
                                   NameMerged,
                                   NameMessage,
-                                  NameMessageTag,
+                                  NameMTMessage,
                                   NameMode,
                                   NameModTime,
                                   NameModuleExpansion,

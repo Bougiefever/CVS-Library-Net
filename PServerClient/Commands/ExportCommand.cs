@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
+using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
    public class ExportCommand : CommandBase
    {
-      public ExportCommand(IRoot root, DateTime exportDate) : base(root)
+      public ExportCommand(IRoot root, IConnection connection, DateTime exportDate)
+         : base(root, connection)
       {
          Requests.Add(new RootRequest(root.Repository));
          Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
@@ -21,7 +23,8 @@ namespace PServerClient.Commands
          Requests.Add(new ExportRequest());
       }
 
-      public ExportCommand(IRoot root, string tag) : base(root)
+      public ExportCommand(IRoot root, IConnection connection, string tag)
+         : base(root, connection)
       {
          Requests.Add(new RootRequest(root.Repository));
          Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
@@ -36,12 +39,55 @@ namespace PServerClient.Commands
 
       public override CommandType Type { get { return CommandType.Export; } }
 
-      protected internal override void PostExecute()
+      protected internal override void AfterRequest(IRequest request)
       {
-         ExportRequest export = Requests.OfType<ExportRequest>().First();
-         export.CollapseResponses();
-         ResponseProcessor processor = new ResponseProcessor();
-         FileGroups = processor.CreateFileGroupsFromResponses(export.Responses);
+         if ((request is ExportRequest))
+         {
+            FileGroups = new List<IFileResponseGroup>();
+            IResponse response = null;
+            IFileResponseGroup file = null;
+            IList<IResponse> messages = null;
+            bool gettingFile = false;
+            do
+            {
+               response = Connection.GetResponse();
+               if (gettingFile)
+               {
+                  if (response is MTMessageResponse)
+                     messages.Add(response);
+                  if (response is UpdatedResponse)
+                  {
+                     messages = ResponseHelper.CollapseMessagesInResponses(messages);
+                     file.MT = (IMessageResponse)messages[0];
+                     file.FileResponse = (IFileResponse)response;
+                     // process each file
+                     FileGroups.Add(file);
+                     gettingFile = false; // all done getting file
+                  }
+               }
+               else
+               {
+                  if (response is ModTimeResponse)
+                  {
+                     file = new FileResponseGroup();
+                     messages = new List<IResponse>();
+                     file.ModTime = (ModTimeResponse)response;
+                     gettingFile = true;
+                  }
+                  else
+                     base.AfterRequest(request);
+               }
+            } while (response != null);
+         }
+         else
+         {
+            base.AfterRequest(request);
+         }
+      }
+
+      protected internal override void AfterExecute()
+      {
+         var processor = new ResponseProcessor();
          Root.RootFolder = processor.CreateCVSFileStructure(Root, FileGroups);
          Root.RootFolder.Save(true);
       }

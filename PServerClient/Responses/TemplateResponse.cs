@@ -1,3 +1,5 @@
+using System;
+
 namespace PServerClient.Responses
 {
    /// <summary>
@@ -10,10 +12,8 @@ namespace PServerClient.Responses
    /// </summary>
    public class TemplateResponse : FileResponseBase, IFileResponse
    {
-      #region IFileResponse Members
 
       public override ResponseType Type { get { return ResponseType.Template; } }
 
-      #endregion
    }
 }

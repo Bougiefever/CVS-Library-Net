@@ -18,7 +18,7 @@ namespace PServerClient.Responses
 
       public override int LineCount { get { return 5; } }
 
-      public override void Process(IList<string> lines)
+      public override void Initialize(IList<string> lines)
       {
          string module = lines[0];
          string repositoryPath = lines[1];
