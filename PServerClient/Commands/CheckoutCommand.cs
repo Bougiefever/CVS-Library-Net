@@ -23,16 +23,16 @@ namespace PServerClient.Commands
 
       protected internal override void AfterExecute()
       {
-         //IList<IResponse> checkOutResponses = Requests.Where(r => r.Type == RequestType.CheckOut)
-         //   .First()
-         //   .Responses;
-         //foreach (IResponse response in checkOutResponses)
-         //{
-         //   Console.WriteLine(response.Type + ": ");
-         //   Console.WriteLine(response.Display());
-         //}
-         //CVSFileReceiver fileReceiver = new CVSFileReceiver(Root);
-         //fileReceiver.ProcessCheckoutResponses(checkOutResponses);
+         ////IList<IResponse> checkOutResponses = Requests.Where(r => r.Type == RequestType.CheckOut)
+         ////   .First()
+         ////   .Responses;
+         ////foreach (IResponse response in checkOutResponses)
+         ////{
+         ////   Console.WriteLine(response.Type + ": ");
+         ////   Console.WriteLine(response.Display());
+         ////}
+         ////CVSFileReceiver fileReceiver = new CVSFileReceiver(Root);
+         ////fileReceiver.ProcessCheckoutResponses(checkOutResponses);
       }
    }
 }

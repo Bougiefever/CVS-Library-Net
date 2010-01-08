@@ -66,11 +66,11 @@ namespace PServerClient.Tests
             .IgnoreArguments()
             .Constraints(Is.Equal("host-name"), Is.Equal(1));
          _mocks.ReplayAll();
-         string host = TestConfig.CVSHost;
-         int port = TestConfig.CVSPort;
-         string user = TestConfig.Username;
-         string pwd = TestConfig.Password;
-         string path = TestConfig.RepositoryPath;
+         //string host = TestConfig.CVSHost;
+         //int port = TestConfig.CVSPort;
+         //string user = TestConfig.Username;
+         //string pwd = TestConfig.Password;
+         //string path = TestConfig.RepositoryPath;
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password); 
          _connection.Connect(root);
          _mocks.VerifyAll();
@@ -117,7 +117,7 @@ namespace PServerClient.Tests
          Assert.AreEqual("Root Valid-responses valid-requests Repository Directory", result[0]);
       }
 
-      [Test][Ignore]
+      [Test]
       public void GetResponsesFileResponseTest()
       {
          IList<string> lines = new List<string>
@@ -135,15 +135,15 @@ namespace PServerClient.Tests
          Expect.Call(_client.ReadBytes(74))
             .Return(fileContents.Encode());
          _mocks.ReplayAll();
-         //var result = _connection.GetResponses();
+         var result = _connection.GetAllResponses();
          _mocks.VerifyAll();
-         //Assert.AreEqual(1, result.Count);
-         //IFileResponse response = (IFileResponse) result[0];
-         //string testFile = response.Contents.Decode();
-         //Assert.AreEqual(fileContents, testFile);
+         Assert.AreEqual(1, result.Count);
+         IFileResponse response = (IFileResponse) result[0];
+         string testFile = response.Contents.Decode();
+         Assert.AreEqual(fileContents, testFile);
       }
 
-      [Test][Ignore]
+      [Test]
       public void GetResponsesOneLineResponsesTest()
       {
          IList<string> lines = new List<string>
@@ -158,13 +158,13 @@ namespace PServerClient.Tests
          for (int i = 0; i < readBytes.Length; i++)
             Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
          _mocks.ReplayAll();
-         //var result = _connection.GetResponses();
+         var result = _connection.GetAllResponses();
          _mocks.VerifyAll();
-         //Assert.AreEqual(5, result.Count);
-         //Assert.IsInstanceOf<MTMessageResponse>(result[0]);
+         Assert.AreEqual(5, result.Count);
+         Assert.IsInstanceOf<MTMessageResponse>(result[0]);
       }
 
-      [Test][Ignore]
+      [Test]
       public void GetResponsesOneResponseTest()
       {
          IList<string> lines = new List<string> {"ok "};
@@ -173,13 +173,13 @@ namespace PServerClient.Tests
             Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
          _mocks.ReplayAll();
 
-         //var result = _connection.GetResponses();
+         var result = _connection.GetAllResponses();
          _mocks.VerifyAll();
-         //Assert.AreEqual(1, result.Count);
-         //Assert.IsInstanceOf<OkResponse>(result[0]);
+         Assert.AreEqual(1, result.Count);
+         Assert.IsInstanceOf<OkResponse>(result[0]);
       }
 
-      [Test][Ignore]
+      [Test]
       public void GetResponsesTest()
       {
          IList<string> lines = new List<string>
@@ -210,9 +210,9 @@ namespace PServerClient.Tests
          Expect.Call(_client.ReadBytes(74))
             .Return(fileContents.Encode());
          _mocks.ReplayAll();
-         //var result = _connection.GetResponses();
+         var result = _connection.GetAllResponses();
          _mocks.VerifyAll();
-         //Assert.AreEqual(12, result.Count);
+         Assert.AreEqual(12, result.Count);
       }
 
       [Test]
@@ -246,6 +246,27 @@ namespace PServerClient.Tests
          {
             Console.Write("{0} {1}", result[i], " ");
          }
+      }
+
+      [Test]
+      public void GetOneResponseTest()
+      {
+         IList<string> lines = new List<string>
+                                  {
+                                     "I LOVE YOU ",
+                                     "ok "
+                                  };
+         int[] readBytes = GetMockReadBytes(lines, -1);
+         for (int i = 0; i < readBytes.Length; i++)
+            Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+         _mocks.ReplayAll();
+         var r1 = _connection.GetResponse();
+         var r2 = _connection.GetResponse();
+         var r3 = _connection.GetResponse();
+         _mocks.VerifyAll();
+         Assert.IsNotNull(r1);
+         Assert.IsNotNull(r2);
+         Assert.IsNull(r3);
       }
    }
 }

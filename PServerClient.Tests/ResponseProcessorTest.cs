@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.CVS;
-using PServerClient.Requests;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
 
@@ -29,7 +27,6 @@ namespace PServerClient.Tests
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          DateTime date = new DateTime();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] {root, date});
-         IRequest request = cmd.Requests.OfType<ExportRequest>().First();
          IList<IResponse> responses = cmd.Responses;
          IList<IFileResponseGroup> files = processor.CreateFileGroupsFromResponses(responses);
          Assert.AreEqual(4, files.Count);
@@ -64,9 +61,9 @@ namespace PServerClient.Tests
          file3.Initialize(lines);
          file3.Contents = contents.Encode();
 
-         IFileResponseGroup fg1 = new FileResponseGroup() { FileResponse = file1 };
-         IFileResponseGroup fg2 = new FileResponseGroup() { FileResponse = file2 };
-         IFileResponseGroup fg3 = new FileResponseGroup() { FileResponse = file3 };
+         IFileResponseGroup fg1 = new FileResponseGroup { FileResponse = file1 };
+         IFileResponseGroup fg2 = new FileResponseGroup { FileResponse = file2 };
+         IFileResponseGroup fg3 = new FileResponseGroup { FileResponse = file3 };
 
          IList<IFileResponseGroup> files = new List<IFileResponseGroup> { fg1, fg2, fg3 };
 
@@ -74,6 +71,54 @@ namespace PServerClient.Tests
 
          Assert.AreEqual("mymod", test.Module);
          Assert.AreEqual(3, test.Count);
+      }
+
+      [Test]
+      public void GetParentFolderTest()
+      {
+         DirectoryInfo di = new DirectoryInfo(@"c:\_temp\cvs\abougie");
+         Folder rootFolder = new Folder(di, "connection string", "/usr/local/cvsroot/sandbox", "abougie");
+
+         string module = "abougie";
+         ResponseProcessor processor = new ResponseProcessor();
+         Folder result = processor.GetModuleFolder(rootFolder, module);
+         Assert.AreSame(rootFolder, result);
+
+         module = "abougie/cvstest";
+         result = processor.GetModuleFolder(rootFolder, module);
+         Assert.IsNull(result);
+
+         Folder sub1 = new Folder("sub1", rootFolder);
+         Folder sub2 = new Folder("sub2", rootFolder);
+         Folder sub3 = new Folder("sub3", rootFolder);
+         Folder sub11 = new Folder("sub11", sub1);
+
+         module = "abougie/sub1";
+         result = processor.GetModuleFolder(rootFolder, module);
+         Assert.AreSame(result, sub1);
+         module = "abougie/sub2";
+         result = processor.GetModuleFolder(rootFolder, module);
+         Assert.AreSame(result, sub2);
+         module = "abougie/sub3";
+         result = processor.GetModuleFolder(rootFolder, module);
+         Assert.AreSame(result, sub3);
+         module = "abougie/sub1/sub11";
+         result = processor.GetModuleFolder(rootFolder, module);
+         Assert.AreSame(result, sub11);
+      }
+
+      [Test]
+      public void AddFolderToStructureTest()
+      {
+         DirectoryInfo di = new DirectoryInfo(@"c:\_temp\cvs\abougie");
+         Folder rootFolder = new Folder(di, "connection string", "/usr/local/cvsroot/sandbox", "abougie");
+         string module = "abougie/sub1";
+         ResponseProcessor processor = new ResponseProcessor();
+         Folder result = processor.AddFolderToStructure(rootFolder, module);
+         Assert.AreNotSame(rootFolder, result);
+         Assert.AreEqual("sub1", result.Info.Name);
+         Assert.AreEqual(1, rootFolder.Count);
+
       }
    }
 }

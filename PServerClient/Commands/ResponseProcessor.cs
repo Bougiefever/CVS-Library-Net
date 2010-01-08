@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Collections.Generic;
 using PServerClient.Responses;
@@ -53,6 +54,58 @@ namespace PServerClient.Commands
             entry.FileContents = response.Contents;
          }
          return rootFolder;
+      }
+
+      public Entry AddFile(Folder rootFolder, IFileResponseGroup file)
+      {
+         string module = file.FileResponse.Module;
+         module = ResponseHelper.FixResponseModuleSlashes(module);
+         Folder parent = GetModuleFolder(rootFolder, module);
+         if (parent == null)
+         {
+            parent = AddFolderToStructure(rootFolder, module);
+         }
+         Entry entry = new Entry(file.FileResponse.Name, parent);
+         entry.Length = file.FileResponse.Length;
+         entry.FileContents = file.FileResponse.Contents;
+         entry.EntryLine = file.FileResponse.EntryLine;
+         return entry;
+      }
+
+      public Folder AddFolderToStructure(Folder rootFolder, string module)
+      {
+         string[] modules = module.Split(new [] {"/"}, StringSplitOptions.RemoveEmptyEntries);
+         string mod = string.Empty;
+         Folder parent = rootFolder;
+         Folder folder = null;
+         for (int i = 0; i < modules.Length;i++ )
+         {
+            mod += "/" + modules[i];
+            mod = ResponseHelper.FixResponseModuleSlashes(mod);
+            folder = GetModuleFolder(rootFolder, mod);
+            if (folder == null)
+            {
+               string name = ResponseHelper.GetLastModuleName(mod);
+               folder = new Folder(name, parent);
+               parent = folder;
+            }
+         }
+         return folder;
+      }
+
+      public Folder GetModuleFolder(Folder rootFolder, string module)
+      {
+         Folder folder = rootFolder;
+         Folder returnFolder = null;
+         if (module == rootFolder.Module)
+            returnFolder = folder;
+         IList<Folder> subFolders = folder.GetSubFolders();
+         foreach (Folder subFolder in subFolders)
+         {
+            if (returnFolder == null)
+               returnFolder = GetModuleFolder(subFolder, module);
+         }
+         return returnFolder;
       }
    }
 }

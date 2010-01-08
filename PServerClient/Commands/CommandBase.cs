@@ -16,20 +16,21 @@ namespace PServerClient.Commands
       private readonly ILog _logger;
       private AuthStatus _status;
 
-      protected IConnection Connection;
+      private IConnection _connection;
       internal IList<RequestType> ValidRequestTypes;
 
       protected CommandBase(IRoot root, IConnection connection)
       {
          BasicConfigurator.Configure();
          _logger = LogManager.GetLogger(typeof(CommandBase));
-         Connection = connection;
+         _connection = connection;
          Responses = new List<IResponse>();
          UserMessages = new List<string>();
 
          Root = root;
          Requests = new List<IRequest>();
          RequiredRequests = new List<IRequest>();
+
          // add auth and other required requests for most commands
          RequiredRequests.Add(new AuthRequest(root));
          RequiredRequests.Add(new UseUnchangedRequest());
@@ -38,8 +39,16 @@ namespace PServerClient.Commands
          ValidRequestTypes = new List<RequestType>();
       }
 
-      public AuthStatus AuthStatus { get { return _status; } }
+      protected IConnection Connection 
+      { 
+         get
+         {
+            return _connection;
+         }
+      }
 
+      public AuthStatus AuthStatus { get { return _status; } }
+      public IRoot Root { get; private set; }
 
       public abstract CommandType Type { get; }
       public IList<IRequest> RequiredRequests { get; set; }
@@ -47,12 +56,11 @@ namespace PServerClient.Commands
       public IList<IRequest> Requests { get; set; }
       public IList<IResponse> Responses { get; set; }
       public IList<string> UserMessages { get; private set; }
-      public IRoot Root { get; private set; }
       public ExitCode ExitCode { get; set; }
 
       public virtual void Execute()
       {
-         Connection.Connect(Root);
+         _connection.Connect(Root);
          try
          {
             ExitCode = ExecuteRequiredRequests();
@@ -63,13 +71,14 @@ namespace PServerClient.Commands
                BeforeExecute();
                foreach (IRequest request in Requests)
                {
-                  Connection.DoRequest(request);
+                  _connection.DoRequest(request);
                   if (request.ResponseExpected)
                   {
                      AfterRequest(request);
                   }
                }
             }
+
             AfterExecute();
          }
          catch (Exception e)
@@ -79,7 +88,7 @@ namespace PServerClient.Commands
          }
          finally
          {
-            Connection.Close();
+            _connection.Close();
          }
       }
 
@@ -93,12 +102,14 @@ namespace PServerClient.Commands
          {
             requestsElement.Add(request.GetXElement());
          }
+
          commandElement.Add(requestsElement);
          requestsElement = new XElement("Requests");
          foreach (IRequest request in Requests)
          {
             requestsElement.Add(request.GetXElement());
          }
+
          commandElement.Add(requestsElement);
          XElement responsesElement = new XElement("Responses");
          commandElement.Add(responsesElement);
@@ -107,10 +118,10 @@ namespace PServerClient.Commands
             XElement responseElement = response.GetXElement();
             responsesElement.Add(responseElement);
          }
+
          XDocument xdoc = new XDocument(commandElement);
          return xdoc;
       }
-
 
       protected internal virtual void BeforeExecute()
       {
@@ -120,16 +131,6 @@ namespace PServerClient.Commands
       protected internal virtual void AfterRequest(IRequest request)
       {
          ProcessRequestResponses(request);
-      }
-
-      private void ProcessRequestResponses(IRequest request)
-      {
-           var responses = Connection.GetAllResponses();
-           foreach (IResponse res in responses)
-           {
-              res.Process();
-              Responses.Add(res);
-           }
       }
 
       protected internal virtual void AfterExecute()
@@ -142,8 +143,8 @@ namespace PServerClient.Commands
          // execute authentication request and check authentication status
          // before executing other requests
          IAuthRequest authRequest = RequiredRequests.OfType<IAuthRequest>().First();
-         Connection.DoRequest(authRequest);
-         IResponse response = Connection.GetResponse();
+         _connection.DoRequest(authRequest);
+         IResponse response = _connection.GetResponse();
          if (response is IAuthResponse)
          {
             response.Process();
@@ -152,22 +153,24 @@ namespace PServerClient.Commands
          else
          {
             Responses.Add(response);
-            var responses = Connection.GetAllResponses();
+            var responses = _connection.GetAllResponses();
             Responses = Responses.Union(responses).ToList();
             _status = AuthStatus.Error;
          }
+
          if (_status == AuthStatus.Authenticated)
          {
             IEnumerable<IRequest> otherRequests = RequiredRequests.Where(r => r.Type != RequestType.Auth && r.Type != RequestType.VerifyAuth);
             foreach (IRequest request in otherRequests)
             {
-               Connection.DoRequest(request);
+               _connection.DoRequest(request);
                if (request.ResponseExpected)
                {
                   ProcessRequestResponses(request);
                }
             }
          }
+
          // set the valid requests list
          var validRequestResponse = (ValidRequestsResponse)Responses.Where(r => r.Type == ResponseType.ValidRequests).FirstOrDefault();
          if (validRequestResponse != null)
@@ -191,6 +194,7 @@ namespace PServerClient.Commands
                   return false;
             }
          }
+
          return true;
       }
 
@@ -206,5 +210,15 @@ namespace PServerClient.Commands
             UserMessages.Add(message.Message);
          }
       }
-    }
+
+      private void ProcessRequestResponses(IRequest request)
+      {
+         var responses = _connection.GetAllResponses();
+         foreach (IResponse res in responses)
+         {
+            res.Process();
+            Responses.Add(res);
+         }
+      }
+   }
 }

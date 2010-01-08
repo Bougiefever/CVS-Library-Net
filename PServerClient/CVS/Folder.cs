@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PServerClient.LocalFileSystem;
 
 namespace PServerClient.CVS
@@ -11,7 +11,7 @@ namespace PServerClient.CVS
    /// </summary>
    public class Folder : CVSItemBase, IEnumerable
    {
-      private readonly IList<ICVSItem> _childItems;
+      private readonly IEnumerable<ICVSItem> _childItems;
       private readonly CVSFolder _cvsFolder;
       private string _module;
       private string _repository;
@@ -47,8 +47,8 @@ namespace PServerClient.CVS
       }
 
       public override CVSFolder CVSFolder { get { return _cvsFolder; } }
-      public int Count { get { return _childItems.Count; } }
-      public ICVSItem this[int idx] { get { return _childItems[idx]; } }
+      public int Count { get { return _childItems.Count(); } }
+      public ICVSItem this[int idx] { get { return _childItems.ElementAt(idx); } }
       public string Repository
       {
          get
@@ -84,12 +84,12 @@ namespace PServerClient.CVS
 
       public void AddItem(ICVSItem item)
       {
-         _childItems.Add(item);
+         _childItems.ToList().Add(item);
       }
 
       public void RemoveItem(ICVSItem item)
       {
-         _childItems.Remove(item);
+         _childItems.ToList().Remove(item);
       }
 
       public IEnumerator GetEnumerator()
@@ -112,6 +112,16 @@ namespace PServerClient.CVS
                item.Save(true);
             }
          }
+      }
+
+      public IList<Folder> GetSubFolders()
+      {
+         return _childItems.OfType<Folder>().ToList();
+      }
+
+      public IList<Entry> GetEntries()
+      {
+         return _childItems.OfType<Entry>().ToList();
       }
    }
 }

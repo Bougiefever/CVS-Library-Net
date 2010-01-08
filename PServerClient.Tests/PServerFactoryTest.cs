@@ -468,7 +468,7 @@ namespace PServerClient.Tests
 
          //Auth
          type = RequestType.Auth;
-         request = (IAuthRequest)_factory.CreateRequest(type, new object[] { _root });
+         request = _factory.CreateRequest(type, new object[] { _root });
          Assert.IsInstanceOf<AuthRequest>(request);
 
          //Case
