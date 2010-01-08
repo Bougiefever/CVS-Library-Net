@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
@@ -7,7 +8,6 @@ using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
-using System.Linq;
 
 namespace PServerClient.Tests
 {
@@ -170,152 +170,152 @@ namespace PServerClient.Tests
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Auth, result);
 
-         //Ok
+         // Ok
          test = "ok \n";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Ok, result);
 
-         //ErrorRegex,
+         // ErrorRegex,
          test = "error error message";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Error, result);
 
-         //MessageRegex,
+         // MessageRegex,
          test = "M message";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Message, result);
 
-         //ValidRequestsRegex,
+         // ValidRequestsRegex,
          test = "Valid-requests req1 req2";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.ValidRequests, result);
 
-         //CheckedInRegex,
+         // CheckedInRegex,
          test = "Checked-in path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.CheckedIn, result);
 
-         //NewEntryRegex,
+         // NewEntryRegex,
          test = "New-entry entry";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.NewEntry, result);
 
-         //UpdatedRegex,
+         // UpdatedRegex,
          test = "Updated path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Updated, result);
 
-         //MergedRegex,
+         // MergedRegex,
          test = "Merged path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Merged, result);
 
-         //PatchedRegex,
+         // PatchedRegex,
          test = "Patched path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Patched, result);
 
-         //ChecksumRegex,
+         // ChecksumRegex,
          test = "Checksum 2345";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Checksum, result);
 
-         //CopyFileRegex,
+         // CopyFileRegex,
          test = "Copy-file path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.CopyFile, result);
 
-         //RemovedRegex,
+         // RemovedRegex,
          test = "Removed path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Removed, result);
 
-         //RemoveEntryRegex,
+         // RemoveEntryRegex,
          test = "Remove-entry path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.RemoveEntry, result);
 
-         //SetStaticDirectoryRegex,
+         // SetStaticDirectoryRegex,
          test = "Set-static-directory path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.SetStaticDirectory, result);
 
-         //ClearStaticDirectoryRegex,
+         // ClearStaticDirectoryRegex,
          test = "Clear-static-directory path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.ClearStaticDirectory, result);
 
-         //SetStickyRegex,
+         // SetStickyRegex,
          test = "Set-sticky path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.SetSticky, result);
 
-         //ClearStickyRegex,
+         // ClearStickyRegex,
          test = "Clear-sticky path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.ClearSticky, result);
 
-         //CreatedRegex,
+         // CreatedRegex,
          test = "Created path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Created, result);
 
-         //MessageTagRegex,
+         // MessageTagRegex,
          test = "MT message text";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.MTMessage, result);
 
-         //UpdateExisting,
+         // UpdateExisting,
          test = "Update-existing path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.UpdateExisting, result);
 
-         //RcsDiff,
+         // RcsDiff,
          test = "Rcs-diff path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.RcsDiff, result);
 
-         //Mode,
+         // Mode,
          test = "Mode mode";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Mode, result);
 
-         //ModTime,
+         // ModTime,
          test = "Mod-time time";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.ModTime, result);
 
-         //Template,
+         // Template,
          test = "Template path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Template, result);
 
-         //Notified,
+         // Notified,
          test = "Notified path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Notified, result);
 
-         //ModuleExpansion,
+         // ModuleExpansion,
          test = "Module-expansion path";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.ModuleExpansion, result);
 
-         //Mbinary,
+         // Mbinary,
          test = "Mbinary \n";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Mbinary, result);
 
-         //EMessage,
+         // EMessage,
          test = "E message text";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.EMessage, result);
 
-         //Flush
+         // Flush
          test = "F message text";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Flush, result);
 
-         //Unknown
+         // Unknown
          test = "D2001.01.01.00.00.00";
          result = _factory.GetResponseType(test);
          Assert.AreEqual(ResponseType.Unknown, result);
@@ -326,68 +326,69 @@ namespace PServerClient.Tests
       {
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          IConnection connection = new PServerConnection();
-         //CheckOut
+
+         // CheckOut
          CommandType type = CommandType.CheckOut;
          string className = "PServerClient.Commands.CheckOutCommand";
          ICommand command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //Import
+         // Import
          type = CommandType.Import;
          className = "PServerClient.Commands.ImportCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //ValidRequestsList
+         // ValidRequestsList
          type = CommandType.ValidRequestsList;
          className = "PServerClient.Commands.ValidRequestsListCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //VerifyAuth
+         // VerifyAuth
          type = CommandType.VerifyAuth;
          className = "PServerClient.Commands.VerifyAuthCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //Version
+         // Version
          type = CommandType.Version;
          className = "PServerClient.Commands.VersionCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //Add
+         // Add
          type = CommandType.Add;
          className = "PServerClient.Commands.AddCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //Export
+         // Export
          type = CommandType.Export;
          className = "PServerClient.Commands.ExportCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection, DateTime.Now });
          Assert.AreEqual(type, command.Type);
 
-         //Log
+         // Log
          type = CommandType.Log;
          className = "PServerClient.Commands.LogCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //Diff
+         // Diff
          type = CommandType.Diff;
          className = "PServerClient.Commands.DiffCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         //Tag
+         // Tag
          type = CommandType.Tag;
          className = "PServerClient.Commands.TagCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
       }
 
-      [Test][Ignore]
+      [Test]
       public void CreateCommandFromXMLTest()
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;
@@ -397,15 +398,18 @@ namespace PServerClient.Tests
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
 
          PServerFactory factory = new PServerFactory();
-         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root });
+         IConnection connection = new PServerConnection();
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection });
          Assert.IsInstanceOf<CheckOutCommand>(cmd);
 
          Assert.AreEqual(2, cmd.RequiredRequests.Count);
          Assert.AreEqual(3, cmd.Requests.Count);
 
-         AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().First();
-         //Assert.AreEqual(1, authRequest.Responses.Count);
-         //Assert.AreEqual(AuthStatus.Authenticated, authRequest.Status);
+         AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().FirstOrDefault();
+         Assert.IsNotNull(authRequest);
+         AuthResponse authResponse = cmd.Responses.OfType<AuthResponse>().FirstOrDefault();
+         Assert.IsNotNull(authResponse);
+         Assert.AreEqual(AuthStatus.Authenticated, authResponse.Status);
       }
 
       [Test]
@@ -437,318 +441,316 @@ namespace PServerClient.Tests
          }
       }
 
-
       [Test]
       public void CreateRequestFromTypeTest()
       {
-         //Add
+         // Add
          RequestType type = RequestType.Add;
          IRequest request = _factory.CreateRequest(type, new object[0]);
          Assert.IsInstanceOf<AddRequest>(request);
 
-         //Admin
+         // Admin
          type = RequestType.Admin;
          request = _factory.CreateRequest(type, new object[0]);
          Assert.IsInstanceOf<AdminRequest>(request);
 
-         //Annotate
+         // Annotate
          type = RequestType.Annotate;
          request = _factory.CreateRequest(type, new object[0]);
          Assert.IsInstanceOf<AnnotateRequest>(request);
 
-         //Argument
+         // Argument
          type = RequestType.Argument;
          request = _factory.CreateRequest(type, new object[] { "-a" });
          Assert.IsInstanceOf<ArgumentRequest>(request);
 
-         //Argumentx
+         // Argumentx
          type = RequestType.Argumentx;
          request = _factory.CreateRequest(type, new object[] { "-a" });
          Assert.IsInstanceOf<ArgumentxRequest>(request);
 
-         //Auth
+         // Auth
          type = RequestType.Auth;
          request = _factory.CreateRequest(type, new object[] { _root });
          Assert.IsInstanceOf<AuthRequest>(request);
 
-         //Case
+         // Case
          type = RequestType.Case;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<CaseRequest>(request);
 
-         //CheckIn
+         // CheckIn
          type = RequestType.CheckIn;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<CheckInRequest>(request);
 
-         //CheckinTime
+         // CheckinTime
          type = RequestType.CheckinTime;
          var checkinTime = new DateTime(2009, 11, 6, 14, 21, 8);
          request = _factory.CreateRequest(type, new object[] { checkinTime });
          Assert.IsInstanceOf<CheckinTimeRequest>(request);
 
-         //CheckOut
+         // CheckOut
          type = RequestType.CheckOut;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<CheckOutRequest>(request);
 
-         //Diff
+         // Diff
          type = RequestType.Diff;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<DiffRequest>(request);
 
-         //Directory
+         // Directory
          type = RequestType.Directory;
          request = _factory.CreateRequest(type, new object[] { ".", _root.Repository + "/" + _root.Module });
          Assert.IsInstanceOf<DirectoryRequest>(request);
 
-         //Editors
+         // Editors
          type = RequestType.Editors;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<EditorsRequest>(request);
 
-         //EmptyConflicts
+         // EmptyConflicts
          type = RequestType.EmptyConflicts;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<EmptyConflictsRequest>(request);
 
-         //Entry
+         // Entry
          type = RequestType.Entry;
          request = _factory.CreateRequest(type, new object[] { "file.cs", "1.1.1", "a", "b", "c" });
          Assert.IsInstanceOf<EntryRequest>(request);
 
-         //ExpandModules
+         // ExpandModules
          type = RequestType.ExpandModules;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<ExpandModulesRequest>(request);
 
-         //Export
+         // Export
          type = RequestType.Export;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<ExportRequest>(request);
 
-         //GlobalOption
+         // GlobalOption
          type = RequestType.GlobalOption;
          request = _factory.CreateRequest(type, new object[] { "-o" });
          Assert.IsInstanceOf<GlobalOptionRequest>(request);
 
-         //GssapiAuthenticate
+         // GssapiAuthenticate
          type = RequestType.GssapiAuthenticate;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<GssapiAuthenticateRequest>(request);
 
-         //GssapiEncrypt
+         // GssapiEncrypt
          type = RequestType.GssapiEncrypt;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<GssapiEncryptRequest>(request);
 
-         //GzipFileContents
+         // GzipFileContents
          type = RequestType.GzipFileContents;
          request = _factory.CreateRequest(type, new object[] { "1" });
          Assert.IsInstanceOf<GzipFileContentsRequest>(request);
 
-         //GzipStream
+         // GzipStream
          type = RequestType.GzipStream;
          request = _factory.CreateRequest(type, new object[] { "1" });
          Assert.IsInstanceOf<GzipStreamRequest>(request);
 
-         //History
+         // History
          type = RequestType.History;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<HistoryRequest>(request);
 
-         //Import
+         // Import
          type = RequestType.Import;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<ImportRequest>(request);
 
-         //Init
+         // Init
          type = RequestType.Init;
          request = _factory.CreateRequest(type, new object[] { "sandbox" });
          Assert.IsInstanceOf<InitRequest>(request);
 
-         //IsModified
+         // IsModified
          type = RequestType.IsModified;
          request = _factory.CreateRequest(type, new object[] { "file.cs" });
          Assert.IsInstanceOf<IsModifiedRequest>(request);
 
-         //KerberosEncrypt
+         // KerberosEncrypt
          type = RequestType.KerberosEncrypt;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<KerberosEncryptRequest>(request);
 
-         //Kopt
+         // Kopt
          type = RequestType.Kopt;
          request = _factory.CreateRequest(type, new object[] { "-kb" }); 
          Assert.IsInstanceOf<KoptRequest>(request);
 
-         //Log
+         // Log
          type = RequestType.Log;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<LogRequest>(request);
 
-         //Lost
+         // Lost
          type = RequestType.Lost;
          request = _factory.CreateRequest(type, new object[] { "file.cs" }); 
          Assert.IsInstanceOf<LostRequest>(request);
 
-         //MaxDot
+         // MaxDot
          type = RequestType.MaxDot;
          request = _factory.CreateRequest(type, new object[] { "one" });
          Assert.IsInstanceOf<MaxDotRequest>(request);
 
-         //Modified
+         // Modified
          type = RequestType.Modified;
          request = _factory.CreateRequest(type, new object[] { "file.cs", "u=rw,g=rw,o=rw", 6 });
          Assert.IsInstanceOf<ModifiedRequest>(request);
 
-         //Noop
+         // Noop
          type = RequestType.Noop;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<NoopRequest>(request);
 
-         //Notify
+         // Notify
          type = RequestType.Notify;
          request = _factory.CreateRequest(type, new object[] { "file.cs" }); 
          Assert.IsInstanceOf<NotifyRequest>(request);
 
-         //Questionable 
+         // Questionable 
          type = RequestType.Questionable;
          request = _factory.CreateRequest(type, new object[] { "file.cs" }); 
          Assert.IsInstanceOf<QuestionableRequest>(request);
 
-         //RAnnotate
+         // RAnnotate
          type = RequestType.RAnnotate;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<RAnnotateRequest>(request);
 
-         //RDiff
+         // RDiff
          type = RequestType.RDiff;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<RDiffRequest>(request);
 
-         //Release
+         // Release
          type = RequestType.Release;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<ReleaseRequest>(request);
 
-         //Remove
+         // Remove
          type = RequestType.Remove;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<RemoveRequest>(request);
 
-         //Repository
+         // Repository
          type = RequestType.Repository;
          request = _factory.CreateRequest(type, new object[] { _root.Repository }); 
          Assert.IsInstanceOf<RepositoryRequest>(request);
 
-         //RLog
+         // RLog
          type = RequestType.RLog;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<RLogRequest>(request);
 
-         //Root
+         // Root
          type = RequestType.Root;
          request = _factory.CreateRequest(type, new object[] { _root.Repository });
          Assert.IsInstanceOf<RootRequest>(request);
 
-         //RTag
+         // RTag
          type = RequestType.RTag;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<RTagRequest>(request);
 
-         //Set
+         // Set
          type = RequestType.Set;
          request = _factory.CreateRequest(type, new object[] { "rabbit", "Peter" });
          Assert.IsInstanceOf<SetRequest>(request);
 
-         //StaticDirectory
+         // StaticDirectory
          type = RequestType.StaticDirectory;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<StaticDirectoryRequest>(request);
 
-
-         //Status
+         // Status
          type = RequestType.Status;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<StatusRequest>(request);
 
-         //Sticky
+         // Sticky
          type = RequestType.Sticky;
          request = _factory.CreateRequest(type, new object[] { "idk" });
          Assert.IsInstanceOf<StickyRequest>(request);
 
-         //Tag
+         // Tag
          type = RequestType.Tag;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<TagRequest>(request);
 
-         //Unchanged
+         // Unchanged
          type = RequestType.Unchanged;
          request = _factory.CreateRequest(type, new object[] { "file.cs" }); 
          Assert.IsInstanceOf<UnchangedRequest>(request);
 
-         //UpdatePatches 
+         // UpdatePatches 
          type = RequestType.UpdatePatches;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<UpdatePatchesRequest>(request);
 
-         //Update 
+         // Update 
          type = RequestType.Update;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<UpdateRequest>(request);
 
-         //UseUnchanged 
+         // UseUnchanged 
          type = RequestType.UseUnchanged;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<UseUnchangedRequest>(request);
 
-         //ValidRequests
+         // ValidRequests
          type = RequestType.ValidRequests;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<ValidRequestsRequest>(request);
 
-         //ValidResponses
+         // ValidResponses
          type = RequestType.ValidResponses;
          request = _factory.CreateRequest(type, new object[] { new[] { ResponseType.Ok, ResponseType.MTMessage, ResponseType.EMessage } });
          Assert.IsInstanceOf<ValidResponsesRequest>(request);
 
-         //VerifyAuth 
+         // VerifyAuth 
          type = RequestType.VerifyAuth;
          request = _factory.CreateRequest(type, new object[] { _root }); 
          Assert.IsInstanceOf<VerifyAuthRequest>(request);
 
-         //Version 
+         // Version 
          type = RequestType.Version;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<VersionRequest>(request);
 
-         //WatchAdd
+         // WatchAdd
          type = RequestType.WatchAdd;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<WatchAddRequest>(request);
 
-         //Watchers 
+         // Watchers 
          type = RequestType.Watchers;
          request = _factory.CreateRequest(type, new object[] { });
          Assert.IsInstanceOf<WatchersRequest>(request);
 
-         //WatchOff
+         // WatchOff
          type = RequestType.WatchOff;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<WatchOffRequest>(request);
 
-         //WatchOn
+         // WatchOn
          type = RequestType.WatchOn;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<WatchOnRequest>(request);
 
-         //WatchRemove
+         // WatchRemove
          type = RequestType.WatchRemove;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<WatchRemoveRequest>(request);
 
-         //WrapperSendmeRcsOptions = 61
+         // WrapperSendmeRcsOptions = 61
          type = RequestType.WrapperSendmeRcsOptions;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<WrapperSendmeRcsOptionsRequest>(request);

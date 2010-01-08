@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Remoting;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using PServerClient.Commands;
-using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 
@@ -15,8 +13,8 @@ namespace PServerClient
    public class PServerFactory
    {
       // ReSharper disable PossibleNullReferenceException
-      // ReSharper disable MemberCanBeMadeStatic.Local
 
+      // ReSharper disable MemberCanBeMadeStatic.Local
       public IResponse CreateResponse(ResponseType type)
       {
          string responseName = GetResponseClassNameFromType(type);
@@ -41,10 +39,11 @@ namespace PServerClient
             Match m = Regex.Match(rawResponse, pattern);
             if (m.Success)
             {
-               responseType = (ResponseType)i;
+               responseType = (ResponseType) i;
                break;
             }
          }
+
          return responseType;
       }
 
@@ -59,20 +58,20 @@ namespace PServerClient
       public IRequest CreateRequest(string className, string[] lines)
       {
          Type type = Type.GetType(className);
-         IRequest request = (IRequest)Activator.CreateInstance(type, new object[] { lines });
+         IRequest request = (IRequest) Activator.CreateInstance(type, new object[] { lines });
          return request;
       }
 
       public ICommand CreateCommand(string className, object[] args)
       {
          Type type = Type.GetType(className);
-         ICommand cmd = (ICommand)Activator.CreateInstance(type, args);
+         ICommand cmd = (ICommand) Activator.CreateInstance(type, args);
          return cmd;
       }
 
       public ICommand CreateCommand(XDocument commandXML, object[] args)
       {
-         XElement commandElement = (XElement)commandXML.FirstNode;
+         XElement commandElement = (XElement) commandXML.FirstNode;
          string className = commandElement.Element("ClassName").Value;
          ICommand command = CreateCommand(className, args);
          command.RequiredRequests.Clear();
@@ -81,6 +80,8 @@ namespace PServerClient
          command.RequiredRequests = IRequestListFromRequestsXElement(requestsElement);
          requestsElement = commandElement.Element("Requests");
          command.Requests = IRequestListFromRequestsXElement(requestsElement);
+         XElement responsesElement = commandElement.Element("Responses");
+         command.Responses = IResponseListFromResponsesXElement(responsesElement);
          return command;
       }
 
@@ -91,9 +92,8 @@ namespace PServerClient
          {
             IRequest request = RequestXElementToIRequest(requestElement);
             requests.Add(request);
-            XElement responsesElement = requestElement.Element("Responses");
-            //request.Responses = IResponseListFromResponsesXElement(responsesElement);
          }
+
          return requests;
       }
 
@@ -115,6 +115,7 @@ namespace PServerClient
             IResponse response = ResponseXElementToIResponse(responseElement);
             responses.Add(response);
          }
+
          return responses;
       }
 
@@ -130,6 +131,7 @@ namespace PServerClient
          {
             lines.Add(lineElement.Value);
          }
+
          if (response is IMessageResponse)
             response.Lines = lines;
          else
@@ -137,7 +139,7 @@ namespace PServerClient
 
          if (response is IFileResponse)
          {
-            IFileResponse fileResponse = (IFileResponse)response;
+            IFileResponse fileResponse = (IFileResponse) response;
             XElement fileElement = responseElement.Descendants("File").First();
             long len = Convert.ToInt64(fileElement.Element("Length").Value);
             string byteString = fileElement.Element("Contents").Value;
@@ -147,13 +149,14 @@ namespace PServerClient
             {
                buffer[i] = Convert.ToByte(bytes[i]);
             }
+
             fileResponse.Length = len;
             fileResponse.Contents = buffer;
          }
+
          return response;
       }
 
-      
       private string GetResponseClassNameFromType(ResponseType type)
       {
          string responseName = "PServerClient.Responses." + type + "Response";

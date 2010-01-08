@@ -1,5 +1,3 @@
-using System;
-
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -16,10 +14,29 @@ namespace PServerClient.Requests
    /// </summary>
    public class ExportRequest : NoArgRequestBase
    {
-      public ExportRequest(){}
-      public ExportRequest(string[] lines) : base(lines){}
-      public override bool ResponseExpected { get { return true; } }
-      public override RequestType Type { get { return RequestType.Export; } }
+      public ExportRequest()
+      {
+      }
 
+      public ExportRequest(string[] lines)
+         : base(lines)
+      {
+      }
+
+      public override bool ResponseExpected
+      {
+         get
+         {
+            return true;
+         }
+      }
+
+      public override RequestType Type
+      {
+         get
+         {
+            return RequestType.Export;
+         }
+      }
    }
 }

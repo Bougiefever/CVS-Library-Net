@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
-//using System;
 
 namespace PServerClient.Connection
 {
@@ -23,7 +22,11 @@ namespace PServerClient.Connection
                _cvsTcpClient = new CvsTcpClient();
             return _cvsTcpClient;
          }
-         set { _cvsTcpClient = value; }
+
+         set
+         {
+            _cvsTcpClient = value;
+         }
       }
 
       public void Connect(IRoot root)
@@ -37,6 +40,7 @@ namespace PServerClient.Connection
          Console.WriteLine("C: " + requestString);
          byte[] sendBuffer = requestString.Encode();
          TcpClient.Write(sendBuffer);
+
          // do file stuff for request here
       }
 
@@ -61,10 +65,11 @@ namespace PServerClient.Connection
             response.Initialize(responseLines);
             if (response is IFileResponse)
             {
-               IFileResponse fileResponse = (IFileResponse)response;
-               fileResponse.Contents = TcpClient.ReadBytes((int)fileResponse.Length);
+               IFileResponse fileResponse = (IFileResponse) response;
+               fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
             }
          }
+
          return response;
       }
 
@@ -84,18 +89,20 @@ namespace PServerClient.Connection
                response.Initialize(responseLines);
                if (response is IFileResponse)
                {
-                  IFileResponse fileResponse = (IFileResponse)response;
-                  fileResponse.Contents = TcpClient.ReadBytes((int)fileResponse.Length);
+                  IFileResponse fileResponse = (IFileResponse) response;
+                  fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
                }
+
                responses.Add(response);
             }
-         } while (line != null);
+         }
+         while (line != null);
          return responses;
       }
 
       internal IList<string> GetResponseLines(string line, ResponseType responseType, int lineCount)
       {
-         string pattern = ResponseHelper.ResponsePatterns[(int)responseType];
+         string pattern = ResponseHelper.ResponsePatterns[(int) responseType];
          Match m = Regex.Match(line, pattern);
          string responseLine = m.Groups["data"].Value;
          IList<string> responseLines = new List<string> { responseLine };
@@ -107,6 +114,7 @@ namespace PServerClient.Connection
                responseLines.Add(responseLine);
             }
          }
+
          return responseLines;
       }
 
@@ -120,9 +128,10 @@ namespace PServerClient.Connection
             i = TcpClient.ReadByte();
             if (i != 0 && i != 10 && i != -1)
             {
-               sb.Append((char)i);
+               sb.Append((char) i);
             }
-         } while (i != 0 && i != 10 && i != -1);
+         }
+         while (i != 0 && i != 10 && i != -1);
          if (sb.Length > 0)
             line = sb.ToString();
          Console.WriteLine("S: " + (line ?? string.Empty));

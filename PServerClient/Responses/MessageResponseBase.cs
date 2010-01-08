@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace PServerClient.Responses
 {
    public abstract class MessageResponseBase : ResponseBase, IMessageResponse

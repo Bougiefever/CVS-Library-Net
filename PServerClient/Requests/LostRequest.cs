@@ -7,8 +7,26 @@ namespace PServerClient.Requests
          Lines = new string[1];
          Lines[0] = string.Format("{0} {1}", RequestName, fileName);
       }
-      public LostRequest(string[] lines):base(lines){}
-      public override bool ResponseExpected { get { return false; } }
-      public override RequestType Type { get { return RequestType.Lost; } }
+
+      public LostRequest(string[] lines)
+         : base(lines)
+      {
+      }
+
+      public override bool ResponseExpected
+      {
+         get
+         {
+            return false;
+         }
+      }
+
+      public override RequestType Type
+      {
+         get
+         {
+            return RequestType.Lost;
+         }
+      }
    }
 }

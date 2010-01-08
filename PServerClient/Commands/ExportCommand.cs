@@ -37,14 +37,28 @@ namespace PServerClient.Commands
          Requests.Add(new ExportRequest());
       }
 
-      public override CommandType Type { get { return CommandType.Export; } }
+      public override CommandType Type
+      {
+         get
+         {
+            return CommandType.Export;
+         }
+      }
+
+      public IList<IFileResponseGroup> FileGroups { get; set; }
+
+      internal string GetExportDate(DateTime exportDate)
+      {
+         string mydate = exportDate.ToRfc822();
+         return string.Format("-D {0}", mydate);
+      }
 
       protected internal override void AfterRequest(IRequest request)
       {
-         if ((request is ExportRequest))
+         if (request is ExportRequest)
          {
             FileGroups = new List<IFileResponseGroup>();
-            IResponse response = null;
+            IResponse response;
             IFileResponseGroup file = null;
             IList<IResponse> messages = null;
             bool gettingFile = false;
@@ -58,8 +72,9 @@ namespace PServerClient.Commands
                   if (response is UpdatedResponse)
                   {
                      messages = ResponseHelper.CollapseMessagesInResponses(messages);
-                     file.MT = (IMessageResponse)messages[0];
-                     file.FileResponse = (IFileResponse)response;
+                     file.MT = (IMessageResponse) messages[0];
+                     file.FileResponse = (IFileResponse) response;
+
                      // process each file
                      FileGroups.Add(file);
                      gettingFile = false; // all done getting file
@@ -71,13 +86,14 @@ namespace PServerClient.Commands
                   {
                      file = new FileResponseGroup();
                      messages = new List<IResponse>();
-                     file.ModTime = (ModTimeResponse)response;
+                     file.ModTime = (ModTimeResponse) response;
                      gettingFile = true;
                   }
                   else
                      base.AfterRequest(request);
                }
-            } while (response != null);
+            }
+            while (response != null);
          }
          else
          {
@@ -90,13 +106,6 @@ namespace PServerClient.Commands
          var processor = new ResponseProcessor();
          Root.RootFolder = processor.CreateCVSFileStructure(Root, FileGroups);
          Root.RootFolder.Save(true);
-      }
-
-      public IList<IFileResponseGroup> FileGroups { get; set; }
-      internal string GetExportDate(DateTime exportDate)
-      {
-         string mydate = exportDate.ToRfc822();
-         return string.Format("-D {0}", mydate);
       }
    }
 }

@@ -4,7 +4,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using PServerClient.CVS;
 
 namespace PServerClient
 {
@@ -62,6 +61,21 @@ namespace PServerClient
                     };
       }
 
+      public static string UnixLineEnd
+      {
+         get
+         {
+            return "\n";
+         }
+      }
+
+      public static string WindowsLineEnd
+      {
+         get
+         {
+            return "\r\n";
+         }
+      }
 
       public static string ScramblePassword(this string password)
       {
@@ -73,6 +87,7 @@ namespace PServerClient
             char c = password[i];
             sb.Append((char) _code[c]);
          }
+
          return sb.ToString();
       }
 
@@ -85,6 +100,7 @@ namespace PServerClient
             char y = (char) _code[x];
             sb.Append(y);
          }
+
          return sb.ToString();
       }
 
@@ -105,6 +121,7 @@ namespace PServerClient
                newEnd = i;
             test = b;
          }
+
          if (newEnd == 0)
             newEnd = buffer.Length;
          byte[] decode = new byte[newEnd];
@@ -114,7 +131,7 @@ namespace PServerClient
 
       public static DateTime Rfc822ToDateTime(this string rfcDate)
       {
-         const string dateTimeRegex = @"(\d{1,2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
+         string dateTimeRegex = @"(\d{1,2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
          Match m = Regex.Match(rfcDate, dateTimeRegex);
          if (!m.Success)
             throw new ArgumentException("RFC822 date string is not formatted properly");
@@ -145,7 +162,7 @@ namespace PServerClient
 
       public static DateTime EntryToDateTime(this string date)
       {
-         const string dateTimeRegex = @"(.{3})\s(.{3})\s+(\d{1,2})\s(\d{2}):(\d{2}):(\d{2})\s(\d{4})";
+         string dateTimeRegex = @"(.{3})\s(.{3})\s+(\d{1,2})\s(\d{2}):(\d{2}):(\d{2})\s(\d{4})";
          Match m = Regex.Match(date, dateTimeRegex);
          if (!m.Success)
             throw new ArgumentException("Date string is not formatted correctly");
@@ -157,7 +174,7 @@ namespace PServerClient
          int minute = Convert.ToInt32(m.Groups[5].ToString());
          int second = Convert.ToInt32(m.Groups[6].ToString());
          int year = Convert.ToInt32(m.Groups[7].ToString());
-         int month = StringToEnum(typeof (MonthName), mon);
+         int month = StringToEnum(typeof(MonthName), mon);
          DateTime dt = new DateTime(year, month, day, hour, minute, second);
 
          return dt;
@@ -172,14 +189,15 @@ namespace PServerClient
             if (fi.Name == value)
                result = fi.GetValue(null);
          }
+
          if (result == null)
             throw new FormatException("Cannot convert string to " + t);
-         return Convert.ToInt32((result));
+         return Convert.ToInt32(result);
       }
 
       public static string[] GetUpdatedFnamePathFile(string fname)
       {
-         const string fnameRegex = @"fname (.+)/(.+)$";
+         string fnameRegex = @"fname (.+)/(.+)$";
          Match m = Regex.Match(fname, fnameRegex);
          string[] names = new string[2];
          if (m.Success)
@@ -187,19 +205,21 @@ namespace PServerClient
             names[0] = m.Groups[1].ToString();
             names[1] = m.Groups[2].ToString();
          }
+
          return names;
       }
 
       public static string[] GetMUPathFile(string mu)
       {
-         const string muRegex = @"M U (.+)/(.+)$";
-         Match m = Regex.Match(mu, muRegex);
+         string regexMU = @"M U (.+)/(.+)$";
+         Match m = Regex.Match(mu, regexMU);
          string[] names = new string[2];
          if (m.Success)
          {
             names[0] = m.Groups[1].ToString();
             names[1] = m.Groups[2].ToString();
          }
+
          return names;
       }
 
@@ -211,10 +231,9 @@ namespace PServerClient
          {
             path = Path.Combine(path, folders[i]);
          }
+
          DirectoryInfo di = new DirectoryInfo(path);
          return di;
       }
-
-
    }
 }

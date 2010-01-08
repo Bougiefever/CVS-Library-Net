@@ -46,36 +46,10 @@ namespace PServerClient.Tests
          Assert.AreEqual(result, expected);
       }
 
-      //[Test]
-      //public void CreateModuleFolderStructureTest()
-      //{
-      //   //string module = "mymod/";
-
-      //   DirectoryInfo di = new DirectoryInfo(@"c:\_test");
-      //   Folder mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string");
-      //   Assert.AreEqual("mymod", mod.Name);
-      //   Assert.AreEqual(0, mod.Count);
-      //   Assert.IsNull(mod.Parent);
-
-      //   module = "rootmod/mymod";
-      //   mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string");
-      //   Assert.AreEqual("rootmod", mod.Name);
-      //   Assert.AreEqual(1, mod.Count);
-      //   Assert.AreEqual("mymod", mod[0].Name);
-
-      //   module = "rootfolder/teamfolder/myproject";
-      //   mod = PServerHelper.CreateModuleFolderStructure(di, "cvs connection string");
-      //   Assert.AreEqual("rootfolder", mod.Name);
-      //   Assert.AreEqual(1, mod.Count);
-      //   Assert.AreEqual("teamfolder", mod[0].Name);
-      //   Assert.AreEqual(1, mod[0].Count);
-      //   Assert.AreEqual("myproject", mod[0][0].Name);
-      //}
-
       [Test]
       public void DecodeTest()
       {
-         byte[] decode = new byte[] {97, 98, 99, 10};
+         byte[] decode = new byte[] { 97, 98, 99, 10 };
          string expected = "abc\n";
          string result = decode.Decode();
          Assert.AreEqual(expected, result);
@@ -84,7 +58,7 @@ namespace PServerClient.Tests
       [Test]
       public void DecodeWithTrailingNullsTest()
       {
-         byte[] decode = new byte[] {97, 98, 99, 10, 0, 0, 0};
+         byte[] decode = new byte[] { 97, 98, 99, 10, 0, 0, 0 };
          string expected = "abc\n";
          string result = decode.Decode();
          Assert.AreEqual(expected, result);
@@ -94,7 +68,7 @@ namespace PServerClient.Tests
       public void EncodeTest()
       {
          string encode = "abc";
-         byte[] expected = new byte[] {97, 98, 99};
+         byte[] expected = new byte[] { 97, 98, 99 };
          byte[] result = encode.Encode();
          Assert.AreEqual(expected, result);
       }
@@ -110,7 +84,7 @@ namespace PServerClient.Tests
       public void StringToEnumTest()
       {
          string test = "Dec";
-         int result = PServerHelper.StringToEnum(typeof (MonthName), test);
+         int result = PServerHelper.StringToEnum(typeof(MonthName), test);
          MonthName mon = MonthName.Dec;
          Assert.AreEqual(mon, (MonthName) result);
       }
@@ -145,6 +119,7 @@ namespace PServerClient.Tests
          di = PServerHelper.GetRootModuleFolderPath(working, module);
          Assert.AreEqual(@"c:\_temp\mymod\project", di.FullName);
       }
+
       [Test]
       public void GetModuleNameTest()
       {

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.IO;
 
 namespace PServerClient.CVS
@@ -7,21 +5,21 @@ namespace PServerClient.CVS
    /// <summary>
    /// This the interface for both folders and entry files
    /// </summary>
-   public interface ICVSItem 
+   public interface ICVSItem
    {
       /// <summary>
-      /// Either FileInfo or DirectoryInfo object depending on
+      /// Gets either FileInfo or DirectoryInfo object depending on
       /// whether instance is an Entry or Folder object
       /// </summary>
       FileSystemInfo Info { get; }
 
       /// <summary>
-      /// The parent folder item
+      /// Gets the parent folder item
       /// </summary>
       Folder Parent { get; }
 
       /// <summary>
-      /// CVS hidden folder for repository information
+      /// Gets the CVS hidden folder for repository information
       /// </summary>
       CVSFolder CVSFolder { get; }
 
@@ -39,7 +37,7 @@ namespace PServerClient.CVS
       /// <summary>
       /// Save to disk
       /// </summary>
-      /// <param name="recursive"></param>
+      /// <param name="recursive">Determines whether or not to save all children</param>
       void Save(bool recursive);
    }
 }

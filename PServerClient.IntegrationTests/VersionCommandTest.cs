@@ -23,23 +23,25 @@ namespace PServerClient.IntegrationTests
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          _connection = new PServerConnection();
       }
+
       [Test][Ignore]
       public void ExecuteTest()
       {
          ICommand command = new VersionCommand(_root, _connection);
          command.Execute();
+
          // print out the whole conversation, not auth
          IEnumerable<IAuthRequest> auth = command.Requests.OfType<IAuthRequest>();
          IEnumerable<IRequest> reqs = command.Requests.Except(auth.Cast<IRequest>());
-         //foreach (IRequest req in reqs) 
-         //{
-         //   Console.Write("C: {0}", req.GetRequestString());
-         //   if (req.ResponseExpected)
-         //      foreach (IResponse res in req.Responses)
-         //      {
-         //         Console.Write("S: {0}", res.Display());
-         //      }
-         //}
+         ////foreach (IRequest req in reqs) 
+         ////{
+         ////   Console.Write("C: {0}", req.GetRequestString());
+         ////   if (req.ResponseExpected)
+         ////      foreach (IResponse res in req.Responses)
+         ////      {
+         ////         Console.Write("S: {0}", res.Display());
+         ////      }
+         ////}
       }
    }
 }

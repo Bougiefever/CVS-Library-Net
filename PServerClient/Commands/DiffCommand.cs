@@ -1,7 +1,5 @@
-using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
-using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
@@ -14,9 +12,10 @@ namespace PServerClient.Commands
 
       public override CommandType Type
       {
-         get { return CommandType.Diff; }
+         get
+         {
+            return CommandType.Diff;
+         }
       }
-
-
    }
 }

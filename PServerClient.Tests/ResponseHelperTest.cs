@@ -10,7 +10,7 @@ namespace PServerClient.Tests
    public class ResponseHelperTest
    {
       [Test]
-      public void GetModuleNameTest()
+      public void FixResponseModuleSlashesTest()
       {
          string mod = "mymod/";
          string result = ResponseHelper.FixResponseModuleSlashes(mod);
@@ -23,10 +23,18 @@ namespace PServerClient.Tests
          mod = "mymod/cvstest/CVSROOT";
          result = ResponseHelper.FixResponseModuleSlashes(mod);
          Assert.AreEqual(mod, result);
+
+         mod = "/mymod/";
+         result = ResponseHelper.FixResponseModuleSlashes(mod);
+         Assert.AreEqual("mymod", result);
+
+         mod = "/mymod/cvstest/CVSROOT/";
+         result = ResponseHelper.FixResponseModuleSlashes(mod);
+         Assert.AreEqual("mymod/cvstest/CVSROOT", result);
       }
 
       [Test]
-      public void GetLastModuleTest()
+      public void GetLastModuleNameTest()
       {
          string mod = "mymod/";
          string result = ResponseHelper.GetLastModuleName(mod);

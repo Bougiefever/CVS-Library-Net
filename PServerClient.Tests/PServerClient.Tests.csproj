@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestSetup\CheckOutModule.xml" />
+    <Content Include="TestSetup\ExportCommand.xml" />
     <Content Include="TestSetup\ExportCommandWithEMessages.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

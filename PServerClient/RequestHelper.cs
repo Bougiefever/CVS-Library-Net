@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using PServerClient.Requests;
-using PServerClient.Responses;
 
 namespace PServerClient
 {
    public static class RequestHelper
    {
+      public static readonly string[] RequestNames;
       private const string AddRequest = "add";
       private const string AdminRequest = "admin";
       private const string AnnotateRequest = "annotate";
@@ -71,7 +69,6 @@ namespace PServerClient
       private const string WatchOnRequest = "watch-on";
       private const string WatchRemoveRequest = "watch-remove";
       private const string WrapperSendmercsOptionsRequest = "wrapper-sendme-rcsOptions";
-      public static readonly string[] RequestNames;
 
       static RequestHelper()
       {
@@ -172,15 +169,16 @@ namespace PServerClient
 
       public static IList<RequestType> RequestsToRequestTypes(string requestList)
       {
-         string[] sep = new[] {" "};
+         string[] sep = new[] { " " };
          string[] requestNames = requestList.Split(sep, StringSplitOptions.RemoveEmptyEntries);
          IList<RequestType> types = new List<RequestType>();
          foreach (string s in requestNames)
          {
-            var type = RequestNames.Select((r, i) => new {Name = r, Type = (RequestType) i})
+            var type = RequestNames.Select((r, i) => new { Name = r, Type = (RequestType) i })
                .Where(rr => rr.Name == s).Select(tt => tt.Type).First();
             types.Add(type);
          }
+
          return types;
       }
    }

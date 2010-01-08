@@ -1,4 +1,3 @@
-using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
@@ -15,7 +14,12 @@ namespace PServerClient.Commands
          RequiredRequests.Add(new ValidRequestsRequest());
       }
 
-      public override CommandType Type { get { return CommandType.ValidRequestsList; } }
-
+      public override CommandType Type
+      {
+         get
+         {
+            return CommandType.ValidRequestsList;
+         }
+      }
    }
 }

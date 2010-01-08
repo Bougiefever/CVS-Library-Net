@@ -14,6 +14,9 @@ namespace PServerClient.Tests.Commands
    [TestFixture]
    public class VerifyAuthCommandTest
    {
+      private MockRepository _mocks;
+      private IConnection _connection;
+      private IRoot _root;
 
       [SetUp]
       public void SetUp()
@@ -21,10 +24,6 @@ namespace PServerClient.Tests.Commands
          _mocks = new MockRepository();
          _connection = _mocks.DynamicMock<IConnection>();
       }
-
-      private MockRepository _mocks;
-      private IConnection _connection;
-      private IRoot _root;
 
       [TestFixtureSetUp]
       public void TestFixtureSetUp()

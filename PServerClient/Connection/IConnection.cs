@@ -8,10 +8,15 @@ namespace PServerClient.Connection
    public interface IConnection
    {
       ICvsTcpClient TcpClient { get; set; }
+
       void Connect(IRoot root);
+
       void DoRequest(IRequest request);
+
       IResponse GetResponse();
+
       IList<IResponse> GetAllResponses();
+
       void Close();
    }
 }

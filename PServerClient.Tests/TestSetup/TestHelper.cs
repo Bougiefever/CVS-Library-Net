@@ -56,7 +56,7 @@ namespace PServerClient.Tests.TestSetup
       {
          FileInfo fi = new FileInfo(path);
 
-         XDocument xdoc = command.GetXDocument(); //ICommandToXDocument(command);
+         XDocument xdoc = command.GetXDocument(); 
          StreamWriter writer = fi.CreateText();
          xdoc.Save(writer);
       }
@@ -71,11 +71,12 @@ namespace PServerClient.Tests.TestSetup
          IResponse r = new ModTimeResponse();
          r.Initialize(new List<string> { time });
          responses.Add(r);
-         var list = (GetMockMTResponseGroup(path + file));
+         var list = GetMockMTResponseGroup(path + file);
          foreach (IResponse response in list)
          {
             responses.Add(response);
          }
+
          responses.Add(GetMockUpdatedResponse(path, file));
 
          return responses;
@@ -91,6 +92,7 @@ namespace PServerClient.Tests.TestSetup
             m.Initialize(new List<string> { s });
             responses.Add(m);
          }
+
          return responses;
       }
 

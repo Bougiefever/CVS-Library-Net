@@ -17,7 +17,6 @@ namespace PServerClient.Commands
       private AuthStatus _status;
 
       private IConnection _connection;
-      internal IList<RequestType> ValidRequestTypes;
 
       protected CommandBase(IRoot root, IConnection connection)
       {
@@ -39,24 +38,37 @@ namespace PServerClient.Commands
          ValidRequestTypes = new List<RequestType>();
       }
 
-      protected IConnection Connection 
-      { 
+      public AuthStatus AuthStatus
+      {
+         get
+         {
+            return _status;
+         }
+      }
+
+      public IRoot Root { get; private set; }
+
+      public abstract CommandType Type { get; }
+
+      public IList<IRequest> RequiredRequests { get; set; }
+
+      public IList<IRequest> Requests { get; set; }
+
+      public IList<IResponse> Responses { get; set; }
+
+      public IList<string> UserMessages { get; private set; }
+
+      public ExitCode ExitCode { get; set; }
+
+      internal IList<RequestType> ValidRequestTypes { get; set; }
+
+      protected IConnection Connection
+      {
          get
          {
             return _connection;
          }
       }
-
-      public AuthStatus AuthStatus { get { return _status; } }
-      public IRoot Root { get; private set; }
-
-      public abstract CommandType Type { get; }
-      public IList<IRequest> RequiredRequests { get; set; }
-
-      public IList<IRequest> Requests { get; set; }
-      public IList<IResponse> Responses { get; set; }
-      public IList<string> UserMessages { get; private set; }
-      public ExitCode ExitCode { get; set; }
 
       public virtual void Execute()
       {
@@ -94,9 +106,7 @@ namespace PServerClient.Commands
 
       public XDocument GetXDocument()
       {
-         XElement commandElement = new XElement("Command",
-                                       new XElement("ClassName", GetType().FullName)
-                                       );
+         XElement commandElement = new XElement("Command", new XElement("ClassName", GetType().FullName));
          XElement requestsElement = new XElement("RequiredRequests");
          foreach (IRequest request in RequiredRequests)
          {
@@ -123,21 +133,6 @@ namespace PServerClient.Commands
          return xdoc;
       }
 
-      protected internal virtual void BeforeExecute()
-      {
-         //
-      }
-
-      protected internal virtual void AfterRequest(IRequest request)
-      {
-         ProcessRequestResponses(request);
-      }
-
-      protected internal virtual void AfterExecute()
-      {
-         ProcessMessages();
-      }
-
       internal ExitCode ExecuteRequiredRequests()
       {
          // execute authentication request and check authentication status
@@ -148,7 +143,7 @@ namespace PServerClient.Commands
          if (response is IAuthResponse)
          {
             response.Process();
-            _status = ((IAuthResponse)response).Status;
+            _status = ((IAuthResponse) response).Status;
          }
          else
          {
@@ -172,11 +167,12 @@ namespace PServerClient.Commands
          }
 
          // set the valid requests list
-         var validRequestResponse = (ValidRequestsResponse)Responses.Where(r => r.Type == ResponseType.ValidRequests).FirstOrDefault();
+         var validRequestResponse = (ValidRequestsResponse) Responses.Where(r => r.Type == ResponseType.ValidRequests).FirstOrDefault();
          if (validRequestResponse != null)
          {
             ValidRequestTypes = validRequestResponse.ValidRequestTypes;
          }
+
          ProcessMessages();
          ExitCode code = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? ExitCode.Failed : ExitCode.Succeeded;
          Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
@@ -207,8 +203,24 @@ namespace PServerClient.Commands
             {
                message.Process();
             }
+
             UserMessages.Add(message.Message);
          }
+      }
+
+      protected internal virtual void AfterRequest(IRequest request)
+      {
+         ProcessRequestResponses(request);
+      }
+
+      protected internal virtual void BeforeExecute()
+      {
+         // do nothing is default
+      }
+
+      protected internal virtual void AfterExecute()
+      {
+         ProcessMessages();
       }
 
       private void ProcessRequestResponses(IRequest request)

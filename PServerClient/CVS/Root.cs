@@ -5,34 +5,43 @@ namespace PServerClient.CVS
    public interface IRoot
    {
       string Protocol { get; set; }
+
       string Username { get; set; }
+
       string Password { get; set; }
 
       /// <summary>
-      /// Name of host machine
+      /// Gets or sets the name of host machine
       /// </summary>
       string Host { get; set; }
 
       /// <summary>
-      /// CVS Repository 
+      /// Gets or sets the CVS Repository path
       /// </summary>
       string Repository { get; set; }
 
       /// <summary>
-      /// Name of Cvs module being interacted with
+      /// Gets or sets the name of Cvs module being interacted with
       /// </summary>
-      string Module { get; set; }   
-   
+      string Module { get; set; }
+
+      /// <summary>
+      /// Gets or sets the the local file system directory 
+      /// </summary>
       DirectoryInfo WorkingDirectory { get; set; }
+
+      /// <summary>
+      /// Gets or sets the root folder in the tree
+      /// </summary>
       Folder RootFolder { get; set; }
 
       /// <summary>
-      /// Pserver connection string for Cvs
+      /// Gets the read-only Pserver connection string for Cvs
       /// </summary>
       string CVSConnectionString { get; }
 
       /// <summary>
-      /// Port for Cvs on host machine
+      /// Gets or sets the port for Cvs on host machine
       /// </summary>
       int Port { get; set; }
    }
@@ -45,13 +54,14 @@ namespace PServerClient.CVS
    public class Root : IRoot
    {
       /// <summary>
-      /// Root constructor for commands that don't interact with the local file system
+      /// Initializes a new instance of the Root class
       /// </summary>
+      /// <param name="repository">path of the cvs repository on the cvs server</param>
+      /// <param name="module">cvs module name</param>
       /// <param name="host">machine name of host machine</param>
       /// <param name="port">port of cvs server on host</param>
-      /// <param name="username">cvs login credentials</param>
-      /// <param name="password">cvs login credentials</param>
-      /// <param name="repositoryPath"></param>
+      /// <param name="username">cvs username for login</param>
+      /// <param name="password">cvs password for login</param>
       public Root(string repository, string module, string host, int port, string username, string password)
       {
          Protocol = "pserver";
@@ -64,15 +74,17 @@ namespace PServerClient.CVS
       }
 
       public DirectoryInfo WorkingDirectory { get; set; }
+
       public Folder RootFolder { get; set; }
+
       public string Username { get; set; }
+
       public string Password { get; set; }
 
-      // cvs repository settings
       /// <summary>
-      /// Pserver connection string for Cvs
+      /// Gets the Pserver connection string for Cvs
       /// </summary>
-      public string CVSConnectionString 
+      public string CVSConnectionString
       {
          get
          {
@@ -81,20 +93,12 @@ namespace PServerClient.CVS
          }
       }
 
-      /// <summary>
-      /// Name of Cvs module being interacted with
-      /// </summary>
       public string Module { get; set; }
 
-      /// <summary>
-      /// Name of host machine
-      /// </summary>
       public string Host { get; set; }
 
-      /// <summary>
-      /// Port for Cvs on host machine
-      /// </summary>
       public int Port { get; set; }
+
       public string Protocol { get; set; }
 
       public string Repository { get; set; }

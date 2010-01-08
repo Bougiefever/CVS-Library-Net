@@ -27,13 +27,13 @@ namespace PServerClient.Tests.TestSetup
     </Lines>
   </Response>";
 
-
       public const string XMLWithTargetNamespace = @"<?xml version='1.0' encoding='utf-8'?>
             <psvr:Lines xmlns:psvr='http://www.pserverclient.org' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
                xsi:schemaLocation='http://www.pserverclient.org XMLSchemaTest.xsd'>
                   <psvr:Line>my line 1</psvr:Line>
                   <psvr:Line>line 2</psvr:Line>
             </psvr:Lines>";
+
       public const string CheckedInWithFileContentsResponse = @"<Response>
   <ClassName>PServerClient.Responses.CheckedInResponse</ClassName>
   <Name>Checked-in</Name>
@@ -223,22 +223,12 @@ namespace PServerClient.Tests.TestSetup
             <Line>AB4%o=wSobI4w</Line>
             <Line>END AUTH REQUEST</Line>
          </Lines>
-           <Responses>
-              <Response>
-               <ClassName>PServerClient.Responses.AuthResponse</ClassName>
-               <Name/>
-               <Lines>
-                 <Line>I LOVE YOU</Line>
-               </Lines>
-            </Response>
-         </Responses>
       </Request>
       <Request>
          <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
          <Lines>
             <Line>UseUnchanged</Line>
          </Lines>
-         <Responses />
       </Request>
    </RequiredRequests>
    <Requests>
@@ -247,41 +237,47 @@ namespace PServerClient.Tests.TestSetup
          <Lines>
             <Line>Root /usr/local/cvsroot/sandbox</Line>
          </Lines>
-         <Responses />
       </Request>
       <Request>
          <ClassName>PServerClient.Requests.GlobalOptionRequest</ClassName>
          <Lines>
             <Line>Global_option -q</Line>
          </Lines>
-         <Responses />
       </Request>
-     <Request>
-       <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
-       <Lines>
-         <Line>co</Line>
-       </Lines>
-       <Responses>
-         <Response>
-           <ClassName>PServerClient.Responses.ClearStickyResponse</ClassName>
-           <Name>Clear-sticky</Name>
-           <Lines>
-             <Line>Clear-sticky abougie/</Line>
-             <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
-           </Lines>
-         </Response>
-         <Response>
-           <ClassName>PServerClient.Responses.SetStaticDirectoryResponse</ClassName>
-           <Name>Set-static-directory</Name>
-           <Lines>
-             <Line>Set-static-directory abougie/</Line>
-             <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
-           </Lines>
-         </Response>
-       </Responses>
-     </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
+         <Lines>
+            <Line>co</Line>
+         </Lines>
+      </Request>
    </Requests>
+   <Responses>
+      <Response>
+         <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+         <Name/>
+         <Lines>
+            <Line>I LOVE YOU</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.ClearStickyResponse</ClassName>
+         <Name>Clear-sticky</Name>
+         <Lines>
+            <Line>Clear-sticky abougie/</Line>
+            <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.SetStaticDirectoryResponse</ClassName>
+         <Name>Set-static-directory</Name>
+         <Lines>
+            <Line>Set-static-directory abougie/</Line>
+            <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
+         </Lines>
+      </Response>
+   </Responses>
 </Command>";
+
       public const string MTResponse = @"<Response>
           <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
           <Name>MT</Name>

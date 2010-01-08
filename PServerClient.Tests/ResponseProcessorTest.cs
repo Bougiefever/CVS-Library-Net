@@ -4,6 +4,7 @@ using System.IO;
 using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
@@ -26,7 +27,8 @@ namespace PServerClient.Tests
          PServerFactory factory = new PServerFactory();
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          DateTime date = new DateTime();
-         ICommand cmd = factory.CreateCommand(xdoc, new object[] {root, date});
+         IConnection connection = new PServerConnection();
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection, date });
          IList<IResponse> responses = cmd.Responses;
          IList<IFileResponseGroup> files = processor.CreateFileGroupsFromResponses(responses);
          Assert.AreEqual(4, files.Count);
@@ -46,7 +48,7 @@ namespace PServerClient.Tests
          IFileResponse file1 = new UpdatedResponse();
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          string module = "mymod/";
-         IList<string> lines = new List<string> {module, "/usr/local/cvsroot/sandbox/mymod/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { module, "/usr/local/cvsroot/sandbox/mymod/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          file1.Initialize(lines);
          file1.Contents = contents.Encode();
 
@@ -118,7 +120,6 @@ namespace PServerClient.Tests
          Assert.AreNotSame(rootFolder, result);
          Assert.AreEqual("sub1", result.Info.Name);
          Assert.AreEqual(1, rootFolder.Count);
-
       }
    }
 }

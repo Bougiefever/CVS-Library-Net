@@ -18,7 +18,6 @@ namespace PServerClient.IntegrationTests
       [SetUp]
       public void SetUp()
       {
-
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _root.Module = TestConfig.ModuleName;
@@ -29,10 +28,9 @@ namespace PServerClient.IntegrationTests
       public void ExecuteCommandTest()
       {
          DateTime date = DateTime.Now.AddDays(1);
-         ExportCommand cmd = new ExportCommand(_root,_connection, date);
+         ExportCommand cmd = new ExportCommand(_root, _connection, date);
          cmd.Execute();
          TestHelper.SaveCommandConversation(cmd, @"c:\_junk\ExportCommand.xml");
-
       }
 
       [Test]
@@ -59,16 +57,12 @@ namespace PServerClient.IntegrationTests
          ExportCommand cmd = (ExportCommand)factory.CreateCommand(xdoc, new object[] { root, date });
          cmd.AfterExecute();
          Assert.AreEqual(4, cmd.FileGroups.Count);
-
       }
 
       [Test]
       public void TestTest()
       {
          _root.WorkingDirectory = new DirectoryInfo(@"c:\_cvs\TestWorking");
-         
-
       }
-      
    }
 }

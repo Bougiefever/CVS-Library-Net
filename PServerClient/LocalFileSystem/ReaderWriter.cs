@@ -15,10 +15,12 @@ namespace PServerClient.LocalFileSystem
                _readerWriter = new ReaderWriter();
             return _readerWriter;
          }
-         set { _readerWriter = value; }
-      }
 
-      #region IReaderWriter Members
+         set
+         {
+            _readerWriter = value;
+         }
+      }
 
       public byte[] ReadFile(FileInfo file)
       {
@@ -31,6 +33,7 @@ namespace PServerClient.LocalFileSystem
             stream.Read(buffer, 0, (int) file.Length);
             stream.Close();
          }
+
          return buffer;
       }
 
@@ -45,6 +48,7 @@ namespace PServerClient.LocalFileSystem
          {
             lines.Add(line);
          }
+
          reader.Close();
          return lines;
       }
@@ -57,6 +61,7 @@ namespace PServerClient.LocalFileSystem
             {
                tw.WriteLine(s);
             }
+
             tw.Flush();
             tw.Close();
          }
@@ -73,6 +78,7 @@ namespace PServerClient.LocalFileSystem
             stream.Flush();
             stream.Close();
          }
+
          file.Refresh();
       }
 
@@ -94,7 +100,5 @@ namespace PServerClient.LocalFileSystem
             info.Delete();
          info.Refresh();
       }
-
-      #endregion
    }
 }

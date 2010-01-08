@@ -9,10 +9,21 @@ namespace PServerClient.Responses
    {
       public IList<string> Lines { get; set; }
 
+      public abstract ResponseType Type { get; }
+
+      public bool Processed { get; set; }
+
+      public virtual int LineCount
+      {
+         get
+         {
+            return 1;
+         }
+      }
+
       public virtual void Initialize(IList<string> lines)
       {
          Lines = new List<string>(LineCount);
-         //ResponseLines[0] = ResponseHelper.ResponseNames[(int) Type] + " " + lines[0];
          for (int i = 0; i < LineCount; i++)
             Lines.Add(lines[i]);
          Processed = false;
@@ -23,8 +34,6 @@ namespace PServerClient.Responses
          Processed = true;
       }
 
-      public abstract ResponseType Type { get; }
-
       public virtual string Display()
       {
          string response = String.Join("\n", Lines.ToArray());
@@ -33,9 +42,10 @@ namespace PServerClient.Responses
 
       public XElement GetXElement()
       {
-         XElement responseElement = new XElement("Response",
+         XElement responseElement = new XElement(
+                                                 "Response",
                                                  new XElement("ClassName", GetType().FullName),
-                                                 new XElement("Name", ResponseHelper.ResponseNames[(int)Type]),
+                                                 new XElement("Name", ResponseHelper.ResponseNames[(int) Type]),
                                                  new XElement("Lines"));
          XElement linesElement = responseElement.Descendants("Lines").First();
 
@@ -44,21 +54,20 @@ namespace PServerClient.Responses
             XElement line = new XElement("Line", s);
             linesElement.Add(line);
          }
+
          if (this is IFileResponse)
          {
-            IFileResponse fileResponse = (IFileResponse)this;
+            IFileResponse fileResponse = (IFileResponse) this;
             string length = fileResponse.Length.ToString();
             string contents = ResponseHelper.FileContentsToByteArrayString(fileResponse.Contents);
-            XElement responseFile = new XElement("File",
+            XElement responseFile = new XElement(
+                                                 "File",
                                                  new XElement("Length", length),
                                                  new XElement("Contents", contents));
             responseElement.Add(responseFile);
          }
+
          return responseElement;
       }
-
-      public bool Processed { get; set; }
-
-      public virtual int LineCount { get { return 1; } }
    }
 }

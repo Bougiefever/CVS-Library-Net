@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-using PServerClient.Responses;
+﻿using System.Xml.Linq;
 
 namespace PServerClient.Requests
 {
@@ -10,12 +8,14 @@ namespace PServerClient.Requests
    public interface IRequest
    {
       bool ResponseExpected { get; }
-      //IList<IResponse> Responses { get; set; }
+
       string[] Lines { get; }
+
       RequestType Type { get; }
+
       string GetRequestString();
+
       XElement GetXElement();
-      //void CollapseResponses();
    }
 
    /// <summary>
@@ -23,12 +23,12 @@ namespace PServerClient.Requests
    /// </summary>
    public interface IAuthRequest : IRequest
    {
-      //AuthStatus Status { get; }
    }
 
    public interface ISubmitFileRequest : IRequest
    {
       long FileLength { get; }
+
       byte[] FileContents { get; set; }
    }
 }

@@ -11,18 +11,21 @@ namespace PServerClient.CVS
    /// </summary>
    public class Folder : CVSItemBase, IEnumerable
    {
-      private readonly IEnumerable<ICVSItem> _childItems;
+      private readonly IList<ICVSItem> _childItems;
       private readonly CVSFolder _cvsFolder;
       private string _module;
       private string _repository;
       private string _connection;
 
       /// <summary>
-      /// Constructor for folders under the root. The directory info uses the parent folder as its base
+      /// Initializes a new instance of the Folder class
+      /// The sub folders in the tree use this constructor, which contains the parent parameter.
+      /// The Parent Info property is used with the module path name to name the new folder
       /// </summary>
       /// <param name="name">Name of the folder. This also is added to the module name of the parent</param>
       /// <param name="parent">Parent folder</param>
-      public Folder(string name, Folder parent) : base(parent)
+      public Folder(string name, Folder parent)
+         : base(parent)
       {
          DirectoryInfo di = new DirectoryInfo(Path.Combine(parent.Info.FullName, name));
          Info = di;
@@ -31,13 +34,16 @@ namespace PServerClient.CVS
       }
 
       /// <summary>
-      /// Constructor for root folder
+      /// Initializes a new instance of the Folder class
+      /// The root folder in the tree uses this constructor
+      /// The Parent property of the root folder is null. All other objects in the tree have a Parent folder
       /// </summary>
       /// <param name="info">DirectoryInfo of local folder that is the root folder for the CVS module</param>
       /// <param name="connection">CVS connection string - used to write the CVS Root file</param>
       /// <param name="repository">CVS repository</param>
       /// <param name="module">CVS module for current folder</param>
-      public Folder(FileSystemInfo info, string connection, string repository, string module) : base(info)
+      public Folder(FileSystemInfo info, string connection, string repository, string module)
+         : base(info)
       {
          _cvsFolder = new CVSFolder(this);
          _childItems = new List<ICVSItem>();
@@ -46,9 +52,22 @@ namespace PServerClient.CVS
          _connection = connection;
       }
 
-      public override CVSFolder CVSFolder { get { return _cvsFolder; } }
-      public int Count { get { return _childItems.Count(); } }
-      public ICVSItem this[int idx] { get { return _childItems.ElementAt(idx); } }
+      public override CVSFolder CVSFolder
+      {
+         get
+         {
+            return _cvsFolder;
+         }
+      }
+
+      public int Count
+      {
+         get
+         {
+            return _childItems.Count();
+         }
+      }
+
       public string Repository
       {
          get
@@ -66,12 +85,12 @@ namespace PServerClient.CVS
             if (Parent == null)
                return _connection;
             return Parent.Connection;
-         } 
+         }
       }
 
       public string Module
       {
-         get 
+         get
          {
             string module;
             if (Parent == null)
@@ -82,14 +101,22 @@ namespace PServerClient.CVS
          }
       }
 
+      public ICVSItem this[int idx]
+      {
+         get
+         {
+            return _childItems.ElementAt(idx);
+         }
+      }
+
       public void AddItem(ICVSItem item)
       {
-         _childItems.ToList().Add(item);
+         _childItems.Add(item);
       }
 
       public void RemoveItem(ICVSItem item)
       {
-         _childItems.ToList().Remove(item);
+         _childItems.Remove(item);
       }
 
       public IEnumerator GetEnumerator()

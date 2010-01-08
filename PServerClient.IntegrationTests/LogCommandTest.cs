@@ -25,9 +25,6 @@ namespace PServerClient.IntegrationTests
          LogCommand command = new LogCommand(_root, _connection);
          command.LocalOnly = true;
          command.Execute();
-
       }
-
-
    }
 }

@@ -59,6 +59,7 @@ namespace PServerClient.Connection
          {
             Console.WriteLine(e);
          }
+
          if (b == 0 && _lastByte == 10)
             b = -1;
          else
@@ -77,6 +78,7 @@ namespace PServerClient.Connection
                throw new Exception("Unexpected end of stream");
             buffer[i] = (byte) b;
          }
+
          return buffer;
       }
 

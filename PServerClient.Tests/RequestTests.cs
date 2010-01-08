@@ -12,8 +12,8 @@ namespace PServerClient.Tests
    public class RequestTests
    {
       // ReSharper disable PossibleNullReferenceException
-      // ReSharper disable ConvertToConstant.Local
 
+      // ReSharper disable ConvertToConstant.Local
       private readonly IRoot _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
 
       public RequestTests()
@@ -26,7 +26,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Add;
          IRequest request = new AddRequest();
-         const string expected = "add\n";
+          string expected = "add\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -35,7 +35,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Admin;
          IRequest request = new AdminRequest();
-         const string expected = "admin\n";
+          string expected = "admin\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -44,7 +44,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Annotate;
          IRequest request = new AnnotateRequest();
-         const string expected = "annotate\n";
+          string expected = "annotate\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -53,7 +53,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Argument;
          IRequest request = new ArgumentRequest("-a");
-         const string expected = "Argument -a\n";
+          string expected = "Argument -a\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -62,7 +62,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Argumentx;
          IRequest request = new ArgumentxRequest("-a");
-         const string expected = "Argumentx -a\n";
+          string expected = "Argumentx -a\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -71,7 +71,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Auth;
          IAuthRequest request = new AuthRequest(_root);
-         const string expected = "BEGIN AUTH REQUEST\n/f1/f2/f3\nusername\nA:yZZ30 e\nEND AUTH REQUEST\n";
+          string expected = "BEGIN AUTH REQUEST\n/f1/f2/f3\nusername\nA:yZZ30 e\nEND AUTH REQUEST\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -80,7 +80,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Case;
          IRequest request = new CaseRequest();
-         const string expected = "Case\n";
+          string expected = "Case\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -89,7 +89,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.CheckIn;
          IRequest request = new CheckInRequest();
-         const string expected = "ci\n";
+          string expected = "ci\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -99,7 +99,7 @@ namespace PServerClient.Tests
          RequestType type = RequestType.CheckinTime;
          var checkinTime = new DateTime(2009, 11, 6, 14, 21, 8);
          IRequest request = new CheckinTimeRequest(checkinTime);
-         const string expected = "Checkin-time 06 Nov 2009 14:21:08 -0000\n";
+          string expected = "Checkin-time 06 Nov 2009 14:21:08 -0000\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -108,8 +108,8 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.CheckOut;
          IRequest request = new CheckOutRequest();
-         const string expected = "co\n";
-         RequestTest(type, request, expected, true); 
+          string expected = "co\n";
+         RequestTest(type, request, expected, true);
       }
 
       [Test]
@@ -117,7 +117,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Diff;
          IRequest request = new DiffRequest();
-         const string expected = "diff\n";
+          string expected = "diff\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -126,7 +126,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Directory;
          IRequest request = new DirectoryRequest(".", _root.Repository + "/" + _root.Module);
-         const string expected = "Directory .\n/f1/f2/f3/mod1\n";
+          string expected = "Directory .\n/f1/f2/f3/mod1\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -135,7 +135,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Editors;
          IRequest request = new EditorsRequest();
-         const string expected = "editors\n";
+          string expected = "editors\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -144,7 +144,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.EmptyConflicts;
          IRequest request = new EmptyConflictsRequest();
-         const string expected = "Empty-conflicts\n";
+          string expected = "Empty-conflicts\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -153,7 +153,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Entry;
          IRequest request = new EntryRequest("file.cs", "1.1.1", "a", "b", "c");
-         const string expected = "Entry /file.cs/1.1.1/a/b/c\n";
+          string expected = "Entry /file.cs/1.1.1/a/b/c\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -161,8 +161,8 @@ namespace PServerClient.Tests
       public void ExpandModulesRequestTest()
       {
          RequestType type = RequestType.ExpandModules;
-         IRequest request =new ExpandModulesRequest();
-         const string expected = "expand-modules\n";
+         IRequest request = new ExpandModulesRequest();
+          string expected = "expand-modules\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -171,7 +171,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Export;
          IRequest request = new ExportRequest();
-         const string expected = "export\n";
+          string expected = "export\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -180,7 +180,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.GlobalOption;
          IRequest request = new GlobalOptionRequest("-o");
-         const string expected = "Global_option -o\n";
+          string expected = "Global_option -o\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -189,7 +189,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.GssapiAuthenticate;
          IRequest request = new GssapiAuthenticateRequest();
-         const string expected = "Gssapi-authenticate\n";
+          string expected = "Gssapi-authenticate\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -198,7 +198,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.GssapiEncrypt;
          IRequest request = new GssapiEncryptRequest();
-         const string expected = "Gssapi-encrypt\n";
+          string expected = "Gssapi-encrypt\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -207,7 +207,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.GzipFileContents;
          IRequest request = new GzipFileContentsRequest("1");
-         const string expected = "gzip-file-contents 1\n";
+          string expected = "gzip-file-contents 1\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -216,7 +216,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.GzipStream;
          IRequest request = new GzipStreamRequest("1");
-         const string expected = "Gzip-stream 1\n";
+         string expected = "Gzip-stream 1\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -225,7 +225,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.History;
          IRequest request = new HistoryRequest();
-         const string expected = "history\n";
+         string expected = "history\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -234,7 +234,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Import;
          IRequest request = new ImportRequest();
-         const string expected = "import\n";
+         string expected = "import\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -243,7 +243,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Init;
          IRequest request = new InitRequest("sandbox");
-         const string expected = "init sandbox\n";
+         string expected = "init sandbox\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -252,7 +252,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.IsModified;
          IRequest request = new IsModifiedRequest("file.cs");
-         const string expected = "Is-modified file.cs\n";
+         string expected = "Is-modified file.cs\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -261,7 +261,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.KerberosEncrypt;
          IRequest request = new KerberosEncryptRequest();
-         const string expected = "Kerberos-encrypt\n";
+         string expected = "Kerberos-encrypt\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -270,7 +270,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Kopt;
          IRequest request = new KoptRequest("-kb");
-         const string expected = "Kopt -kb\n";
+         string expected = "Kopt -kb\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -279,7 +279,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Log;
          IRequest request = new LogRequest();
-         const string expected = "log\n";
+         string expected = "log\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -288,7 +288,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Lost;
          IRequest request = new LostRequest("file.cs");
-         const string expected = "Lost file.cs\n";
+         string expected = "Lost file.cs\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -297,7 +297,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.MaxDot;
          IRequest request = new MaxDotRequest("one");
-         const string expected = "Max-dotdot one\n";
+         string expected = "Max-dotdot one\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -306,7 +306,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Modified;
          IRequest request = new ModifiedRequest("file.cs", "u=rw,g=rw,o=rw", 6);
-         const string expected = "Modified file.cs\nu=rw,g=rw,o=rw\n6\n";
+         string expected = "Modified file.cs\nu=rw,g=rw,o=rw\n6\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -315,7 +315,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Noop;
          IRequest request = new NoopRequest();
-         const string expected = "noop\n";
+         string expected = "noop\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -324,7 +324,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Notify;
          IRequest request = new NotifyRequest("file.cs");
-         const string expected = "Notify file.cs\n";
+         string expected = "Notify file.cs\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -333,7 +333,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Questionable;
          IRequest request = new QuestionableRequest("file.cs");
-         const string expected = "Questionable file.cs\n";
+         string expected = "Questionable file.cs\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -342,7 +342,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.RAnnotate;
          IRequest request = new RAnnotateRequest();
-         const string expected = "rannotate\n";
+         string expected = "rannotate\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -351,7 +351,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.RDiff;
          IRequest request = new RDiffRequest();
-         const string expected = "rdiff\n";
+         string expected = "rdiff\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -360,7 +360,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Release;
          IRequest request = new ReleaseRequest();
-         const string expected = "release\n";
+         string expected = "release\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -369,7 +369,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Remove;
          IRequest request = new RemoveRequest();
-         const string expected = "remove\n";
+         string expected = "remove\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -378,7 +378,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Repository;
          IRequest request = new RepositoryRequest(_root.Repository);
-         const string expected = "Repository /f1/f2/f3\n";
+         string expected = "Repository /f1/f2/f3\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -397,7 +397,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.RLog;
          IRequest request = new RLogRequest();
-         const string expected = "rlog\n";
+         string expected = "rlog\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -406,7 +406,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Root;
          IRequest request = new RootRequest(_root.Repository);
-         const string expected = "Root /f1/f2/f3\n";
+         string expected = "Root /f1/f2/f3\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -415,7 +415,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.RTag;
          IRequest request = new RTagRequest();
-         const string expected = "rtag\n";
+         string expected = "rtag\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -424,7 +424,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Set;
          IRequest request = new SetRequest("rabbit", "Peter");
-         const string expected = "Set rabbit=Peter\n";
+         string expected = "Set rabbit=Peter\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -433,7 +433,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.StaticDirectory;
          IRequest request = new StaticDirectoryRequest();
-         const string expected = "Static-directory\n";
+         string expected = "Static-directory\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -442,7 +442,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Status;
          IRequest request = new StatusRequest();
-         const string expected = "status\n";
+         string expected = "status\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -451,7 +451,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Sticky;
          IRequest request = new StickyRequest("idk");
-         const string expected = "Sticky idk\n";
+         string expected = "Sticky idk\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -460,7 +460,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Tag;
          IRequest request = new TagRequest();
-         const string expected = "tag\n";
+         string expected = "tag\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -469,7 +469,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Unchanged;
          IRequest request = new UnchangedRequest("file.cs");
-         const string expected = "Unchanged file.cs\n";
+         string expected = "Unchanged file.cs\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -478,7 +478,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.UpdatePatches;
          IRequest request = new UpdatePatchesRequest();
-         const string expected = "update-patches\n";
+         string expected = "update-patches\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -487,7 +487,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Update;
          IRequest request = new UpdateRequest();
-         const string expected = "update\n";
+         string expected = "update\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -496,7 +496,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.UseUnchanged;
          IRequest request = new UseUnchangedRequest();
-         const string expected = "UseUnchanged\n";
+         string expected = "UseUnchanged\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -505,7 +505,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.ValidRequests;
          IRequest request = new ValidRequestsRequest();
-         const string expected = "valid-requests\n";
+         string expected = "valid-requests\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -514,7 +514,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.ValidResponses;
          IRequest request = new ValidResponsesRequest(new[] { ResponseType.Ok, ResponseType.MTMessage, ResponseType.EMessage });
-         const string expected = "Valid-responses ok MT E\n";
+         string expected = "Valid-responses ok MT E\n";
          RequestTest(type, request, expected, false);
       }
 
@@ -523,7 +523,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.VerifyAuth;
          IRequest request = new VerifyAuthRequest(_root);
-         const string expected = "BEGIN VERIFICATION REQUEST\n/f1/f2/f3\nusername\nA:yZZ30 e\nEND VERIFICATION REQUEST\n";
+         string expected = "BEGIN VERIFICATION REQUEST\n/f1/f2/f3\nusername\nA:yZZ30 e\nEND VERIFICATION REQUEST\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -532,7 +532,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Version;
          IRequest request = new VersionRequest();
-         const string expected = "version\n";
+         string expected = "version\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -541,7 +541,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.WatchAdd;
          IRequest request = new WatchAddRequest();
-         const string expected = "watch-add\n";
+         string expected = "watch-add\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -550,7 +550,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.Watchers;
          IRequest request = new WatchersRequest();
-         const string expected = "watchers\n";
+         string expected = "watchers\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -559,7 +559,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.WatchOff;
          IRequest request = new WatchOffRequest();
-         const string expected = "watch-off\n";
+         string expected = "watch-off\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -568,7 +568,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.WatchOn;
          IRequest request = new WatchOnRequest();
-         const string expected = "watch-on\n";
+         string expected = "watch-on\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -577,7 +577,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.WatchRemove;
          IRequest request = new WatchRemoveRequest();
-         const string expected = "watch-remove\n";
+         string expected = "watch-remove\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -586,7 +586,7 @@ namespace PServerClient.Tests
       {
          RequestType type = RequestType.WrapperSendmeRcsOptions;
          IRequest request = new WrapperSendmeRcsOptionsRequest();
-         const string expected = "wrapper-sendme-rcsOptions\n";
+         string expected = "wrapper-sendme-rcsOptions\n";
          RequestTest(type, request, expected, true);
       }
 
@@ -596,7 +596,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(requestString, actual);
          Assert.AreEqual(responseExpected, request.ResponseExpected);
          Assert.AreEqual(type, request.Type);
-         XElement el = request.GetXElement(); 
+         XElement el = request.GetXElement();
          bool result = TestHelper.ValidateRequestXML(el);
          Assert.IsTrue(result);
          Console.WriteLine(el.ToString());

@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
-using PServerClient.Connection;
 using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests

@@ -9,6 +9,10 @@ namespace PServerClient
 {
    public static class ResponseHelper
    {
+      public static readonly string[] ResponseNames;
+
+      public static readonly string[] ResponsePatterns;
+
       #region Response cvs name
 
       private const string NameAuth = "";
@@ -83,9 +87,6 @@ namespace PServerClient
 
       #endregion
 
-      public static readonly string[] ResponseNames;
-      public static readonly string[] ResponsePatterns;
-
       static ResponseHelper()
       {
          ResponsePatterns = new[]
@@ -126,38 +127,38 @@ namespace PServerClient
 
          ResponseNames = new[]
                             {
-                                  NameAuth,
-                                  NameCheckedIn,
-                                  NameChecksum,
-                                  NameClearStaticDirectory,
-                                  NameClearSticky,
-                                  NameCopyFile,
-                                  NameCreated,
-                                  NameEMessage,
-                                  NameError,
-                                  NameFlush,
-                                  NameMbinary,
-                                  NameMerged,
-                                  NameMessage,
-                                  NameMTMessage,
-                                  NameMode,
-                                  NameModTime,
-                                  NameModuleExpansion,
-                                  NameNewEntry,
-                                  NameNotified,
-                                  NameOk,
-                                  NamePatched,
-                                  NameRcsDiff,
-                                  NameRemoved,
-                                  NameRemoveEntry,
-                                  NameSetStaticDirectory,
-                                  NameSetSticky,
-                                  NameTemplate,
-                                  NameUpdated,
-                                  NameUpdateExisting,
-                                  NameValidRequests,
-                                  NameWrapperRscOption,
-                                  NameNull
+                               NameAuth,
+                               NameCheckedIn,
+                               NameChecksum,
+                               NameClearStaticDirectory,
+                               NameClearSticky,
+                               NameCopyFile,
+                               NameCreated,
+                               NameEMessage,
+                               NameError,
+                               NameFlush,
+                               NameMbinary,
+                               NameMerged,
+                               NameMessage,
+                               NameMTMessage,
+                               NameMode,
+                               NameModTime,
+                               NameModuleExpansion,
+                               NameNewEntry,
+                               NameNotified,
+                               NameOk,
+                               NamePatched,
+                               NameRcsDiff,
+                               NameRemoved,
+                               NameRemoveEntry,
+                               NameSetStaticDirectory,
+                               NameSetSticky,
+                               NameTemplate,
+                               NameUpdated,
+                               NameUpdateExisting,
+                               NameValidRequests,
+                               NameWrapperRscOption,
+                               NameNull
                             };
       }
 
@@ -171,10 +172,12 @@ namespace PServerClient
       }
 
       public static string FixResponseModuleSlashes(string module)
-      { 
+      {
          string newModule = module;
          if (module.Substring(module.Length - 1, 1) == "/")
             newModule = module.Substring(0, module.Length - 1);
+         if (module.Substring(0, 1) == "/")
+            newModule = newModule.Substring(1);
          return newModule;
       }
 
@@ -189,7 +192,7 @@ namespace PServerClient
 
       public static string GetValidResponsesString(ResponseType[] validResponses)
       {
-         IEnumerable<string> responses = validResponses.Select(vr => ResponseNames[(int)vr]);
+         IEnumerable<string> responses = validResponses.Select(vr => ResponseNames[(int) vr]);
          string resString = String.Join(" ", responses.ToArray());
          return resString;
       }
@@ -202,6 +205,7 @@ namespace PServerClient
          {
             sb.Append(",").Append(fileContents[i]);
          }
+
          return sb.ToString();
       }
 
@@ -224,8 +228,10 @@ namespace PServerClient
                if (response is IMessageResponse)
                   firstMessage = (IMessageResponse) response;
             }
+
             type = response.GetType();
          }
+
          return condensed;
       }
 
@@ -234,7 +240,7 @@ namespace PServerClient
          string mod = FixResponseModuleSlashes(module);
          string name;
          if (mod.LastIndexOf("/") > 0)
-            name = mod.Substring(mod.LastIndexOf("/")+1);
+            name = mod.Substring(mod.LastIndexOf("/") + 1);
          else
             name = mod;
          return name;

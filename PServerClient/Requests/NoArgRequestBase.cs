@@ -8,10 +8,17 @@ namespace PServerClient.Requests
          Lines[0] = RequestName;
       }
 
-      protected NoArgRequestBase(string[] lines) : base(lines)
+      protected NoArgRequestBase(string[] lines)
+         : base(lines)
       {
       }
 
-      public override bool ResponseExpected { get { return false; } }
+      public override bool ResponseExpected
+      {
+         get
+         {
+            return false;
+         }
+      }
    }
 }

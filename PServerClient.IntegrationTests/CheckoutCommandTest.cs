@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
 using System.Net.Sockets;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
-using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
@@ -18,12 +14,11 @@ namespace PServerClient.IntegrationTests
    {
       private IRoot _root;
       private IConnection _connection;
-      private const string lineend = "\n";
+      private string _lineend = "\n";
 
       [SetUp]
       public void SetUp()
       {
-
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword());
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _connection = new PServerConnection();
@@ -59,13 +54,13 @@ namespace PServerClient.IntegrationTests
          Console.WriteLine();
 
          // write valid responses string
-         s = "Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT" + lineend;
+         s = "Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write valid requests 
-         s = "valid-requests" + lineend;
+         s = "valid-requests" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
@@ -78,37 +73,37 @@ namespace PServerClient.IntegrationTests
          Console.WriteLine();
 
          // write unchanged
-         s = "UseUnchanged" + lineend;
+         s = "UseUnchanged" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write root
-         s = "Root /usr/local/cvsroot/sandbox" + lineend;
+         s = "Root /usr/local/cvsroot/sandbox" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write global option
-         s = "Global_option -q" + lineend;
+         s = "Global_option -q" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write argument
-         s = "Argument abougie" + lineend;
+         s = "Argument abougie" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // write directory
-         s = "Directory ." + lineend + "/usr/local/cvsroot/sandbox" + lineend;
+         s = "Directory ." + _lineend + "/usr/local/cvsroot/sandbox" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
          // expand mods 
-         s = "expand-modules" + lineend;
+         s = "expand-modules" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
@@ -121,22 +116,22 @@ namespace PServerClient.IntegrationTests
          Console.WriteLine();
 
          // arg command
-         s = "Argument -N" + lineend;
+         s = "Argument -N" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
-         s = "Argument abougie" + lineend;
+         s = "Argument abougie" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
-         s = "Directory ." + lineend + "/usr/local/cvsroot/sandbox" + lineend;
+         s = "Directory ." + _lineend + "/usr/local/cvsroot/sandbox" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();
 
-         s = "co" + lineend;
+         s = "co" + _lineend;
          bbb = s.Encode();
          stream.Write(bbb, 0, bbb.Length);
          stream.Flush();

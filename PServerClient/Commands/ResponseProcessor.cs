@@ -1,8 +1,8 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
-using PServerClient.Responses;
+using System.IO;
 using PServerClient.CVS;
+using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
@@ -16,12 +16,14 @@ namespace PServerClient.Commands
          {
             if (response.Type == ResponseType.ModTime)
             {
-               file = new FileResponseGroup {ModTime = (ModTimeResponse) response};
+               file = new FileResponseGroup { ModTime = (ModTimeResponse) response };
             }
+
             if (response is IMessageResponse)
             {
                if (file != null) file.MT = (IMessageResponse) response;
             }
+
             if (response is IFileResponse)
             {
                if (file != null)
@@ -31,6 +33,7 @@ namespace PServerClient.Commands
                }
             }
          }
+
          return files;
       }
 
@@ -43,16 +46,20 @@ namespace PServerClient.Commands
          {
             IFileResponse response = fileGroup.FileResponse;
             string module = ResponseHelper.FixResponseModuleSlashes(response.Module);
-            if (module != parent.Module) // add file to current folder
+
+            // add file to current folder
+            if (module != parent.Module) 
             {
                string name = ResponseHelper.GetLastModuleName(response.Module);
                Folder folder = new Folder(name, parent);
                parent = folder;
             }
+
             Entry entry = new Entry(fileGroup.FileResponse.Name, parent);
             entry.Length = response.Length;
             entry.FileContents = response.Contents;
          }
+
          return rootFolder;
       }
 
@@ -65,6 +72,7 @@ namespace PServerClient.Commands
          {
             parent = AddFolderToStructure(rootFolder, module);
          }
+
          Entry entry = new Entry(file.FileResponse.Name, parent);
          entry.Length = file.FileResponse.Length;
          entry.FileContents = file.FileResponse.Contents;
@@ -74,11 +82,11 @@ namespace PServerClient.Commands
 
       public Folder AddFolderToStructure(Folder rootFolder, string module)
       {
-         string[] modules = module.Split(new [] {"/"}, StringSplitOptions.RemoveEmptyEntries);
+         string[] modules = module.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
          string mod = string.Empty;
          Folder parent = rootFolder;
          Folder folder = null;
-         for (int i = 0; i < modules.Length;i++ )
+         for (int i = 0; i < modules.Length; i++)
          {
             mod += "/" + modules[i];
             mod = ResponseHelper.FixResponseModuleSlashes(mod);
@@ -90,6 +98,7 @@ namespace PServerClient.Commands
                parent = folder;
             }
          }
+
          return folder;
       }
 
@@ -105,6 +114,7 @@ namespace PServerClient.Commands
             if (returnFolder == null)
                returnFolder = GetModuleFolder(subFolder, module);
          }
+
          return returnFolder;
       }
    }

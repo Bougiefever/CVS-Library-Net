@@ -6,14 +6,18 @@ using PServerClient.CVS;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
 using Rhino.Mocks;
-using Is=Rhino.Mocks.Constraints.Is;
+using Is = Rhino.Mocks.Constraints.Is;
 
 namespace PServerClient.Tests
 {
    [TestFixture]
    public class PServerConnectionTests
    {
-      #region Setup/Teardown
+      private MockRepository _mocks;
+
+      private ICvsTcpClient _client;
+
+      private PServerConnection _connection;
 
       [SetUp]
       public void SetUp()
@@ -22,32 +26,6 @@ namespace PServerClient.Tests
          _client = _mocks.StrictMock<ICvsTcpClient>();
          _connection = new PServerConnection();
          _connection.TcpClient = _client;
-      }
-
-      #endregion
-
-      private MockRepository _mocks;
-      private ICvsTcpClient _client;
-      private PServerConnection _connection;
-
-      private int[] GetMockReadBytes(IList<string> lines, int lastChar)
-      {
-         byte[] cBytes = new byte[0];
-         byte[] copy;
-         foreach (string line in lines)
-         {
-            byte[] lineBytes = line.Encode();
-            copy = new byte[cBytes.Length];
-            cBytes.CopyTo(copy, 0);
-            cBytes = new byte[cBytes.Length + lineBytes.Length + 1];
-            copy.CopyTo(cBytes, 0);
-            lineBytes.CopyTo(cBytes, copy.Length);
-            cBytes[cBytes.Length - 1] = 10;
-         }
-         int[] iBytes = new int[cBytes.Length + 1];
-         cBytes.CopyTo(iBytes, 0);
-         iBytes[iBytes.Length - 1] = lastChar;
-         return iBytes;
       }
 
       [Test]
@@ -64,13 +42,9 @@ namespace PServerClient.Tests
       {
          Expect.Call(() => _client.Connect(null, 0))
             .IgnoreArguments()
-            .Constraints(Is.Equal("host-name"), Is.Equal(1));
+            .Constraints(Is.Equal("host-name"), Is.Equal(2401));
          _mocks.ReplayAll();
-         //string host = TestConfig.CVSHost;
-         //int port = TestConfig.CVSPort;
-         //string user = TestConfig.Username;
-         //string pwd = TestConfig.Password;
-         //string path = TestConfig.RepositoryPath;
+
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password); 
          _connection.Connect(root);
          _mocks.VerifyAll();
@@ -94,6 +68,7 @@ namespace PServerClient.Tests
                Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
             }
          }
+
          using (_mocks.Playback())
          {
             var result = _connection.GetResponseLines("Updated abougie/", ResponseType.Updated, 5);
@@ -167,7 +142,7 @@ namespace PServerClient.Tests
       [Test]
       public void GetResponsesOneResponseTest()
       {
-         IList<string> lines = new List<string> {"ok "};
+         IList<string> lines = new List<string> { "ok " };
          int[] readBytes = GetMockReadBytes(lines, -1);
          for (int i = 0; i < readBytes.Length; i++)
             Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
@@ -218,7 +193,7 @@ namespace PServerClient.Tests
       [Test]
       public void ReadLineTest()
       {
-         int[] readBytes = GetMockReadBytes(new List<string> {"abc"}, -1);
+         int[] readBytes = GetMockReadBytes(new List<string> { "abc" }, -1);
          using (_mocks.Record())
          {
             for (int i = 0; i < readBytes.Length - 1; i++)
@@ -226,6 +201,7 @@ namespace PServerClient.Tests
                Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
             }
          }
+
          using (_mocks.Playback())
          {
             string result = _connection.ReadLine();
@@ -267,6 +243,27 @@ namespace PServerClient.Tests
          Assert.IsNotNull(r1);
          Assert.IsNotNull(r2);
          Assert.IsNull(r3);
+      }
+
+      private int[] GetMockReadBytes(IList<string> lines, int lastChar)
+      {
+         byte[] chars = new byte[0];
+         byte[] copy;
+         foreach (string line in lines)
+         {
+            byte[] lineBytes = line.Encode();
+            copy = new byte[chars.Length];
+            chars.CopyTo(copy, 0);
+            chars = new byte[chars.Length + lineBytes.Length + 1];
+            copy.CopyTo(chars, 0);
+            lineBytes.CopyTo(chars, copy.Length);
+            chars[chars.Length - 1] = 10;
+         }
+
+         int[] ints = new int[chars.Length + 1];
+         chars.CopyTo(ints, 0);
+         ints[ints.Length - 1] = lastChar;
+         return ints;
       }
    }
 }

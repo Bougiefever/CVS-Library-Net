@@ -8,10 +8,17 @@ namespace PServerClient.Commands
    /// </summary>
    public class AddCommand : CommandBase
    {
-      public AddCommand(IRoot root, IConnection connection) : base(root, connection)
+      public AddCommand(IRoot root, IConnection connection)
+         : base(root, connection)
       {
       }
 
-      public override CommandType Type { get { return CommandType.Add; } }
+      public override CommandType Type
+      {
+         get
+         {
+            return CommandType.Add;
+         }
+      }
    }
 }

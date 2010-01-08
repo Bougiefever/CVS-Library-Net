@@ -8,7 +8,7 @@ namespace PServerClient.Tests
    [TestFixture]
    public class CVSTest
    {
-      private readonly string _connection = ":pserver:username@host-name:1/usr/local/cvsroot/sandbox";
+      private readonly string _connection = ":pserver:username@host-name:2401/usr/local/cvsroot/sandbox";
       private readonly string _repository = "/usr/local/cvsroot/sandbox";
       private readonly string _module = "mymod";
 

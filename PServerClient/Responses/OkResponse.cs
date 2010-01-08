@@ -1,14 +1,19 @@
-using System;
-
 namespace PServerClient.Responses
 {
    /// <summary>
    /// ok \n
-   ///The command completed successfully.
+   /// The command completed successfully.
    /// </summary>
    public class OkResponse : ResponseBase
    {
-      public override ResponseType Type { get { return ResponseType.Ok; } }
+      public override ResponseType Type
+      {
+         get
+         {
+            return ResponseType.Ok;
+         }
+      }
+
       public override string Display()
       {
          return "ok";

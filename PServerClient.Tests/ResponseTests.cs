@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using NUnit.Framework;
 using PServerClient.Commands;
+using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
-using System.Linq;
 
 namespace PServerClient.Tests
 {
@@ -41,7 +42,7 @@ namespace PServerClient.Tests
       public void AuthResponseTest()
       {
          IResponse response = new AuthResponse();
-         ResponseTest(response, ResponseType.Auth, 1, "I LOVE YOU", new List<string> {"I LOVE YOU"});
+         ResponseTest(response, ResponseType.Auth, 1, "I LOVE YOU", new List<string> { "I LOVE YOU" });
       }
 
       [Test]
@@ -49,7 +50,7 @@ namespace PServerClient.Tests
       {
          CheckedInResponse response = new CheckedInResponse();
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
-         ResponseTest(response, ResponseType.CheckedIn, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"}, contents);
+         ResponseTest(response, ResponseType.CheckedIn, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" }, contents);
       }
 
       [Test]
@@ -68,14 +69,13 @@ namespace PServerClient.Tests
          ResponseTest(response, ResponseType.ClearStaticDirectory, 2, "/usr/local/cvsroot/sandbox/mod1/", lines);
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
-
       }
 
       [Test]
       public void ClearStickyResponseTest()
       {
          ClearStickyResponse response = new ClearStickyResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" };
          ResponseTest(response, ResponseType.ClearSticky, 2, "/usr/local/cvsroot/sandbox/mod1/", lines);
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
@@ -95,7 +95,7 @@ namespace PServerClient.Tests
       public void CreatedResponseTest()
       {
          CreatedResponse response = new CreatedResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          ResponseTest(response, ResponseType.Created, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
@@ -104,7 +104,7 @@ namespace PServerClient.Tests
       public void ErrorResponseTest()
       {
          ErrorResponse response = new ErrorResponse();
-         IList<string> lines = new List<string> {"My error message"};
+         IList<string> lines = new List<string> { "My error message" };
          ResponseTest(response, ResponseType.Error, 1, "My error message", lines);
          Assert.AreEqual("My error message", response.Message);
      }
@@ -115,10 +115,6 @@ namespace PServerClient.Tests
          UpdatedResponse response = new UpdatedResponse();
          IList<string> lines = new List<string> { "mod1/mod2/mod3/", "/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Initialize(lines);
-         //ReceiveFile file = response.File;
-         //Assert.AreEqual("mod1", file.Path[0]);
-         //Assert.AreEqual("mod2", file.Path[1]);
-         //Assert.AreEqual("mod3", file.Path[2]);
          Assert.AreEqual("mod1/mod2/mod3/", response.Module);
          Assert.AreEqual("/file1.cs/1.2.3.4///", response.EntryLine);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", response.RepositoryPath);
@@ -135,8 +131,6 @@ namespace PServerClient.Tests
          UpdatedResponse response = new UpdatedResponse();
          IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Initialize(lines);
-         //ReceiveFile file = response.File;
-         //Assert.AreEqual("mod1", file.Path[0]);
          Assert.AreEqual("mod1/", response.Module);
          Assert.AreEqual("/file1.cs/1.2.3.4///", response.EntryLine);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
@@ -151,7 +145,7 @@ namespace PServerClient.Tests
       public void FlushResponseTest()
       {
          FlushResponse response = new FlushResponse();
-         ResponseTest(response, ResponseType.Flush, 1, "", new List<string> { "" });
+         ResponseTest(response, ResponseType.Flush, 1, string.Empty, new List<string> { string.Empty });
       }
 
       [Test]
@@ -159,7 +153,7 @@ namespace PServerClient.Tests
       {
          MbinaryResponse response = new MbinaryResponse();
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          ResponseTest(response, ResponseType.Mbinary, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
 
@@ -168,7 +162,7 @@ namespace PServerClient.Tests
       {
          MergedResponse response = new MergedResponse();
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          ResponseTest(response, ResponseType.Merged, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
 
@@ -218,7 +212,7 @@ namespace PServerClient.Tests
       public void NewEntryResponseTest()
       {
          NewEntryResponse response = new NewEntryResponse();
-         IList<string> lines = new List<string> {"mod1", "/file1.cs/1.1.1.1///"};
+         IList<string> lines = new List<string> { "mod1", "/file1.cs/1.1.1.1///" };
          ResponseTest(response, ResponseType.NewEntry, 2, "mod1\n/file1.cs/1.1.1.1///", lines);
          Assert.AreEqual("file1.cs", response.FileName);
          Assert.AreEqual("1.1.1.1", response.Revision);
@@ -228,7 +222,7 @@ namespace PServerClient.Tests
       public void NotifiedResponseTest()
       {
          NotifiedResponse response = new NotifiedResponse();
-         IList<string> lines = new List<string> {"/usr/local/cvsroot/sandbox/mod1/file1.cs"};
+         IList<string> lines = new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs" };
          ResponseTest(response, ResponseType.Notified, 1, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines);
       }
 
@@ -236,7 +230,7 @@ namespace PServerClient.Tests
       public void UnknownResponseTest()
       {
          UnknownResponse response = new UnknownResponse();
-         IList<string> lines = new List<string> {"D2009.12.31.13.46.32"};
+         IList<string> lines = new List<string> { "D2009.12.31.13.46.32" };
          ResponseTest(response, ResponseType.Unknown, 1, "D2009.12.31.13.46.32", lines);
       }
 
@@ -244,14 +238,14 @@ namespace PServerClient.Tests
       public void OkResponseTest()
       {
          OkResponse response = new OkResponse();
-         ResponseTest(response, ResponseType.Ok, 1, "ok", new List<string> { "" });
+         ResponseTest(response, ResponseType.Ok, 1, "ok", new List<string> { string.Empty });
       }
 
       [Test]
       public void PatchedResponseTest()
       {
          PatchedResponse response = new PatchedResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          ResponseTest(response, ResponseType.Patched, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
@@ -260,7 +254,7 @@ namespace PServerClient.Tests
       public void RcsDiffResponseTest()
       {
          RcsDiffResponse response = new RcsDiffResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          ResponseTest(response, ResponseType.RcsDiff, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
      }
@@ -269,7 +263,7 @@ namespace PServerClient.Tests
       public void RemovedResponseTest()
       {
          RemovedResponse response = new RemovedResponse();
-         IList<string> lines = new List<string> {"/usr/local/cvsroot/sandbox/mod1/file1.cs"};
+         IList<string> lines = new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs" };
          ResponseTest(response, ResponseType.Removed, 1, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
       }
@@ -278,7 +272,7 @@ namespace PServerClient.Tests
       public void RemoveEntryResponseTest()
       {
          RemoveEntryResponse response = new RemoveEntryResponse();
-         IList<string> lines = new List<string> {"/usr/local/cvsroot/sandbox/mod1/file1.cs"};
+         IList<string> lines = new List<string> { "/usr/local/cvsroot/sandbox/mod1/file1.cs" };
          ResponseTest(response, ResponseType.RemoveEntry, 1, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
       }
@@ -287,7 +281,7 @@ namespace PServerClient.Tests
       public void SetStaticDirectoryResponseTest()
       {
          SetStaticDirectoryResponse response = new SetStaticDirectoryResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" };
          ResponseTest(response, ResponseType.SetStaticDirectory, 2, "/usr/local/cvsroot/sandbox/mod1/", lines);
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
@@ -297,7 +291,7 @@ namespace PServerClient.Tests
       public void SetStickyResponseTest()
       {
          SetStickyResponse response = new SetStickyResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/" };
          ResponseTest(response, ResponseType.SetSticky, 2, "/usr/local/cvsroot/sandbox/mod1/", lines);
          Assert.AreEqual("mod1/", response.ModuleName);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/", response.RepositoryPath);
@@ -307,7 +301,7 @@ namespace PServerClient.Tests
       public void TemplateResponseTest()
       {
          TemplateResponse response = new TemplateResponse();
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          ResponseTest(response, ResponseType.Template, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
@@ -317,7 +311,7 @@ namespace PServerClient.Tests
       {
          UpdatedResponse response = new UpdatedResponse();
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          ResponseTest(response, ResponseType.Updated, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
 
@@ -326,7 +320,7 @@ namespace PServerClient.Tests
       {
          UpdateExistingResponse response = new UpdateExistingResponse();
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
-         IList<string> lines = new List<string> {"mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74"};
+         IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          ResponseTest(response, ResponseType.UpdateExisting, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
       }
 
@@ -335,15 +329,13 @@ namespace PServerClient.Tests
       {
          ValidRequestsResponse response = new ValidRequestsResponse();
          string process = "Root Valid-responses valid-requests Repository Directory";
-         IList<string> lines = new List<string> {process};
+         IList<string> lines = new List<string> { process };
          string display = "Root\r\nValid-responses\r\nvalid-requests\r\nRepository\r\nDirectory\r\n";
          ResponseTest(response, ResponseType.ValidRequests, 1, display, lines);
          Assert.AreEqual(5, response.ValidRequestTypes.Count);
          Assert.AreEqual(RequestType.Root, response.ValidRequestTypes[0]);
          Assert.AreEqual(RequestType.Directory, response.ValidRequestTypes[4]);
-
       }
-
 
       [Test]
       public void WrapperRscOptionResponseTest()
@@ -364,11 +356,12 @@ namespace PServerClient.Tests
          Assert.IsTrue(m.Success);
          string data = m.Groups["data"].Value;
          Assert.AreEqual("I LOVE YOU", data);
+
          // test other patterns
          for (int i = 1; i < 32; i++)
          {
             string responseName = ResponseHelper.ResponseNames[i];
-            //Console.WriteLine(responseName);
+            ////Console.WriteLine(responseName);
             test = string.Format("{0} blah", responseName);
             Console.WriteLine(test);
             pattern = ResponseHelper.ResponsePatterns[i];
@@ -379,7 +372,7 @@ namespace PServerClient.Tests
          }
       }
 
-      [Test][Ignore]
+      [Test]
       public void CollapseMessageResponsesTest()
       {
          DirectoryInfo di = Directory.GetParent(Environment.CurrentDirectory);
@@ -390,19 +383,20 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          PServerFactory factory = new PServerFactory();
-         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, DateTime.Now });
-         IRequest export = cmd.Requests.OfType<ExportRequest>().First();
-         //Assert.AreEqual(15, export.Responses.Count);
-         //IList<IResponse> condensed = ResponseHelper.CollapseMessagesInResponses(export.Responses);
-         //Assert.AreEqual(4, condensed.Count);
-         //IMessageResponse message = (IMessageResponse) condensed[2];
-         //Assert.AreEqual(12, message.Lines.Count);
-         //Console.WriteLine(message.Display());
+         IConnection connection = new PServerConnection();
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection, DateTime.Now });
+         Assert.AreEqual(18, cmd.Responses.Count);
+         Assert.AreEqual(12, cmd.Responses.OfType<EMessageResponse>().Count());
+         IList<IResponse> condensed = ResponseHelper.CollapseMessagesInResponses(cmd.Responses);
+         Assert.AreEqual(7, condensed.Count);
+         IMessageResponse message = (IMessageResponse)condensed[5];
+         Assert.AreEqual(12, message.Lines.Count);
+         Console.WriteLine(message.Display());
       }
 
       private void ResponseTest(IResponse response, ResponseType expectedType, int lineCount, string expectedDisplay, IList<string> lines)
       {
-         ResponseTest(response, expectedType, lineCount, expectedDisplay, lines, "");
+         ResponseTest(response, expectedType, lineCount, expectedDisplay, lines, string.Empty);
       }
 
       private void ResponseTest(IResponse response, ResponseType expectedType, int lineCount, string expectedDisplay, IList<string> lines, string fileContents)
