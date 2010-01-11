@@ -136,7 +136,7 @@ namespace PServerClient
             response.Lines = lines;
          else
             response.Initialize(lines);
-
+         response.Process();
          if (response is IFileResponse)
          {
             IFileResponse fileResponse = (IFileResponse) response;

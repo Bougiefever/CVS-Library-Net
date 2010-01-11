@@ -23,6 +23,7 @@ namespace PServerClient.Tests
          AuthResponse response = new AuthResponse();
          IList<string> lines = new List<string> { "blah\n\r blahI LOVE YOUblah" };
          response.Initialize(lines);
+         response.Process();
          Assert.AreEqual(AuthStatus.Authenticated, response.Status);
          Assert.AreEqual(lines.Count, response.LineCount);
       }

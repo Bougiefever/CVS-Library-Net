@@ -14,7 +14,7 @@ namespace PServerClient.Tests
    [TestFixture]
    public class ResponseProcessorTest
    {
-      [Test]
+      [Test][Ignore]
       public void CreateFileGroupsFromResponsesTest()
       {
          ResponseProcessor processor = new ResponseProcessor();

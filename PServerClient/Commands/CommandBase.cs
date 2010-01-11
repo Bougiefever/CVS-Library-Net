@@ -161,7 +161,7 @@ namespace PServerClient.Commands
                _connection.DoRequest(request);
                if (request.ResponseExpected)
                {
-                  ProcessRequestResponses(request);
+                  ProcessRequestResponses();
                }
             }
          }
@@ -174,9 +174,10 @@ namespace PServerClient.Commands
          }
 
          ProcessMessages();
-         ExitCode code = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? ExitCode.Failed : ExitCode.Succeeded;
+         bool hasErrorResponse = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? true : false;
          Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
          RequiredRequests.Clear(); // remove requests already processed
+         ExitCode code = hasErrorResponse || !(_status == AuthStatus.Authenticated) ? ExitCode.Failed : ExitCode.Succeeded;
          return code;
       }
 
@@ -210,7 +211,7 @@ namespace PServerClient.Commands
 
       protected internal virtual void AfterRequest(IRequest request)
       {
-         ProcessRequestResponses(request);
+         ProcessRequestResponses();
       }
 
       protected internal virtual void BeforeExecute()
@@ -223,7 +224,7 @@ namespace PServerClient.Commands
          ProcessMessages();
       }
 
-      private void ProcessRequestResponses(IRequest request)
+      private void ProcessRequestResponses()
       {
          var responses = _connection.GetAllResponses();
          foreach (IResponse res in responses)

@@ -186,7 +186,7 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
-      [Test][Ignore]
+      [Test]
       public void CommandXMLToCommandObjectTest()
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;

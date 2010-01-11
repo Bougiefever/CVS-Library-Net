@@ -6,14 +6,14 @@
    public enum AuthStatus
    {
       /// <summary>
-      /// CVS authenticate succeeded
-      /// </summary>
-      Authenticated = 0,
-
-      /// <summary>
       /// CVS authenticated failed
       /// </summary>
-      NotAuthenticated = 1,
+      NotAuthenticated = 0,
+
+      /// <summary>
+      /// CVS authenticate succeeded
+      /// </summary>
+      Authenticated = 1,
 
       /// <summary>
       /// There was an error with authentication

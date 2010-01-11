@@ -116,17 +116,21 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(2, cmd.UserMessages.Count, "Wrong number of messages");
       }
 
-      [Test][Ignore]
+      [Test]
       public void CommandBaseExecuteTest()
       {
          IAuthRequest authRequest = _mocks.DynamicMock<IAuthRequest>();
-         IResponse authResponse = _mocks.DynamicMock<IAuthResponse>();
-         IList<IResponse> authResponses = new List<IResponse> { authResponse };
+         IAuthResponse authResponse = new AuthResponse();
+         IList<string> lines = new List<string> { "I LOVE YOU" };
+         authResponse.Initialize(lines);
+         authResponse.Process();
 
          IRequest validRequestsRequest = new ValidRequestsRequest();
          ValidRequestsResponse validRequestsResponse = new ValidRequestsResponse();
          IList<IResponse> otherResponses = new List<IResponse> { validRequestsResponse };
-         validRequestsResponse.ValidRequestTypes = new List<RequestType> { RequestType.Add, RequestType.CheckOut, RequestType.CheckIn, RequestType.Modified, RequestType.Argument, RequestType.Update };
+         lines = new List<string> { "Root Valid-responses valid-requests Repository Directory Max-dotdot Static-directory Sticky Entry Kopt Checkin-time Modified Is-modified Empty-conflicts UseUnchanged Unchanged Notify Questionable Argument Argumentx Global_option Gzip-stream wrapper-sendme-rcsOptions Set expand-modules ci co update diff log rlog add remove update-patches gzip-file-contents status rdiff tag rtag import admin export history release watch-on watch-off watch-add watch-remove watchers editors init annotate rannotate noop version" };
+         validRequestsResponse.Initialize(lines);
+         validRequestsResponse.Process();
 
          ValidRequestsListCommand command = new ValidRequestsListCommand(_root, _connection);
          command.RequiredRequests = new List<IRequest> { (IRequest) authRequest, validRequestsRequest };
@@ -138,23 +142,25 @@ namespace PServerClient.Tests.Commands
          Expect.Call(() => _connection.Connect(null))
             .IgnoreArguments()
             .Repeat.Once();
-         ////Expect.Call(() => _connection.DoRequest(authRequest)).Repeat.Once();
-         ////Expect.Call(_connection.DoRequest(vrReq)).Return(otherResponses).Repeat.Once();
-         ////Expect.Call(command.Responses).PropertyBehavior();
-         ////xpect.Call(command.Status).Return(AuthStatus.Authenticated);
-         ////Expect.Call(authRequest.Type).Return(RequestType.Auth);
-         ////Expect.Call(_connection.DoRequest(otherRequest)).Return(new List<IResponse>());
-         Expect.Call(_connection.Close).Repeat.Once();
+         Expect.Call(() => _connection.DoRequest(authRequest)).Repeat.Once();
+         Expect.Call(_connection.GetResponse()).Return(authResponse);
+         Expect.Call(_connection.GetAllResponses()).Return(otherResponses);
+         Expect.Call(() => _connection.DoRequest(otherRequest)).Repeat.Once();
+         Expect.Call(() => _connection.Close()).Repeat.Once();
 
          _mocks.ReplayAll();
          command.Execute();
          _mocks.VerifyAll();
       }
 
-      [Test][Ignore]
+      [Test]
       public void CommandBaseExecuteWhenAuthFailedTest()
       {
          IAuthRequest authRequest = _mocks.DynamicMock<IAuthRequest>();
+         IAuthResponse authResponse = new AuthResponse();
+         IList<string> lines = new List<string> { "I HATE YOU" };
+         authResponse.Initialize(lines);
+         authResponse.Process();
          IRequest otherRequest = _mocks.DynamicMock<IRequest>();
 
          ValidRequestsListCommand command = new ValidRequestsListCommand(_root, _connection);
@@ -163,36 +169,40 @@ namespace PServerClient.Tests.Commands
          Expect.Call(() => _connection.Connect(null))
             .IgnoreArguments()
             .Repeat.Once();
-         Expect.Call(_connection.Close).Repeat.Once();
          Expect.Call(() => _connection.DoRequest(null))
             .IgnoreArguments()
             .Repeat.Once();
-         ////Expect.Call(authRequest.Status).Return(AuthStatus.NotAuthenticated);
-         ////Expect.Call(_connection.DoRequest(otherRequest)).Repeat.Never();
+         Expect.Call(_connection.GetResponse()).Return(authResponse);
+         Expect.Call(() => _connection.DoRequest(otherRequest)).Repeat.Never();
+         Expect.Call(_connection.Close).Repeat.Once();
          _mocks.ReplayAll();
          command.Execute();
          _mocks.VerifyAll();
       }
 
-      [Test][Ignore]
+      [Test]
       public void ExectuteRequiredRequestsPopulatesValidRequestTypesTest()
       {
          ValidRequestsListCommand cmd = new ValidRequestsListCommand(_root, _connection);
          IAuthRequest authRequest = _mocks.DynamicMock<IAuthRequest>();
-         IResponse authResponse = _mocks.DynamicMock<IAuthResponse>();
-         IList<IResponse> authResponses = new List<IResponse> { authResponse };
+         IAuthResponse authResponse = new AuthResponse();
+         IList<string> lines = new List<string> { "I LOVE YOU" };
+         authResponse.Initialize(lines);
+         authResponse.Process();
 
          IRequest validRequestsRequest = new ValidRequestsRequest();
          ValidRequestsResponse validRequestsResponse = new ValidRequestsResponse();
          IList<IResponse> otherResponses = new List<IResponse> { validRequestsResponse };
-         validRequestsResponse.ValidRequestTypes = new List<RequestType> { RequestType.Add, RequestType.CheckOut, RequestType.CheckIn, RequestType.Modified, RequestType.Argument, RequestType.Update };
+         lines = new List<string> { "Root Valid-responses valid-requests Repository Directory Max-dotdot" };
+         validRequestsResponse.Initialize(lines);
+         validRequestsResponse.Process();
 
          cmd.RequiredRequests = new List<IRequest> { (IRequest) authRequest, validRequestsRequest };
 
-         ////Expect.Call(_connection.DoRequest(authRequest)).Return(authResponses).Repeat.Once();
-         ////Expect.Call(_connection.DoRequest(vrReq)).Return(otherResponses).Repeat.Once();
-         ////Expect.Call(authRequest.Responses).PropertyBehavior();
-         ////Expect.Call(authRequest.Status).Return(AuthStatus.Authenticated);
+         Expect.Call(() => _connection.DoRequest(authRequest)).Repeat.Once();
+         Expect.Call(_connection.GetResponse()).Return(authResponse);
+         Expect.Call(() => _connection.DoRequest(validRequestsRequest)).Repeat.Once();
+         Expect.Call(_connection.GetAllResponses()).Return(otherResponses);
          Expect.Call(authRequest.Type).Return(RequestType.Auth);
 
          _mocks.ReplayAll();
@@ -203,69 +213,58 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(6, cmd.ValidRequestTypes.Count);
       }
 
-      [Test][Ignore]
+      [Test]
       public void ExecuteRequiredRequestsAuthFailExitCodeFailTest()
       {
          ValidRequestsListCommand cmd = new ValidRequestsListCommand(_root, _connection);
          IAuthRequest authRequest = _mocks.DynamicMock<IAuthRequest>();
+         IAuthResponse authResponse = new AuthResponse();
+         IList<string> lines = new List<string> { "I HATE YOU" };
+         authResponse.Initialize(lines);
+         authResponse.Process();
+
          cmd.RequiredRequests = new List<IRequest> { authRequest };
          Expect.Call(() => _connection.DoRequest(null))
             .IgnoreArguments()
             .Repeat.Once();
-         ////Expect.Call(authRequest.Status).Return(AuthStatus.NotAuthenticated);
+         Expect.Call(_connection.GetResponse()).Return(authResponse);
+
          _mocks.ReplayAll();
          ExitCode result = cmd.ExecuteRequiredRequests();
          _mocks.VerifyAll();
          Assert.AreEqual(ExitCode.Failed, result);
       }
 
-      [Test][Ignore]
-      public void ExecuteRequiredRequestsFailsTest()
+      [Test]
+      public void ExecuteRequiredRequestsWhenErrorResponseTest()
       {
          ValidRequestsListCommand cmd = new ValidRequestsListCommand(_root, _connection);
          IAuthRequest authRequest = _mocks.DynamicMock<IAuthRequest>();
-         IResponse authResponse = _mocks.DynamicMock<IAuthResponse>();
-         IList<IResponse> authResponses = new List<IResponse> { authResponse };
+         IAuthResponse authResponse = new AuthResponse();
+         IList<string> lines = new List<string> { "I LOVE YOU" };
+         authResponse.Initialize(lines);
+         authResponse.Process(); 
 
          IRequest otherRequest = _mocks.DynamicMock<IRequest>();
          IResponse error = new ErrorResponse();
+         lines = new List<string> { "error message" };
+         error.Initialize(lines);
          IList<IResponse> errorResponse = new List<IResponse> { error };
 
          cmd.RequiredRequests = new List<IRequest> { (IRequest) authRequest, otherRequest };
 
-         ////Expect.Call(_connection.DoRequest(authRequest)).Return(authResponses).Repeat.Once();
-         ////Expect.Call(authRequest.Responses).PropertyBehavior();
-         ////Expect.Call(authRequest.Status).Return(AuthStatus.Authenticated);
-         ////Expect.Call(authRequest.Type).Return(RequestType.Auth);
-         ////Expect.Call(otherRequest.Responses).PropertyBehavior();
-         ////Expect.Call(_connection.DoRequest(otherRequest)).Return(errorResponse);
+         Expect.Call(() => _connection.DoRequest(authRequest)).Repeat.Once();
+         Expect.Call(authRequest.Type).Return(RequestType.Auth);
+         Expect.Call(_connection.GetResponse()).Return(authResponse);
+         Expect.Call(otherRequest.ResponseExpected).Return(true);
+         Expect.Call(() => _connection.DoRequest(otherRequest)).Repeat.Once();
+         Expect.Call(_connection.GetAllResponses()).Return(errorResponse);
 
          _mocks.ReplayAll();
          ExitCode result = cmd.ExecuteRequiredRequests();
          _mocks.VerifyAll();
 
          Assert.AreEqual(ExitCode.Failed, result);
-      }
-
-      [Test][Ignore]
-      public void GetResponsesTest()
-      {
-         // create mock request/responses
-         ValidRequestsRequest vrrequest = new ValidRequestsRequest();
-         ValidRequestsResponse vrresponse = new ValidRequestsResponse();
-         string process = "Root Valid-responses valid-requests Repository Directory";
-         ////vrresponse.Initialize(new List<string> {process});
-         ////vrrequest.Responses = new List<IResponse> {vrresponse};
-         CheckOutRequest corequest = new CheckOutRequest();
-         IList<string> lines = new List<string> { "module/", "/f1/f2/f3/" };
-         IResponse r1 = new ClearStickyResponse();
-         r1.Initialize(lines);
-         IResponse r2 = new ClearStaticDirectoryResponse();
-         r2.Initialize(lines);
-         ////corequest.Responses = new List<IResponse> {r1, r2};
-
-         CheckOutCommand cmd = new CheckOutCommand(_root, _connection);
-         cmd.Requests = new List<IRequest> { vrrequest, corequest };
       }
    }
 }
