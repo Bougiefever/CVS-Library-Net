@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -12,7 +14,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public ArgumentxRequest(string[] lines)
+      public ArgumentxRequest(IList<string> lines)
          : base(lines)
       {
       }

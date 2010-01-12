@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    public abstract class OneArgRequestBase : RequestBase
@@ -8,7 +10,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, arg);
       }
 
-      protected OneArgRequestBase(string[] lines)
+      protected OneArgRequestBase(IList<string> lines)
          : base(lines)
       {
       }

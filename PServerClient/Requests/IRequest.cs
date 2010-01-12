@@ -1,21 +1,22 @@
 ﻿using System.Xml.Linq;
+using PServerClient.Commands;
 
 namespace PServerClient.Requests
 {
    /// <summary>
    /// Request interface to process cvs requests
    /// </summary>
-   public interface IRequest
+   public interface IRequest : ICommandItem
    {
       bool ResponseExpected { get; }
 
-      string[] Lines { get; }
+      ////string[] Lines { get; }
 
       RequestType Type { get; }
 
       string GetRequestString();
 
-      XElement GetXElement();
+      ////XElement GetXElement();
    }
 
    /// <summary>

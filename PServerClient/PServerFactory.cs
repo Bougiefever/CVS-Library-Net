@@ -55,7 +55,7 @@ namespace PServerClient
          return request;
       }
 
-      public IRequest CreateRequest(string className, string[] lines)
+      public IRequest CreateRequest(string className, IList<string> lines)
       {
          Type type = Type.GetType(className);
          IRequest request = (IRequest) Activator.CreateInstance(type, new object[] { lines });

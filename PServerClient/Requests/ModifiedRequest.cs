@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -19,7 +21,7 @@ namespace PServerClient.Requests
          Lines[2] = fileLength.ToString();
       }
 
-      public ModifiedRequest(string[] lines)
+      public ModifiedRequest(IList<string> lines)
          : base(lines)
       {
       }

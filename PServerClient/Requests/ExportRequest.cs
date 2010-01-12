@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -18,7 +20,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public ExportRequest(string[] lines)
+      public ExportRequest(IList<string> lines)
          : base(lines)
       {
       }

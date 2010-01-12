@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using PServerClient.CVS;
 
@@ -19,7 +20,7 @@ namespace PServerClient.Requests
          Lines[4] = string.Format("END {0} REQUEST", requestName);
       }
 
-      protected AuthRequestBase(string[] lines)
+      protected AuthRequestBase(IList<string> lines)
       {
          Lines = lines;
       }
@@ -35,7 +36,7 @@ namespace PServerClient.Requests
       public override string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
-         for (int i = 0; i < Lines.Length; i++)
+         for (int i = 0; i < Lines.Count; i++)
          {
             sb.Append(Lines[i]).Append(PServerHelper.UnixLineEnd);
          }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PServerClient.CVS;
 
 namespace PServerClient.Requests
@@ -9,7 +10,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public VerifyAuthRequest(string[] lines)
+      public VerifyAuthRequest(IList<string> lines)
          : base(lines)
       {
       }

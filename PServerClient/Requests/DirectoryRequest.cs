@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -21,7 +23,7 @@ namespace PServerClient.Requests
          Lines[1] = directory;
       }
 
-      public DirectoryRequest(string[] lines)
+      public DirectoryRequest(IList<string> lines)
          : base(lines)
       {
       }

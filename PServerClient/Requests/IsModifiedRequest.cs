@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -30,7 +32,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public IsModifiedRequest(string[] lines)
+      public IsModifiedRequest(IList<string> lines)
          : base(lines)
       {
       }

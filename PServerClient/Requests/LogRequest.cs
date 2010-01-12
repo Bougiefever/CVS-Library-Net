@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -46,7 +48,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public LogRequest(string[] lines)
+      public LogRequest(IList<string> lines)
          : base(lines)
       {
       }

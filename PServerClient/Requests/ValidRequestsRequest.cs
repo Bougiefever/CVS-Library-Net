@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -11,7 +13,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public ValidRequestsRequest(string[] lines)
+      public ValidRequestsRequest(IList<string> lines)
          : base(lines)
       {
       }

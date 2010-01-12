@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    public class RepositoryRequest : RequestBase
@@ -8,7 +10,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, repository);
       }
 
-      public RepositoryRequest(string[] lines)
+      public RepositoryRequest(IList<string> lines)
          : base(lines)
       {
       }

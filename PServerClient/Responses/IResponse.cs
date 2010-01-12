@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
+using PServerClient.Commands;
 
 namespace PServerClient.Responses
 {
-   public interface IResponse
+   public interface IResponse : ICommandItem
    {
       int LineCount { get; } 
 
       ResponseType Type { get; } 
 
-      bool Processed { get; set; }
+      ////bool Processed { get; set; }
 
-      IList<string> Lines { get; set; }
+      ////IList<string> Lines { get; set; }
 
       void Initialize(IList<string> lines);
 
@@ -19,7 +20,7 @@ namespace PServerClient.Responses
 
       string Display();
 
-      XElement GetXElement();
+      ////XElement GetXElement();
    }
 
    public interface IAuthResponse : IResponse

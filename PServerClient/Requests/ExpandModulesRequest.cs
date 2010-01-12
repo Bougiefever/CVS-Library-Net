@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -39,7 +41,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public ExpandModulesRequest(string[] lines)
+      public ExpandModulesRequest(IList<string> lines)
          : base(lines)
       {
       }

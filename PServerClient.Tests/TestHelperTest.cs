@@ -94,17 +94,14 @@ namespace PServerClient.Tests
          IResponse response = new AuthResponse();
          IList<string> process = new List<string> { "I LOVE YOU" };
          response.Initialize(process);
-         //IRequest request = cmd.RequiredRequests.Where(r => r.Type == RequestType.Auth).First();
          cmd.Responses.Add(response);
 
          response = new ValidRequestsResponse();
          IList<string> lines = new List<string> { "Root Valid-responses valid-requests Global_option" };
          response.Initialize(lines);
-         //request = cmd.RequiredRequests.Where(r => r.Type == RequestType.ValidRequests).First();
          cmd.Responses.Add(response);
 
          IList<IResponse> coresponses = TestHelper.GetMockCheckoutResponses("8 Dec 2009 15:26:27 -0000", "mymod/", "file1.cs");
-         //request = cmd.Requests.Where(r => r.Type == RequestType.CheckOut).First();
          foreach (IResponse cor in coresponses)
          {
             cmd.Responses.Add(cor);
@@ -117,7 +114,7 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void ValidateResponseXMLTest()
+      public void ValidatorResponseXMLTest()
       {
          string xml = TestStrings.AuthResponseXML;
          XElement response = XElement.Parse(xml);
@@ -126,13 +123,38 @@ namespace PServerClient.Tests
       }
 
       [Test]
+      public void ValidatorRequestXMLTest()
+      {
+         string xml = TestStrings.AuthRequestXML;
+         XElement request = XElement.Parse(xml);
+         bool result = TestHelper.ValidateRequestXML(request);
+         Assert.IsTrue(result);
+      }
+
+      [Test]
+      public void ValidatorCommandXMLTest()
+      {
+         string xml = TestStrings.CommandWithCommandItemsXML1;
+         XDocument xdoc = XDocument.Parse(xml);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
+      }
+
+      [Test]
+      public void Validator2CommandXMLTest()
+      {
+         string xml = TestStrings.CommandWithCommandItemsXML2;
+         XDocument xdoc = XDocument.Parse(xml);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
+      }
+
+      [Test]
       public void XMLSchemaWithTargetNamespsceTest()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\XMLSchemaTest.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
-         ////var validateSchema = XmlSchema.Read(reader, (o, e) => Assert.Fail(e.Message));
          XmlSchemaSet schemas = new XmlSchemaSet();
-         ////schemas.Add(validateSchema);
          schemas.Add("http://www.pserverclient.org", reader);
          bool isValid = true;
          string xml = TestStrings.XMLWithTargetNamespace;

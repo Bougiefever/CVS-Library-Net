@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
@@ -416,7 +417,7 @@ namespace PServerClient.Tests
       public void CreateRequestFromLinesTest()
       {
          PServerFactory factory = new PServerFactory();
-         string[] lines = new[] { "line 1", "line 2" };
+         IList<string> lines = new List<string> { "line 1", "line 2" };
          for (int i = 0; i < 62; i++)
          {
             RequestType requestType = (RequestType)i;

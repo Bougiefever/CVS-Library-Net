@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
@@ -10,7 +11,7 @@ namespace PServerClient.Requests
       {
       }
 
-      protected RequestBase(string[] lines)
+      protected RequestBase(IList<string> lines)
       {
          Lines = lines;
       }
@@ -27,12 +28,16 @@ namespace PServerClient.Requests
 
       public abstract RequestType Type { get; }
 
-      public string[] Lines { get; internal set; }
+      public bool Processed { get; set; }
+
+      public IList<string> Lines { get; set; }
+
+      //public string[] Lines { get; internal set; }
 
       public virtual string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();
-         for (int i = 0; i < Lines.Length; i++)
+         for (int i = 0; i < Lines.Count; i++)
          {
             sb.Append(Lines[i]).Append(PServerHelper.UnixLineEnd);
          }

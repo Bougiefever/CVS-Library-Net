@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace PServerClient.Requests
 {
@@ -31,7 +32,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, time);
       }
 
-      public CheckinTimeRequest(string[] lines)
+      public CheckinTimeRequest(IList<string> lines)
          : base(lines)
       {
       }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
-using PServerClient.CVS;
 using PServerClient.Requests;
 using PServerClient.Responses;
 
@@ -11,6 +10,8 @@ namespace PServerClient.Commands
       IList<IRequest> Requests { get; set; }
 
       IList<IResponse> Responses { get; set; }
+
+      IList<ICommandItem> Items { get; set; }
 
       ExitCode ExitCode { get; set; }
 
@@ -23,5 +24,14 @@ namespace PServerClient.Commands
       void Execute();
 
       XDocument GetXDocument();
+   }
+
+   public interface ICommandItem
+   {
+      bool Processed { get; set; }
+
+      IList<string> Lines { get; set; }
+
+      XElement GetXElement();
    }
 }

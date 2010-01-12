@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    public class LostRequest : RequestBase
@@ -8,7 +10,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, fileName);
       }
 
-      public LostRequest(string[] lines)
+      public LostRequest(IList<string> lines)
          : base(lines)
       {
       }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -15,7 +17,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public MaxDotRequest(string[] lines)
+      public MaxDotRequest(IList<string> lines)
          : base(lines)
       {
       }

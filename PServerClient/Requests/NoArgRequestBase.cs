@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    public abstract class NoArgRequestBase : RequestBase
@@ -8,7 +10,7 @@ namespace PServerClient.Requests
          Lines[0] = RequestName;
       }
 
-      protected NoArgRequestBase(string[] lines)
+      protected NoArgRequestBase(IList<string> lines)
          : base(lines)
       {
       }

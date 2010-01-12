@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -14,7 +16,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, ResponseHelper.GetValidResponsesString(validResponses));
       }
 
-      public ValidResponsesRequest(string[] lines)
+      public ValidResponsesRequest(IList<string> lines)
          : base(lines)
       {
       }

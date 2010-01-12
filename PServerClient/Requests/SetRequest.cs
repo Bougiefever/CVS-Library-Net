@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -13,7 +15,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}={2}", RequestName, variableName, value);
       }
 
-      public SetRequest(string[] lines)
+      public SetRequest(IList<string> lines)
          : base(lines)
       {
       }

@@ -11,6 +11,19 @@ namespace PServerClient.Tests.TestSetup
 {
    public static class TestHelper
    {
+      #region SaveConversation
+
+      public static IList<ICommandItem> CommandItems { get; set; }
+
+      public static void AddItem(ICommandItem item)
+      {
+         if (CommandItems == null)
+            CommandItems = new List<ICommandItem>();
+         CommandItems.Add(item);
+      }
+
+      #endregion      
+         
       #region XML Validation
 
       public static bool ValidateResponseXML(XElement response)
@@ -114,5 +127,7 @@ namespace PServerClient.Tests.TestSetup
       }
 
       #endregion
+
+
    }
 }

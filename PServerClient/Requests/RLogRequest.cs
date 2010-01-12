@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -13,7 +15,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public RLogRequest(string[] lines)
+      public RLogRequest(IList<string> lines)
          : base(lines)
       {
       }

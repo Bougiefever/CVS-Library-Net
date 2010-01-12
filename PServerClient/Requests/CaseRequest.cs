@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -31,7 +33,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public CaseRequest(string[] lines)
+      public CaseRequest(IList<string> lines)
          : base(lines)
       {
       }

@@ -21,5 +21,16 @@ namespace PServerClient.Commands
             return CommandType.Version;
          }
       }
+
+      public string Version
+      {
+         get; private set;
+      }
+
+      protected internal override void AfterExecute()
+      {
+         base.AfterExecute();
+         Version = ExitCode == ExitCode.Succeeded ? UserMessages[0] : "Error in command";
+      }
    }
 }

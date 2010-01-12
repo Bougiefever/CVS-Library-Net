@@ -1,4 +1,6 @@
-﻿namespace PServerClient.Requests
+﻿using System.Collections.Generic;
+
+namespace PServerClient.Requests
 {
    /// <summary>
    /// add \n
@@ -61,7 +63,7 @@
       {
       }
 
-      public AddRequest(string[] lines)
+      public AddRequest(IList<string> lines)
          : base(lines)
       {
       }

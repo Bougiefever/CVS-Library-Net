@@ -29,6 +29,7 @@ namespace PServerClient.Commands
          Root = root;
          Requests = new List<IRequest>();
          RequiredRequests = new List<IRequest>();
+         Items = new List<ICommandItem>();
 
          // add auth and other required requests for most commands
          RequiredRequests.Add(new AuthRequest(root));
@@ -55,6 +56,8 @@ namespace PServerClient.Commands
       public IList<IRequest> Requests { get; set; }
 
       public IList<IResponse> Responses { get; set; }
+
+      public IList<ICommandItem> Items { get; set; }
 
       public IList<string> UserMessages { get; private set; }
 
@@ -83,7 +86,7 @@ namespace PServerClient.Commands
                BeforeExecute();
                foreach (IRequest request in Requests)
                {
-                  _connection.DoRequest(request);
+                  DoRequest(request);
                   if (request.ResponseExpected)
                   {
                      AfterRequest(request);
@@ -101,6 +104,7 @@ namespace PServerClient.Commands
          finally
          {
             _connection.Close();
+            CleanUp();
          }
       }
 
@@ -138,11 +142,11 @@ namespace PServerClient.Commands
          // execute authentication request and check authentication status
          // before executing other requests
          IAuthRequest authRequest = RequiredRequests.OfType<IAuthRequest>().First();
-         _connection.DoRequest(authRequest);
+         DoRequest(authRequest);
          IResponse response = _connection.GetResponse();
          if (response is IAuthResponse)
          {
-            response.Process();
+            ProcessResponse(response);
             _status = ((IAuthResponse) response).Status;
          }
          else
@@ -158,7 +162,7 @@ namespace PServerClient.Commands
             IEnumerable<IRequest> otherRequests = RequiredRequests.Where(r => r.Type != RequestType.Auth && r.Type != RequestType.VerifyAuth);
             foreach (IRequest request in otherRequests)
             {
-               _connection.DoRequest(request);
+               DoRequest(request);
                if (request.ResponseExpected)
                {
                   ProcessRequestResponses();
@@ -174,9 +178,9 @@ namespace PServerClient.Commands
          }
 
          ProcessMessages();
+         RequiredRequests.Clear(); // remove requests already processed
          bool hasErrorResponse = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? true : false;
          Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
-         RequiredRequests.Clear(); // remove requests already processed
          ExitCode code = hasErrorResponse || !(_status == AuthStatus.Authenticated) ? ExitCode.Failed : ExitCode.Succeeded;
          return code;
       }
@@ -227,11 +231,43 @@ namespace PServerClient.Commands
       private void ProcessRequestResponses()
       {
          var responses = _connection.GetAllResponses();
-         foreach (IResponse res in responses)
+         foreach (IResponse response in responses)
          {
-            res.Process();
-            Responses.Add(res);
+            ProcessResponse(response);
+            Responses.Add(response);
          }
+      }
+
+      private void CleanUp()
+      {
+         Requests.Clear();
+         if (Responses.Count > 0)
+         {
+            int i = 0;
+            do
+            {
+               IResponse response = Responses[i];
+               if (response.Processed)
+                  Responses.Remove(response);
+               else
+                  i++;
+            }
+            while (i > Responses.Count);
+         }        
+      }
+
+      private void DoRequest(IRequest request)
+      {
+         _connection.DoRequest(request);
+         if (PServerHelper.IsTestMode())
+            Items.Add(request);
+      }
+
+      private void ProcessResponse(IResponse response)
+      {
+         response.Process();
+         if (PServerHelper.IsTestMode())
+            Items.Add(response);
       }
    }
 }

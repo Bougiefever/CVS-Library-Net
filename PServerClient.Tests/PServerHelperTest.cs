@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Specialized;
+using System.Configuration;
 using System.IO;
 using NUnit.Framework;
 using PServerClient.CVS;
@@ -127,6 +130,20 @@ namespace PServerClient.Tests
          string mod2 = "abougie/cvstest/CVSROOT";
          string name = mod2.Substring(mod2.IndexOf(mod1) + mod1.Length + 1);
          Assert.AreEqual("CVSROOT", name);
+      }
+
+      [Test]
+      public void Test()
+      {
+         var keys = ConfigurationManager.AppSettings.AllKeys;
+         if (keys.Where(k => k == "mode").Count() == 0)
+            Assert.Fail("Add appSettings key named 'mode' and set value to 'test'");
+         ConfigurationManager.AppSettings.Set("mode", "test");
+         var result = PServerHelper.IsTestMode();
+         Assert.IsTrue(result, "Should be in test mode");
+         ConfigurationManager.AppSettings.Set("mode", "prod");
+         result = PServerHelper.IsTestMode();
+         Assert.IsFalse(result, "Should not be in test mode");
       }
    }
 }

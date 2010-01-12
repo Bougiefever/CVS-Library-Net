@@ -23,15 +23,7 @@
                   </xs:complexType>
                </xs:element>
             </xs:sequence>
-            <xs:sequence>
-               <xs:element name="Responses">
-                  <xs:complexType>
-                     <xs:sequence>
-                        <xs:element name="Response" type="ResponseType" maxOccurs="unbounded" minOccurs="0"/>
-                     </xs:sequence>
-                  </xs:complexType>
-               </xs:element>
-            </xs:sequence>
+            <xs:element name="CommandItems" type="CommandItemType" />
          </xs:sequence>
       </xs:complexType>
    </xs:element>
@@ -60,5 +52,11 @@
       <xs:sequence>
          <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" type="xs:string" />
       </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="CommandItemType">
+      <xs:all>
+         <xs:element name="Request" type="RequestType" minOccurs="0"/>
+         <xs:element name="Response" type="ResponseType" minOccurs="0"/>
+      </xs:all>
    </xs:complexType>
 </xs:schema>

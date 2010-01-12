@@ -27,6 +27,200 @@ namespace PServerClient.Tests.TestSetup
     </Lines>
   </Response>";
 
+      public const string AuthRequestXML = @"    <Request>
+      <ClassName>PServerClient.Requests.AuthRequest</ClassName>
+      <Lines>
+        <Line>BEGIN AUTH REQUEST</Line>
+        <Line>/f1/f2/f3</Line>
+        <Line>username</Line>
+        <Line>A:yZZ30 e</Line>
+        <Line>END AUTH REQUEST</Line>
+      </Lines>
+    </Request>";
+
+      public const string RequestXML = @"<Request>
+         <ClassName>PServerClient.Requests.VersionRequest</ClassName>
+         <Lines>
+            <Line>version</Line>
+         </Lines>
+      </Request>";
+
+      public const string CommandWithCommandItemsXML1 = @"<Command>
+   <ClassName>PServerClient.Commands.ExportCommand</ClassName>
+   <RequiredRequests>
+      <Request>
+         <ClassName>PServerClient.Requests.AuthRequest</ClassName>
+         <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/f1/f2/f3</Line>
+            <Line>username</Line>
+            <Line>A:yZZ30 e</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+      </Request>
+   </RequiredRequests>
+   <Requests>
+      <Request>
+         <ClassName>PServerClient.Requests.VersionRequest</ClassName>
+         <Lines>
+            <Line>version</Line>
+         </Lines>
+      </Request>
+   </Requests>
+   <CommandItems>
+      <Request>
+         <ClassName>PServerClient.Requests.GlobalOptionRequest</ClassName>
+          <Lines>
+            <Line>Global_option -q</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.VersionRequest</ClassName>
+         <Lines>
+            <Line>version</Line>
+         </Lines>
+      </Request>
+      <Response>
+         <ClassName>PServerClient.Responses.MessageResponse</ClassName>
+         <Name>M</Name>
+         <Lines>
+            <Line>Concurrent Versions System (CVS) 1.11.22 (client/server)</Line>
+         </Lines>
+      </Response>
+   </CommandItems>
+</Command>";
+
+      public const string CommandWithCommandItemsXML2 = @"<Command>
+   <ClassName>PServerClient.Commands.ExportCommand</ClassName>
+   <RequiredRequests>
+      <Request>
+         <ClassName>PServerClient.Requests.AuthRequest</ClassName>
+         <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/f1/f2/f3</Line>
+            <Line>username</Line>
+            <Line>A:yZZ30 e</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
+         <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+      </Request>
+   </RequiredRequests>
+   <Requests>
+      <Request>
+         <ClassName>PServerClient.Requests.RootRequest</ClassName>
+         <Lines>
+            <Line>Root /f1/f2/f3</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.ArgumentRequest</ClassName>
+         <Lines>
+            <Line>Argument mod1</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.DirectoryRequest</ClassName>
+         <Lines>
+            <Line>Directory mod1</Line>
+            <Line>/f1/f2/f3/mod1</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
+         <Lines>
+            <Line>co</Line>
+         </Lines>
+      </Request>
+   </Requests>
+   <CommandItems>
+      <Request>
+         <ClassName>PServerClient.Requests.AuthRequest</ClassName>
+         <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/f1/f2/f3</Line>
+            <Line>username</Line>
+            <Line>A:yZZ30 e</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+      </Request>
+      <Response>
+         <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+         <Name/>
+         <Lines>
+            <Line>I LOVE YOU</Line>
+         </Lines>
+      </Response>
+      <Request>
+         <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
+         <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+      </Request>
+      <Response>
+         <ClassName>PServerClient.Responses.ModTimeResponse</ClassName>
+         <Name>Mod-time</Name>
+         <Lines>
+            <Line>8 Dec 2009 15:26:27 -0000</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
+            <Line>+updated</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
+            <Line>text U</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
+            <Line>fname mymod/file1.cs</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
+            <Line>newline</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
+            <Line>-updated</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.UpdatedResponse</ClassName>
+         <Name>Updated</Name>
+         <Lines>
+            <Line>Updated mymod/</Line>
+            <Line>/usr/local/cvsroot/sandbox/mymod/file1.cs</Line>
+            <Line>/file1.cs/1.1.1.1///</Line>
+            <Line>u=rw,g=rw,o=rw</Line>
+            <Line>5</Line>
+         </Lines>
+         <File>
+            <Length>5</Length>
+            <Contents>97,98,99,100,101</Contents>
+         </File>
+      </Response>
+   </CommandItems>
+</Command>";
+
       public const string XMLWithTargetNamespace = @"<?xml version='1.0' encoding='utf-8'?>
             <psvr:Lines xmlns:psvr='http://www.pserverclient.org' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
                xsi:schemaLocation='http://www.pserverclient.org XMLSchemaTest.xsd'>

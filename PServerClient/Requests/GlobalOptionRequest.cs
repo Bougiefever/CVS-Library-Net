@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -16,7 +18,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public GlobalOptionRequest(string[] lines)
+      public GlobalOptionRequest(IList<string> lines)
          : base(lines)
       {
       }

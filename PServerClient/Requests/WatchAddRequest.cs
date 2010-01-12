@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -14,7 +16,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public WatchAddRequest(string[] lines)
+      public WatchAddRequest(IList<string> lines)
          : base(lines)
       {
       }

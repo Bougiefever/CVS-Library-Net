@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -23,7 +25,7 @@ namespace PServerClient.Requests
       {
       }
 
-      public GzipFileContentsRequest(string[] lines)
+      public GzipFileContentsRequest(IList<string> lines)
          : base(lines)
       {
       }

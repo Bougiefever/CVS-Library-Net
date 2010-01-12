@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -234,6 +235,12 @@ namespace PServerClient
 
          DirectoryInfo di = new DirectoryInfo(path);
          return di;
+      }
+
+      public static bool IsTestMode()
+      {
+         string mode = ConfigurationManager.AppSettings["mode"];
+         return mode == "test";
       }
    }
 }

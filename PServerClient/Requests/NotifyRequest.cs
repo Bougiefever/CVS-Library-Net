@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PServerClient.Requests
 {
    /// <summary>
@@ -39,7 +41,7 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, fileName);
       }
 
-      public NotifyRequest(string[] lines)
+      public NotifyRequest(IList<string> lines)
          : base(lines)
       {
       }
