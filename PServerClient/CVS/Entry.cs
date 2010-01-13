@@ -9,6 +9,8 @@ namespace PServerClient.CVS
    /// </summary>
    public class Entry : CVSItemBase
    {
+      private string _entryLineRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
+
       /// <summary>
       /// Initializes a new instance of the Entry class.
       /// </summary>
@@ -17,9 +19,9 @@ namespace PServerClient.CVS
       public Entry(string name, Folder parent)
          : base(parent)
       {
-         Revision = string.Empty;
-         Properties = string.Empty;
-         StickyOption = string.Empty;
+         //Revision = string.Empty;
+         //Properties = string.Empty;
+         //StickyOption = string.Empty;
          FileInfo fi = new FileInfo(Path.Combine(parent.Info.FullName, name));
          Info = fi;
       }
@@ -47,8 +49,20 @@ namespace PServerClient.CVS
       
       public DateTime ModTime { get; set; }
 
-      public string Revision { get; set; }
-      
+      private string _revision;
+      public string Revision
+      {
+         get
+         {
+
+            return _revision;
+         }
+         set
+         {
+            _revision = value;
+         }
+      }
+
       public string Properties { get; set; }
 
       public string StickyOption { get; set; }
