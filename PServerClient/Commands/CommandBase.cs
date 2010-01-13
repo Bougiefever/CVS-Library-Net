@@ -178,7 +178,8 @@ namespace PServerClient.Commands
          }
 
          ProcessMessages();
-         RequiredRequests.Clear(); // remove requests already processed
+         if (!PServerHelper.IsTestMode())
+            RequiredRequests.Clear(); // remove requests already processed
          bool hasErrorResponse = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? true : false;
          Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
          ExitCode code = hasErrorResponse || !(_status == AuthStatus.Authenticated) ? ExitCode.Failed : ExitCode.Succeeded;
@@ -240,34 +241,27 @@ namespace PServerClient.Commands
 
       private void CleanUp()
       {
-         Requests.Clear();
-         if (Responses.Count > 0)
-         {
-            int i = 0;
-            do
-            {
-               IResponse response = Responses[i];
-               if (response.Processed)
-                  Responses.Remove(response);
-               else
-                  i++;
-            }
-            while (i > Responses.Count);
-         }        
+         if (!PServerHelper.IsTestMode())
+            Requests.Clear();
+         var unProcessed = Responses.Where(r => !r.Processed);
+         Responses = unProcessed.ToList();
       }
 
-      private void DoRequest(IRequest request)
+      protected void DoRequest(IRequest request)
       {
          _connection.DoRequest(request);
          if (PServerHelper.IsTestMode())
             Items.Add(request);
       }
 
-      private void ProcessResponse(IResponse response)
+      protected void ProcessResponse(IResponse response)
       {
-         response.Process();
-         if (PServerHelper.IsTestMode())
-            Items.Add(response);
+         if (response != null)
+         {
+            response.Process();
+            if (PServerHelper.IsTestMode())
+               Items.Add(response);
+         }
       }
    }
 }

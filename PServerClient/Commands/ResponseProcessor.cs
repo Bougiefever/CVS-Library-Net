@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PServerClient.CVS;
 using PServerClient.Responses;
 
@@ -16,19 +17,19 @@ namespace PServerClient.Commands
          {
             if (response.Type == ResponseType.ModTime)
             {
-               file = new FileResponseGroup { ModTime = (ModTimeResponse) response };
+               file = new FileResponseGroup { ModTime = (ModTimeResponse)response };
             }
 
             if (response is IMessageResponse)
             {
-               if (file != null) file.MT = (IMessageResponse) response;
+               if (file != null) file.MT = (IMessageResponse)response;
             }
 
             if (response is IFileResponse)
             {
                if (file != null)
                {
-                  file.FileResponse = (IFileResponse) response;
+                  file.FileResponse = (IFileResponse)response;
                   files.Add(file);
                }
             }
@@ -48,7 +49,7 @@ namespace PServerClient.Commands
             string module = ResponseHelper.FixResponseModuleSlashes(response.Module);
 
             // add file to current folder
-            if (module != parent.Module) 
+            if (module != parent.Module)
             {
                string name = ResponseHelper.GetLastModuleName(response.Module);
                Folder folder = new Folder(name, parent);
@@ -63,21 +64,34 @@ namespace PServerClient.Commands
          return rootFolder;
       }
 
-      public Entry AddFile(Folder rootFolder, IFileResponseGroup file)
+      /// <summary>
+      /// Adds the file to the Folder tree and returns the folder the entry was added to.
+      /// </summary>
+      /// <param name="startingFolder">Either the root folder or the last folder an entry was added to</param>
+      /// <param name="file">Group of responses needed for one file</param>
+      /// <returns>The folder the entry was added to</returns>
+      public Folder AddFile(Folder startingFolder, IFileResponseGroup file)
       {
          string module = file.FileResponse.Module;
-         module = ResponseHelper.FixResponseModuleSlashes(module);
-         Folder parent = GetModuleFolder(rootFolder, module);
-         if (parent == null)
-         {
-            parent = AddFolderToStructure(rootFolder, module);
-         }
+         Folder parent = GetModuleFolder(startingFolder, module);
 
          Entry entry = new Entry(file.FileResponse.Name, parent);
          entry.Length = file.FileResponse.Length;
          entry.FileContents = file.FileResponse.Contents;
          entry.EntryLine = file.FileResponse.EntryLine;
-         return entry;
+         return parent;
+      }
+
+      public Folder GetModuleFolder(Folder startingFolder, string module)
+      {
+         module = ResponseHelper.FixResponseModuleSlashes(module);
+         Folder folder;
+
+         folder = FindModuleFolder(startingFolder, module);
+         if (folder == null)
+            folder = AddFolderToStructure(startingFolder.GetRootFolder(), module);
+
+         return folder;
       }
 
       public Folder AddFolderToStructure(Folder rootFolder, string module)
@@ -90,29 +104,48 @@ namespace PServerClient.Commands
          {
             mod += "/" + modules[i];
             mod = ResponseHelper.FixResponseModuleSlashes(mod);
-            folder = GetModuleFolder(rootFolder, mod);
+            folder = FindModuleFolder(rootFolder, mod);
             if (folder == null)
             {
                string name = ResponseHelper.GetLastModuleName(mod);
                folder = new Folder(name, parent);
-               parent = folder;
             }
+            parent = folder;
          }
 
          return folder;
       }
 
-      public Folder GetModuleFolder(Folder rootFolder, string module)
+      public Folder FindModuleInSubFolders(Folder startingFolder, string module)
       {
-         Folder folder = rootFolder;
          Folder returnFolder = null;
-         if (module == rootFolder.Module)
-            returnFolder = folder;
-         IList<Folder> subFolders = folder.GetSubFolders();
-         foreach (Folder subFolder in subFolders)
+         if (module == startingFolder.Module)
+            returnFolder = startingFolder;
+         if (returnFolder == null)
          {
-            if (returnFolder == null)
-               returnFolder = GetModuleFolder(subFolder, module);
+            IList<Folder> subFolders = startingFolder.GetSubFolders().ToList();
+            foreach (Folder folder in subFolders)
+            {
+               if (returnFolder == null)
+                  returnFolder = FindModuleInSubFolders(folder, module);
+            }
+         }
+
+         // return the folder that was found or null if it was not found
+         return returnFolder;
+      }
+
+      public Folder FindModuleFolder(Folder startingFolder, string module)
+      {
+         Folder returnFolder;
+         returnFolder = FindModuleInSubFolders(startingFolder, module);
+
+         // if the folder was not found, start from the root and find again
+         if (returnFolder == null)
+         {
+            Folder rootFolder = startingFolder.GetRootFolder();
+            if (!startingFolder.Equals(rootFolder))
+               returnFolder = FindModuleInSubFolders(startingFolder.GetRootFolder(), module);
          }
 
          return returnFolder;

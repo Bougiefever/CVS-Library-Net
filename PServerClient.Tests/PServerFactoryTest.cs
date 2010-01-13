@@ -389,7 +389,7 @@ namespace PServerClient.Tests
          Assert.AreEqual(type, command.Type);
       }
 
-      [Test]
+      [Test][Ignore]
       public void CreateCommandFromXMLTest()
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;

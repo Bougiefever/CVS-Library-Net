@@ -162,15 +162,6 @@
     <milliseconds>63</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ResponseProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/08/2010 10:57:01</timestamp>
-      <milliseconds>781</milliseconds>
-    </settings>
-    <timestamp>01/08/2010 09:53:48</timestamp>
-    <milliseconds>900</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="CVSItemBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/08/2010 10:57:01</timestamp>
@@ -205,15 +196,6 @@
     </settings>
     <timestamp>01/08/2010 15:37:33</timestamp>
     <milliseconds>632</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Root.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/08/2010 10:57:01</timestamp>
-      <milliseconds>781</milliseconds>
-    </settings>
-    <timestamp>01/08/2010 10:30:42</timestamp>
-    <milliseconds>284</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="ExitCode.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -1242,9 +1224,6 @@
     <milliseconds>479</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-1739993344">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="AuthStatus.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/08/2010 10:57:01</timestamp>
@@ -1270,6 +1249,27 @@
     </settings>
     <timestamp>01/11/2010 15:01:48</timestamp>
     <milliseconds>46</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ResponseProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/08/2010 10:57:01</timestamp>
+      <milliseconds>781</milliseconds>
+    </settings>
+    <timestamp>01/13/2010 14:38:28</timestamp>
+    <milliseconds>903</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1739993344">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Root.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/08/2010 10:57:01</timestamp>
+      <milliseconds>781</milliseconds>
+    </settings>
+    <timestamp>01/13/2010 15:58:05</timestamp>
+    <milliseconds>479</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

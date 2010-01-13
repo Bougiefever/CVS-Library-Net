@@ -14,6 +14,31 @@ namespace PServerClient.Tests
    [TestFixture]
    public class ResponseProcessorTest
    {
+      private ResponseProcessor _processor;
+      private Folder _rootFolder;
+      private Folder _sub1;
+      private Folder _sub2;
+      private Folder _sub3;
+      private Folder _sub11;
+      private Folder _sub21;
+      private Folder _sub211;
+      private Folder _sub12;
+
+      [SetUp]
+      public void SetUp()
+      {
+         _processor = new ResponseProcessor();
+         DirectoryInfo di = new DirectoryInfo(@"c:\_temp\cvs\abougie");
+         _rootFolder = new Folder(di, "connection string", "/usr/local/cvsroot/sandbox", "abougie");
+         _sub1 = new Folder("sub1", _rootFolder);
+         _sub2 = new Folder("sub2", _sub1);
+         _sub21 = new Folder("sub21", _sub2);
+         _sub211 = new Folder("sub211", _sub21);
+         _sub3 = new Folder("sub3", _sub2);
+         _sub11 = new Folder("sub11", _sub1);
+         _sub12 = new Folder("sub12", _sub11);
+      }
+
       [Test][Ignore]
       public void CreateFileGroupsFromResponsesTest()
       {
@@ -76,50 +101,98 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void GetParentFolderTest()
+      public void FindModuleFolderFromRootFolderTest()
       {
-         DirectoryInfo di = new DirectoryInfo(@"c:\_temp\cvs\abougie");
-         Folder rootFolder = new Folder(di, "connection string", "/usr/local/cvsroot/sandbox", "abougie");
-
-         string module = "abougie";
-         ResponseProcessor processor = new ResponseProcessor();
-         Folder result = processor.GetModuleFolder(rootFolder, module);
-         Assert.AreSame(rootFolder, result);
-
-         module = "abougie/cvstest";
-         result = processor.GetModuleFolder(rootFolder, module);
-         Assert.IsNull(result);
-
-         Folder sub1 = new Folder("sub1", rootFolder);
-         Folder sub2 = new Folder("sub2", rootFolder);
-         Folder sub3 = new Folder("sub3", rootFolder);
-         Folder sub11 = new Folder("sub11", sub1);
-
-         module = "abougie/sub1";
-         result = processor.GetModuleFolder(rootFolder, module);
-         Assert.AreSame(result, sub1);
-         module = "abougie/sub2";
-         result = processor.GetModuleFolder(rootFolder, module);
-         Assert.AreSame(result, sub2);
-         module = "abougie/sub3";
-         result = processor.GetModuleFolder(rootFolder, module);
-         Assert.AreSame(result, sub3);
+         string module = "abougie/sub1";
+         Folder result = _processor.FindModuleFolder(_rootFolder, module);
+         Assert.AreSame(_sub1, result);
+         module = "abougie/sub1/sub2";
+         result = _processor.FindModuleFolder(_rootFolder, module);
+         Assert.AreSame(_sub2, result);
+         module = "abougie/sub1/sub2/sub3";
+         result = _processor.FindModuleFolder(_rootFolder, module);
+         Assert.AreSame(_sub3, result);
          module = "abougie/sub1/sub11";
-         result = processor.GetModuleFolder(rootFolder, module);
-         Assert.AreSame(result, sub11);
+         result = _processor.FindModuleFolder(_rootFolder, module);
+         Assert.AreSame(_sub11, result);
+      }
+
+      [Test]
+      public void FindModuleFolderFromSelfTest()
+      {
+         string module = "abougie/sub1/sub2/sub3";
+
+         Folder result = _processor.FindModuleFolder(_sub3, module);
+         Assert.AreSame(result, _sub3);
+      }
+
+      [Test]
+      public void FindModuleFolderFromParentTest()
+      {
+         string module = "abougie/sub1/sub2/sub3";
+
+         Folder result = _processor.FindModuleFolder(_sub2, module);
+         Assert.AreSame(result, _sub3);
+
+         result = _processor.FindModuleFolder(_sub1, module);
+         Assert.AreSame(result, _sub3);
+
+         result = _processor.FindModuleFolder(_rootFolder, module);
+         Assert.AreSame(result, _sub3);
+      }
+
+      [Test]
+      public void FindModuleFolderFromSiblingTest()
+      {
+         string module = "abougie/sub1/sub2/sub3";
+
+         Folder result = _processor.FindModuleFolder(_sub211, module);
+         Assert.AreSame(_sub3, result);
+
+         result = _processor.FindModuleFolder(_sub12, module);
+         Assert.AreSame(_sub3, result);
+      }
+
+      [Test]
+      public void FindModuleFolderReturnsNullWhenNotExistsTest()
+      {
+         string module = "abougie/sub";
+
+         Folder result = _processor.FindModuleFolder(_sub3, module);
+         Assert.IsNull(result);
       }
 
       [Test]
       public void AddFolderToStructureTest()
       {
-         DirectoryInfo di = new DirectoryInfo(@"c:\_temp\cvs\abougie");
-         Folder rootFolder = new Folder(di, "connection string", "/usr/local/cvsroot/sandbox", "abougie");
-         string module = "abougie/sub1";
-         ResponseProcessor processor = new ResponseProcessor();
-         Folder result = processor.AddFolderToStructure(rootFolder, module);
-         Assert.AreNotSame(rootFolder, result);
-         Assert.AreEqual("sub1", result.Info.Name);
-         Assert.AreEqual(1, rootFolder.Count);
+         string module = "abougie/newfolder";
+         Folder result = _processor.AddFolderToStructure(_rootFolder, module);
+         Assert.AreNotSame(_rootFolder, result);
+         Assert.AreEqual("newfolder", result.Info.Name);
+         Assert.AreEqual(module, result.Module);
+         module = "abougie/sub1/newfolder";
+         result = _processor.AddFolderToStructure(_rootFolder, module);
+         Assert.AreEqual(module, result.Module);
+         module = "abougie/sub11/sub12/newfolder";
+         result = _processor.AddFolderToStructure(_rootFolder, module);
+         Assert.AreEqual(module, result.Module);
+      }
+
+      [Test]
+      public void GetModuleFolderWhenFolderExistsTest()
+      {
+         string module = "abougie/sub1/sub2/";
+         Folder result = _processor.GetModuleFolder(_rootFolder, module);
+         Assert.AreSame(_sub2, result);
+      }
+
+      [Test]
+      public void GetModuleFolderAddFolderToStructureTest()
+      {
+         string module = "abougie/newfolder";
+         Folder result = _processor.GetModuleFolder(_rootFolder, module);
+         Assert.IsNotNull(result);
+         Assert.AreEqual("abougie/newfolder", result.Module);
       }
    }
 }

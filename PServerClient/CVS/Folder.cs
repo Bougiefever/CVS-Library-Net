@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -149,6 +150,13 @@ namespace PServerClient.CVS
       public IList<Entry> GetEntries()
       {
          return _childItems.OfType<Entry>().ToList();
+      }
+
+      public Folder GetRootFolder()
+      {
+         if (Parent == null)
+            return this;
+         return Parent.GetRootFolder();
       }
    }
 }

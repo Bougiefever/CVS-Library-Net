@@ -53,6 +53,8 @@ namespace PServerClient.CVS
    /// </summary>
    public class Root : IRoot
    {
+      private Folder _rootFolder;
+
       /// <summary>
       /// Initializes a new instance of the Root class
       /// </summary>
@@ -75,7 +77,25 @@ namespace PServerClient.CVS
 
       public DirectoryInfo WorkingDirectory { get; set; }
 
-      public Folder RootFolder { get; set; }
+      public Folder RootFolder
+      {
+         get
+         {
+            if (_rootFolder == null)
+            {
+               DirectoryInfo di = PServerHelper.GetRootModuleFolderPath(WorkingDirectory, Module);
+               Folder rootFolder = new Folder(di, CVSConnectionString, Repository, Module);
+               _rootFolder = rootFolder;
+            }
+
+            return _rootFolder;
+         }
+
+         set
+         {
+            _rootFolder = value;
+         }
+      }
 
       public string Username { get; set; }
 

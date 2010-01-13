@@ -153,15 +153,6 @@
     <milliseconds>242</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ResponseProcessorTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/08/2010 10:57:01</timestamp>
-      <milliseconds>781</milliseconds>
-    </settings>
-    <timestamp>01/11/2010 15:09:00</timestamp>
-    <milliseconds>873</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ResponseTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/08/2010 10:57:01</timestamp>
@@ -192,4 +183,13 @@
   <project key="-246803524">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="ResponseProcessorTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/08/2010 10:57:01</timestamp>
+      <milliseconds>781</milliseconds>
+    </settings>
+    <timestamp>01/13/2010 14:49:20</timestamp>
+    <milliseconds>26</milliseconds>
+    <violations />
+  </sourcecode>
 </stylecopresultscache>
