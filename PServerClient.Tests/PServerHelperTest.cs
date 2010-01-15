@@ -40,6 +40,13 @@ namespace PServerClient.Tests
          Assert.AreEqual(DateTime.Parse("12/7/2009 11:15:36 PM"), dt);
       }
 
+      [Test][ExpectedException(typeof(ArgumentException))]
+      public void EntryToDateTimeExceptionTest()
+      {
+         string test = "Monday December 7, 2009";
+         DateTime dt = test.EntryToDateTime();
+      }
+
       [Test]
       public void ConvertRfc822ToDateTimeTest()
       {
@@ -130,20 +137,6 @@ namespace PServerClient.Tests
          string mod2 = "abougie/cvstest/CVSROOT";
          string name = mod2.Substring(mod2.IndexOf(mod1) + mod1.Length + 1);
          Assert.AreEqual("CVSROOT", name);
-      }
-
-      [Test]
-      public void Test()
-      {
-         var keys = ConfigurationManager.AppSettings.AllKeys;
-         if (keys.Where(k => k == "mode").Count() == 0)
-            Assert.Fail("Add appSettings key named 'mode' and set value to 'test'");
-         ConfigurationManager.AppSettings.Set("mode", "test");
-         var result = PServerHelper.IsTestMode();
-         Assert.IsTrue(result, "Should be in test mode");
-         ConfigurationManager.AppSettings.Set("mode", "prod");
-         result = PServerHelper.IsTestMode();
-         Assert.IsFalse(result, "Should not be in test mode");
       }
    }
 }

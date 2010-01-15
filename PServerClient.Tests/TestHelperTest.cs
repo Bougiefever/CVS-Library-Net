@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -48,15 +49,6 @@ namespace PServerClient.Tests
          Assert.AreEqual("97,98,99", result);
       }
 
-      [Test]
-      public void GetInfoFromUpdatedTest()
-      {
-         string test = "/.cvspass/1.1.1.1///";
-         string name = ResponseHelper.GetFileNameFromEntryLine(test);
-         string revision = ResponseHelper.GetRevisionFromEntryLine(test);
-         Assert.AreEqual(".cvspass", name);
-         Assert.AreEqual("1.1.1.1", revision);
-      }
 
       [Test]
       public void GetResponseFromXMLTest()
@@ -88,16 +80,27 @@ namespace PServerClient.Tests
          IConnection connection = mocks.Stub<IConnection>();
          CheckOutCommand cmd = new CheckOutCommand(root, connection);
 
+         // add requests to items
+         foreach (ICommandItem item in cmd.RequiredRequests)
+         {
+            cmd.Items.Add(item);
+         }
+
+         foreach (ICommandItem item in cmd.Requests)
+         {
+            cmd.Items.Add(item);
+         }
+
          // add responses to command
          IResponse response = new AuthResponse();
          IList<string> process = new List<string> { "I LOVE YOU" };
          response.Initialize(process);
-         cmd.Responses.Add(response);
+         cmd.Items.Add(response);
 
          response = new ValidRequestsResponse();
          IList<string> lines = new List<string> { "Root Valid-responses valid-requests Global_option" };
          response.Initialize(lines);
-         cmd.Responses.Add(response);
+         cmd.Items.Add(response);
 
          IList<IResponse> coresponses = TestHelper.GetMockCheckoutResponses("8 Dec 2009 15:26:27 -0000", "mymod/", "file1.cs");
          foreach (IResponse cor in coresponses)
@@ -107,8 +110,8 @@ namespace PServerClient.Tests
 
          XDocument xdoc = cmd.GetXDocument();
          Console.WriteLine(xdoc.ToString());
-         ////bool result = TestHelper.ValidateCommandXML(xdoc);
-         ////Assert.IsTrue(result);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
       }
 
       [Test]
@@ -129,7 +132,7 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
-      [Test][Ignore]
+      [Test]
       public void ValidatorCommandXMLTest()
       {
          string xml = TestStrings.CommandWithCommandItemsXML1;
@@ -138,7 +141,7 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
-      [Test][Ignore]
+      [Test]
       public void Validator2CommandXMLTest()
       {
          string xml = TestStrings.CommandWithCommandItemsXML2;
@@ -148,7 +151,7 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void Test()
+      public void CommandXMLFileSchemaTest()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
@@ -156,10 +159,10 @@ namespace PServerClient.Tests
          XmlSchemaSet schemas = new XmlSchemaSet();
          schemas.Add(validateSchema);
 
-         FileInfo fi2 = new FileInfo(@"c:\_junk\XMLFile1.xml");
+         FileInfo fi2 = new FileInfo(@"c:\_junk\XMLFile2.xml");
          XmlReader reader2 = XmlReader.Create(fi2.OpenRead());
          XDocument xdoc = XDocument.Load(reader2);
-         //xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
+         xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
          Console.WriteLine(xdoc.ToString());
       }
 
@@ -207,7 +210,7 @@ namespace PServerClient.Tests
          xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
       }
 
-      [Test][Ignore]
+      [Test]
       public void ValidateCommandXMLTest()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
@@ -227,8 +230,8 @@ namespace PServerClient.Tests
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;
          XDocument xdoc = XDocument.Parse(xml);
-         ////bool result = TestHelper.ValidateCommandXML(xdoc);
-         ////Assert.IsTrue(result);
+         bool result = TestHelper.ValidateCommandXML(xdoc);
+         Assert.IsTrue(result);
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          PServerFactory factory = new PServerFactory();
          IConnection connection = new PServerConnection();
@@ -237,7 +240,7 @@ namespace PServerClient.Tests
          
          Assert.AreEqual(2, cmd.RequiredRequests.Count);
          Assert.AreEqual(3, cmd.Requests.Count);
-         Assert.AreEqual(3, cmd.Responses.Count);
+         Assert.AreEqual(3, cmd.Items.OfType<IResponse>().Count());
       }
 
       [Test]
@@ -255,7 +258,7 @@ namespace PServerClient.Tests
       }
 
       [Test]
-      public void ImportXMLResponseWithMultpleLinesTest()
+      public void ImportXMLResponseWithMultipleLinesTest()
       {
          string xml = TestStrings.MTResponse;
          XElement responseElement = XElement.Parse(xml);

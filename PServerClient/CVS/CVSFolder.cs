@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using PServerClient.LocalFileSystem;
 
@@ -99,25 +100,32 @@ namespace PServerClient.CVS
 
       public void WriteEntries(IList<ICVSItem> items)
       {
-         ////IList<string> lines = new List<string>();
-         ////foreach (ICVSItem item in items)
-         ////{
-         ////   string code = item is Folder ? "D" : string.Empty;
-         ////   string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
-         ////                                    item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
-         ////   Console.WriteLine(entryLine);
-         ////   lines.Add(entryLine);
-         ////}
-         ////ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
+         IList<string> lines = new List<string>();
+         foreach (ICVSItem item in items)
+         {
+            string code = item is Folder ? "D" : string.Empty;
+
+            ////string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
+            ////                                 item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
+            ////Console.WriteLine(entryLine);
+            ////lines.Add(entryLine);
+         }
+         ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
       }
 
-      public void SaveCVSFolder(IList<ICVSItem> items)
+      public void SaveCVSFolder()
       {
-         ////// create CVS folder if it doesn't exist
-         ////ReaderWriter.Current.CreateDirectory(CVSDirectory);
-         ////WriteRootFile();
-         ////WriteRepositoryFile();
+         // create CVS folder if it doesn't exist
+         ReaderWriter.Current.CreateDirectory(CVSDirectory);
+         WriteRootFile();
+         WriteRepositoryFile();
          ////WriteEntries(items);
+      }
+
+      public void WriteEntry(Entry entry)
+      {
+         FileStream fs = EntriesFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite);
+         
       }
    }
 }

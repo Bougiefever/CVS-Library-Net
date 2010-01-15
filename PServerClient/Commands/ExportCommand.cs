@@ -27,19 +27,6 @@ namespace PServerClient.Commands
          StartUp(root, exportTypeRequest);
       }
 
-      private void StartUp(IRoot root, IRequest exportTypeRequest)
-      {
-         _currentFolder = root.RootFolder;
-
-         Requests.Add(new RootRequest(root.Repository));
-         Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
-         Requests.Add(exportTypeRequest);
-         Requests.Add(new ArgumentRequest("-R"));
-         Requests.Add(new ArgumentRequest(root.Module));
-         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
-         Requests.Add(new ExportRequest());
-      }
-
       public override CommandType Type
       {
          get
@@ -47,8 +34,6 @@ namespace PServerClient.Commands
             return CommandType.Export;
          }
       }
-
-      public IList<IFileResponseGroup> FileGroups { get; set; }
 
       internal string GetExportDate(DateTime exportDate)
       {
@@ -60,7 +45,6 @@ namespace PServerClient.Commands
       {
          if (request is ExportRequest)
          {
-            //FileGroups = new List<IFileResponseGroup>();
             IResponse response;
             IFileResponseGroup file = null;
             IList<IResponse> messages = null;
@@ -82,8 +66,11 @@ namespace PServerClient.Commands
                      file.FileResponse = (IFileResponse)response;
 
                      // process each file
-                     //FileGroups.Add(file);
-                     _currentFolder = processor.AddFile(_currentFolder, file);
+                     Entry entry = processor.AddFile(_currentFolder, file);
+                     entry.Save(true);
+                     _currentFolder = entry.Parent;
+                     file = null;
+                     RemoveProcessedResponses();
                      gettingFile = false; // all done getting file
                   }
                }
@@ -96,9 +83,8 @@ namespace PServerClient.Commands
                      file.ModTime = (ModTimeResponse)response;
                      gettingFile = true;
                   }
-                  //else
-                  //   base.AfterRequest(request);
                }
+
                response = Connection.GetResponse();
                ProcessResponse(response);
             }
@@ -109,13 +95,18 @@ namespace PServerClient.Commands
             base.AfterRequest(request);
          }
       }
-
-      protected internal override void AfterExecute()
+   
+      private void StartUp(IRoot root, IRequest exportTypeRequest)
       {
-         var processor = new ResponseProcessor();
-         //Root.RootFolder = processor.CreateCVSFileStructure(Root, FileGroups);
-         //Root.RootFolder.Save(true);
-         base.AfterExecute();
+         _currentFolder = root.RootFolder;
+
+         Requests.Add(new RootRequest(root.Repository));
+         Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
+         Requests.Add(exportTypeRequest);
+         Requests.Add(new ArgumentRequest("-R"));
+         Requests.Add(new ArgumentRequest(root.Module));
+         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
+         Requests.Add(new ExportRequest());
       }
    }
 }

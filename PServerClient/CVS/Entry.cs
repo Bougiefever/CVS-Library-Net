@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using PServerClient.LocalFileSystem;
 
 namespace PServerClient.CVS
@@ -9,7 +10,9 @@ namespace PServerClient.CVS
    /// </summary>
    public class Entry : CVSItemBase
    {
-      private string _entryLineRegex = @"(D?)/([^/]+)/([^/]*)/([^/]*)/([^/]*)/([^/]*)";
+      private string _entryLineRegex = @"(?<code>D?)/(?<name>[^/]+)/(?<revision>[^/]*)/(?<date>[^/]*)/(?<keyword>[^/]*)/(?<sticky>[^/]*)";
+
+      private string _revision;
 
       /// <summary>
       /// Initializes a new instance of the Entry class.
@@ -19,9 +22,6 @@ namespace PServerClient.CVS
       public Entry(string name, Folder parent)
          : base(parent)
       {
-         //Revision = string.Empty;
-         //Properties = string.Empty;
-         //StickyOption = string.Empty;
          FileInfo fi = new FileInfo(Path.Combine(parent.Info.FullName, name));
          Info = fi;
       }
@@ -45,18 +45,19 @@ namespace PServerClient.CVS
          }
       }
 
-      public string EntryLine { get; set; }
-      
       public DateTime ModTime { get; set; }
 
-      private string _revision;
       public string Revision
       {
          get
          {
-
+            _revision = string.Empty;
+            Match m = Regex.Match(EntryLine, _entryLineRegex);
+            if (m.Success)
+               _revision = m.Groups["revision"].Value;
             return _revision;
          }
+
          set
          {
             _revision = value;
@@ -86,7 +87,23 @@ namespace PServerClient.CVS
 
       public override void Save(bool recursive)
       {
+         if (recursive)
+         {
+            Folder parent = Parent;
+            do
+            {
+               parent.Save(false);
+               parent = parent.Parent;
+            }
+            while (parent != null);
+         }
+
          Write();
+      }
+
+      public void WriteCVSEntryLine()
+      {
+         CVSFolder.WriteEntry(this);
       }
    }
 }

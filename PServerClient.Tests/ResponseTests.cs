@@ -8,7 +8,6 @@ using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
 using PServerClient.CVS;
-using PServerClient.Requests;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
 
@@ -343,7 +342,7 @@ namespace PServerClient.Tests
       {
          WrapperRscOptionResponse response = new WrapperRscOptionResponse();
          string process = "*.cs -k 'b'";
-         IList<string> lines = new List<string> { process };
+         IList<string> lines = new List<string> {process};
          ResponseTest(response, ResponseType.WrapperRscOption, 1, "*.cs -k 'b'", lines);
       }
 
@@ -373,27 +372,7 @@ namespace PServerClient.Tests
          }
       }
 
-      [Test]
-      public void CollapseMessageResponsesTest()
-      {
-         DirectoryInfo di = Directory.GetParent(Environment.CurrentDirectory);
-         FileInfo fi = new FileInfo(Path.Combine(di.FullName, "TestSetup\\ExportCommandWithEMessages.xml"));
-         TextReader reader = fi.OpenText();
-         XDocument xdoc = XDocument.Load(reader);
-         ////bool result = TestHelper.ValidateCommandXML(xdoc);
-         ////Assert.IsTrue(result);
-         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
-         PServerFactory factory = new PServerFactory();
-         IConnection connection = new PServerConnection();
-         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection, DateTime.Now });
-         Assert.AreEqual(18, cmd.Responses.Count);
-         Assert.AreEqual(12, cmd.Responses.OfType<EMessageResponse>().Count());
-         IList<IResponse> condensed = ResponseHelper.CollapseMessagesInResponses(cmd.Responses);
-         Assert.AreEqual(7, condensed.Count);
-         IMessageResponse message = (IMessageResponse)condensed[5];
-         Assert.AreEqual(12, message.Lines.Count);
-         Console.WriteLine(message.Display());
-      }
+
 
       private void ResponseTest(IResponse response, ResponseType expectedType, int lineCount, string expectedDisplay, IList<string> lines)
       {

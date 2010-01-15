@@ -26,6 +26,13 @@ namespace PServerClient.CVS
 
       public Folder Parent { get; protected set; }
 
+      public string EntryLine { get; set; }
+
+      public void Save()
+      {
+         Save(false);
+      }
+
       public abstract void Save(bool recursive);
 
       public virtual void Read()

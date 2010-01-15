@@ -12,9 +12,16 @@ namespace PServerClient
 {
    public class PServerFactory
    {
-      // ReSharper disable PossibleNullReferenceException
 
+      // ReSharper disable PossibleNullReferenceException
       // ReSharper disable MemberCanBeMadeStatic.Local
+
+      private string GetResponseClassNameFromType(ResponseType type)
+      {
+         string responseName = "PServerClient.Responses." + type + "Response";
+         return responseName;
+      }
+
       public IResponse CreateResponse(ResponseType type)
       {
          string responseName = GetResponseClassNameFromType(type);
@@ -80,8 +87,8 @@ namespace PServerClient
          command.RequiredRequests = IRequestListFromRequestsXElement(requestsElement);
          requestsElement = commandElement.Element("Requests");
          command.Requests = IRequestListFromRequestsXElement(requestsElement);
-         XElement responsesElement = commandElement.Element("Responses");
-         command.Responses = IResponseListFromResponsesXElement(responsesElement);
+         XElement itemsElement = commandElement.Element("CommandItems");
+         command.Items = ICommandItemListFromCommandItemsXElement(itemsElement);
          return command;
       }
 
@@ -107,16 +114,21 @@ namespace PServerClient
          return request;
       }
 
-      public IList<IResponse> IResponseListFromResponsesXElement(XElement responsesElement)
+      public IList<ICommandItem> ICommandItemListFromCommandItemsXElement(XElement itemsElement)
       {
-         IList<IResponse> responses = new List<IResponse>();
-         foreach (XElement responseElement in responsesElement.Nodes())
+         IList<ICommandItem> items = new List<ICommandItem>();
+         foreach (XElement itemElement in itemsElement.Nodes())
          {
-            IResponse response = ResponseXElementToIResponse(responseElement);
-            responses.Add(response);
+            ICommandItem item;
+            if (itemElement.Name == "Request")
+               item = RequestXElementToIRequest(itemElement);
+            else
+               item = ResponseXElementToIResponse(itemElement);
+
+            items.Add(item);
          }
 
-         return responses;
+         return items;
       }
 
       public IResponse ResponseXElementToIResponse(XElement responseElement)
@@ -156,13 +168,6 @@ namespace PServerClient
 
          return response;
       }
-
-      private string GetResponseClassNameFromType(ResponseType type)
-      {
-         string responseName = "PServerClient.Responses." + type + "Response";
-         return responseName;
-      }
-
       private string GetRequestClassNameFromType(RequestType type)
       {
          string requestName = "PServerClient.Requests." + type + "Request";

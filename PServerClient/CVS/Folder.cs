@@ -17,6 +17,7 @@ namespace PServerClient.CVS
       private string _module;
       private string _repository;
       private string _connection;
+      private bool _saveCVSFolder;
 
       /// <summary>
       /// Initializes a new instance of the Folder class
@@ -51,6 +52,7 @@ namespace PServerClient.CVS
          _module = module;
          _repository = repository;
          _connection = connection;
+         _saveCVSFolder = true;
       }
 
       public override CVSFolder CVSFolder
@@ -137,7 +139,10 @@ namespace PServerClient.CVS
          {
             foreach (ICVSItem item in this)
             {
-               item.Save(true);
+               if (item is Entry)
+                  item.Save();
+               else
+                  item.Save(true);
             }
          }
       }
@@ -157,6 +162,15 @@ namespace PServerClient.CVS
          if (Parent == null)
             return this;
          return Parent.GetRootFolder();
+      }
+
+
+      /// <summary>
+      /// Saves the CVS information to the CVS folder
+      /// </summary>
+      public void SaveCVSFolder()
+      {
+         // save the cvs folder information
       }
    }
 }

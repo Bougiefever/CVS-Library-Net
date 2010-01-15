@@ -125,12 +125,12 @@ namespace PServerClient.Commands
          }
 
          commandElement.Add(requestsElement);
-         XElement responsesElement = new XElement("Responses");
-         commandElement.Add(responsesElement);
-         foreach (IResponse response in Responses)
+         XElement commandItemsElement = new XElement("CommandItems");
+         commandElement.Add(commandItemsElement);
+         foreach (ICommandItem item in Items)
          {
-            XElement responseElement = response.GetXElement();
-            responsesElement.Add(responseElement);
+            XElement itemElement = item.GetXElement();
+            commandItemsElement.Add(itemElement);
          }
 
          XDocument xdoc = new XDocument(commandElement);
@@ -243,8 +243,7 @@ namespace PServerClient.Commands
       {
          if (!PServerHelper.IsTestMode())
             Requests.Clear();
-         var unProcessed = Responses.Where(r => !r.Processed);
-         Responses = unProcessed.ToList();
+         RemoveProcessedResponses();
       }
 
       protected void DoRequest(IRequest request)
@@ -262,6 +261,12 @@ namespace PServerClient.Commands
             if (PServerHelper.IsTestMode())
                Items.Add(response);
          }
+      }
+
+      protected void RemoveProcessedResponses()
+      {
+         var unProcessed = Responses.Where(r => !r.Processed);
+         Responses = unProcessed.ToList();
       }
    }
 }

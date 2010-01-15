@@ -70,7 +70,7 @@ namespace PServerClient.Commands
       /// <param name="startingFolder">Either the root folder or the last folder an entry was added to</param>
       /// <param name="file">Group of responses needed for one file</param>
       /// <returns>The folder the entry was added to</returns>
-      public Folder AddFile(Folder startingFolder, IFileResponseGroup file)
+      public Entry AddFile(Folder startingFolder, IFileResponseGroup file)
       {
          string module = file.FileResponse.Module;
          Folder parent = GetModuleFolder(startingFolder, module);
@@ -79,7 +79,7 @@ namespace PServerClient.Commands
          entry.Length = file.FileResponse.Length;
          entry.FileContents = file.FileResponse.Contents;
          entry.EntryLine = file.FileResponse.EntryLine;
-         return parent;
+         return entry;
       }
 
       public Folder GetModuleFolder(Folder startingFolder, string module)

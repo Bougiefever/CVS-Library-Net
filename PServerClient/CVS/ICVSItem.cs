@@ -37,6 +37,11 @@ namespace PServerClient.CVS
       /// <summary>
       /// Save to disk
       /// </summary>
+      void Save();
+
+      /// <summary>
+      /// Save to disk
+      /// </summary>
       /// <param name="recursive">Determines whether or not to save all children</param>
       void Save(bool recursive);
    }

@@ -210,20 +210,6 @@ namespace PServerClient
          return names;
       }
 
-      public static string[] GetMUPathFile(string mu)
-      {
-         string regexMU = @"M U (.+)/(.+)$";
-         Match m = Regex.Match(mu, regexMU);
-         string[] names = new string[2];
-         if (m.Success)
-         {
-            names[0] = m.Groups[1].ToString();
-            names[1] = m.Groups[2].ToString();
-         }
-
-         return names;
-      }
-
       public static DirectoryInfo GetRootModuleFolderPath(DirectoryInfo workingDirectory, string moduleName)
       {
          string[] folders = moduleName.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);

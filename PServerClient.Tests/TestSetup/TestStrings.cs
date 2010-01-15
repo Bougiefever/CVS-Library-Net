@@ -265,143 +265,143 @@ namespace PServerClient.Tests.TestSetup
 
       public const string CommandXMLFile = @"<?xml version='1.0' encoding='utf-8'?>
 <Command>
-  <ClassName>PServerClient.Commands.CheckOutCommand</ClassName>
-  <RequiredRequests>
-    <Request>
-      <ClassName>PServerClient.Requests.AuthRequest</ClassName>
-      <Lines>
-        <Line>BEGIN AUTH REQUEST</Line>
-        <Line>/f1/f2/f3</Line>
-        <Line>username</Line>
-        <Line>A:yZZ30 e</Line>
-        <Line>END AUTH REQUEST</Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
-      <Lines>
-        <Line>UseUnchanged</Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.ValidResponsesRequest</ClassName>
-      <Lines>
-        <Line>Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT</Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.ValidRequestsRequest</ClassName>
-      <Lines>
-        <Line>valid-requests</Line>
-      </Lines>
-    </Request>
-  </RequiredRequests>
-  <Requests>
-    <Request>
-      <ClassName>PServerClient.Requests.RootRequest</ClassName>
-      <Lines>
-        <Line>Root /f1/f2/f3</Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.GlobalOptionRequest</ClassName>
-      <Lines>
-        <Line>Global_option -q</Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.ArgumentRequest</ClassName>
-      <Lines>
-        <Line>Argument </Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.DirectoryRequest</ClassName>
-      <Lines>
-        <Line>Directory .</Line>
-        <Line>/f1/f2/f3/</Line>
-      </Lines>
-    </Request>
-    <Request>
-      <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
-      <Lines>
-        <Line>co</Line>
-      </Lines>
-    </Request>
-  </Requests>
-   <Responses>
-     <Response>
-       <ClassName>PServerClient.Responses.AuthResponse</ClassName>
-       <Name/>
-       <Lines>
-         <Line>I LOVE YOU</Line>
-       </Lines>
-     </Response>        
-     <Response>
-       <ClassName>PServerClient.Responses.ValidRequestsResponse</ClassName>
-       <Name>Valid-requests</Name>
-       <Lines>
-         <Line>Root Valid-responses valid-requests Global_option</Line>
-       </Lines>
-     </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.ModTimeResponse</ClassName>
-          <Name>Mod-time</Name>
-          <Lines>
+   <ClassName>PServerClient.Commands.CheckOutCommand</ClassName>
+   <RequiredRequests>
+      <Request>
+         <ClassName>PServerClient.Requests.AuthRequest</ClassName>
+         <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/f1/f2/f3</Line>
+            <Line>username</Line>
+            <Line>A:yZZ30 e</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
+         <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.ValidResponsesRequest</ClassName>
+         <Lines>
+            <Line>Valid-responses ok error Valid-requests Checked-in New-entry Updated Created Merged Mod-time Removed Set-static-directory Clear-static-directory Set-sticky Clear-sticky Module-expansion M E MT</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.ValidRequestsRequest</ClassName>
+         <Lines>
+            <Line>valid-requests</Line>
+         </Lines>
+      </Request>
+   </RequiredRequests>
+   <Requests>
+      <Request>
+         <ClassName>PServerClient.Requests.RootRequest</ClassName>
+         <Lines>
+            <Line>Root /f1/f2/f3</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.GlobalOptionRequest</ClassName>
+         <Lines>
+            <Line>Global_option -q</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.ArgumentRequest</ClassName>
+         <Lines>
+            <Line>Argument </Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.DirectoryRequest</ClassName>
+         <Lines>
+            <Line>Directory .</Line>
+            <Line>/f1/f2/f3/</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
+         <Lines>
+            <Line>co</Line>
+         </Lines>
+      </Request>
+   </Requests>
+   <CommandItems>
+      <Response>
+         <ClassName>PServerClient.Responses.AuthResponse</ClassName>
+         <Name/>
+         <Lines>
+            <Line>I LOVE YOU</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.ValidRequestsResponse</ClassName>
+         <Name>Valid-requests</Name>
+         <Lines>
+            <Line>Root Valid-responses valid-requests Global_option</Line>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.ModTimeResponse</ClassName>
+         <Name>Mod-time</Name>
+         <Lines>
             <Line>8 Dec 2009 15:26:27 -0000</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
-          <Name>MT</Name>
-          <Lines>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
             <Line>+updated</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
-          <Name>MT</Name>
-          <Lines>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
             <Line>text U</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
-          <Name>MT</Name>
-          <Lines>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
             <Line>fname mymod/file1.cs</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
-          <Name>MT</Name>
-          <Lines>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
             <Line>newline</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
-          <Name>MT</Name>
-          <Lines>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.MTMessageResponse</ClassName>
+         <Name>MT</Name>
+         <Lines>
             <Line>-updated</Line>
-          </Lines>
-        </Response>
-        <Response>
-          <ClassName>PServerClient.Responses.UpdatedResponse</ClassName>
-          <Name>Updated</Name>
-          <Lines>
+         </Lines>
+      </Response>
+      <Response>
+         <ClassName>PServerClient.Responses.UpdatedResponse</ClassName>
+         <Name>Updated</Name>
+         <Lines>
             <Line>Updated mymod/</Line>
             <Line>/usr/local/cvsroot/sandbox/mymod/file1.cs</Line>
             <Line>/file1.cs/1.1.1.1///</Line>
             <Line>u=rw,g=rw,o=rw</Line>
             <Line>5</Line>
-          </Lines>
-          <File>
+         </Lines>
+         <File>
             <Length>5</Length>
             <Contents>97,98,99,100,101</Contents>
-          </File>
-        </Response>
-   </Responses>
+         </File>
+      </Response>
+   </CommandItems>
 </Command>";
 
       public const string CommandXMLFileWithManyItems = @"<?xml version='1.0' encoding='utf-8'?>
@@ -445,7 +445,17 @@ namespace PServerClient.Tests.TestSetup
          </Lines>
       </Request>
    </Requests>
-   <Responses>
+   <CommandItems>
+      <Request>
+         <ClassName>PServerClient.Requests.AuthRequest</ClassName>
+         <Lines>
+            <Line>BEGIN AUTH REQUEST</Line>
+            <Line>/usr/local/cvsroot/sandbox</Line>
+            <Line>abougie</Line>
+            <Line>AB4%o=wSobI4w</Line>
+            <Line>END AUTH REQUEST</Line>
+         </Lines>
+      </Request>
       <Response>
          <ClassName>PServerClient.Responses.AuthResponse</ClassName>
          <Name/>
@@ -453,6 +463,30 @@ namespace PServerClient.Tests.TestSetup
             <Line>I LOVE YOU</Line>
          </Lines>
       </Response>
+      <Request>
+         <ClassName>PServerClient.Requests.UseUnchangedRequest</ClassName>
+         <Lines>
+            <Line>UseUnchanged</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.RootRequest</ClassName>
+         <Lines>
+            <Line>Root /usr/local/cvsroot/sandbox</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.GlobalOptionRequest</ClassName>
+         <Lines>
+            <Line>Global_option -q</Line>
+         </Lines>
+      </Request>
+      <Request>
+         <ClassName>PServerClient.Requests.CheckOutRequest</ClassName>
+         <Lines>
+            <Line>co</Line>
+         </Lines>
+      </Request>
       <Response>
          <ClassName>PServerClient.Responses.ClearStickyResponse</ClassName>
          <Name>Clear-sticky</Name>
@@ -469,7 +503,7 @@ namespace PServerClient.Tests.TestSetup
             <Line>/usr/local/cvsroot/sandbox/abougie/</Line>
          </Lines>
       </Response>
-   </Responses>
+   </CommandItems>
 </Command>";
 
       public const string MTResponse = @"<Response>
