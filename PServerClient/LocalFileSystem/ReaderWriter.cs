@@ -37,6 +37,11 @@ namespace PServerClient.LocalFileSystem
          return buffer;
       }
 
+      /// <summary>
+      /// Reads text file contents and puts each line into a string List
+      /// </summary>
+      /// <param name="file">The FileInfo instance for the file</param>
+      /// <returns>The list of strings containing the file lines</returns>
       public IList<string> ReadFileLines(FileInfo file)
       {
          if (!file.Exists)

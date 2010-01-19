@@ -32,8 +32,6 @@ namespace PServerClient.Requests
 
       public IList<string> Lines { get; set; }
 
-      //public string[] Lines { get; internal set; }
-
       public virtual string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();

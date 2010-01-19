@@ -17,7 +17,6 @@ namespace PServerClient.CVS
       private string _module;
       private string _repository;
       private string _connection;
-      private bool _saveCVSFolder;
 
       /// <summary>
       /// Initializes a new instance of the Folder class
@@ -52,9 +51,11 @@ namespace PServerClient.CVS
          _module = module;
          _repository = repository;
          _connection = connection;
-         _saveCVSFolder = true;
       }
 
+      /// <summary>
+      /// Reference to the CVS folder implementation
+      /// </summary>
       public override CVSFolder CVSFolder
       {
          get
@@ -63,6 +64,9 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets the count of entries and folders contained in this folder
+      /// </summary>
       public int Count
       {
          get
@@ -71,6 +75,9 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets the repository string that gets written in the CVS folder Repository file
+      /// </summary>
       public string Repository
       {
          get
@@ -81,6 +88,9 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets the connection string that gets written in the CVS folder Root file
+      /// </summary>
       public string Connection
       {
          get
@@ -91,6 +101,9 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets the current CVS module for the location in the file structure
+      /// </summary>
       public string Module
       {
          get
@@ -104,6 +117,11 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Indexer for the child entry and folder items
+      /// </summary>
+      /// <param name="idx">index for item</param>
+      /// <returns>Entry or Folder item</returns>
       public ICVSItem this[int idx]
       {
          get
@@ -112,26 +130,45 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Add a child item to this folder
+      /// </summary>
+      /// <param name="item">Entry or Folder item</param>
       public void AddItem(ICVSItem item)
       {
          _childItems.Add(item);
       }
 
+      /// <summary>
+      /// Remove a child item from this folder
+      /// </summary>
+      /// <param name="item">Entry or Folder item</param>
       public void RemoveItem(ICVSItem item)
       {
          _childItems.Remove(item);
       }
 
+      /// <summary>
+      /// Implementation of IEnumerator for indexing
+      /// </summary>
+      /// <returns>Returns an enumerator for the child items</returns>
       public IEnumerator GetEnumerator()
       {
          return _childItems.GetEnumerator();
       }
 
+      /// <summary>
+      /// Create the folder on the local file system
+      /// </summary>
       public override void Write()
       {
          ReaderWriter.Current.CreateDirectory((DirectoryInfo) Info);
       }
 
+      /// <summary>
+      /// Save the folder and optionally its child items
+      /// </summary>
+      /// <param name="recursive">Determines whether or not to </param>
       public override void Save(bool recursive)
       {
          Write();
@@ -147,16 +184,28 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets the list of the Folder-type items contained in this folder
+      /// </summary>
+      /// <returns>List of folder items</returns>
       public IList<Folder> GetSubFolders()
       {
          return _childItems.OfType<Folder>().ToList();
       }
 
+      /// <summary>
+      /// Gets the list of Entry-type items contained in this folder
+      /// </summary>
+      /// <returns>List of Entry items</returns>
       public IList<Entry> GetEntries()
       {
          return _childItems.OfType<Entry>().ToList();
       }
 
+      /// <summary>
+      /// Gets the root folder for the structure
+      /// </summary>
+      /// <returns>Folder that is the root folder</returns>
       public Folder GetRootFolder()
       {
          if (Parent == null)
@@ -164,13 +213,16 @@ namespace PServerClient.CVS
          return Parent.GetRootFolder();
       }
 
-
       /// <summary>
       /// Saves the CVS information to the CVS folder
       /// </summary>
       public void SaveCVSFolder()
       {
          // save the cvs folder information
+         ReaderWriter.Current.CreateDirectory(CVSFolder.CVSDirectory);
+         CVSFolder.WriteRootFile();
+         CVSFolder.WriteRepositoryFile();
+         CVSFolder.WriteEntries();
       }
    }
 }

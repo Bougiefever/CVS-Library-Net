@@ -229,23 +229,6 @@ namespace PServerClient.Commands
          ProcessMessages();
       }
 
-      private void ProcessRequestResponses()
-      {
-         var responses = _connection.GetAllResponses();
-         foreach (IResponse response in responses)
-         {
-            ProcessResponse(response);
-            Responses.Add(response);
-         }
-      }
-
-      private void CleanUp()
-      {
-         if (!PServerHelper.IsTestMode())
-            Requests.Clear();
-         RemoveProcessedResponses();
-      }
-
       protected void DoRequest(IRequest request)
       {
          _connection.DoRequest(request);
@@ -265,8 +248,25 @@ namespace PServerClient.Commands
 
       protected void RemoveProcessedResponses()
       {
-         var unProcessed = Responses.Where(r => !r.Processed);
-         Responses = unProcessed.ToList();
+         var notProcessed = Responses.Where(r => !r.Processed);
+         Responses = notProcessed.ToList(); 
+      }
+
+      private void ProcessRequestResponses()
+      {
+         var responses = _connection.GetAllResponses();
+         foreach (IResponse response in responses)
+         {
+            ProcessResponse(response);
+            Responses.Add(response);
+         }
+      }
+
+      private void CleanUp()
+      {
+         if (!PServerHelper.IsTestMode())
+            Requests.Clear();
+         RemoveProcessedResponses();
       }
    }
 }

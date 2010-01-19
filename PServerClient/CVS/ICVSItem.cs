@@ -24,6 +24,11 @@ namespace PServerClient.CVS
       CVSFolder CVSFolder { get; }
 
       /// <summary>
+      /// Gets the line for the Entries CVS folder file
+      /// </summary>
+      string EntryLine { get; }
+
+      /// <summary>
       /// Write the FileContents to the Entry file if item is Entry type
       /// Create a directory if item is Folder type
       /// </summary>

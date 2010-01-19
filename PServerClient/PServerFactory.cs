@@ -12,16 +12,9 @@ namespace PServerClient
 {
    public class PServerFactory
    {
-
       // ReSharper disable PossibleNullReferenceException
+
       // ReSharper disable MemberCanBeMadeStatic.Local
-
-      private string GetResponseClassNameFromType(ResponseType type)
-      {
-         string responseName = "PServerClient.Responses." + type + "Response";
-         return responseName;
-      }
-
       public IResponse CreateResponse(ResponseType type)
       {
          string responseName = GetResponseClassNameFromType(type);
@@ -168,10 +161,17 @@ namespace PServerClient
 
          return response;
       }
+
       private string GetRequestClassNameFromType(RequestType type)
       {
          string requestName = "PServerClient.Requests." + type + "Request";
          return requestName;
+      }
+
+      private string GetResponseClassNameFromType(ResponseType type)
+      {
+         string responseName = "PServerClient.Responses." + type + "Response";
+         return responseName;
       }
    }
 }

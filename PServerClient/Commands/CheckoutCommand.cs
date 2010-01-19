@@ -10,6 +10,11 @@ namespace PServerClient.Commands
    {
       private Folder _currentFolder;
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CheckOutCommand"/> class.
+      /// </summary>
+      /// <param name="root">The CVS root.</param>
+      /// <param name="connection">The PServer connection.</param>
       public CheckOutCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
@@ -21,6 +26,10 @@ namespace PServerClient.Commands
          Requests.Add(new CheckOutRequest());
       }
 
+      /// <summary>
+      /// Gets the Command type.
+      /// </summary>
+      /// <value>The CommandType type.</value>
       public override CommandType Type
       {
          get
@@ -33,13 +42,12 @@ namespace PServerClient.Commands
       {
          if (request is ExportRequest)
          {
-            IResponse response;
             IFileResponseGroup file = null;
             IList<IResponse> messages = null;
             bool gettingFile = false;
             ResponseProcessor processor = new ResponseProcessor();
 
-            response = Connection.GetResponse();
+            IResponse response = Connection.GetResponse();
             ProcessResponse(response);
             do
             {

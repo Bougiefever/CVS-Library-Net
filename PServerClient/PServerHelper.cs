@@ -130,6 +130,11 @@ namespace PServerClient
          return Encoding.ASCII.GetString(decode);
       }
 
+      /// <summary>
+      /// RFC822s to date time.
+      /// </summary>
+      /// <param name="rfcDate">The RFC date.</param>
+      /// <returns>DateTime of date string</returns>
       public static DateTime Rfc822ToDateTime(this string rfcDate)
       {
          string dateTimeRegex = @"(\d{1,2})\s(\w{3})\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s-(\d{4})";
@@ -168,7 +173,6 @@ namespace PServerClient
          if (!m.Success)
             throw new ArgumentException("Date string is not formatted correctly");
 
-         string dow = m.Groups[1].ToString();
          string mon = m.Groups[2].ToString();
          int day = Convert.ToInt32(m.Groups[3].ToString());
          int hour = Convert.ToInt32(m.Groups[4].ToString());
@@ -196,6 +200,11 @@ namespace PServerClient
          return Convert.ToInt32(result);
       }
 
+      /// <summary>
+      /// Gets the updated fname path file.
+      /// </summary>
+      /// <param name="fname">The fname.</param>
+      /// <returns>the module and file information</returns>
       public static string[] GetUpdatedFnamePathFile(string fname)
       {
          string fnameRegex = @"fname (.+)/(.+)$";
@@ -210,6 +219,12 @@ namespace PServerClient
          return names;
       }
 
+      /// <summary>
+      /// Gets the root module folder path.
+      /// </summary>
+      /// <param name="workingDirectory">The local working directory.</param>
+      /// <param name="moduleName">Name of the CVS module.</param>
+      /// <returns>Returns the directory for the root module folder</returns>
       public static DirectoryInfo GetRootModuleFolderPath(DirectoryInfo workingDirectory, string moduleName)
       {
          string[] folders = moduleName.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
@@ -223,10 +238,26 @@ namespace PServerClient
          return di;
       }
 
+      /// <summary>
+      /// Determines whether [is test mode].
+      /// </summary>
+      /// <returns>If config is set up for test mode, returns true</returns>
       public static bool IsTestMode()
       {
          string mode = ConfigurationManager.AppSettings["mode"];
          return mode == "test";
+      }
+
+      /// <summary>
+      /// Gets the entry filename regex.
+      /// </summary>
+      /// <param name="fileName">Name of the file.</param>
+      /// <returns>regex string</returns>
+      public static string GetEntryFilenameRegex(string fileName)
+      {
+         string name = fileName.Replace(".", @"\.");
+         string regex = string.Format("D?{0}.", name);
+         return regex;
       }
    }
 }

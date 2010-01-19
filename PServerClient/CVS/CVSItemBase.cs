@@ -41,5 +41,13 @@ namespace PServerClient.CVS
       }
 
       public abstract void Write();
+
+      /// <summary>
+      /// Writes or updates the CVS entry line to the CVS Entries file.
+      /// </summary>
+      public void WriteCVSEntryLine()
+      {
+         CVSFolder.WriteEntry(this);
+      }
    }
 }

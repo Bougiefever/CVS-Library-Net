@@ -36,3 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("PServerClient.Tests")]
 [assembly: InternalsVisibleTo("PServerClient.IntegrationTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("PServerClient.MSTests")]

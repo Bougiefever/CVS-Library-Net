@@ -26,6 +26,15 @@ namespace PServerClient.CVS
          Info = fi;
       }
 
+      /// <summary>
+      /// Initializes a new instance of the Entry class.
+      /// </summary>
+      /// <param name="name">The file name.</param>
+      /// <param name="parent">The parent folder.</param>
+      /// <param name="modTime">The mod time.</param>
+      /// <param name="revision">The current revision.</param>
+      /// <param name="properties">The entry file properties, if any.</param>
+      /// <param name="stickyOption">The sticky option, if any.</param>
       public Entry(string name, Folder parent, DateTime modTime, string revision, string properties, string stickyOption)
          : base(parent)
       {
@@ -37,6 +46,10 @@ namespace PServerClient.CVS
          Info = fi;
       }
 
+      /// <summary>
+      /// Gets the CVS folder.
+      /// </summary>
+      /// <value>The CVS folder.</value>
       public override CVSFolder CVSFolder
       {
          get
@@ -47,6 +60,10 @@ namespace PServerClient.CVS
 
       public DateTime ModTime { get; set; }
 
+      /// <summary>
+      /// Gets or sets the revision.
+      /// </summary>
+      /// <value>The revision.</value>
       public string Revision
       {
          get
@@ -64,27 +81,57 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets or sets the properties.
+      /// </summary>
+      /// <value>The properties.</value>
       public string Properties { get; set; }
 
+      /// <summary>
+      /// Gets or sets the sticky option.
+      /// </summary>
+      /// <value>The sticky option.</value>
       public string StickyOption { get; set; }
 
+      /// <summary>
+      /// Gets or sets the length.
+      /// </summary>
+      /// <value>The length.</value>
       public long Length { get; set; }
 
+      /// <summary>
+      /// Gets or sets the file contents.
+      /// </summary>
+      /// <value>The file contents.</value>
       public byte[] FileContents { get; set; }
-      
+
+      /// <summary>
+      /// Gets or sets the type.
+      /// </summary>
+      /// <value>Binary or text. Text is default value</value>
       public FileType Type { get; set; }
 
+      /// <summary>
+      /// Reads contents from  the local file system
+      /// </summary>
       public override void Read()
       {
          FileContents = ReaderWriter.Current.ReadFile((FileInfo) Info);
       }
 
+      /// <summary>
+      /// Writes the contents to the local file system
+      /// </summary>
       public override void Write()
       {
          ReaderWriter.Current.WriteFile((FileInfo) Info, FileContents);
          FileContents = new byte[Length]; // clear the array to save memory
       }
 
+      /// <summary>
+      /// Writes the contents, and if recursive is true, will also save all the parent folders up to the root.
+      /// </summary>
+      /// <param name="recursive">if set to <c>true</c> [recursive].</param>
       public override void Save(bool recursive)
       {
          if (recursive)
@@ -99,11 +146,6 @@ namespace PServerClient.CVS
          }
 
          Write();
-      }
-
-      public void WriteCVSEntryLine()
-      {
-         CVSFolder.WriteEntry(this);
       }
    }
 }

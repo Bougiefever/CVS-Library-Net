@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using PServerClient.LocalFileSystem;
 
 namespace PServerClient.CVS
@@ -22,8 +23,16 @@ namespace PServerClient.CVS
          RootFile = new FileInfo(Path.Combine(CVSDirectory.FullName, "Root"));
       }
 
+      /// <summary>
+      /// Gets the CVS directory.
+      /// </summary>
+      /// <value>The CVS directory location.</value>
       public DirectoryInfo CVSDirectory { get; private set; }
 
+      /// <summary>
+      /// Gets the repository file.
+      /// </summary>
+      /// <value>The repository file location.</value>
       public FileInfo RepositoryFile { get; private set; }
 
       public FileInfo EntriesFile { get; private set; }
@@ -98,34 +107,80 @@ namespace PServerClient.CVS
          return items;
       }
 
-      public void WriteEntries(IList<ICVSItem> items)
+      public void WriteEntries()
       {
          IList<string> lines = new List<string>();
-         foreach (ICVSItem item in items)
-         {
-            string code = item is Folder ? "D" : string.Empty;
+         foreach (ICVSItem item in _parent)
+            lines.Add(item.EntryLine);
 
-            ////string entryLine = string.Format("{4}/{0}/{1}/{2}/{3}/{5}", item.Info.Name, item.Revision,
-            ////                                 item.ModTime.ToEntryString(), item.Properties, code, item.StickyOption);
-            ////Console.WriteLine(entryLine);
-            ////lines.Add(entryLine);
-         }
          ReaderWriter.Current.WriteFileLines(EntriesFile, lines);
       }
 
+      /// <summary>
+      /// Saves the CVS folder.
+      /// </summary>
       public void SaveCVSFolder()
       {
          // create CVS folder if it doesn't exist
          ReaderWriter.Current.CreateDirectory(CVSDirectory);
          WriteRootFile();
          WriteRepositoryFile();
-         ////WriteEntries(items);
       }
 
-      public void WriteEntry(Entry entry)
+      /// <summary>
+      /// Writes the entry.
+      /// </summary>
+      /// <param name="entry">The entry object.</param>
+      public void WriteEntry(ICVSItem entry)
       {
-         FileStream fs = EntriesFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite);
-         
+         // Read file
+         IList<string> readLines = ReaderWriter.Current.ReadFileLines((FileInfo) entry.Info);
+         ////using (TextReader reader = new StreamReader(EntriesFile.Open(FileMode.Open, FileAccess.Read)))
+         ////{
+         ////   string line = string.Empty;
+         ////   while (line != null)
+         ////   {
+         ////      line = reader.ReadLine();
+         ////      readLines.Add(line);
+         ////   }
+
+         ////   reader.Close();
+         ////}
+
+         IList<string> writeLines = new List<string>();
+
+         // Find entry line and update
+         bool lineFound = false;
+         foreach (var line in readLines)
+         {
+            string writeLine;
+            string regex = PServerHelper.GetEntryFilenameRegex(entry.Info.Name);
+            Match m = Regex.Match(line, regex);
+            if (m.Success)
+            {
+               writeLine = entry.EntryLine;
+               lineFound = true;
+            }
+            else
+               writeLine = line;
+            writeLines.Add(writeLine);
+         }
+
+         if (!lineFound)
+            writeLines.Add(entry.EntryLine);
+
+         // Save updated lines to file
+         ReaderWriter.Current.WriteFileLines((FileInfo) entry.Info, writeLines);
+         ////using (TextWriter writer = new StreamWriter(EntriesFile.Open(FileMode.Create, FileAccess.Write)))
+         ////{
+         ////   foreach (var line in writeLines)
+         ////   {
+         ////      writer.WriteLine(line);
+         ////   }
+
+         ////   writer.Flush();
+         ////   writer.Close();
+         ////}
       }
    }
 }

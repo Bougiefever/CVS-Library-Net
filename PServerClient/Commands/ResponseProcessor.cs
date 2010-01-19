@@ -110,6 +110,7 @@ namespace PServerClient.Commands
                string name = ResponseHelper.GetLastModuleName(mod);
                folder = new Folder(name, parent);
             }
+
             parent = folder;
          }
 
