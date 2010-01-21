@@ -16,12 +16,6 @@ namespace PServerClient.Tests
          _parent = new Folder(di, "my connection", "/f1/f2/f3", "mymod");
       }
 
-      [TearDown]
-      public void TearDown()
-      {
-         
-      }
-
       [Test]
       public void RevisionPropertyTest()
       {

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.IO;
 using NUnit.Framework;
-using PServerClient.CVS;
 using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
@@ -137,6 +133,19 @@ namespace PServerClient.Tests
          string mod2 = "abougie/cvstest/CVSROOT";
          string name = mod2.Substring(mod2.IndexOf(mod1) + mod1.Length + 1);
          Assert.AreEqual("CVSROOT", name);
+      }
+
+      [Test]
+      public void Test()
+      {
+         string s = @"C:\ORACLE_10G\bin;C:\Program Files\Windows Resource Kits\Tools\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;c:\phoenix;c:\arttools;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\Windows Imaging\;C:\Program Files\Utimaco\SafeGuard Easy\;C:\WINDOWS\system32\WindowsPowerShell\v1.0;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\NCover\";
+         string[] ss = s.Split(new [] { ";" }, StringSplitOptions.None);
+         foreach (var s1 in ss)
+         {
+            Console.WriteLine(s1);
+         }
+
+         s = @"C:\Program Files\CVSNT;C:\Program Files\CVSNT\";
       }
    }
 }

@@ -326,6 +326,7 @@ namespace PServerClient.Tests
       public void CreateCommandTest()
       {
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         root.WorkingDirectory = TestConfig.WorkingDirectory;
          IConnection connection = new PServerConnection();
 
          // CheckOut
@@ -397,6 +398,7 @@ namespace PServerClient.Tests
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         root.WorkingDirectory = TestConfig.WorkingDirectory;
 
          PServerFactory factory = new PServerFactory();
          IConnection connection = new PServerConnection();

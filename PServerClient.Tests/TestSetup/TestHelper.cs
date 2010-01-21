@@ -126,8 +126,55 @@ namespace PServerClient.Tests.TestSetup
          return res;
       }
 
+      public static int[] StringListToMockIntArray(IList<string> lines, int lastChar)
+      {
+         byte[] chars = new byte[0];
+         byte[] copy;
+         foreach (string line in lines)
+         {
+            byte[] lineBytes = line.Encode();
+            copy = new byte[chars.Length];
+            chars.CopyTo(copy, 0);
+            chars = new byte[chars.Length + lineBytes.Length + 1];
+            copy.CopyTo(chars, 0);
+            lineBytes.CopyTo(chars, copy.Length);
+            chars[chars.Length - 1] = 10;
+         }
+
+         int[] ints = new int[chars.Length + 1];
+         chars.CopyTo(ints, 0);
+         ints[ints.Length - 1] = lastChar;
+         return ints;
+      }
+
+      public static byte[] StringListToMockByteArray(IList<string> lines, byte[] lineSeperator)
+      {
+         byte[] chars = new byte[0];
+         byte[] copy;
+         int len = lineSeperator.Length;
+
+         foreach (string line in lines)
+         {
+            byte[] lineBytes = line.Encode();
+            copy = new byte[chars.Length];
+            chars.CopyTo(copy, 0);
+            chars = new byte[chars.Length + lineBytes.Length + len];
+            copy.CopyTo(chars, 0);
+            lineBytes.CopyTo(chars, copy.Length);
+            for (int i = 0; i < len; i++)
+            {
+               int idx = chars.Length - len;
+               chars[idx + i] = lineSeperator[i];
+            }
+            ////chars[chars.Length - 1] = 10;
+         }
+
+         ////int[] ints = new int[chars.Length + 1];
+         ////chars.CopyTo(ints, 0);
+         ////ints[ints.Length - 1] = lastChar;
+         return chars;
+      }
+
       #endregion
-
-
    }
 }

@@ -49,7 +49,6 @@ namespace PServerClient.Tests
          Assert.AreEqual("97,98,99", result);
       }
 
-
       [Test]
       public void GetResponseFromXMLTest()
       {

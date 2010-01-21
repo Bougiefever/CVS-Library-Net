@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using NUnit.Framework;
-using PServerClient.Commands;
-using PServerClient.Connection;
-using PServerClient.CVS;
 using PServerClient.Responses;
 using PServerClient.Tests.TestSetup;
 
@@ -342,7 +337,7 @@ namespace PServerClient.Tests
       {
          WrapperRscOptionResponse response = new WrapperRscOptionResponse();
          string process = "*.cs -k 'b'";
-         IList<string> lines = new List<string> {process};
+         IList<string> lines = new List<string> { process };
          ResponseTest(response, ResponseType.WrapperRscOption, 1, "*.cs -k 'b'", lines);
       }
 
@@ -371,8 +366,6 @@ namespace PServerClient.Tests
             Assert.AreEqual("blah", data.TrimStart());
          }
       }
-
-
 
       private void ResponseTest(IResponse response, ResponseType expectedType, int lineCount, string expectedDisplay, IList<string> lines)
       {

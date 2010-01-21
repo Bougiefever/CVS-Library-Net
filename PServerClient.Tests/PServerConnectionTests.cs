@@ -15,7 +15,7 @@ namespace PServerClient.Tests
    {
       private MockRepository _mocks;
 
-      private ICvsTcpClient _client;
+      private ICVSTcpClient _client;
 
       private PServerConnection _connection;
 
@@ -23,7 +23,7 @@ namespace PServerClient.Tests
       public void SetUp()
       {
          _mocks = new MockRepository();
-         _client = _mocks.StrictMock<ICvsTcpClient>();
+         _client = _mocks.StrictMock<ICVSTcpClient>();
          _connection = new PServerConnection();
          _connection.TcpClient = _client;
       }

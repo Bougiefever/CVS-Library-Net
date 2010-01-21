@@ -15,7 +15,6 @@ namespace PServerClient.Tests
    [TestFixture]
    public class ResponseHelperTest
    {
-
       [Test]
       public void FixResponseModuleSlashesTest()
       {
@@ -66,6 +65,7 @@ namespace PServerClient.Tests
          ////bool result = TestHelper.ValidateCommandXML(xdoc);
          ////Assert.IsTrue(result);
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         root.WorkingDirectory = TestConfig.WorkingDirectory;
          PServerFactory factory = new PServerFactory();
          IConnection connection = new PServerConnection();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection, DateTime.Now });
