@@ -1,5 +1,8 @@
 <stylecopresultscache>
   <version>10</version>
+  <project key="1028284118">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="CheckoutCommandTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/08/2010 10:57:01</timestamp>
@@ -7,6 +10,24 @@
     </settings>
     <timestamp>01/08/2010 15:44:58</timestamp>
     <milliseconds>396</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ExportCommandTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/08/2010 10:57:01</timestamp>
+      <milliseconds>781</milliseconds>
+    </settings>
+    <timestamp>01/14/2010 17:12:49</timestamp>
+    <milliseconds>901</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LogCommandTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/08/2010 10:57:01</timestamp>
+      <milliseconds>781</milliseconds>
+    </settings>
+    <timestamp>01/08/2010 15:47:08</timestamp>
+    <milliseconds>685</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -36,15 +57,6 @@
     <milliseconds>253</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="LogCommandTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/08/2010 10:57:01</timestamp>
-      <milliseconds>781</milliseconds>
-    </settings>
-    <timestamp>01/08/2010 15:47:08</timestamp>
-    <milliseconds>685</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="VerifyAuthCommandTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/08/2010 10:57:01</timestamp>
@@ -59,20 +71,8 @@
       <timestamp>01/08/2010 10:57:01</timestamp>
       <milliseconds>781</milliseconds>
     </settings>
-    <timestamp>01/08/2010 15:48:13</timestamp>
-    <milliseconds>799</milliseconds>
-    <violations />
-  </sourcecode>
-  <project key="1028284118">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="ExportCommandTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/08/2010 10:57:01</timestamp>
-      <milliseconds>781</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 08:38:22</timestamp>
-    <milliseconds>785</milliseconds>
+    <timestamp>01/12/2010 08:46:19</timestamp>
+    <milliseconds>506</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

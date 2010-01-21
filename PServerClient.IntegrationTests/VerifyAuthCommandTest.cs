@@ -54,7 +54,7 @@ namespace PServerClient.IntegrationTests
          AuthRequest auth = new AuthRequest(_root);
          string s = auth.GetRequestString();
          Console.WriteLine(s);
-         CvsTcpClient client = new CvsTcpClient();
+         CVSTcpClient client = new CVSTcpClient();
          client.Connect(_root.Host, _root.Port);
          byte[] bbb = s.Encode();
          client.Write(bbb);
