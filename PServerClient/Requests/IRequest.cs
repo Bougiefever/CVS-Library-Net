@@ -8,28 +8,22 @@ namespace PServerClient.Requests
    /// </summary>
    public interface IRequest : ICommandItem
    {
+      /// <summary>
+      /// Gets a value indicating whether a response is expected from CVS after sending the request
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       bool ResponseExpected { get; }
 
-      ////string[] Lines { get; }
-
+      /// <summary>
+      /// Gets the RequestType of the request 
+      /// </summary>
+      /// <value>The RequestType value</value>
       RequestType Type { get; }
 
+      /// <summary>
+      /// Gets the full request string with all the parameters that will be sent to CVS
+      /// </summary>
+      /// <returns>The CVS request</returns>
       string GetRequestString();
-
-      ////XElement GetXElement();
-   }
-
-   /// <summary>
-   /// used to differentiate the auth request from all the other requests on a command
-   /// </summary>
-   public interface IAuthRequest : IRequest
-   {
-   }
-
-   public interface ISubmitFileRequest : IRequest
-   {
-      long FileLength { get; }
-
-      byte[] FileContents { get; set; }
    }
 }

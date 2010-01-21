@@ -25,6 +25,10 @@ namespace PServerClient.Requests
    /// </summary>
    public class CheckinTimeRequest : RequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CheckinTimeRequest"/> class.
+      /// </summary>
+      /// <param name="checkinTime">The checkin time.</param>
       public CheckinTimeRequest(DateTime checkinTime)
       {
          string time = checkinTime.ToRfc822();
@@ -32,11 +36,19 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, time);
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CheckinTimeRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public CheckinTimeRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether a response is expected from CVS after sending the request.
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -45,6 +57,10 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

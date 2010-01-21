@@ -54,6 +54,8 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DiffCommand.cs" />
     <Compile Include="Commands\ExportCommand.cs" />
+    <Compile Include="Commands\FileResponseGroup.cs" />
+    <Compile Include="Commands\ICommandItem.cs" />
     <Compile Include="Commands\IFileResponseGroup.cs" />
     <Compile Include="Commands\ResponseProcessor.cs" />
     <Compile Include="Commands\TagCommand.cs" />
@@ -65,13 +67,15 @@
     <Compile Include="Commands\VerifyAuthCommand.cs" />
     <Compile Include="Commands\VersionCommand.cs" />
     <Compile Include="Connection\IConnection.cs" />
-    <Compile Include="Connection\ICvsTcpClient.cs" />
-    <Compile Include="Connection\CvsTcpClient.cs" />
+    <Compile Include="Connection\ICVSTcpClient.cs" />
+    <Compile Include="Connection\CVSTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
     <Compile Include="ExitCode.cs" />
     <Compile Include="FileType.cs" />
     <Compile Include="PServerFactory.cs" />
     <Compile Include="RequestHelper.cs" />
+    <Compile Include="Requests\IAuthRequest.cs" />
+    <Compile Include="Requests\ISubmitFileRequest.cs" />
     <Compile Include="RequestType.cs" />
     <Compile Include="Requests\SendFile.cs" />
     <Compile Include="ResponseHelper.cs" />
@@ -79,8 +83,8 @@
     <Compile Include="CVS\CVSFolder.cs" />
     <Compile Include="CVS\Entry.cs" />
     <Compile Include="CVS\CVSItemBase.cs" />
-    <Compile Include="LocalFileSystem\IReaderWriter.cs" />
-    <Compile Include="LocalFileSystem\ReaderWriter.cs" />
+    <Compile Include="CVS\IReaderWriter.cs" />
+    <Compile Include="CVS\ReaderWriter.cs" />
     <Compile Include="CVS\Folder.cs" />
     <Compile Include="CVS\ICVSItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +167,9 @@
     <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\FileResponseBase.cs" />
     <Compile Include="Responses\FlushResponse.cs" />
+    <Compile Include="Responses\IAuthResponse.cs" />
+    <Compile Include="Responses\IFileResponse.cs" />
+    <Compile Include="Responses\IMessageResponse.cs" />
     <Compile Include="Responses\IResponse.cs" />
     <Compile Include="Responses\MbinaryResponse.cs" />
     <Compile Include="Responses\MergedResponse.cs" />

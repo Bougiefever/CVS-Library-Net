@@ -13,10 +13,22 @@ namespace PServerClient.Responses
    /// </summary>
    public class WrapperRscOptionResponse : ResponseBase
    {
+      /// <summary>
+      /// Gets the pattern.
+      /// </summary>
+      /// <value>The regex pattern.</value>
       public string Pattern { get; private set; }
 
+      /// <summary>
+      /// Gets the option.
+      /// </summary>
+      /// <value>The option.</value>
       public string Option { get; private set; }
 
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get
@@ -25,6 +37,9 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          Pattern = "to-do";

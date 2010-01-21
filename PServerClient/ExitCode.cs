@@ -13,6 +13,11 @@
       /// <summary>
       /// The command completed with error message
       /// </summary>
-      Failed
+      Failed,
+
+      /// <summary>
+      /// The command completed with an unknown status
+      /// </summary>
+      Unknown
    }
 }

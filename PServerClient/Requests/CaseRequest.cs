@@ -29,15 +29,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class CaseRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CaseRequest"/> class.
+      /// </summary>
       public CaseRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CaseRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public CaseRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

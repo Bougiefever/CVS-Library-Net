@@ -6,6 +6,20 @@ using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
+   /// <summary>
+   /// CVS checkout command. This retrieves the CVS module specified in the root object
+   /// and saves the results to the file system with the CVS connection information needed for
+   /// ongoing source control maintenance.
+   /// </summary>
+   /// <requirements>The Root instance must have a WorkingDirectory specified.</requirements>
+   /// <notes>
+   /// The checkout command stores the CVS folder in each directory in the Folder
+   /// tree.
+   /// </notes>
+   /// <remarks>
+   /// An exception will be thrown if the WorkingDirectory is not set to a valid
+   /// value.
+   /// </remarks>
    public class CheckOutCommand : CommandBase
    {
       private Folder _currentFolder;
@@ -38,6 +52,12 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// After each request, process the responses.
+      /// Determine if a complete file has been sent in the responses that can be
+      /// saved to the local file system.
+      /// </summary>
+      /// <param name="request">The request that was just sent.</param>
       protected internal override void AfterRequest(IRequest request)
       {
          if (request is ExportRequest)

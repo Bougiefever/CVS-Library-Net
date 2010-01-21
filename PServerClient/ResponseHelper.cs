@@ -7,13 +7,25 @@ using PServerClient.Responses;
 
 namespace PServerClient
 {
+   /// <summary>
+   /// Response Helper class has methods needed to process responses
+   /// </summary>
    public static class ResponseHelper
    {
+      /// <summary>
+      /// Array of strings of the actual CVS response string
+      /// The index of an item in the array corresponds to the ResponseType int value
+      /// for retrieving based on response type
+      /// </summary>
       public static readonly string[] ResponseNames;
 
+      /// <summary>
+      /// Array of regex patterns used to determine what response the string coming 
+      /// from CVS is.
+      /// The index of an item in the array corresponds to the ResponseType int value
+      /// for retrieving based on response type
+      /// </summary>
       public static readonly string[] ResponsePatterns;
-
-      #region Response cvs name
 
       private const string NameAuth = "";
       private const string NameCheckedIn = "Checked-in";
@@ -48,10 +60,6 @@ namespace PServerClient
       private const string NameWrapperRscOption = "Wrapper-rcsOption";
       private const string NameNull = "";
 
-      #endregion
-
-      #region Regular expressions pattern to match response name
-
       private const string RegexAuth = @"(?<data>I LOVE YOU|I HATE YOU).*";
       private const string RegexCheckedIn = @"^Checked-in\s(?<data>.*)";
       private const string RegexChecksum = @"^Checksum\s(?<data>.*)";
@@ -85,8 +93,9 @@ namespace PServerClient
       private const string RegexWrapperRscOption = @"^Wrapper-rcsOption\s(?<data>.*)";
       private const string RegexNull = @"(?<data>.*)"; // matches anything
 
-      #endregion
-
+      /// <summary>
+      /// Initializes static members of the <see cref="ResponseHelper"/> class.
+      /// </summary>
       static ResponseHelper()
       {
          ResponsePatterns = new[]
@@ -162,6 +171,11 @@ namespace PServerClient
                             };
       }
 
+      /// <summary>
+      /// Gets the file name from entry line.
+      /// </summary>
+      /// <param name="line">The entry line.</param>
+      /// <returns>the file name</returns>
       public static string GetFileNameFromEntryLine(string line)
       {
          string regex = @"^/(.+?)/";
@@ -171,6 +185,11 @@ namespace PServerClient
          return m.Groups[1].ToString();
       }
 
+      /// <summary>
+      /// Removes extra slashes in the module string sent from CVS
+      /// </summary>
+      /// <param name="module">The module.</param>
+      /// <returns>the module with extra slashes removed</returns>
       public static string FixResponseModuleSlashes(string module)
       {
          string newModule = module;
@@ -181,6 +200,11 @@ namespace PServerClient
          return newModule;
       }
 
+      /// <summary>
+      /// Gets the revision from entry line.
+      /// </summary>
+      /// <param name="line">The entry line.</param>
+      /// <returns>the revision</returns>
       public static string GetRevisionFromEntryLine(string line)
       {
          string regex = @"/(\d.+?)/";
@@ -190,6 +214,11 @@ namespace PServerClient
          return m.Groups[1].ToString();
       }
 
+      /// <summary>
+      /// Gets the valid responses string to send to CVS.
+      /// </summary>
+      /// <param name="validResponses">The valid ResponseType array.</param>
+      /// <returns>the string of valid respones</returns>
       public static string GetValidResponsesString(ResponseType[] validResponses)
       {
          IEnumerable<string> responses = validResponses.Select(vr => ResponseNames[(int) vr]);
@@ -197,6 +226,11 @@ namespace PServerClient
          return resString;
       }
 
+      /// <summary>
+      /// Converts a byte array to a string of ints. Used for serializing the command items
+      /// </summary>
+      /// <param name="fileContents">The file contents.</param>
+      /// <returns>a string of ints</returns>
       public static string FileContentsToByteArrayString(byte[] fileContents)
       {
          StringBuilder sb = new StringBuilder();
@@ -209,6 +243,12 @@ namespace PServerClient
          return sb.ToString();
       }
 
+      /// <summary>
+      /// Takes repeating messages in a response list and collapses them into one 
+      /// response with many lines
+      /// </summary>
+      /// <param name="responses">The message responses.</param>
+      /// <returns>The new response list</returns>
       public static IList<IResponse> CollapseMessagesInResponses(IList<IResponse> responses)
       {
          IList<IResponse> condensed = new List<IResponse>();
@@ -235,6 +275,11 @@ namespace PServerClient
          return condensed;
       }
 
+      /// <summary>
+      /// Gets the name of the module in the module string.
+      /// </summary>
+      /// <param name="module">The full module string.</param>
+      /// <returns>the last module in the string</returns>
       public static string GetLastModuleName(string module)
       {
          string mod = FixResponseModuleSlashes(module);

@@ -16,15 +16,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class ExportRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="ExportRequest"/> class.
+      /// </summary>
       public ExportRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="ExportRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public ExportRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether [response expected].
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -33,6 +44,10 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

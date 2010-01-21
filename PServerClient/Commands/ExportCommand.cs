@@ -7,10 +7,22 @@ using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
+   /// <summary>
+   /// The CVS export command gets the files from a CVS module
+   /// and saves them to the file system without the CVS information.
+   /// </summary>
    public class ExportCommand : CommandBase
    {
       private Folder _currentFolder;
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="ExportCommand"/> class.
+      /// Uses a date to select the version in CVS to get.
+      /// This date can be in the future to ensure getting the latest revision
+      /// </summary>
+      /// <param name="root">The CVS root instance.</param>
+      /// <param name="connection">The connection.</param>
+      /// <param name="exportDate">The as of date to retrieve.</param>
       public ExportCommand(IRoot root, IConnection connection, DateTime exportDate)
          : base(root, connection)
       {
@@ -19,6 +31,12 @@ namespace PServerClient.Commands
          StartUp(root, exportTypeRequest);
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="ExportCommand"/> class.
+      /// </summary>
+      /// <param name="root">The CVS root instance.</param>
+      /// <param name="connection">The connection.</param>
+      /// <param name="tag">The revision tag to retrieve.</param>
       public ExportCommand(IRoot root, IConnection connection, string tag)
          : base(root, connection)
       {
@@ -27,6 +45,10 @@ namespace PServerClient.Commands
          StartUp(root, exportTypeRequest);
       }
 
+      /// <summary>
+      /// Gets the command type.
+      /// </summary>
+      /// <value></value>
       public override CommandType Type
       {
          get
@@ -41,6 +63,13 @@ namespace PServerClient.Commands
          return string.Format("-D {0}", mydate);
       }
 
+      /// <summary>
+      /// Processes the responses of each request. When all the requests 
+      /// needed to save a file have been retrieved from the CVS server,
+      /// the file is saved and the information contained in the command
+      /// is deleted for performance.
+      /// </summary>
+      /// <param name="request">The request.</param>
       protected internal override void AfterRequest(IRequest request)
       {
          if (request is ExportRequest)

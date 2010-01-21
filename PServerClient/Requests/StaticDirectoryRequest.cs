@@ -12,15 +12,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class StaticDirectoryRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="StaticDirectoryRequest"/> class.
+      /// </summary>
       public StaticDirectoryRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="StaticDirectoryRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public StaticDirectoryRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

@@ -8,11 +8,20 @@ namespace PServerClient.Commands
    /// </summary>
    public class AddCommand : CommandBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="AddCommand"/> class.
+      /// </summary>
+      /// <param name="root">The Root instance. Must have a working directory</param>
+      /// <param name="connection">The connection.</param>
       public AddCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
       }
 
+      /// <summary>
+      /// Gets the command type. 
+      /// </summary>
+      /// <value></value>
       public override CommandType Type
       {
          get

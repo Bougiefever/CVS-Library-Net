@@ -16,16 +16,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class StickyRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="StickyRequest"/> class.
+      /// </summary>
+      /// <param name="tagspec">The tagspec.</param>
       public StickyRequest(string tagspec)
          : base(tagspec)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="StickyRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public StickyRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

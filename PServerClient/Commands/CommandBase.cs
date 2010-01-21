@@ -11,6 +11,24 @@ using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
+   /// <summary>
+   /// Abstract base for command classes that implement the ICommand interface.
+   /// </summary>
+   /// <example>
+   /// 	<code lang="CS" source="C:\_code\Testing\PServerClient\PServerClient.IntegrationTests\VersionCommandTest.cs">
+   /// 	</code>
+   /// </example>
+   /// <remarks>
+   /// The Execute method is the way for all commands to perform their requests and
+   /// receive their responses. There are PreExecute, PostRequest, and PostExecute methods
+   /// that can be overridden as a way for commands to customize their execution.
+   /// </remarks>
+   /// <requirements>
+   /// The Root object must be instantiated with the values necessary to communicate
+   /// with the CVS server. In addition, any commands that interact with the local file system
+   /// will need the WorkingDirectory and RootModule properties of the Root object
+   /// populated.
+   /// </requirements>
    public abstract class CommandBase : ICommand
    {
       private readonly ILog _logger;
@@ -39,6 +57,7 @@ namespace PServerClient.Commands
          ValidRequestTypes = new List<RequestType>();
       }
 
+      /// <summary>Gets the result of CVS authentication</summary>
       public AuthStatus AuthStatus
       {
          get
@@ -47,24 +66,70 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// Gets the Root instance. Contains CVS connection, command setup and local file system
+      /// information.
+      /// </summary>
       public IRoot Root { get; private set; }
 
+      /// <summary>
+      /// Gets the command type.
+      /// </summary>
+      /// <value>The command type.</value>
       public abstract CommandType Type { get; }
 
+      /// <summary>
+      /// Gets or sets the collection of required requests. These requests are performed and
+      /// evaluated before the main execution begins.
+      /// </summary>
       public IList<IRequest> RequiredRequests { get; set; }
 
+      /// <summary>
+      /// Gets or sets the requests to perform the command.
+      /// </summary>
+      /// <value></value>
       public IList<IRequest> Requests { get; set; }
 
+      /// <summary>
+      /// Gets or sets the responses that are temporarily kept during processing.
+      /// </summary>
+      /// <value></value>
       public IList<IResponse> Responses { get; set; }
 
+      /// <summary>
+      /// Gets or sets the requests and responses that occur during execution
+      /// For testing and troubleshooting. The entire CVS client/server conversation is
+      /// stored here as it was executed. The storage of the request/response items should be
+      /// turned off for better performance.
+      /// </summary>
+      /// <value></value>
       public IList<ICommandItem> Items { get; set; }
 
-      public IList<string> UserMessages { get; private set; }
-
+      /// <summary>
+      /// Gets or sets the exit code.
+      /// The end result of the command. If there was an "ok" response, this has a value
+      /// "Succeeded". If there was an "error" response, this has a value of "Failed". If neither
+      /// "ok" nor "error" was received, this is set to "Failed".
+      /// </summary>
+      /// <value>The exit code.</value>
       public ExitCode ExitCode { get; set; }
 
+      /// <summary>
+      /// Gets any messages that should be sent back to the user.
+      /// </summary>
+      /// <value></value>
+      public IList<string> UserMessages { get; private set; }
+
+      /// <summary>
+      /// Gets or sets the valid request types.
+      /// </summary>
+      /// <value>The valid request types.</value>
       internal IList<RequestType> ValidRequestTypes { get; set; }
 
+      /// <summary>
+      /// Gets the connection.
+      /// </summary>
+      /// <value>The connection.</value>
       protected IConnection Connection
       {
          get
@@ -73,6 +138,11 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// Handles the execution of the CVS command. Ensures that all the requests
+      /// are sent, and that responses are retrieved at the appropriate time.
+      /// The processing of responses is handled by the command classes.
+      /// </summary>
       public virtual void Execute()
       {
          _connection.Connect(Root);
@@ -108,6 +178,10 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// Gets the XML representation of the command.
+      /// </summary>
+      /// <returns>XDocument xml of the command object</returns>
       public XDocument GetXDocument()
       {
          XElement commandElement = new XElement("Command", new XElement("ClassName", GetType().FullName));
@@ -137,6 +211,10 @@ namespace PServerClient.Commands
          return xdoc;
       }
 
+      /// <summary>
+      /// Executes the required requests.
+      /// </summary>
+      /// <returns>the result of the required requests. Succeeded or Failed.</returns>
       internal ExitCode ExecuteRequiredRequests()
       {
          // execute authentication request and check authentication status
@@ -181,8 +259,16 @@ namespace PServerClient.Commands
          if (!PServerHelper.IsTestMode())
             RequiredRequests.Clear(); // remove requests already processed
          bool hasErrorResponse = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? true : false;
+         bool hasOkResponse = Responses.Where(r => r.Type == ResponseType.Ok).Count() > 0 ? true : false;
          Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
-         ExitCode code = hasErrorResponse || !(_status == AuthStatus.Authenticated) ? ExitCode.Failed : ExitCode.Succeeded;
+         ExitCode code; 
+         if (hasErrorResponse)
+            code = ExitCode.Failed;
+         else if (hasOkResponse)
+            code = ExitCode.Succeeded;
+         else
+            code = ExitCode.Unknown;
+
          return code;
       }
 

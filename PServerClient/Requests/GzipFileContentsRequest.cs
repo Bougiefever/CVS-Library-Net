@@ -20,16 +20,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class GzipFileContentsRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GzipFileContentsRequest"/> class.
+      /// </summary>
+      /// <param name="level">The level.</param>
       public GzipFileContentsRequest(string level)
          : base(level)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GzipFileContentsRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public GzipFileContentsRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

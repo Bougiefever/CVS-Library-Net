@@ -13,16 +13,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class GzipStreamRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GzipStreamRequest"/> class.
+      /// </summary>
+      /// <param name="level">The level.</param>
       public GzipStreamRequest(string level)
          : base(level)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GzipStreamRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public GzipStreamRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

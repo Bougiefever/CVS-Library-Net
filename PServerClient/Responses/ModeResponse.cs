@@ -7,8 +7,16 @@ namespace PServerClient.Responses
    /// </summary>
    public class ModeResponse : ResponseBase
    {
+      /// <summary>
+      /// Gets the mode value.
+      /// </summary>
+      /// <value>The mode value.</value>
       public string Mode { get; private set; }
 
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get
@@ -17,12 +25,19 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          Mode = Lines[0];
          base.Process();
       }
 
+      /// <summary>
+      /// Displays this instance.
+      /// </summary>
+      /// <returns>string to display</returns>
       public override string Display()
       {
          return Mode;

@@ -4,9 +4,16 @@ using System.Linq;
 
 namespace PServerClient
 {
+   /// <summary>
+   /// Helper methods for requests
+   /// </summary>
    public static class RequestHelper
    {
+      /// <summary>
+      /// Array of request string to send to CVS as part of request
+      /// </summary>
       public static readonly string[] RequestNames;
+
       private const string AddRequest = "add";
       private const string AdminRequest = "admin";
       private const string AnnotateRequest = "annotate";
@@ -70,6 +77,9 @@ namespace PServerClient
       private const string WatchRemoveRequest = "watch-remove";
       private const string WrapperSendmercsOptionsRequest = "wrapper-sendme-rcsOptions";
 
+      /// <summary>
+      /// Initializes static members of the <see cref="RequestHelper"/> class.
+      /// </summary>
       static RequestHelper()
       {
          RequestNames = new[]
@@ -139,6 +149,10 @@ namespace PServerClient
                            };
       }
 
+      /// <summary>
+      /// Gets the array valid responses.
+      /// </summary>
+      /// <value>The valid responses.</value>
       public static ResponseType[] ValidResponses
       {
          get
@@ -167,6 +181,11 @@ namespace PServerClient
          }
       }
 
+      /// <summary>
+      /// Converts a string of requests to a list of RequestTypes
+      /// </summary>
+      /// <param name="requestList">The request list.</param>
+      /// <returns>the list of RequestTypes</returns>
       public static IList<RequestType> RequestsToRequestTypes(string requestList)
       {
          string[] sep = new[] { " " };

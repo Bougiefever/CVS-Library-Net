@@ -13,15 +13,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class CheckOutRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CheckOutRequest"/> class.
+      /// </summary>
       public CheckOutRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CheckOutRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public CheckOutRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether [response expected].
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -30,6 +41,10 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

@@ -44,15 +44,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class LogRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="LogRequest"/> class.
+      /// </summary>
       public LogRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="LogRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public LogRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether [response expected].
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -61,6 +72,10 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

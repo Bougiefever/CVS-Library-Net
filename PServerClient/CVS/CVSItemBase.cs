@@ -20,26 +20,57 @@ namespace PServerClient.CVS
          Parent = null;
       }
 
+      /// <summary>
+      /// Gets the CVS hidden folder for repository information
+      /// </summary>
+      /// <value></value>
       public abstract CVSFolder CVSFolder { get; }
 
+      /// <summary>
+      /// Gets or sets either FileInfo or DirectoryInfo object depending on
+      /// whether instance is an Entry or Folder object
+      /// </summary>
+      /// <value></value>
       public FileSystemInfo Info { get; protected set; }
 
+      /// <summary>
+      /// Gets or sets the parent folder item
+      /// </summary>
+      /// <value></value>
       public Folder Parent { get; protected set; }
 
+      /// <summary>
+      /// Gets or sets the line for the Entries CVS folder file
+      /// </summary>
+      /// <value></value>
       public string EntryLine { get; set; }
 
+      /// <summary>
+      /// Save to disk
+      /// </summary>
       public void Save()
       {
          Save(false);
       }
 
+      /// <summary>
+      /// Save to disk
+      /// </summary>
+      /// <param name="recursive">Determines whether or not to save all children</param>
       public abstract void Save(bool recursive);
 
+      /// <summary>
+      /// read contents of the item
+      /// </summary>
       public virtual void Read()
       {
          throw new NotSupportedException();
       }
 
+      /// <summary>
+      /// Write the FileContents to the Entry file if item is Entry type
+      /// Create a directory if item is Folder type
+      /// </summary>
       public abstract void Write();
 
       /// <summary>

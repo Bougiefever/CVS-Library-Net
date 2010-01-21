@@ -17,15 +17,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class KerberosEncryptRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="KerberosEncryptRequest"/> class.
+      /// </summary>
       public KerberosEncryptRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="KerberosEncryptRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public KerberosEncryptRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

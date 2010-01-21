@@ -16,16 +16,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class RootRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="RootRequest"/> class.
+      /// </summary>
+      /// <param name="root">The CVS root string.</param>
       public RootRequest(string root)
          : base(root)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="RootRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public RootRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

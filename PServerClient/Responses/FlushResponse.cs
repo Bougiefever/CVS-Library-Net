@@ -8,6 +8,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class FlushResponse : ResponseBase
    {
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

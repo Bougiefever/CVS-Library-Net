@@ -10,15 +10,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class UseUnchangedRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="UseUnchangedRequest"/> class.
+      /// </summary>
       public UseUnchangedRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="UseUnchangedRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public UseUnchangedRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

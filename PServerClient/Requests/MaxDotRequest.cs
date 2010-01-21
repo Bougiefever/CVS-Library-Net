@@ -12,16 +12,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class MaxDotRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="MaxDotRequest"/> class.
+      /// </summary>
+      /// <param name="arg">The argument string.</param>
       public MaxDotRequest(string arg)
          : base(arg)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="MaxDotRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public MaxDotRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

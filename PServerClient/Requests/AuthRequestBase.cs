@@ -4,10 +4,18 @@ using PServerClient.CVS;
 
 namespace PServerClient.Requests
 {
+   /// <summary>
+   /// Base class for authentication requests
+   /// </summary>
    public abstract class AuthRequestBase : RequestBase, IAuthRequest
    {
       private readonly IRoot _root;
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="AuthRequestBase"/> class.
+      /// </summary>
+      /// <param name="root">The CVS root.</param>
+      /// <param name="type">The auth request type.</param>
       protected AuthRequestBase(IRoot root, RequestType type)
       {
          _root = root;
@@ -20,11 +28,19 @@ namespace PServerClient.Requests
          Lines[4] = string.Format("END {0} REQUEST", requestName);
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="AuthRequestBase"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       protected AuthRequestBase(IList<string> lines)
       {
          Lines = lines;
       }
 
+      /// <summary>
+      /// Gets a value indicating whether a response is expected from CVS after sending the request.
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -33,6 +49,11 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the full request string with all the parameters that will be sent to CVS
+      /// Uses the request type to build the right request string
+      /// </summary>
+      /// <returns>The CVS request</returns>
       public override string GetRequestString()
       {
          StringBuilder sb = new StringBuilder();

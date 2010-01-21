@@ -8,33 +8,116 @@ using System.Text.RegularExpressions;
 
 namespace PServerClient
 {
+   /// <summary>
+   /// Month name used for CVS date formats
+   /// </summary>
    public enum MonthName
    {
+      /// <summary>
+      /// Jan month abbreviation
+      /// </summary>
       Jan = 1,
+
+      /// <summary>
+      /// Feb month abbreviation
+      /// </summary>
       Feb = 2,
+
+      /// <summary>
+      /// Mar month abbreviation
+      /// </summary>
       Mar = 3,
+
+      /// <summary>
+      /// Apr month abbreviation
+      /// </summary>
       Apr = 4,
+
+      /// <summary>
+      /// May month abbreviation
+      /// </summary>
       May = 5,
+
+      /// <summary>
+      /// Jun month abbreviation
+      /// </summary>
       Jun = 6,
+
+      /// <summary>
+      /// Jul month abbreviation
+      /// </summary>
       Jul = 7,
+
+      /// <summary>
+      /// Aug month abbreviation
+      /// </summary>
       Aug = 8,
+
+      /// <summary>
+      /// Sep month abbreviation
+      /// </summary>
       Sep = 9,
+
+      /// <summary>
+      /// Oct month abbreviation
+      /// </summary>
       Oct = 10,
+
+      /// <summary>
+      /// Nov month abbreviation
+      /// </summary>
       Nov = 11,
+
+      /// <summary>
+      /// Dec month abbreviation
+      /// </summary>
       Dec = 12
    }
 
+   /// <summary>
+   /// Day used for CVS data format
+   /// </summary>
    public enum Day
    {
+      /// <summary>
+      /// Sun day of week 
+      /// </summary>
       Sun = 0,
+
+      /// <summary>
+      /// Mon day of week 
+      /// </summary>
       Mon = 1,
+
+      /// <summary>
+      /// Tue day of week 
+      /// </summary>
       Tue = 2,
+
+      /// <summary>
+      /// Wed day of week 
+      /// </summary>
       Wed = 3,
+
+      /// <summary>
+      /// Thu day of week 
+      /// </summary>
       Thu = 4,
+
+      /// <summary>
+      /// Fri day of week 
+      /// </summary>
       Fri = 5,
+
+      /// <summary>
+      /// Sat day of week 
+      /// </summary>
       Sat = 6
    }
 
+   /// <summary>
+   /// Helper methods
+   /// </summary>
    public static class PServerHelper
    {
       private static readonly byte[] _code;
@@ -62,6 +145,10 @@ namespace PServerClient
                     };
       }
 
+      /// <summary>
+      /// Gets the unix line end.
+      /// </summary>
+      /// <value>The unix line end.</value>
       public static string UnixLineEnd
       {
          get
@@ -70,6 +157,10 @@ namespace PServerClient
          }
       }
 
+      /// <summary>
+      /// Gets the windows line end.
+      /// </summary>
+      /// <value>The windows line end.</value>
       public static string WindowsLineEnd
       {
          get
@@ -78,6 +169,11 @@ namespace PServerClient
          }
       }
 
+      /// <summary>
+      /// Scrambles the password according to the CVS algorithm.
+      /// </summary>
+      /// <param name="password">The cleartext password.</param>
+      /// <returns>The scrambled password</returns>
       public static string ScramblePassword(this string password)
       {
          StringBuilder sb = new StringBuilder(password.Length + 1);
@@ -92,6 +188,11 @@ namespace PServerClient
          return sb.ToString();
       }
 
+      /// <summary>
+      /// Unscrambles the password.
+      /// </summary>
+      /// <param name="scrambled">The scrambled password.</param>
+      /// <returns>the cleartext password</returns>
       public static string UnscramblePassword(this string scrambled)
       {
          StringBuilder sb = new StringBuilder(scrambled.Length - 1);
@@ -105,11 +206,21 @@ namespace PServerClient
          return sb.ToString();
       }
 
+      /// <summary>
+      /// Encodes the specified string to a byte array
+      /// </summary>
+      /// <param name="message">The message.</param>
+      /// <returns>byte array representing the string</returns>
       public static byte[] Encode(this string message)
       {
          return Encoding.ASCII.GetBytes(message);
       }
 
+      /// <summary>
+      /// Decodes the specified byte array into a string
+      /// </summary>
+      /// <param name="buffer">The byte array.</param>
+      /// <returns>the byte array represented as a string</returns>
       public static string Decode(this byte[] buffer)
       {
          int i = 0;
@@ -153,11 +264,21 @@ namespace PServerClient
          return date;
       }
 
+      /// <summary>
+      /// Converts a DateTime date to the CVS RFC822 date format
+      /// </summary>
+      /// <param name="date">The date to convert.</param>
+      /// <returns>the formatted date</returns>
       public static string ToRfc822(this DateTime date)
       {
          return date.ToString("dd MMM yyyy HH:mm:ss -0000");
       }
 
+      /// <summary>
+      /// Converts a DateTime date to the entry string date format
+      /// </summary>
+      /// <param name="date">The date to convert.</param>
+      /// <returns>the formatted date</returns>
       public static string ToEntryString(this DateTime date)
       {
          string entrydate = string.Empty;
@@ -166,6 +287,11 @@ namespace PServerClient
          return entrydate;
       }
 
+      /// <summary>
+      /// Converts Entry line dates to date time.
+      /// </summary>
+      /// <param name="date">The date string to convert.</param>
+      /// <returns>the DateTime date</returns>
       public static DateTime EntryToDateTime(this string date)
       {
          string dateTimeRegex = @"(.{3})\s(.{3})\s+(\d{1,2})\s(\d{2}):(\d{2}):(\d{2})\s(\d{4})";
@@ -185,6 +311,12 @@ namespace PServerClient
          return dt;
       }
 
+      /// <summary>
+      /// Converts a string to the enum value
+      /// </summary>
+      /// <param name="t">The Enum Type</param>
+      /// <param name="value">The string value</param>
+      /// <returns>the enum value as int</returns>
       public static int StringToEnum(Type t, string value)
       {
          var fis = t.GetFields();

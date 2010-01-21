@@ -8,6 +8,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class CheckedInResponse : FileResponseBase
    {
+      /// <summary>
+      /// Gets the type.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

@@ -12,6 +12,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class ValidRequestsResponse : ResponseBase
    {
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get
@@ -20,14 +24,25 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Gets the valid request types.
+      /// </summary>
+      /// <value>The valid request types.</value>
       public IList<RequestType> ValidRequestTypes { get; internal set; }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          ValidRequestTypes = RequestHelper.RequestsToRequestTypes(Lines[0]);
          base.Process();
       }
 
+      /// <summary>
+      /// Displays this instance.
+      /// </summary>
+      /// <returns>string to display</returns>
       public override string Display()
       {
          StringBuilder sb = new StringBuilder();

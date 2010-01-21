@@ -4,19 +4,19 @@ using System.Net.Sockets;
 
 namespace PServerClient.Connection
 {
-   public class CvsTcpClient : ICvsTcpClient
+   public class CVSTcpClient : ICVSTcpClient
    {
       private readonly TcpClient _tcpClient;
       private int _lastByte;
       private NetworkStream _stream;
 
-      public CvsTcpClient()
+      public CVSTcpClient()
       {
          _tcpClient = new TcpClient();
          _lastByte = 0;
       }
 
-      #region ICvsTcpClient Members
+      #region ICVSTcpClient Members
 
       public void Connect(string host, int port)
       {

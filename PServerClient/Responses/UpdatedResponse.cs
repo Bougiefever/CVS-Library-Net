@@ -11,6 +11,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class UpdatedResponse : FileResponseBase
    {
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

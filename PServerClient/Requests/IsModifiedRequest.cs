@@ -27,16 +27,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class IsModifiedRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="IsModifiedRequest"/> class.
+      /// </summary>
+      /// <param name="fileName">Name of the file.</param>
       public IsModifiedRequest(string fileName)
          : base(fileName)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="IsModifiedRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public IsModifiedRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

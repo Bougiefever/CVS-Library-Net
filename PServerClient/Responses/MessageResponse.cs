@@ -11,6 +11,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class MessageResponse : MessageResponseBase
    {
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

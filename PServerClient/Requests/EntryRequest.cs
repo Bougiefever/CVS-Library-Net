@@ -16,6 +16,14 @@ namespace PServerClient.Requests
    /// </summary>
    public class EntryRequest : RequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="EntryRequest"/> class.
+      /// </summary>
+      /// <param name="name">The file name.</param>
+      /// <param name="version">The entry version.</param>
+      /// <param name="conflict">The conflict string.</param>
+      /// <param name="options">The entry options.</param>
+      /// <param name="tagOrDate">The tag or date.</param>
       public EntryRequest(string name, string version, string conflict, string options, string tagOrDate)
       {
          string entryLine = string.Format("/{0}/{1}/{2}/{3}/{4}", name, version, conflict, options, tagOrDate);
@@ -23,11 +31,19 @@ namespace PServerClient.Requests
          Lines[0] = string.Format("{0} {1}", RequestName, entryLine);
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="EntryRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public EntryRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether a response is expected from CVS after sending the request.
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -36,6 +52,10 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

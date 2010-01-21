@@ -10,16 +10,16 @@ namespace PServerClient.Connection
 {
    public class PServerConnection : IConnection
    {
-      private ICvsTcpClient _cvsTcpClient;
+      private ICVSTcpClient _cvsTcpClient;
 
       #region IConnection Members
 
-      public ICvsTcpClient TcpClient
+      public ICVSTcpClient TcpClient
       {
          get
          {
             if (_cvsTcpClient == null)
-               _cvsTcpClient = new CvsTcpClient();
+               _cvsTcpClient = new CVSTcpClient();
             return _cvsTcpClient;
          }
 

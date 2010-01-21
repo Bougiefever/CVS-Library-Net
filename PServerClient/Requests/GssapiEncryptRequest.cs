@@ -14,15 +14,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class GssapiEncryptRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GssapiEncryptRequest"/> class.
+      /// </summary>
       public GssapiEncryptRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GssapiEncryptRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public GssapiEncryptRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

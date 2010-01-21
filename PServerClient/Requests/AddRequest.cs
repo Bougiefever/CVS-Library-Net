@@ -59,15 +59,27 @@ namespace PServerClient.Requests
    /// </summary>
    public class AddRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="AddRequest"/> class.
+      /// </summary>
       public AddRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="AddRequest"/> class.
+      /// This constructor is used to recreate a request.
+      /// </summary>
+      /// <param name="lines">The lines that are sent to CVS.</param>
       public AddRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether [response expected].
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get
@@ -76,6 +88,10 @@ namespace PServerClient.Requests
          }
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

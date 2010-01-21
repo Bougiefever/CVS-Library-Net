@@ -15,6 +15,10 @@ namespace PServerClient.Responses
    {
       private string _checkSum;
 
+      /// <summary>
+      /// Gets the check sum.
+      /// </summary>
+      /// <value>The check sum.</value>
       public string CheckSum
       {
          get
@@ -23,6 +27,10 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get
@@ -31,12 +39,19 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          _checkSum = Lines[0];
          base.Process();
       }
 
+      /// <summary>
+      /// Displays this instance.
+      /// </summary>
+      /// <returns>string to display</returns>
       public override string Display()
       {
          return _checkSum;

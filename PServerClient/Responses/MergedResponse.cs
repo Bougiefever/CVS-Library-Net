@@ -15,6 +15,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class MergedResponse : FileResponseBase
    {
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

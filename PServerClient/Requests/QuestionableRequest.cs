@@ -12,16 +12,28 @@ namespace PServerClient.Requests
    /// </summary>
    public class QuestionableRequest : OneArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="QuestionableRequest"/> class.
+      /// </summary>
+      /// <param name="fileName">Name of the file.</param>
       public QuestionableRequest(string fileName)
          : base(fileName)
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="QuestionableRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public QuestionableRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get

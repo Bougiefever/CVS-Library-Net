@@ -15,6 +15,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class CreatedResponse : FileResponseBase
    {
+      /// <summary>
+      /// Gets the type.
+      /// </summary>
+      /// <value>The type.</value>
       public override ResponseType Type
       {
          get

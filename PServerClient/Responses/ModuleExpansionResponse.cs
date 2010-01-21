@@ -11,6 +11,10 @@ namespace PServerClient.Responses
    /// </summary>
    public class ModuleExpansionResponse : ResponseBase
    {
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get
@@ -19,14 +23,25 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Gets or sets the name of the module.
+      /// </summary>
+      /// <value>The name of the module.</value>
       public string ModuleName { get; set; }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          ModuleName = Lines[0];
          base.Process();
       }
 
+      /// <summary>
+      /// Displays this instance.
+      /// </summary>
+      /// <returns>string to display</returns>
       public override string Display()
       {
          return ModuleName;

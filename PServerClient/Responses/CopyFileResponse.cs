@@ -15,6 +15,10 @@ namespace PServerClient.Responses
       private string _newFileName;
       private string _originalFileName;
 
+      /// <summary>
+      /// Gets the name of the original file.
+      /// </summary>
+      /// <value>The name of the original file.</value>
       public string OriginalFileName
       {
          get
@@ -23,6 +27,10 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Gets the new name of the file.
+      /// </summary>
+      /// <value>The new name of the file.</value>
       public string NewFileName
       {
          get
@@ -31,6 +39,10 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get
@@ -39,6 +51,12 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Gets the line count expected for the response
+      /// so the processor knows how many lines to take and use
+      /// for this response
+      /// </summary>
+      /// <value>The line count.</value>
       public override int LineCount
       {
          get
@@ -47,6 +65,9 @@ namespace PServerClient.Responses
          }
       }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          _originalFileName = Lines[0];

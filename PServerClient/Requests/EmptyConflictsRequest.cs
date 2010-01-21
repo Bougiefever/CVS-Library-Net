@@ -13,15 +13,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class EmptyConflictsRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="EmptyConflictsRequest"/> class.
+      /// </summary>
       public EmptyConflictsRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="EmptyConflictsRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public EmptyConflictsRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets a value indicating whether [response expected].
+      /// </summary>
+      /// <value><c>true</c> if [response expected]; otherwise, <c>false</c>.</value>
       public override bool ResponseExpected
       {
          get

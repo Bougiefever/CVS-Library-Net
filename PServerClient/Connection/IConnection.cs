@@ -7,7 +7,7 @@ namespace PServerClient.Connection
 {
    public interface IConnection
    {
-      ICvsTcpClient TcpClient { get; set; }
+      ICVSTcpClient TcpClient { get; set; }
 
       void Connect(IRoot root);
 

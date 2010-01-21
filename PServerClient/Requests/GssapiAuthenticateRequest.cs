@@ -16,15 +16,26 @@ namespace PServerClient.Requests
    /// </summary>
    public class GssapiAuthenticateRequest : NoArgRequestBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GssapiAuthenticateRequest"/> class.
+      /// </summary>
       public GssapiAuthenticateRequest()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="GssapiAuthenticateRequest"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       public GssapiAuthenticateRequest(IList<string> lines)
          : base(lines)
       {
       }
 
+      /// <summary>
+      /// Gets the RequestType of the request
+      /// </summary>
+      /// <value>The RequestType value</value>
       public override RequestType Type
       {
          get
