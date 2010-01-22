@@ -8,12 +8,20 @@ namespace PServerClient.CVS
    /// </summary>
    public abstract class CVSItemBase : ICVSItem
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CVSItemBase"/> class.
+      /// </summary>
+      /// <param name="parent">The parent.</param>
       protected CVSItemBase(Folder parent)
       {
          Parent = parent;
          Parent.AddItem(this);
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CVSItemBase"/> class.
+      /// </summary>
+      /// <param name="info">The FileInfo or DirectoryInfo.</param>
       protected CVSItemBase(FileSystemInfo info)
       {
          Info = info;

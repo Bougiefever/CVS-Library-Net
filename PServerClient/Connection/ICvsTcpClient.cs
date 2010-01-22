@@ -31,9 +31,9 @@ namespace PServerClient.Connection
       int ReadByte();
 
       /// <summary>
-      /// Reads the bytes.
+      /// Reads the specified number of bytes from the stream into the buffer
       /// </summary>
-      /// <param name="length">The length.</param>
+      /// <param name="length">The number of bytes to read into the buffer</param>
       /// <returns>the byte array</returns>
       byte[] ReadBytes(int length);
 
@@ -41,5 +41,11 @@ namespace PServerClient.Connection
       /// Closes the Tcp connection
       /// </summary>
       void Close();
+
+      /// <summary>
+      /// Reads the stream until a line end character is received.
+      /// </summary>
+      /// <returns>the contents of the buffer as a string</returns>
+      string ReadLine();
    }
 }

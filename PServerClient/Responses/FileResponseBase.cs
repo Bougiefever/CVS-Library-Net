@@ -104,6 +104,9 @@ namespace PServerClient.Responses
       /// <value>The type of the file.</value>
       public FileType FileType { get; set; }
 
+      /// <summary>
+      /// Processes this instance.
+      /// </summary>
       public override void Process()
       {
          string module = Lines[0];

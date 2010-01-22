@@ -36,6 +36,11 @@ namespace PServerClient.Commands
 
       private IConnection _connection;
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="CommandBase"/> class.
+      /// </summary>
+      /// <param name="root">The CVS root.</param>
+      /// <param name="connection">The connection.</param>
       protected CommandBase(IRoot root, IConnection connection)
       {
          BasicConfigurator.Configure();
@@ -300,21 +305,39 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// Gives the derived commands the opportunity to do processing after a
+      /// request is sent
+      /// </summary>
+      /// <param name="request">The request.</param>
       protected internal virtual void AfterRequest(IRequest request)
       {
          ProcessRequestResponses();
       }
 
+      /// <summary>
+      /// Gives commands the opportunity to do some processing
+      /// before beginning the execute
+      /// </summary>
       protected internal virtual void BeforeExecute()
       {
          // do nothing is default
       }
 
+      /// <summary>
+      /// Gives the commands the opportunity to do some processing 
+      /// after the execute is done. If it is not overridden, it 
+      /// just processes any message responses
+      /// </summary>
       protected internal virtual void AfterExecute()
       {
          ProcessMessages();
       }
 
+      /// <summary>
+      /// Perform a request
+      /// </summary>
+      /// <param name="request">The request.</param>
       protected void DoRequest(IRequest request)
       {
          _connection.DoRequest(request);
@@ -322,6 +345,10 @@ namespace PServerClient.Commands
             Items.Add(request);
       }
 
+      /// <summary>
+      /// Processes a response.
+      /// </summary>
+      /// <param name="response">The response.</param>
       protected void ProcessResponse(IResponse response)
       {
          if (response != null)
@@ -332,12 +359,18 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// Removes the processed responses.
+      /// </summary>
       protected void RemoveProcessedResponses()
       {
          var notProcessed = Responses.Where(r => !r.Processed);
          Responses = notProcessed.ToList(); 
       }
 
+      /// <summary>
+      /// Processes the request responses.
+      /// </summary>
       private void ProcessRequestResponses()
       {
          var responses = _connection.GetAllResponses();
@@ -348,6 +381,9 @@ namespace PServerClient.Commands
          }
       }
 
+      /// <summary>
+      /// Cleans up after execute for performance
+      /// </summary>
       private void CleanUp()
       {
          if (!PServerHelper.IsTestMode())

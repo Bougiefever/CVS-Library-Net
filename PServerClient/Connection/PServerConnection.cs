@@ -8,12 +8,17 @@ using PServerClient.Responses;
 
 namespace PServerClient.Connection
 {
+   /// <summary>
+   /// The PServer connection protocol to communicate with CVS
+   /// </summary>
    public class PServerConnection : IConnection
    {
       private ICVSTcpClient _cvsTcpClient;
 
-      #region IConnection Members
-
+      /// <summary>
+      /// Gets or sets the TCP client instance
+      /// </summary>
+      /// <value>The TCP client.</value>
       public ICVSTcpClient TcpClient
       {
          get
@@ -29,11 +34,19 @@ namespace PServerClient.Connection
          }
       }
 
+      /// <summary>
+      /// Performs the tcp connection
+      /// </summary>
+      /// <param name="root">The CVS root.</param>
       public void Connect(IRoot root)
       {
          TcpClient.Connect(root.Host, root.Port);
       }
 
+      /// <summary>
+      /// Send the string contained in the request
+      /// </summary>
+      /// <param name="request">The request.</param>
       public void DoRequest(IRequest request)
       {
          string requestString = request.GetRequestString();
@@ -44,18 +57,24 @@ namespace PServerClient.Connection
          // do file stuff for request here
       }
 
+      /// <summary>
+      /// Closes the tcp connection
+      /// </summary>
       public void Close()
       {
          TcpClient.Close();
       }
 
-      #endregion
-
+      /// <summary>
+      /// Gets one response.
+      /// </summary>
+      /// <returns>the response instance</returns>
       public IResponse GetResponse()
       {
-         string line;
          IResponse response = null;
-         line = ReadLine();
+         string line = _cvsTcpClient.ReadLine();  // ReadLine();
+         Console.WriteLine("S: " + (line ?? string.Empty));
+
          if (line != null)
          {
             PServerFactory factory = new PServerFactory();
@@ -73,13 +92,19 @@ namespace PServerClient.Connection
          return response;
       }
 
+      /// <summary>
+      /// Gets all responses available from the CVS server
+      /// </summary>
+      /// <returns>The list of responses retrieved</returns>
       public IList<IResponse> GetAllResponses()
       {
          IList<IResponse> responses = new List<IResponse>();
          string line;
          do
          {
-            line = ReadLine();
+            line = _cvsTcpClient.ReadLine(); // ReadLine();
+            Console.WriteLine("S: " + (line ?? string.Empty));
+
             if (line != null)
             {
                PServerFactory factory = new PServerFactory();

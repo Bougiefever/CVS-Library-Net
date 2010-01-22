@@ -27,7 +27,7 @@ namespace PServerClient.Responses
    /// first are part of data.
    /// Here is an example of some tagged text responses. Note that there is a trailing
    /// space after ‘Checking in’ and ‘initial revision:’ and there are two trailing
-   /// spaces after ‘<--’. Such trailing spaces are, of course, part of data.
+   /// spaces after "&lt;--". Such trailing spaces are, of course, part of data.
    /// MT +checking-in
    /// MT text Checking in
    /// MT fname gz.tst
@@ -35,7 +35,7 @@ namespace PServerClient.Responses
    /// MT newline
    /// MT rcsfile /home/kingdon/zwork/cvsroot/foo/gz.tst,v
    /// MT text
-   /// <--
+   /// &lt;--
    /// MT fname gz.tst
    /// MT newline
    /// MT text initial revision:
@@ -47,7 +47,7 @@ namespace PServerClient.Responses
    /// If the client does not support the ‘MT’ response, the same responses might be
    /// sent as:
    /// M Checking in gz.tst;
-   /// M /home/kingdon/zwork/cvsroot/foo/gz.tst,v <-- gz.tst
+   /// M /home/kingdon/zwork/cvsroot/foo/gz.tst,v &lt;-- gz.tst
    /// M initial revision: 1.1
    /// M done
    /// For a list of specific tags, see Section 5.12 [Text tags], 

@@ -6,157 +6,157 @@ namespace PServerClient
    public enum ResponseType
    {
        /// <summary>
-       /// Auth response. Full documentation is in response class
+       /// Auth response.
        /// </summary>
       Auth = 0,
 
       /// <summary>
-      /// Checked in response. Full documentation is in response class
+      /// Checked in response.
       /// </summary>
       CheckedIn = 1,
 
       /// <summary>
-      /// Checksum response. Full documentation is in response class
+      /// Checksum response.
       /// </summary>
       Checksum = 2,
 
       /// <summary>
-      /// ClearStaticDirectory response. Full documentation is in response class
+      /// ClearStaticDirectory response.
       /// </summary>
       ClearStaticDirectory = 3,
 
       /// <summary>
-      /// ClearSticky response. Full documentation is in response class
+      /// ClearSticky response.
       /// </summary>
       ClearSticky = 4,
 
       /// <summary>
-      /// CopyFile response. Full documentation is in response class
+      /// CopyFile response.
       /// </summary>
       CopyFile = 5,
 
       /// <summary>
-      /// Created response. Full documentation is in response class
+      /// Created response.
       /// </summary>
       Created = 6,
 
       /// <summary>
-      /// E Message response. Full documentation is in response class
+      /// E Message response.
       /// </summary>
       EMessage = 7,
 
       /// <summary>
-      /// Error response. Full documentation is in response class
+      /// Error response.
       /// </summary>
       Error = 8,
 
       /// <summary>
-      /// Flush response. Full documentation is in response class
+      /// Flush response.
       /// </summary>
       Flush = 9,
 
       /// <summary>
-      /// Mbinary response. Full documentation is in response class
+      /// Mbinary response.
       /// </summary>
       Mbinary = 10,
 
       /// <summary>
-      /// Merged response. Full documentation is in response class
+      /// Merged response.
       /// </summary>
       Merged = 11,
 
       /// <summary>
-      /// M Message response. Full documentation is in response class
+      /// M Message response.
       /// </summary>
       Message = 12,
 
       /// <summary>
-      /// MT Message response. Full documentation is in response class
+      /// MT Message response.
       /// </summary>
       MTMessage = 13,
 
       /// <summary>
-      /// Mode response. Full documentation is in response class
+      /// Mode response.
       /// </summary>
       Mode = 14,
 
       /// <summary>
-      /// ModTime response. Full documentation is in response class
+      /// ModTime response.
       /// </summary>
       ModTime = 15,
 
       /// <summary>
-      /// ModuleExpansion response. Full documentation is in response class
+      /// ModuleExpansion response.
       /// </summary>
       ModuleExpansion = 16,
 
       /// <summary>
-      /// NewEntry response. Full documentation is in response class
+      /// NewEntry response.
       /// </summary>
       NewEntry = 17,
 
       /// <summary>
-      /// Notified response. Full documentation is in response class
+      /// Notified response.
       /// </summary>
       Notified = 18,
 
       /// <summary>
-      /// ok response. Full documentation is in response class
+      /// ok response.
       /// </summary>
       Ok = 19,
 
       /// <summary>
-      /// Patched response. Full documentation is in response class
+      /// Patched response.
       /// </summary>
       Patched = 20,
 
       /// <summary>
-      /// RcsDiff response. Full documentation is in response class
+      /// RcsDiff response.
       /// </summary>
       RcsDiff = 21,
 
       /// <summary>
-      /// Removed response. Full documentation is in response class
+      /// Removed response.
       /// </summary>
       Removed = 22,
 
       /// <summary>
-      /// RemoveEntry response. Full documentation is in response class
+      /// RemoveEntry response.
       /// </summary>
       RemoveEntry = 23,
 
       /// <summary>
-      /// SetStaticDirectory response. Full documentation is in response class
+      /// SetStaticDirectory response.
       /// </summary>
       SetStaticDirectory = 24,
 
       /// <summary>
-      /// SetSticky response. Full documentation is in response class
+      /// SetSticky response.
       /// </summary>
       SetSticky = 25,
 
       /// <summary>
-      /// Template response. Full documentation is in response class
+      /// Template response.
       /// </summary>
       Template = 26,
 
       /// <summary>
-      /// Updated response. Full documentation is in response class
+      /// Updated response.
       /// </summary>
       Updated = 27,
 
       /// <summary>
-      /// UpdateExisting response. Full documentation is in response class
+      /// UpdateExisting response.
       /// </summary>
       UpdateExisting = 28,
 
       /// <summary>
-      /// ValidRequests response. Full documentation is in response class
+      /// ValidRequests response.
       /// </summary>
       ValidRequests = 29,
 
       /// <summary>
-      /// WrapperRscOption response. Full documentation is in response class
+      /// WrapperRscOption response.
       /// </summary>
       WrapperRscOption = 30,
 

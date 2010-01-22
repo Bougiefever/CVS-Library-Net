@@ -43,6 +43,9 @@ namespace PServerClient.Commands
          get; private set;
       }
 
+      /// <summary>
+      /// After execute, gets the version from the responses and sets the Version property.
+      /// </summary>
       protected internal override void AfterExecute()
       {
          base.AfterExecute();

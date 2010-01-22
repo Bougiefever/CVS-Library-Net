@@ -18,7 +18,7 @@ namespace PServerClient.Responses
       /// <summary>
       /// Gets the type.
       /// </summary>
-      /// <value>The type.</value>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

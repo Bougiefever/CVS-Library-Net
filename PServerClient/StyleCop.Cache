@@ -18,15 +18,6 @@
     <milliseconds>20</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="CheckOutCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 10:56:09</timestamp>
-    <milliseconds>845</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="CvsTcpClient.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -49,24 +40,6 @@
     </settings>
     <timestamp>01/08/2010 09:56:02</timestamp>
     <milliseconds>42</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CVSFolder.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 12:33:46</timestamp>
-    <milliseconds>781</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Entry.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 12:33:46</timestamp>
-    <milliseconds>871</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="Folder.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -96,30 +69,6 @@
     <milliseconds>887</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ReaderWriter.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 12:45:22</timestamp>
-    <milliseconds>956</milliseconds>
-    <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketMustBeFollowedByBlankLine" ruleCheckId="SA1513">
-        <context>Statements or elements wrapped in curly brackets must be followed by a blank line.</context>
-        <line>110</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="Root.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/13/2010 15:58:05</timestamp>
-    <milliseconds>479</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ExitCode.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -146,570 +95,6 @@
     <timestamp>01/19/2010 16:35:05</timestamp>
     <milliseconds>539</milliseconds>
     <violations />
-  </sourcecode>
-  <sourcecode name="AdminRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:45</timestamp>
-    <milliseconds>496</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="AnnotateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:45</timestamp>
-    <milliseconds>436</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ArgumentRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:45</timestamp>
-    <milliseconds>206</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ArgumentxRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:45</timestamp>
-    <milliseconds>66</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="AuthRequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 09:36:16</timestamp>
-    <milliseconds>184</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CaseRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>915</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CheckInRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>835</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CheckinTimeRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>775</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CheckOutRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>685</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="DiffRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>615</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="DirectoryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>545</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="EditorsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>455</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="EmptyConflictsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>385</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="EntryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>305</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ExpandModulesRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>234</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ExportRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>154</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GlobalOptionRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:44</timestamp>
-    <milliseconds>54</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GssapiAuthenticateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:43</timestamp>
-    <milliseconds>954</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GssapiEncryptRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:43</timestamp>
-    <milliseconds>864</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GzipFileContentsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:43</timestamp>
-    <milliseconds>784</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GzipStreamRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:43</timestamp>
-    <milliseconds>714</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="HistoryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:43</timestamp>
-    <milliseconds>644</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ImportRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:43</timestamp>
-    <milliseconds>533</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="InitRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:24</timestamp>
-    <milliseconds>349</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="IsModifiedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:24</timestamp>
-    <milliseconds>279</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="KerberosEncryptRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:24</timestamp>
-    <milliseconds>209</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="KoptRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:24</timestamp>
-    <milliseconds>139</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="LogRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:24</timestamp>
-    <milliseconds>69</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="LostRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>969</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="MaxDotRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>859</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ModifiedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>789</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NoArgRequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:45</timestamp>
-    <milliseconds>386</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NoopRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>739</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NotifyRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>678</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="OneArgRequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:05:45</timestamp>
-    <milliseconds>146</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="QuestionableRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>508</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RAnnotateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>588</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RDiffRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>418</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ReleaseRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>338</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RemoveRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:07:23</timestamp>
-    <milliseconds>258</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RLogRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:36</timestamp>
-    <milliseconds>284</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RootRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:36</timestamp>
-    <milliseconds>233</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RTagRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:36</timestamp>
-    <milliseconds>143</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="SetRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:36</timestamp>
-    <milliseconds>3</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="StaticDirectoryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>873</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="StatusRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>783</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="StickyRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>713</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="TagRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>643</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="UnchangedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>552</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="UpdatePatchesRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>482</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="UpdateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:08:35</timestamp>
-    <milliseconds>382</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="UseUnchangedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:22</timestamp>
-    <milliseconds>267</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ValidRequestsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:22</timestamp>
-    <milliseconds>197</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ValidResponsesRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:22</timestamp>
-    <milliseconds>117</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="VersionRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>977</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WatchAddRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>876</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WatchersRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>796</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WatchOffRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>716</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WatchOnRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>636</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WatchRemoveRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>556</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WrapperSendmeRcsOptionsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/12/2010 10:10:21</timestamp>
-    <milliseconds>466</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RequestType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/19/2010 14:12:58</timestamp>
-    <milliseconds>300</milliseconds>
-    <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
-        <context>The code must not contain multiple blank lines in a row.</context>
-        <line>33</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
   </sourcecode>
   <sourcecode name="ResponseType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
@@ -783,15 +168,6 @@
     <milliseconds>828</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="CommandBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 15:36:54</timestamp>
-    <milliseconds>930</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ICommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -837,72 +213,6 @@
     <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="VersionCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 15:33:54</timestamp>
-    <milliseconds>669</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CVSTcpClient.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 15:43:06</timestamp>
-    <milliseconds>564</milliseconds>
-    <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.ReadabilityRules" rule="DoNotUseRegions" ruleCheckId="SA1124">
-        <context>The use of regions is not allowed. Remove the #region and #endregion tags.</context>
-        <line>19</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="IConnection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 15:43:06</timestamp>
-    <milliseconds>124</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="PServerConnection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 15:43:06</timestamp>
-    <milliseconds>434</milliseconds>
-    <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.ReadabilityRules" rule="DoNotUseRegions" ruleCheckId="SA1124">
-        <context>The use of regions is not allowed. Remove the #region and #endregion tags.</context>
-        <line>15</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
-  <sourcecode name="AddRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 15:36:12</timestamp>
-    <milliseconds>966</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="AuthRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 08:37:15</timestamp>
-    <milliseconds>11</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="IAuthRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -919,15 +229,6 @@
     </settings>
     <timestamp>01/20/2010 15:41:41</timestamp>
     <milliseconds>982</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/20/2010 15:41:22</timestamp>
-    <milliseconds>644</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="VerifyAuthRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -1038,21 +339,6 @@
     <milliseconds>63</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="CreatedResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:24:15</timestamp>
-    <milliseconds>973</milliseconds>
-    <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.DocumentationRules" rule="DocumentationTextMustMeetMinimumCharacterLength" ruleCheckId="SA1632">
-        <context>The documentation text within the value tag must be at least 10 characters in length. Documentation failing to meet this guideline most likely does not follow a proper grammatical structure required for documentation text.</context>
-        <line>22</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
-  </sourcecode>
   <sourcecode name="EMessageResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -1069,15 +355,6 @@
     </settings>
     <timestamp>01/21/2010 16:28:40</timestamp>
     <milliseconds>346</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="FileResponseBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:28:49</timestamp>
-    <milliseconds>499</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="FlushResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -1188,15 +465,6 @@
     <milliseconds>727</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="MTMessageResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:36:51</timestamp>
-    <milliseconds>647</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="NewEntryResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -1204,15 +472,6 @@
     </settings>
     <timestamp>01/21/2010 16:36:51</timestamp>
     <milliseconds>547</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="NotifiedResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:40:21</timestamp>
-    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="OkResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -1249,15 +508,6 @@
     </settings>
     <timestamp>01/21/2010 16:40:20</timestamp>
     <milliseconds>460</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="RemoveEntryResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:40:20</timestamp>
-    <milliseconds>369</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="ResponseBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -1341,27 +591,6 @@
     <milliseconds>588</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-1739993344">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="ICVSTcpClient.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:52:44</timestamp>
-    <milliseconds>236</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CVSItemBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/20/2010 11:13:23</timestamp>
-      <milliseconds>625</milliseconds>
-    </settings>
-    <timestamp>01/21/2010 16:49:02</timestamp>
-    <milliseconds>75</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ISubmitFileRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/20/2010 11:13:23</timestamp>
@@ -1387,6 +616,756 @@
     </settings>
     <timestamp>01/21/2010 16:49:02</timestamp>
     <milliseconds>145</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CheckOutCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:19:00</timestamp>
+    <milliseconds>338</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AddRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 16:58:52</timestamp>
+    <milliseconds>299</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AdminRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 16:58:52</timestamp>
+    <milliseconds>219</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AnnotateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 16:58:52</timestamp>
+    <milliseconds>139</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ArgumentRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:42</timestamp>
+    <milliseconds>449</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ArgumentxRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:42</timestamp>
+    <milliseconds>319</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AuthRequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:42</timestamp>
+    <milliseconds>169</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CaseRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:42</timestamp>
+    <milliseconds>79</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CheckInRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>999</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CheckinTimeRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>929</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CheckOutRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>849</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DiffRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>768</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DirectoryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>698</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="EditorsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>608</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AuthRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:42</timestamp>
+    <milliseconds>239</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="EntryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:03:41</timestamp>
+    <milliseconds>438</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ExpandModulesRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:29</timestamp>
+    <milliseconds>68</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ExportRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>977</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GlobalOptionRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>887</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GssapiAuthenticateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>807</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GssapiEncryptRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>717</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GzipFileContentsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>637</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GzipStreamRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>537</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HistoryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>447</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ImportRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>357</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="InitRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>266</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IsModifiedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>146</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="KerberosEncryptRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:28</timestamp>
+    <milliseconds>66</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="KoptRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:27</timestamp>
+    <milliseconds>966</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LostRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 16:57:15</timestamp>
+    <milliseconds>569</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MaxDotRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:27</timestamp>
+    <milliseconds>786</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ModifiedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:27</timestamp>
+    <milliseconds>726</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NoArgRequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:07:27</timestamp>
+    <milliseconds>646</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NoopRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:28</timestamp>
+    <milliseconds>397</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NotifyRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:28</timestamp>
+    <milliseconds>317</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="OneArgRequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 16:59:04</timestamp>
+    <milliseconds>347</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="QuestionableRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:28</timestamp>
+    <milliseconds>217</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RAnnotateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:28</timestamp>
+    <milliseconds>127</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RDiffRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:28</timestamp>
+    <milliseconds>37</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ReleaseRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>957</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RemoveRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>876</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RLogRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>796</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RootRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>716</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RTagRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>646</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SetRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>566</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StaticDirectoryRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>486</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StatusRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>396</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StickyRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>296</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TagRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>196</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UnchangedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:10:27</timestamp>
+    <milliseconds>95</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UpdatePatchesRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:24</timestamp>
+    <milliseconds>65</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UpdateRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>965</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UseUnchangedRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>884</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ValidRequestsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>684</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ValidResponsesRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>604</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="VersionRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>504</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WatchAddRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>404</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WatchersRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>254</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WatchOffRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>153</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WatchOnRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:23</timestamp>
+    <milliseconds>73</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WatchRemoveRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:22</timestamp>
+    <milliseconds>983</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WrapperSendmeRcsOptionsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/21/2010 17:12:22</timestamp>
+    <milliseconds>893</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1739993344">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="CommandBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 08:00:33</timestamp>
+    <milliseconds>221</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="VersionCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:57:19</timestamp>
+    <milliseconds>851</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IConnection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:48:04</timestamp>
+    <milliseconds>627</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ICVSTcpClient.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:44:56</timestamp>
+    <milliseconds>925</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PServerConnection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:49:05</timestamp>
+    <milliseconds>174</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CVSFolder.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:56:33</timestamp>
+    <milliseconds>133</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CVSItemBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:50:16</timestamp>
+    <milliseconds>277</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CVSTcpClient.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:44:42</timestamp>
+    <milliseconds>474</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IRoot.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:40:57</timestamp>
+    <milliseconds>538</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ReaderWriter.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:39:13</timestamp>
+    <milliseconds>848</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Root.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:41:44</timestamp>
+    <milliseconds>416</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="EmptyConflictsRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:57:19</timestamp>
+    <milliseconds>951</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Entry.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 08:00:33</timestamp>
+    <milliseconds>100</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LogRequest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:51:18</timestamp>
+    <milliseconds>107</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RequestBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:50:27</timestamp>
+    <milliseconds>794</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RequestType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:39:13</timestamp>
+    <milliseconds>738</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CreatedResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:39:13</timestamp>
+    <milliseconds>628</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="FileResponseBase.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 08:00:33</timestamp>
+    <milliseconds>30</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MTMessageResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:52:07</timestamp>
+    <milliseconds>458</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="NotifiedResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:52:07</timestamp>
+    <milliseconds>528</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RemoveEntryResponse.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/20/2010 11:13:23</timestamp>
+      <milliseconds>625</milliseconds>
+    </settings>
+    <timestamp>01/22/2010 07:52:07</timestamp>
+    <milliseconds>608</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

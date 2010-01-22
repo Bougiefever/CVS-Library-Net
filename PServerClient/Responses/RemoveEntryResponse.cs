@@ -14,6 +14,10 @@ namespace PServerClient.Responses
       /// <value>The repository path.</value>
       public string RepositoryPath { get; private set; }
 
+      /// <summary>
+      /// Gets the ResponseType.
+      /// </summary>
+      /// <value>The response type.</value>
       public override ResponseType Type
       {
          get

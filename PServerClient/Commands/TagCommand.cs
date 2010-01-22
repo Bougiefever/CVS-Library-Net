@@ -1,5 +1,6 @@
 using PServerClient.Connection;
 using PServerClient.CVS;
+using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
@@ -13,9 +14,15 @@ namespace PServerClient.Commands
       /// </summary>
       /// <param name="root">The CVS root.</param>
       /// <param name="connection">The connection.</param>
-      public TagCommand(IRoot root, IConnection connection)
+      /// <param name="tag">The tag string</param>
+      public TagCommand(IRoot root, IConnection connection, string tag)
          : base(root, connection)
       {
+         Requests.Add(new RootRequest(root.Repository));
+         Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
+         Requests.Add(new ArgumentRequest(tag));
+         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
+         Requests.Add(new TagRequest());
       }
 
       /// <summary>

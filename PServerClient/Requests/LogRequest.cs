@@ -12,7 +12,7 @@ namespace PServerClient.Requests
    /// aged to use the canonical forms and other forms are deprecated):
    /// -b, -h, -l, -N, -R, -t
    /// These options go by themselves, one option per Argument request.
-   /// -d date1<date2
+   /// -d date1 is less than date2
    /// Select revisions between date1 and date2. Either date may be omit-
    /// ted in which case there is no date limit at that end of the range
    /// (clients may specify dates such as 1 Jan 1970 or 1 Jan 2038 for
@@ -20,7 +20,7 @@ namespace PServerClient.Requests
    /// about what dates the server supports). Dates are in RFC822/1123
    /// format. The ‘-d’ is one Argument request and the date range is a
    /// second one.
-   /// -d date1<=date2
+   /// -d date1 is less than or equal to date2
    /// Likewise but compare dates for equality.
    /// -d singledate
    /// Select the single, latest revision dated singledate or earlier.

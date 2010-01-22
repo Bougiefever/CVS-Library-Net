@@ -11,10 +11,17 @@ namespace PServerClient.Requests
    /// </summary>
    public abstract class RequestBase : IRequest
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="RequestBase"/> class.
+      /// </summary>
       protected RequestBase()
       {
       }
 
+      /// <summary>
+      /// Initializes a new instance of the <see cref="RequestBase"/> class.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
       protected RequestBase(IList<string> lines)
       {
          Lines = lines;

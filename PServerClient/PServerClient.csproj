@@ -57,6 +57,7 @@
     <Compile Include="Commands\FileResponseGroup.cs" />
     <Compile Include="Commands\ICommandItem.cs" />
     <Compile Include="Commands\IFileResponseGroup.cs" />
+    <Compile Include="Commands\ReceiveFileCommandBase.cs" />
     <Compile Include="Commands\ResponseProcessor.cs" />
     <Compile Include="Commands\TagCommand.cs" />
     <Compile Include="CommandType.cs" />
@@ -70,8 +71,11 @@
     <Compile Include="Connection\ICVSTcpClient.cs" />
     <Compile Include="Connection\CVSTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
+    <Compile Include="CVS\IRoot.cs" />
+    <Compile Include="Day.cs" />
     <Compile Include="ExitCode.cs" />
     <Compile Include="FileType.cs" />
+    <Compile Include="MonthName.cs" />
     <Compile Include="PServerFactory.cs" />
     <Compile Include="RequestHelper.cs" />
     <Compile Include="Requests\IAuthRequest.cs" />

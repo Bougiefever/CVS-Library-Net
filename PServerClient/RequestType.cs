@@ -6,313 +6,312 @@ namespace PServerClient
    public enum RequestType
    {
       /// <summary>
-      /// Add request. More documentation in class.
+      /// Add request.
       /// </summary>
       Add = 0,
 
       /// <summary>
-      /// Admin request. More documentation in class.
+      /// Admin request.
       /// </summary>
       Admin = 1,
 
       /// <summary>
-      /// Annotate request. More documentation in class.
+      /// Annotate request.
       /// </summary>
       Annotate = 2,
 
       /// <summary>
-      /// Argument request. More documentation in class.
+      /// Argument request.
       /// </summary>
       Argument = 3,
 
       /// <summary>
-      /// Argumentx request. More documentation in class.
+      /// Argumentx request.
       /// </summary>
       Argumentx = 4,
 
-
       /// <summary>
-      /// Auth request. More documentation in class.
+      /// Auth request.
       /// </summary>
       Auth = 5,
 
       /// <summary>
-      /// Case request. More documentation in class.
+      /// Case request.
       /// </summary>
       Case = 6,
 
       /// <summary>
-      /// CheckIn request. More documentation in class.
+      /// CheckIn request.
       /// </summary>
       CheckIn = 7,
 
       /// <summary>
-      /// CheckinTime request. More documentation in class.
+      /// CheckinTime request.
       /// </summary>
       CheckinTime = 8,
 
       /// <summary>
-      /// CheckOut request. More documentation in class.
+      /// CheckOut request.
       /// </summary>
       CheckOut = 9,
 
       /// <summary>
-      /// Diff request. More documentation in class.
+      /// Diff request.
       /// </summary>
       Diff = 10,
 
       /// <summary>
-      /// Directory request. More documentation in class.
+      /// Directory request.
       /// </summary>
       Directory = 11,
 
       /// <summary>
-      /// Editors request. More documentation in class.
+      /// Editors request.
       /// </summary>
       Editors = 12,
 
       /// <summary>
-      /// EmptyConflicts request. More documentation in class.
+      /// EmptyConflicts request.
       /// </summary>
       EmptyConflicts = 13,
 
       /// <summary>
-      /// Entry request. More documentation in class.
+      /// Entry request.
       /// </summary>
       Entry = 14,
 
       /// <summary>
-      /// ExpandModules request. More documentation in class.
+      /// ExpandModules request.
       /// </summary>
       ExpandModules = 15,
 
       /// <summary>
-      /// Export request. More documentation in class.
+      /// Export request.
       /// </summary>
       Export = 16,
 
       /// <summary>
-      /// GlobalOption request. More documentation in class.
+      /// GlobalOption request.
       /// </summary>
       GlobalOption = 17,
 
       /// <summary>
-      /// GssapiAuthenticate request. More documentation in class.
+      /// GssapiAuthenticate request.
       /// </summary>
       GssapiAuthenticate = 18,
 
       /// <summary>
-      /// GssapiEncrypt request. More documentation in class.
+      /// GssapiEncrypt request.
       /// </summary>
       GssapiEncrypt = 19,
 
       /// <summary>
-      /// GzipFileContents request. More documentation in class.
+      /// GzipFileContents request.
       /// </summary>
       GzipFileContents = 20,
 
       /// <summary>
-      /// GzipStream request. More documentation in class.
+      /// GzipStream request.
       /// </summary>
       GzipStream = 21,
 
       /// <summary>
-      /// History request. More documentation in class.
+      /// History request.
       /// </summary>
       History = 22,
 
       /// <summary>
-      /// Import request. More documentation in class.
+      /// Import request.
       /// </summary>
       Import = 23,
 
       /// <summary>
-      /// Init request. More documentation in class.
+      /// Init request.
       /// </summary>
       Init = 24,
 
       /// <summary>
-      /// IsModified request. More documentation in class.
+      /// IsModified request.
       /// </summary>
       IsModified = 25,
 
       /// <summary>
-      /// KerberosEncrypt request. More documentation in class.
+      /// KerberosEncrypt request.
       /// </summary>
       KerberosEncrypt = 26,
 
       /// <summary>
-      /// Kopt request. More documentation in class.
+      /// Kopt request.
       /// </summary>
       Kopt = 27,
 
       /// <summary>
-      /// Log request. More documentation in class.
+      /// Log request.
       /// </summary>
       Log = 28,
 
       /// <summary>
-      /// Lost request. More documentation in class.
+      /// Lost request.
       /// </summary>
       Lost = 29,
 
       /// <summary>
-      /// MaxDot request. More documentation in class.
+      /// MaxDot request.
       /// </summary>
       MaxDot = 30,
 
       /// <summary>
-      /// Modified request. More documentation in class.
+      /// Modified request.
       /// </summary>
       Modified = 31,
 
       /// <summary>
-      /// Noop request. More documentation in class.
+      /// Noop request.
       /// </summary>
       Noop = 32,
 
       /// <summary>
-      /// Notify request. More documentation in class.
+      /// Notify request.
       /// </summary>
       Notify = 33,
 
       /// <summary>
-      /// Questionable request. More documentation in class.
+      /// Questionable request.
       /// </summary>
       Questionable = 34,
 
       /// <summary>
-      /// RAnnotate request. More documentation in class.
+      /// RAnnotate request.
       /// </summary>
       RAnnotate = 35,
 
       /// <summary>
-      /// RDiff request. More documentation in class.
+      /// RDiff request.
       /// </summary>
       RDiff = 36,
 
       /// <summary>
-      /// Release request. More documentation in class.
+      /// Release request.
       /// </summary>
       Release = 37,
 
       /// <summary>
-      /// Remove request. More documentation in class.
+      /// Remove request.
       /// </summary>
       Remove = 38,
 
       /// <summary>
-      /// Repository request. More documentation in class.
+      /// Repository request.
       /// </summary>
       Repository = 39,
 
       /// <summary>
-      /// RLog request. More documentation in class.
+      /// RLog request.
       /// </summary>
       RLog = 40,
 
       /// <summary>
-      /// Root request. More documentation in class.
+      /// Root request.
       /// </summary>
       Root = 41,
 
       /// <summary>
-      /// RTag request. More documentation in class.
+      /// RTag request.
       /// </summary>
       RTag = 42,
 
       /// <summary>
-      /// Set request. More documentation in class.
+      /// Set request.
       /// </summary>
       Set = 43,
 
       /// <summary>
-      /// StaticDirectory request. More documentation in class.
+      /// StaticDirectory request.
       /// </summary>
       StaticDirectory = 44,
 
       /// <summary>
-      /// Status request. More documentation in class.
+      /// Status request.
       /// </summary>
       Status = 45,
 
       /// <summary>
-      /// Sticky request. More documentation in class.
+      /// Sticky request.
       /// </summary>
       Sticky = 46,
 
       /// <summary>
-      /// Tag request. More documentation in class.
+      /// Tag request.
       /// </summary>
       Tag = 47,
 
       /// <summary>
-      ///  request. More documentation in class.
+      /// Unchanged request.
       /// </summary>
       Unchanged = 48,
 
       /// <summary>
-      /// UpdatePatches request. More documentation in class.
+      /// UpdatePatches request.
       /// </summary>
       UpdatePatches = 49,
 
       /// <summary>
-      /// Update request. More documentation in class.
+      /// Update request.
       /// </summary>
       Update = 50,
 
       /// <summary>
-      /// UseUnchanged request. More documentation in class.
+      /// UseUnchanged request.
       /// </summary>
       UseUnchanged = 51,
 
       /// <summary>
-      /// ValidRequests request. More documentation in class.
+      /// ValidRequests request.
       /// </summary>
       ValidRequests = 52,
 
       /// <summary>
-      /// ValidResponses request. More documentation in class.
+      /// ValidResponses request.
       /// </summary>
       ValidResponses = 53,
 
       /// <summary>
-      /// VerifyAuth request. More documentation in class.
+      /// VerifyAuth request.
       /// </summary>
       VerifyAuth = 54,
 
       /// <summary>
-      /// Version request. More documentation in class.
+      /// Version request.
       /// </summary>
       Version = 55,
 
       /// <summary>
-      /// WatchAdd request. More documentation in class.
+      /// WatchAdd request.
       /// </summary>
       WatchAdd = 56,
 
       /// <summary>
-      /// Watchers request. More documentation in class.
+      /// Watchers request.
       /// </summary>
       Watchers = 57,
 
       /// <summary>
-      /// WatchOff request. More documentation in class.
+      /// WatchOff request.
       /// </summary>
       WatchOff = 58,
 
       /// <summary>
-      /// WatchOn request. More documentation in class.
+      /// WatchOn request.
       /// </summary>
       WatchOn = 59,
 
       /// <summary>
-      /// WatchRemove request. More documentation in class.
+      /// WatchRemove request.
       /// </summary>
       WatchRemove = 60,
 
       /// <summary>
-      /// WrapperSendmeRcsOptions request. More documentation in class.
+      /// WrapperSendmeRcsOptions request.
       /// </summary>
       WrapperSendmeRcsOptions = 61
    }

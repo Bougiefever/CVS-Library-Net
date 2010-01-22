@@ -57,6 +57,10 @@ namespace PServerClient.CVS
          }
       }
 
+      /// <summary>
+      /// Gets or sets the mod time.
+      /// </summary>
+      /// <value>The mod time.</value>
       public DateTime ModTime { get; set; }
 
       /// <summary>

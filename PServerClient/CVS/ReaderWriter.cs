@@ -108,6 +108,7 @@ namespace PServerClient.CVS
             stream.Flush();
             stream.Close();
          }
+
          file.Refresh();
       }
 
