@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -27,10 +28,10 @@ namespace PServerClient.Tests
          bool result = TestHelper.ValidateResponseXML(responseElement);
          Assert.IsTrue(result);
          PServerFactory factory = new PServerFactory();
-         IResponse response = factory.ResponseXElementToIResponse(responseElement);  
+         IResponse response = factory.ResponseXElementToIResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<UpdatedResponse>(response);
-         IFileResponse fileResponse = (IFileResponse) response;
+         IFileResponse fileResponse = (IFileResponse)response;
          Assert.AreEqual(74, fileResponse.Length);
          string expected = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          string fileContents = fileResponse.Contents.Decode();
@@ -57,7 +58,7 @@ namespace PServerClient.Tests
          bool result = TestHelper.ValidateResponseXML(responseElement);
          Assert.IsTrue(result);
          PServerFactory factory = new PServerFactory();
-         IResponse response = factory.ResponseXElementToIResponse(responseElement); 
+         IResponse response = factory.ResponseXElementToIResponse(responseElement);
          Assert.IsNotNull(response);
          Assert.IsInstanceOf<AuthResponse>(response);
          Assert.AreEqual("I LOVE YOU", response.Display());
@@ -234,9 +235,9 @@ namespace PServerClient.Tests
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          PServerFactory factory = new PServerFactory();
          IConnection connection = new PServerConnection();
-         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection }); 
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection });
          Assert.IsInstanceOf<CheckOutCommand>(cmd);
-         
+
          Assert.AreEqual(2, cmd.RequiredRequests.Count);
          Assert.AreEqual(3, cmd.Requests.Count);
          Assert.AreEqual(3, cmd.Items.OfType<IResponse>().Count());
