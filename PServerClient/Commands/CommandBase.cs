@@ -241,9 +241,13 @@ namespace PServerClient.Commands
          }
          else
          {
-            Responses.Add(response);
-            var responses = _connection.GetAllResponses();
-            Responses = Responses.Union(responses).ToList();
+            while (response != null)
+            {
+               Responses.Add(response);
+               response = _connection.GetResponse();
+            }
+            ////var responses = _connection.GetAllResponses();
+            ////Responses = Responses.Union(responses).ToList();
             _status = AuthStatus.Error;
          }
 
@@ -273,11 +277,13 @@ namespace PServerClient.Commands
          bool hasErrorResponse = Responses.Where(r => r.Type == ResponseType.Error).Count() > 0 ? true : false;
          bool hasOkResponse = Responses.Where(r => r.Type == ResponseType.Ok).Count() > 0 ? true : false;
          Responses = Responses.Where(r => !r.Processed).ToList(); // removed processed responses
-         ExitCode code; 
+         ExitCode code;
          if (hasErrorResponse)
             code = ExitCode.Failed;
-         else if (hasOkResponse)
+         else if (hasOkResponse && _status == AuthStatus.Authenticated)
             code = ExitCode.Succeeded;
+         else if (_status != AuthStatus.Authenticated)
+            code = ExitCode.Failed;
          else
             code = ExitCode.Unknown;
 
@@ -313,6 +319,51 @@ namespace PServerClient.Commands
       }
 
       /// <summary>
+      /// Processes the request responses.
+      /// </summary>
+      internal void ProcessRequestResponses()
+      {
+         IResponse response;
+         do
+         {
+            response = _connection.GetResponse();
+            ProcessResponse(response);
+         }
+         while (response != null);
+
+         ////while (response != null)
+         ////{
+         ////   Responses.Add(response);
+         ////   response = _connection.GetResponse();
+         ////}
+         ////var responses = _connection.GetAllResponses();
+         ////foreach (IResponse response in responses)
+         ////{
+         ////   ProcessResponse(response);
+         ////   Responses.Add(response);
+         ////}
+      }
+
+      /// <summary>
+      /// Cleans up after execute for performance
+      /// </summary>
+      internal void CleanUp()
+      {
+         if (!PServerHelper.IsTestMode())
+            Requests.Clear();
+         RemoveProcessedResponses();
+      }
+
+      /// <summary>
+      /// Removes the processed responses.
+      /// </summary>
+      protected internal void RemoveProcessedResponses()
+      {
+         var notProcessed = Responses.Where(r => !r.Processed);
+         Responses = notProcessed.ToList(); 
+      }
+
+      /// <summary>
       /// Gives the derived commands the opportunity to do processing after a
       /// request is sent
       /// </summary>
@@ -328,7 +379,7 @@ namespace PServerClient.Commands
       /// </summary>
       protected internal virtual void BeforeExecute()
       {
-         // do nothing is default
+         // do nothing
       }
 
       /// <summary>
@@ -345,7 +396,7 @@ namespace PServerClient.Commands
       /// Perform a request
       /// </summary>
       /// <param name="request">The request.</param>
-      protected void DoRequest(IRequest request)
+      protected internal void DoRequest(IRequest request)
       {
          _connection.DoRequest(request);
          if (PServerHelper.IsTestMode())
@@ -356,46 +407,16 @@ namespace PServerClient.Commands
       /// Processes a response.
       /// </summary>
       /// <param name="response">The response.</param>
-      protected void ProcessResponse(IResponse response)
+      protected internal void ProcessResponse(IResponse response)
       {
          if (response != null)
          {
             response.Process();
+            if (response is IFileResponse)
+               _connection.GetFileResponseContents((IFileResponse)response);
             if (PServerHelper.IsTestMode())
                Items.Add(response);
          }
-      }
-
-      /// <summary>
-      /// Removes the processed responses.
-      /// </summary>
-      protected void RemoveProcessedResponses()
-      {
-         var notProcessed = Responses.Where(r => !r.Processed);
-         Responses = notProcessed.ToList(); 
-      }
-
-      /// <summary>
-      /// Processes the request responses.
-      /// </summary>
-      private void ProcessRequestResponses()
-      {
-         var responses = _connection.GetAllResponses();
-         foreach (IResponse response in responses)
-         {
-            ProcessResponse(response);
-            Responses.Add(response);
-         }
-      }
-
-      /// <summary>
-      /// Cleans up after execute for performance
-      /// </summary>
-      private void CleanUp()
-      {
-         if (!PServerHelper.IsTestMode())
-            Requests.Clear();
-         RemoveProcessedResponses();
       }
    }
 }

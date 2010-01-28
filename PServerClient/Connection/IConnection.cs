@@ -35,15 +35,21 @@ namespace PServerClient.Connection
       /// <returns>the response instance</returns>
       IResponse GetResponse();
 
-      /// <summary>
-      /// Gets all responses available from the CVS server
-      /// </summary>
-      /// <returns>The list of responses retrieved</returns>
-      IList<IResponse> GetAllResponses();
+      ///// <summary>
+      ///// Gets all responses available from the CVS server
+      ///// </summary>
+      ///// <returns>The list of responses retrieved</returns>
+      ////IList<IResponse> GetAllResponses();
 
       /// <summary>
       /// Closes the tcp connection
       /// </summary>
       void Close();
+
+      /// <summary>
+      /// Gets the file response contents.
+      /// </summary>
+      /// <param name="response">The response.</param>
+      void GetFileResponseContents(IFileResponse response);
    }
 }

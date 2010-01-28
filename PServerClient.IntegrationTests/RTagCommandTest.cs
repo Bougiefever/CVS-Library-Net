@@ -121,13 +121,6 @@ namespace PServerClient.IntegrationTests
          stream.Write(sendBytes, 0, sendBytes.Length);
          stream.Flush();
 
-         ////// write directory
-         ////send = "Directory abougie/cvstest\n/usr/local/cvsroot/sandbox\n";
-         ////Console.WriteLine(send);
-         ////sendBytes = send.Encode();
-         ////stream.Write(sendBytes, 0, sendBytes.Length);
-         ////stream.Flush();
-
          // tag
          send = "Argument v1_3\n";
          Console.WriteLine(send);

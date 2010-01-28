@@ -17,6 +17,7 @@ namespace PServerClient.IntegrationTests
    {
       private IRoot _root;
       private IConnection _connection;
+
       private string _lineend = "\n";
 
       /// <summary>

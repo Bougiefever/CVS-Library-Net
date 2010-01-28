@@ -57,7 +57,7 @@
     <Compile Include="CheckoutCommandTest.cs" />
     <Compile Include="CVSTcpClientTest.cs" />
     <Compile Include="ExportCommandTest.cs" />
-    <Compile Include="LogCommandTest.cs" />
+    <Compile Include="RLogCommandTest.cs" />
     <Compile Include="ReaderWriterTest.cs" />
     <Compile Include="RTagCommandTest.cs" />
     <Compile Include="ValidRequestsListCommandTest.cs" />

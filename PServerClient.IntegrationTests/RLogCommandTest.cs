@@ -7,10 +7,10 @@ using PServerClient.Tests.TestSetup;
 namespace PServerClient.IntegrationTests
 {
    /// <summary>
-   /// Test of the LogCommand class
+   /// Test of the RLogCommand class
    /// </summary>
    [TestFixture]
-   public class LogCommandTest
+   public class RLogCommandTest
    {
       private IRoot _root;
       private IConnection _connection;
@@ -31,9 +31,13 @@ namespace PServerClient.IntegrationTests
       [Test][Ignore]
       public void TestLogExecute()
       {
-         LogCommand command = new LogCommand(_root, _connection);
-         command.LocalOnly = true;
+         RLogCommand command = new RLogCommand(_root, _connection);
+         command.NameOnlyOption = true;
+         command.LocalOption = true;
+         command.Repository = _root.Module;
+         command.File = "Program.cs";
          command.Execute();
+         TestHelper.SaveCommandConversation(command, @"c:\_junk\RLogCommand.xml");
       }
    }
 }

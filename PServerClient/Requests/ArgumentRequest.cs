@@ -27,7 +27,7 @@ namespace PServerClient.Requests
       public ArgumentRequest(CommandOption option)
       {
          Lines = new string[1];
-         Lines[0] = string.Format("{0} {1}", RequestName, option);
+         Lines[0] = string.Format("{0} {1}", RequestName, option.ToRequestString());
       }
 
       /// <summary>
@@ -38,7 +38,7 @@ namespace PServerClient.Requests
       public ArgumentRequest(CommandOption option, string arg)
       {
          Lines = new string[1];
-         Lines[0] = string.Format("{0} {1} {2}", RequestName, option, arg);
+         Lines[0] = string.Format("{0} {1} {2}", RequestName, option.ToRequestString(), arg);
       }
 
       /// <summary>

@@ -52,7 +52,6 @@ namespace PServerClient.Tests
          ResponseTest(response, ResponseType.Auth, 1, "I LOVE YOU", new List<string> { "I LOVE YOU" });
       }
 
-
       /// <summary>
       /// Tests the checked in response.
       /// </summary>
@@ -147,6 +146,7 @@ namespace PServerClient.Tests
          UpdatedResponse response = new UpdatedResponse();
          IList<string> lines = new List<string> { "mod1/mod2/mod3/", "/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Initialize(lines);
+         response.Process();
          Assert.AreEqual("mod1/mod2/mod3/", response.Module);
          Assert.AreEqual("/file1.cs/1.2.3.4///", response.EntryLine);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/mod2/mod3/file1.cs", response.RepositoryPath);
@@ -166,6 +166,7 @@ namespace PServerClient.Tests
          UpdatedResponse response = new UpdatedResponse();
          IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          response.Initialize(lines);
+         response.Process();
          Assert.AreEqual("mod1/", response.Module);
          Assert.AreEqual("/file1.cs/1.2.3.4///", response.EntryLine);
          Assert.AreEqual("/usr/local/cvsroot/sandbox/mod1/file1.cs", response.RepositoryPath);
@@ -408,6 +409,7 @@ namespace PServerClient.Tests
          string contents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w\n";
          IList<string> lines = new List<string> { "mod1/", "/usr/local/cvsroot/sandbox/mod1/file1.cs", "/file1.cs/1.2.3.4///", "u=rw,g=rw,o=rw", "74" };
          ResponseTest(response, ResponseType.Updated, 5, "/usr/local/cvsroot/sandbox/mod1/file1.cs", lines, contents);
+
       }
 
       /// <summary>

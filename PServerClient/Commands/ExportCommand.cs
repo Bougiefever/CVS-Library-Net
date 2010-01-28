@@ -71,7 +71,7 @@ namespace PServerClient.Commands
       /// Gets a value indicating whether to save CVS folder information
       /// </summary>
       /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
-      protected override bool SaveCVSFolder
+      public override bool SaveCVSFolder
       {
          get
          {
@@ -88,7 +88,7 @@ namespace PServerClient.Commands
          Requests.Add(new RootRequest(Root.Repository));
          Requests.Add(new GlobalOptionRequest(GlobalOption.Quiet)); // somewhat quiet
          Requests.Add(GetExportTypeRequest());
-         Requests.Add(new ArgumentRequest("-R"));
+         Requests.Add(new ArgumentRequest(CommandOption.Recursive));
          Requests.Add(new ArgumentRequest(Root.Module));
          Requests.Add(new DirectoryRequest(".", Root.Repository + "/" + Root.Module));
          Requests.Add(new ExportRequest());

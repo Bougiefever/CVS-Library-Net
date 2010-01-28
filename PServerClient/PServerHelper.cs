@@ -13,8 +13,6 @@ namespace PServerClient
    /// </summary>
    public static class PServerHelper
    {
-      private static readonly byte[] _code;
-
       /// <summary>
       /// Array of strings containing global option arguments
       /// </summary>
@@ -24,6 +22,8 @@ namespace PServerClient
       /// Array of strings containing common command options
       /// </summary>
       public static readonly string[] CommandOptions;
+
+      private static readonly byte[] _code;
 
       private const string GlobalCVSRootDir = "-d"; // -d cvs_root_directory 
       private const string GlobalDoNotLog = "-l";
@@ -350,7 +350,7 @@ namespace PServerClient
       /// </summary>
       /// <param name="option">The option type.</param>
       /// <returns>argument string</returns>
-      public static string ToString(this GlobalOption option)
+      public static string ToRequestString(this GlobalOption option)
       {
          return GlobalOptions[(int)option];
       }
@@ -360,7 +360,7 @@ namespace PServerClient
       /// </summary>
       /// <param name="option">The option type.</param>
       /// <returns>the argument string</returns>
-      public static string ToString(this CommandOption option)
+      public static string ToRequestString(this CommandOption option)
       {
          return CommandOptions[(int)option];
       }

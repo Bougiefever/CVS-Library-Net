@@ -114,107 +114,108 @@ namespace PServerClient.Tests
          Assert.AreEqual("Root Valid-responses valid-requests Repository Directory", result[0]);
       }
 
-      /// <summary>
-      /// Tests a response that contains a file transmission
-      /// </summary>
-      [Test]
-      public void GetResponsesFileResponseTest()
-      {
-         IList<string> lines = new List<string>
-                                  {
-                                     "Updated abougie/",
-                                     "/usr/local/cvsroot/sandbox/abougie/.cvspass",
-                                     "/.cvspass/1.1.1.1///",
-                                     "u=rw,g=rw,o=rw",
-                                     "74"
-                                  };
-         string fileContents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w";
+      /////// <summary>
+      /////// Tests a response that contains a file transmission
+      /////// </summary>
+      ////[Test]
+      ////public void GetResponsesFileResponseTest()
+      ////{
+      ////   IList<string> lines = new List<string>
+      ////                            {
+      ////                               "Updated abougie/",
+      ////                               "/usr/local/cvsroot/sandbox/abougie/.cvspass",
+      ////                               "/.cvspass/1.1.1.1///",
+      ////                               "u=rw,g=rw,o=rw",
+      ////                               "74"
+      ////                            };
+      ////   string fileContents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w";
 
-         Expect.Call(_client.ReadLine()).Return(lines[0]);
-         Expect.Call(_client.ReadLine()).Return(lines[1]);
-         Expect.Call(_client.ReadLine()).Return(lines[2]);
-         Expect.Call(_client.ReadLine()).Return(lines[3]);
-         Expect.Call(_client.ReadLine()).Return(lines[4]);
+      ////   Expect.Call(_client.ReadLine()).Return(lines[0]);
+      ////   Expect.Call(_client.ReadLine()).Return(lines[1]);
+      ////   Expect.Call(_client.ReadLine()).Return(lines[2]);
+      ////   Expect.Call(_client.ReadLine()).Return(lines[3]);
+      ////   Expect.Call(_client.ReadLine()).Return(lines[4]);
 
-         _mocks.ReplayAll();
-         var result = _connection.GetAllResponses();
-         _mocks.VerifyAll();
+      ////   Expect.Call(_client.ReadBytes(74))
+      ////      .Return(fileContents.Encode());
 
-         ////int[] readBytes = GetMockReadBytes(lines, -1);
-         ////for (int i = 0; i < readBytes.Length; i++)
-         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
-         ////Expect.Call(_client.ReadBytes(74))
-         ////   .Return(fileContents.Encode());
+      ////   _mocks.ReplayAll();
+      ////   var result = _connection.GetAllResponses();
+      ////   _mocks.VerifyAll();
 
-         Assert.AreEqual(1, result.Count);
-         IFileResponse response = (IFileResponse)result[0];
-         string testFile = response.Contents.Decode();
-         Assert.AreEqual(fileContents, testFile);
-      }
+      ////   ////int[] readBytes = GetMockReadBytes(lines, -1);
+      ////   ////for (int i = 0; i < readBytes.Length; i++)
+      ////   ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
 
-      /// <summary>
-      /// Tests GetResponses when there is only one response
-      /// </summary>
-      [Test]
-      public void GetResponsesOneResponseTest()
-      {
-         IList<string> lines = new List<string> { "ok " };
-         ////int[] readBytes = GetMockReadBytes(lines, -1);
-         ////for (int i = 0; i < readBytes.Length; i++)
-         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
-         Expect.Call(_client.ReadLine()).Return(lines[0]);
-         _mocks.ReplayAll();
+      ////   Assert.AreEqual(1, result.Count);
+      ////   IFileResponse response = (IFileResponse)result[0];
+      ////   string testFile = response.Contents.Decode();
+      ////   Assert.AreEqual(fileContents, testFile);
+      ////}
 
-         var result = _connection.GetAllResponses();
-         _mocks.VerifyAll();
-         Assert.AreEqual(1, result.Count);
-         Assert.IsInstanceOf<OkResponse>(result[0]);
-      }
+      /////// <summary>
+      /////// Tests GetResponses when there is only one response
+      /////// </summary>
+      ////[Test]
+      ////public void GetResponsesOneResponseTest()
+      ////{
+      ////   IList<string> lines = new List<string> { "ok " };
+      ////   ////int[] readBytes = GetMockReadBytes(lines, -1);
+      ////   ////for (int i = 0; i < readBytes.Length; i++)
+      ////   ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+      ////   Expect.Call(_client.ReadLine()).Return(lines[0]);
+      ////   _mocks.ReplayAll();
 
-      /// <summary>
-      /// Tests getting several responses test
-      /// </summary>
-      [Test]
-      public void GetResponsesTest()
-      {
-         IList<string> lines = new List<string>
-                                  {
-                                     "I LOVE YOU ",
-                                     "ok ",
-                                     "Module-expansion abougie",
-                                     "Clear-sticky abougie/",
-                                     "/usr/local/cvsroot/sandbox/abougie/",
-                                     "Clear-static-directory abougie/",
-                                     "/usr/local/cvsroot/sandbox/abougie/",
-                                     "Mod-time 27 Nov 2009 14:21:06 -0000",
-                                     "MT +updated",
-                                     "MT text U ",
-                                     "MT fname abougie/.cvspass",
-                                     "MT newline",
-                                     "MT -updated",
-                                     "Updated abougie/",
-                                     "/usr/local/cvsroot/sandbox/abougie/.cvspass",
-                                     "/.cvspass/1.1.1.1///",
-                                     "u=rw,g=rw,o=rw",
-                                     "74"
-                                  };
-         string fileContents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w";
-         ////int[] readBytes = GetMockReadBytes(lines, -1);
-         ////for (int i = 0; i < readBytes.Length; i++)
-         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+      ////   var result = _connection.GetAllResponses();
+      ////   _mocks.VerifyAll();
+      ////   Assert.AreEqual(1, result.Count);
+      ////   Assert.IsInstanceOf<OkResponse>(result[0]);
+      ////}
 
-         for (int i = 0; i < lines.Count; i++)
-         {
-            Expect.Call(_client.ReadLine()).Return(lines[i]);
-         }
+      /////// <summary>
+      /////// Tests getting several responses test
+      /////// </summary>
+      ////[Test]
+      ////public void GetResponsesTest()
+      ////{
+      ////   IList<string> lines = new List<string>
+      ////                            {
+      ////                               "I LOVE YOU ",
+      ////                               "ok ",
+      ////                               "Module-expansion abougie",
+      ////                               "Clear-sticky abougie/",
+      ////                               "/usr/local/cvsroot/sandbox/abougie/",
+      ////                               "Clear-static-directory abougie/",
+      ////                               "/usr/local/cvsroot/sandbox/abougie/",
+      ////                               "Mod-time 27 Nov 2009 14:21:06 -0000",
+      ////                               "MT +updated",
+      ////                               "MT text U ",
+      ////                               "MT fname abougie/.cvspass",
+      ////                               "MT newline",
+      ////                               "MT -updated",
+      ////                               "Updated abougie/",
+      ////                               "/usr/local/cvsroot/sandbox/abougie/.cvspass",
+      ////                               "/.cvspass/1.1.1.1///",
+      ////                               "u=rw,g=rw,o=rw",
+      ////                               "74"
+      ////                            };
+      ////   string fileContents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w";
+      ////   ////int[] readBytes = GetMockReadBytes(lines, -1);
+      ////   ////for (int i = 0; i < readBytes.Length; i++)
+      ////   ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
 
-         Expect.Call(_client.ReadBytes(74))
-            .Return(fileContents.Encode());
-         _mocks.ReplayAll();
-         var result = _connection.GetAllResponses();
-         _mocks.VerifyAll();
-         Assert.AreEqual(12, result.Count);
-      }
+      ////   for (int i = 0; i < lines.Count; i++)
+      ////   {
+      ////      Expect.Call(_client.ReadLine()).Return(lines[i]);
+      ////   }
+
+      ////   Expect.Call(_client.ReadBytes(74))
+      ////      .Return(fileContents.Encode());
+      ////   _mocks.ReplayAll();
+      ////   var result = _connection.GetAllResponses();
+      ////   _mocks.VerifyAll();
+      ////   Assert.AreEqual(12, result.Count);
+      ////}
 
       /// <summary>
       /// A test for testing the connection mockery
@@ -251,6 +252,8 @@ namespace PServerClient.Tests
 
          Expect.Call(_client.ReadLine()).Return(lines[0]);
          Expect.Call(_client.ReadLine()).Return(lines[1]);
+         Expect.Call(_client.ReadLine()).Return(null);
+
          _mocks.ReplayAll();
          var r1 = _connection.GetResponse();
          var r2 = _connection.GetResponse();

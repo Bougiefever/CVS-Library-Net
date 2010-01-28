@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PServerClient.Requests
 {
+   using PServerClient;
+
    /// <summary>
    /// Global_option option \n
    /// Response expected: no. Transmit one of the global options ‘-q’, ‘-Q’, ‘-l’,
@@ -22,7 +23,7 @@ namespace PServerClient.Requests
       public GlobalOptionRequest(GlobalOption option)
       {
          Lines = new string[1];
-         Lines[0] = string.Format("{0} {1}", RequestName, option);
+         Lines[0] = string.Format("{0} {1}", RequestName, option.ToRequestString());
       }
 
       /// <summary>
@@ -33,7 +34,7 @@ namespace PServerClient.Requests
       public GlobalOptionRequest(GlobalOption option, string arg)
       {
          Lines = new string[1];
-         Lines[0] = string.Format("{0} {1} {2}", RequestName, option, arg);
+         Lines[0] = string.Format("{0} {1} {2}", RequestName, option.ToRequestString(), arg);
       }
 
       /// <summary>

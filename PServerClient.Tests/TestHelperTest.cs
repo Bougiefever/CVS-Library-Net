@@ -94,6 +94,7 @@ namespace PServerClient.Tests
       public void TestCommandToXML()
       {
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         root.WorkingDirectory = TestConfig.WorkingDirectory;
          MockRepository mocks = new MockRepository();
          IConnection connection = mocks.Stub<IConnection>();
          CheckOutCommand cmd = new CheckOutCommand(root, connection);
@@ -199,22 +200,22 @@ namespace PServerClient.Tests
          Console.WriteLine(xdoc.ToString());
       }
 
-      /// <summary>
-      /// Tests the XML schema with target namespsce.
-      /// </summary>
-      [Test]
-      public void TestXMLSchemaWithTargetNamespsce()
-      {
-         FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\XMLSchemaTest.xsd");
-         XmlReader reader = XmlReader.Create(fi.OpenRead());
-         XmlSchemaSet schemas = new XmlSchemaSet();
-         schemas.Add("http://www.pserverclient.org", reader);
-         bool isValid = true;
-         string xml = TestStrings.XMLWithTargetNamespace;
-         XDocument xdoc = XDocument.Parse(xml);
-         xdoc.Validate(schemas, (o, e) => { isValid = false; Assert.Fail(e.Message); });
-         Assert.IsTrue(isValid);
-      }
+      /////// <summary>
+      /////// Tests the XML schema with target namespsce.
+      /////// </summary>
+      ////[Test]
+      ////public void TestXMLSchemaWithTargetNamespsce()
+      ////{
+      ////   FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\XMLSchemaTest.xsd");
+      ////   XmlReader reader = XmlReader.Create(fi.OpenRead());
+      ////   XmlSchemaSet schemas = new XmlSchemaSet();
+      ////   schemas.Add("http://www.pserverclient.org", reader);
+      ////   bool isValid = true;
+      ////   string xml = TestStrings.XMLWithTargetNamespace;
+      ////   XDocument xdoc = XDocument.Parse(xml);
+      ////   xdoc.Validate(schemas, (o, e) => { isValid = false; Assert.Fail(e.Message); });
+      ////   Assert.IsTrue(isValid);
+      ////}
 
       /// <summary>
       /// Tests the response schema.
@@ -281,6 +282,7 @@ namespace PServerClient.Tests
          bool result = TestHelper.ValidateCommandXML(xdoc);
          Assert.IsTrue(result);
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
+         root.WorkingDirectory = TestConfig.WorkingDirectory;
          PServerFactory factory = new PServerFactory();
          IConnection connection = new PServerConnection();
          ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection });

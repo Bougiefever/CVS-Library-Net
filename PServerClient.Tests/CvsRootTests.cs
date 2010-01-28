@@ -46,7 +46,7 @@ namespace PServerClient.Tests
          root.WorkingDirectory = di;
          root.Module = "rootmod/mymod";
          Folder modFolder = root.RootFolder;
-         Assert.Inconclusive("finish writing test");
+         Assert.AreEqual(@"c:\_temp\rootmod\mymod", modFolder.Info.FullName, "path is not corrent");
       }
    }
 }

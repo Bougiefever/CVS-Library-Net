@@ -383,7 +383,7 @@ namespace PServerClient.Tests
          // Export
          type = CommandType.Export;
          className = "PServerClient.Commands.ExportCommand";
-         command = _factory.CreateCommand(className, new object[] { root, connection, DateTime.Now });
+         command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
          // Log
@@ -408,7 +408,7 @@ namespace PServerClient.Tests
       /// <summary>
       /// Tests the create command from XML.
       /// </summary>
-      [Test][Ignore]
+      [Test]
       public void TestCreateCommandFromXML()
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;
@@ -428,7 +428,7 @@ namespace PServerClient.Tests
 
          AuthRequest authRequest = cmd.RequiredRequests.OfType<AuthRequest>().FirstOrDefault();
          Assert.IsNotNull(authRequest);
-         AuthResponse authResponse = cmd.Responses.OfType<AuthResponse>().FirstOrDefault();
+         AuthResponse authResponse = cmd.Items.OfType<AuthResponse>().FirstOrDefault();
          Assert.IsNotNull(authResponse);
          Assert.AreEqual(AuthStatus.Authenticated, authResponse.Status);
       }
@@ -562,7 +562,7 @@ namespace PServerClient.Tests
 
          // GlobalOption
          type = RequestType.GlobalOption;
-         request = _factory.CreateRequest(type, new object[] { "-o" });
+         request = _factory.CreateRequest(type, new object[] { GlobalOption.Quiet });
          Assert.IsInstanceOf<GlobalOptionRequest>(request);
 
          // GssapiAuthenticate

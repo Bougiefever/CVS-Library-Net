@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using PServerClient.CVS;
 using PServerClient.Requests;
@@ -82,48 +81,58 @@ namespace PServerClient.Connection
             response = factory.CreateResponse(responseType);
             IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
             response.Initialize(responseLines);
-            if (response is IFileResponse)
-            {
-               IFileResponse fileResponse = (IFileResponse) response;
-               fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
-            }
+            ////if (response is IFileResponse)
+            ////{
+            ////   response.Process();
+            ////   IFileResponse fileResponse = (IFileResponse) response;
+            ////   fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
+            ////}
          }
 
          return response;
       }
 
       /// <summary>
-      /// Gets all responses available from the CVS server
+      /// Gets the file response contents.
       /// </summary>
-      /// <returns>The list of responses retrieved</returns>
-      public IList<IResponse> GetAllResponses()
+      /// <param name="response">The response.</param>
+      public void GetFileResponseContents(IFileResponse response)
       {
-         IList<IResponse> responses = new List<IResponse>();
-         string line;
-         do
-         {
-            line = _cvsTcpClient.ReadLine(); // ReadLine();
-            Console.WriteLine("S: " + (line ?? string.Empty));
-
-            if (line != null)
-            {
-               PServerFactory factory = new PServerFactory();
-               ResponseType responseType = factory.GetResponseType(line);
-               IResponse response = factory.CreateResponse(responseType);
-               IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
-               response.Initialize(responseLines);
-               if (response is IFileResponse)
-               {
-                  IFileResponse fileResponse = (IFileResponse) response;
-                  fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
-               }
-
-               responses.Add(response);
-            }
-         }
-         while (line != null);
-         return responses;
+         response.Contents = TcpClient.ReadBytes((int) response.Length);
       }
+
+      /////// <summary>
+      /////// Gets all responses available from the CVS server
+      /////// </summary>
+      /////// <returns>The list of responses retrieved</returns>
+      ////public IList<IResponse> GetAllResponses()
+      ////{
+      ////   IList<IResponse> responses = new List<IResponse>();
+      ////   string line;
+      ////   do
+      ////   {
+      ////      line = _cvsTcpClient.ReadLine(); // ReadLine();
+      ////      Console.WriteLine("S: " + (line ?? string.Empty));
+
+      ////      if (line != null)
+      ////      {
+      ////         PServerFactory factory = new PServerFactory();
+      ////         ResponseType responseType = factory.GetResponseType(line);
+      ////         IResponse response = factory.CreateResponse(responseType);
+      ////         IList<string> responseLines = GetResponseLines(line, responseType, response.LineCount);
+      ////         response.Initialize(responseLines);
+      ////         if (response is IFileResponse)
+      ////         {
+      ////            IFileResponse fileResponse = (IFileResponse) response;
+      ////            fileResponse.Contents = TcpClient.ReadBytes((int) fileResponse.Length);
+      ////         }
+
+      ////         responses.Add(response);
+      ////      }
+      ////   }
+      ////   while (line != null);
+      ////   return responses;
+      ////}
 
       internal IList<string> GetResponseLines(string line, ResponseType responseType, int lineCount)
       {

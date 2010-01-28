@@ -41,7 +41,7 @@ namespace PServerClient
       /// the `-D' flag so that your shell doesn't interpret spaces as argument separators. A
       ///  command using the `-D' flag can look like this: 
       /// </summary>
-      CommandDateSpec = 0,
+      DateSpec = 0,
 
       /// <summary>
       /// -f 
@@ -53,7 +53,7 @@ namespace PServerClient
       /// Warning: The commit and remove commands also have a `-f' option, but it has a different 
       /// behavior for those commands.
       /// </summary>
-      CommandRetrieveEvenIfNoMatch = 1,
+      RetrieveEvenIfNoMatch = 1,
 
       /// <summary>
       /// -k kflag 
@@ -64,7 +64,7 @@ namespace PServerClient
       /// otherwise. The `-k' option is available with the add, checkout, diff, import and 
       /// update commands. 
       /// </summary>
-      CommandKeywordProcessingFlag = 2,
+      KeywordProcessingFlag = 2,
 
       /// <summary>
       /// -l 
@@ -74,14 +74,14 @@ namespace PServerClient
       /// Available with the following commands: annotate, checkout, commit, diff, edit, editors, 
       /// export, log, rdiff, remove, rtag, status, tag, unedit, update, watch, and watchers. 
       /// </summary>
-      CommandLocal = 3,
+      Local = 3,
 
       /// <summary>
       /// -m message 
       /// Use message as log information, instead of invoking an editor. Available with the 
       /// following commands: add, commit and import. 
       /// </summary>
-      CommandMessage = 4,
+      Message = 4,
 
       /// <summary>
       /// -n 
@@ -91,20 +91,20 @@ namespace PServerClient
       /// to the left of a cvs command! 
       /// Available with the checkout, commit, export, and rtag commands. 
       /// </summary>
-      CommandDoNothing = 5,
+      DoNothing = 5,
 
       /// <summary>
       /// -P 
       /// Prune empty directories. 
       /// </summary>
-      CommandPrune = 6,
+      Prune = 6,
 
       /// <summary>
       /// -p 
       /// Pipe the files retrieved from the repository to standard output, rather than writing 
       /// them in the current directory. Available with the checkout and update commands. 
       /// </summary>
-      CommandPipe = 7,
+      Pipe = 7,
 
       /// <summary>
       /// -R 
@@ -112,7 +112,7 @@ namespace PServerClient
       /// commands: annotate, checkout, commit, diff, edit, editors, export, rdiff, remove, 
       /// rtag, status, tag, unedit, update, watch, and watchers. 
       /// </summary>
-      CommandRecursive = 8,
+      Recursive = 8,
 
       /// <summary>
       /// -r tag 
@@ -130,7 +130,7 @@ namespace PServerClient
       /// `-r' is available with the checkout, commit, diff, history, export, rdiff, 
       /// rtag, and update commands. 
       /// </summary>
-      CommandRevision = 9,
+      Revision = 9,
 
       /// <summary>
       /// -W 
@@ -138,6 +138,6 @@ namespace PServerClient
       /// The spec can be a file name pattern of the same type that you can specify in the 
       /// `.cvswrappers' file. Available with the following commands: import, and update. 
       /// </summary>
-      CommandFilter = 10
+      Filter = 10
    }
 }

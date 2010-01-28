@@ -54,9 +54,9 @@ namespace PServerClient.Commands
          Requests.Add(new RootRequest(Root.Repository));
          Requests.Add(new GlobalOptionRequest(GlobalOption.Quiet)); // somewhat quiet
          if (TagAction == TagAction.Delete)
-            Requests.Add(new ArgumentRequest("-d"));
+            Requests.Add(new ArgumentRequest("-d")); // -d Delete the tag instead of creating it.
          if (TagAction == TagAction.Branch)
-            Requests.Add(new ArgumentRequest("-b"));
+            Requests.Add(new ArgumentRequest("-b")); // -b Make the tag a branch tag. 
          Requests.Add(new ArgumentRequest(Tag));
          Requests.Add(new ArgumentRequest(Root.Module));
          Requests.Add(new RTagRequest());

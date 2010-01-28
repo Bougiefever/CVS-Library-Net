@@ -57,7 +57,7 @@ namespace PServerClient.Commands
          Requests.Add(new AuthRequest(Root));
          Requests.Add(new RootRequest(Root.Repository));
          if (LocalOnly)
-            Requests.Add(new ArgumentRequest("-l"));
+            Requests.Add(new ArgumentRequest(CommandOption.Local));
          Requests.Add(new LogRequest());
       }
    }

@@ -18,6 +18,9 @@ namespace PServerClient.Tests
    [TestFixture]
    public class ResponseHelperTest
    {
+      // ReSharper disable PossibleNullReferenceException
+#pragma warning disable 168
+
       /// <summary>
       /// Tests the fix response module slashes.
       /// </summary>
@@ -71,6 +74,7 @@ namespace PServerClient.Tests
       public void TestCollapseMessageResponses()
       {
          DirectoryInfo di = Directory.GetParent(Environment.CurrentDirectory);
+
          FileInfo fi = new FileInfo(Path.Combine(di.FullName, "TestSetup\\ExportCommandWithEMessages.xml"));
          TextReader reader = fi.OpenText();
          XDocument xdoc = XDocument.Load(reader);
@@ -80,10 +84,13 @@ namespace PServerClient.Tests
          root.WorkingDirectory = TestConfig.WorkingDirectory;
          PServerFactory factory = new PServerFactory();
          IConnection connection = new PServerConnection();
-         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection, DateTime.Now });
-         Assert.AreEqual(18, cmd.Responses.Count);
-         Assert.AreEqual(12, cmd.Responses.OfType<EMessageResponse>().Count());
-         IList<IResponse> condensed = ResponseHelper.CollapseMessagesInResponses(cmd.Responses);
+         ICommand cmd = factory.CreateCommand(xdoc, new object[] { root, connection });
+         int count = cmd.Items.OfType<IResponse>().Count();
+         Assert.AreEqual(18, count);
+         count = cmd.Items.OfType<EMessageResponse>().Count();
+         Assert.AreEqual(12, count);
+         IList<IResponse> responses = cmd.Items.OfType<IResponse>().ToList();
+         IList<IResponse> condensed = ResponseHelper.CollapseMessagesInResponses(responses);
          Assert.AreEqual(7, condensed.Count);
          IMessageResponse message = (IMessageResponse)condensed[5];
          Assert.AreEqual(12, message.Lines.Count);
@@ -112,6 +119,16 @@ namespace PServerClient.Tests
       {
          string test = "abcd";
          string revision = ResponseHelper.GetRevisionFromEntryLine(test);
+      }
+
+      /// <summary>
+      /// Tests GetFileNameFromEntryLine invalid format throws exception.
+      /// </summary>
+      [Test][ExpectedException(typeof(ArgumentException))]
+      public void TestGetFileNameFromEntryLineInvalidFormatThrowsException()
+      {
+         string test = "bad entry line";
+         string result = ResponseHelper.GetFileNameFromEntryLine(test);
       }
    }
 }

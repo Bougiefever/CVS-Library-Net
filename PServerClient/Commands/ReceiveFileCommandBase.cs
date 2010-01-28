@@ -26,7 +26,7 @@ namespace PServerClient.Commands
       /// Gets a value indicating whether to save CVS folder information
       /// </summary>
       /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
-      protected abstract bool SaveCVSFolder { get; }
+      public abstract bool SaveCVSFolder { get; }
 
       /// <summary>
       /// Gets or sets the current folder.

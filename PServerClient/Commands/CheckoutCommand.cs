@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
-using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
@@ -23,6 +20,7 @@ namespace PServerClient.Commands
    /// </remarks>
    public class CheckOutCommand : ReceiveFileCommandBase
    {
+      private string _checkoutModule;
 
       /// <summary>
       /// Initializes a new instance of the <see cref="CheckOutCommand"/> class.
@@ -47,6 +45,37 @@ namespace PServerClient.Commands
       }
 
       /// <summary>
+      /// Gets a value indicating whether to save CVS folder information
+      /// </summary>
+      /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
+      public override bool SaveCVSFolder
+      {
+         get
+         {
+            return true;
+         }
+      }
+
+      /// <summary>
+      /// Gets or sets the checkout module.
+      /// </summary>
+      /// <value>The checkout module.</value>
+      public string CheckoutModule
+      {
+         get
+         {
+            if (_checkoutModule == null)
+               _checkoutModule = Root.Module;
+            return _checkoutModule;
+         }
+
+         set
+         {
+            _checkoutModule = value;
+         }
+      }
+
+      /// <summary>
       /// Prepares the requests for the command after all the properties
       /// have been set.
       /// </summary>
@@ -54,8 +83,8 @@ namespace PServerClient.Commands
       {
          Requests.Add(new RootRequest(Root.Repository));
          Requests.Add(new GlobalOptionRequest(GlobalOption.Quiet)); // somewhat quiet
-         Requests.Add(new ArgumentRequest(Root.Module));
-         Requests.Add(new DirectoryRequest(".", Root.Repository + "/" + Root.Module));
+         Requests.Add(new ArgumentRequest(CheckoutModule));
+         Requests.Add(new DirectoryRequest(CheckoutModule, Root.Repository + "/" + CheckoutModule));
          Requests.Add(new CheckOutRequest());
       }
 
@@ -122,17 +151,5 @@ namespace PServerClient.Commands
       ////      base.AfterRequest(request);
       ////   }
       ////}
-
-      /// <summary>
-      /// Gets a value indicating whether to save CVS folder information
-      /// </summary>
-      /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
-      protected override bool SaveCVSFolder
-      {
-         get
-         {
-            return true;
-         }
-      }
    }
 }

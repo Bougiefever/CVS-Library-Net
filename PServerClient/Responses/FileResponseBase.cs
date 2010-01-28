@@ -8,10 +8,6 @@ namespace PServerClient.Responses
    /// </summary>
    public abstract class FileResponseBase : ResponseBase, IFileResponse
    {
-      private string _name;
-      private string _revision;
-      private string _properties;
-
       /// <summary>
       /// Gets the ResponseType.
       /// </summary>
@@ -54,37 +50,19 @@ namespace PServerClient.Responses
       /// Gets the file name.
       /// </summary>
       /// <value>The file name.</value>
-      public string Name
-      {
-         get
-         {
-            return _name;
-         }
-      }
+      public string Name { get; private set; }
 
       /// <summary>
       /// Gets the revision.
       /// </summary>
       /// <value>The revision.</value>
-      public string Revision
-      {
-         get
-         {
-            return _revision;
-         }
-      }
+      public string Revision { get; private set; }
 
       /// <summary>
       /// Gets the properties.
       /// </summary>
       /// <value>The properties.</value>
-      public string Properties
-      {
-         get
-         {
-            return _properties;
-         }
-      }
+      public string Properties { get; private set; }
 
       /// <summary>
       /// Gets or sets the length.
@@ -115,9 +93,9 @@ namespace PServerClient.Responses
          string fileProperties = Lines[3];
          string fileLength = Lines[4];
 
-         _name = ResponseHelper.GetFileNameFromEntryLine(entryLine);
-         _revision = ResponseHelper.GetRevisionFromEntryLine(entryLine);
-         _properties = fileProperties;
+         Name = ResponseHelper.GetFileNameFromEntryLine(entryLine);
+         Revision = ResponseHelper.GetRevisionFromEntryLine(entryLine);
+         Properties = fileProperties;
          Length = Convert.ToInt64(fileLength);
          FileType = FileType.Text;
          Module = module;

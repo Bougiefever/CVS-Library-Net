@@ -1,6 +1,7 @@
 using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
+using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
@@ -37,7 +38,8 @@ namespace PServerClient.Commands
       /// </summary>
       public override void Initialize()
       {
-         throw new NotImplementedException();
+         Requests.Add(new RootRequest(Root.Repository));
+         Requests.Add(new AddRequest());
       }
    }
 }
