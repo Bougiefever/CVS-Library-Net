@@ -28,7 +28,9 @@ namespace PServerClient.Tests
       private Entry _binary;
       private IList<string> _entries;
 
-
+      /// <summary>
+      /// Sets up the test data
+      /// </summary>
       [SetUp]
       public void SetUp()
       {
@@ -52,11 +54,13 @@ namespace PServerClient.Tests
          _props = new Folder("Properties", _rootModuleFolder) { EntryLine = _entries[4] };
          _file = new Entry(".gitignore", _rootModuleFolder) { EntryLine = _entries[5] };
          _binary = new Entry("AssemblyVersionIncrementor.dll", _rootModuleFolder) { EntryLine = _entries[6] };
-
       }
 
+      /// <summary>
+      /// Tests the root.
+      /// </summary>
       [Test]
-      public void RootTest()
+      public void TestRoot()
       {
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          root.WorkingDirectory = TestConfig.WorkingDirectory;
@@ -64,8 +68,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(_connection, root.CVSConnectionString);
       }
 
+      /// <summary>
+      /// Tests the folder.
+      /// </summary>
       [Test]
-      public void FolderTest()
+      public void TestFolder()
       {
          // starting module folder
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp\working\team\mymod");
@@ -100,8 +107,11 @@ namespace PServerClient.Tests
          Assert.AreSame(prop, project1[0]);
       }
 
+      /// <summary>
+      /// Tests the entry.
+      /// </summary>
       [Test]
-      public void EntryTest()
+      public void TestEntry()
       {
          // starting module folder
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp\working\team\mymod");
@@ -112,8 +122,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(@"c:\_temp\working\team\mymod\file1.cs", file1.Info.FullName);
       }
 
+      /// <summary>
+      /// Tests the write entry when entry line is in file.
+      /// </summary>
       [Test]
-      public void WriteEntryWhenEntryLineIsInFileTest()
+      public void TestWriteEntryWhenEntryLineIsInFile()
       {
          string newEntryLine = "/TestApp.csproj/1.2/Mon Jan  4 10:47:45 2010//";
          _proj.EntryLine = newEntryLine;
@@ -137,8 +150,11 @@ namespace PServerClient.Tests
          }
       }
 
+      /// <summary>
+      /// Tests the write entry line when line is not in file.
+      /// </summary>
       [Test]
-      public void WriteEntryLineWhenLineIsNotInFileTest()
+      public void TestWriteEntryLineWhenLineIsNotInFile()
       {
          _entries.RemoveAt(3);
          string newEntryLine = "/TestApp.csproj/1.2/Mon Jan  4 10:47:45 2010//";
@@ -163,8 +179,11 @@ namespace PServerClient.Tests
          }
       }
 
+      /// <summary>
+      /// Tests the save entries file saves all entry lines.
+      /// </summary>
       [Test]
-      public void SaveEntriesFileSavesAllEntryLinesTest()
+      public void TestSaveEntriesFileSavesAllEntryLines()
       {
          using (_mocks.Record())
          {

@@ -6,12 +6,18 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
 {
+   /// <summary>
+   /// Test of the LogCommand class
+   /// </summary>
    [TestFixture]
    public class LogCommandTest
    {
       private IRoot _root;
       private IConnection _connection;
 
+      /// <summary>
+      /// Sets up test data
+      /// </summary>
       [SetUp]
       public void SetUp()
       {
@@ -19,8 +25,11 @@ namespace PServerClient.IntegrationTests
          _connection = new PServerConnection();
       }
 
+      /// <summary>
+      /// Tests the log execute.
+      /// </summary>
       [Test][Ignore]
-      public void SimpleLogTest()
+      public void TestLogExecute()
       {
          LogCommand command = new LogCommand(_root, _connection);
          command.LocalOnly = true;

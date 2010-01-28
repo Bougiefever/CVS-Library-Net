@@ -9,6 +9,9 @@ using Rhino.Mocks;
 
 namespace PServerClient.Tests.Commands
 {
+   /// <summary>
+   /// Test of ValidRequestsListCommand class
+   /// </summary>
    [TestFixture]
    public class ValidRequestsListCommandTest
    {
@@ -16,6 +19,9 @@ namespace PServerClient.Tests.Commands
       private MockRepository _mocks;
       private IConnection _connection;
 
+      /// <summary>
+      /// Sets up for testing
+      /// </summary>
       [TestFixtureSetUp]
       public void TestFixtureSetUp()
       {
@@ -24,8 +30,11 @@ namespace PServerClient.Tests.Commands
          _connection = _mocks.Stub<IConnection>();
       }
 
+      /// <summary>
+      /// Tests the constructor.
+      /// </summary>
       [Test]
-      public void ConstructorTest()
+      public void TestConstructor()
       {
          ValidRequestsListCommand command = new ValidRequestsListCommand(_root, _connection);
          int requestCount = command.RequiredRequests.OfType<IAuthRequest>().Count();

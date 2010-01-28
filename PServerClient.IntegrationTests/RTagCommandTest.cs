@@ -9,22 +9,31 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
 {
+   /// <summary>
+   /// Test of the RTagCommand class
+   /// </summary>
    [TestFixture]
    public class RTagCommandTest
    {
       private IRoot _root;
       private IConnection _connection;
 
+      /// <summary>
+      /// Sets up test data.
+      /// </summary>
       [SetUp]
-      public void SetUp()
+      public void SetUpTestData()
       {
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword());
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _connection = new PServerConnection();
       }
 
+      /// <summary>
+      /// Tests the R tag command create tag.
+      /// </summary>
       [Test]
-      public void RTagCreateTest()
+      public void TestRTagCommandCreateTag()
       {
          RTagCommand cmd = new RTagCommand(_root, _connection);
          cmd.Tag = "mytesttag";
@@ -33,8 +42,11 @@ namespace PServerClient.IntegrationTests
          TestHelper.SaveCommandConversation(cmd, @"c:\_junk\RTagCommand.xml");
       }
 
+      /// <summary>
+      /// Tests the R tag command delete tag.
+      /// </summary>
       [Test]
-      public void DeleteTagTest()
+      public void TestRTagCommandDeleteTag()
       {
          RTagCommand cmd = new RTagCommand(_root, _connection);
          cmd.Tag = "mytesttag";
@@ -44,8 +56,11 @@ namespace PServerClient.IntegrationTests
          TestHelper.SaveCommandConversation(cmd, @"c:\_junk\RTagCommand.xml");
       }
 
+      /// <summary>
+      /// Tests the R tag CVS TCP client command.
+      /// </summary>
       [Test]
-      public void TagRequestsResponsesTest()
+      public void TestRTagCvsTcpClientCommand()
       {
          AuthRequest auth = new AuthRequest(_root);
          string send = auth.GetRequestString();

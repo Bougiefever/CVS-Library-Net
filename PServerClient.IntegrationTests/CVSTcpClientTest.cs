@@ -7,22 +7,31 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
 {
+   /// <summary>
+   /// Test of the CVSTcpClient class
+   /// </summary>
    [TestFixture]
    public class CVSTcpClientTest
    {
       private IRoot _root;
       private CVSTcpClient _client;
 
+      /// <summary>
+      /// Sets up testing.
+      /// </summary>
       [SetUp]
-      public void SetUp()
+      public void SetUpTesting()
       {
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword());
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _client = new CVSTcpClient();
       }
 
+      /// <summary>
+      /// Tests the read bytes.
+      /// </summary>
       [Test]
-      public void ReadBytesTest()
+      public void TestReadBytes()
       {
          AuthRequest auth = new AuthRequest(_root);
          string s = auth.GetRequestString();

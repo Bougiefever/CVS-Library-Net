@@ -8,11 +8,17 @@ using PServerClient.CVS;
 
 namespace PServerClient.IntegrationTests
 {
+   /// <summary>
+   /// Test of the ReaderWriter class
+   /// </summary>
    [TestFixture]
    public class ReaderWriterTest
    {
+      /// <summary>
+      /// Tests the read write file directory.
+      /// </summary>
       [Test]
-      public void ReadWriteFileDirectoryTest()
+      public void TestReadWriteFileDirectory()
       {
          DirectoryInfo dir = new DirectoryInfo(@"c:\_junk\rwtesting");
          if (dir.Exists)
@@ -40,8 +46,11 @@ namespace PServerClient.IntegrationTests
          Assert.IsFalse(dir.Exists);
       }
 
+      /// <summary>
+      /// Tests the read lines.
+      /// </summary>
       [Test]
-      public void ReadLinesTest()
+      public void TestReadLines()
       {
          Directory.CreateDirectory(@"c:\_junk\rwtesting\CVS");
          FileInfo file = new FileInfo(@"c:\_junk\rwtesting\CVS\Entries");
@@ -56,8 +65,11 @@ namespace PServerClient.IntegrationTests
          Assert.AreEqual(2, lines.Count);
       }
 
+      /// <summary>
+      /// Tests the write lines.
+      /// </summary>
       [Test]
-      public void WriteLinesTest()
+      public void TestWriteLines()
       {
          Directory.CreateDirectory(@"c:\_junk\rwtesting\CVS");
          FileInfo file = new FileInfo(@"c:\_junk\rwtesting\CVS\Entries");

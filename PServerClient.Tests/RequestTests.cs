@@ -8,6 +8,9 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Test of Requests classes
+   /// </summary>
    [TestFixture]
    public class RequestTests
    {
@@ -16,13 +19,20 @@ namespace PServerClient.Tests
       // ReSharper disable ConvertToConstant.Local
       private readonly IRoot _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
 
-      public RequestTests()
+      /// <summary>
+      /// Sets up the test data
+      /// </summary>
+      [SetUp]
+      public void SetUp()
       {
          _root.Module = "mod1";
       }
 
+      /// <summary>
+      /// Tests the add request.
+      /// </summary>
       [Test]
-      public void AddRequestTest()
+      public void TestAddRequest()
       {
          RequestType type = RequestType.Add;
          IRequest request = new AddRequest();
@@ -30,8 +40,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the admin request.
+      /// </summary>
       [Test]
-      public void AdminRequestTest()
+      public void TestAdminRequest()
       {
          RequestType type = RequestType.Admin;
          IRequest request = new AdminRequest();
@@ -39,8 +52,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the annotate request.
+      /// </summary>
       [Test]
-      public void AnnotateRequestTest()
+      public void TestAnnotateRequest()
       {
          RequestType type = RequestType.Annotate;
          IRequest request = new AnnotateRequest();
@@ -48,8 +64,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the argument request.
+      /// </summary>
       [Test]
-      public void ArgumentRequestTest()
+      public void TestArgumentRequest()
       {
          RequestType type = RequestType.Argument;
          IRequest request = new ArgumentRequest("-a");
@@ -57,8 +76,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the argumentx request.
+      /// </summary>
       [Test]
-      public void ArgumentxRequestTest()
+      public void TestArgumentxRequest()
       {
          RequestType type = RequestType.Argumentx;
          IRequest request = new ArgumentxRequest("-a");
@@ -66,8 +88,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the auth request.
+      /// </summary>
       [Test]
-      public void AuthRequestTest()
+      public void TestAuthRequest()
       {
          RequestType type = RequestType.Auth;
          IAuthRequest request = new AuthRequest(_root);
@@ -75,8 +100,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the case request.
+      /// </summary>
       [Test]
-      public void CaseRequestTest()
+      public void TestCaseRequest()
       {
          RequestType type = RequestType.Case;
          IRequest request = new CaseRequest();
@@ -84,8 +112,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the check in request.
+      /// </summary>
       [Test]
-      public void CheckInRequestTest()
+      public void TestCheckInRequest()
       {
          RequestType type = RequestType.CheckIn;
          IRequest request = new CheckInRequest();
@@ -93,8 +124,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the checkin time request.
+      /// </summary>
       [Test]
-      public void CheckinTimeRequestTest()
+      public void TestCheckinTimeRequest()
       {
          RequestType type = RequestType.CheckinTime;
          var checkinTime = new DateTime(2009, 11, 6, 14, 21, 8);
@@ -103,8 +137,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the checkout request.
+      /// </summary>
       [Test]
-      public void CheckoutRequestTest()
+      public void TestCheckoutRequest()
       {
          RequestType type = RequestType.CheckOut;
          IRequest request = new CheckOutRequest();
@@ -112,8 +149,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the diff request.
+      /// </summary>
       [Test]
-      public void DiffRequestTest()
+      public void TestDiffRequest()
       {
          RequestType type = RequestType.Diff;
          IRequest request = new DiffRequest();
@@ -121,8 +161,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the directory request.
+      /// </summary>
       [Test]
-      public void DirectoryRequestTest()
+      public void TestDirectoryRequest()
       {
          RequestType type = RequestType.Directory;
          IRequest request = new DirectoryRequest(".", _root.Repository + "/" + _root.Module);
@@ -130,8 +173,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the editors request.
+      /// </summary>
       [Test]
-      public void EditorsRequestTest()
+      public void TestEditorsRequest()
       {
          RequestType type = RequestType.Editors;
          IRequest request = new EditorsRequest();
@@ -139,8 +185,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the empty conflicts request.
+      /// </summary>
       [Test]
-      public void EmptyConflictsRequestTest()
+      public void TestEmptyConflictsRequest()
       {
          RequestType type = RequestType.EmptyConflicts;
          IRequest request = new EmptyConflictsRequest();
@@ -148,8 +197,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the entry request.
+      /// </summary>
       [Test]
-      public void EntryRequestTest()
+      public void TestEntryRequest()
       {
          RequestType type = RequestType.Entry;
          IRequest request = new EntryRequest("file.cs", "1.1.1", "a", "b", "c");
@@ -157,8 +209,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the expand modules request.
+      /// </summary>
       [Test]
-      public void ExpandModulesRequestTest()
+      public void TestExpandModulesRequest()
       {
          RequestType type = RequestType.ExpandModules;
          IRequest request = new ExpandModulesRequest();
@@ -166,8 +221,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the export request.
+      /// </summary>
       [Test]
-      public void ExportRequestTest()
+      public void TestExportRequest()
       {
          RequestType type = RequestType.Export;
          IRequest request = new ExportRequest();
@@ -175,8 +233,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the global option request.
+      /// </summary>
       [Test]
-      public void GlobalOptionRequestTest()
+      public void TestGlobalOptionRequest()
       {
          RequestType type = RequestType.GlobalOption;
          IRequest request = new GlobalOptionRequest(GlobalOption.Quiet);
@@ -184,8 +245,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the gssapi authenticate request.
+      /// </summary>
       [Test]
-      public void GssapiAuthenticateRequestTest()
+      public void TestGssapiAuthenticateRequest()
       {
          RequestType type = RequestType.GssapiAuthenticate;
          IRequest request = new GssapiAuthenticateRequest();
@@ -193,8 +257,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the gssapi encrypt request.
+      /// </summary>
       [Test]
-      public void GssapiEncryptRequestTest()
+      public void TestGssapiEncryptRequest()
       {
          RequestType type = RequestType.GssapiEncrypt;
          IRequest request = new GssapiEncryptRequest();
@@ -202,8 +269,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the gzip file contents request.
+      /// </summary>
       [Test]
-      public void GzipFileContentsRequestTest()
+      public void TestGzipFileContentsRequest()
       {
          RequestType type = RequestType.GzipFileContents;
          IRequest request = new GzipFileContentsRequest("1");
@@ -211,8 +281,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the gzip stream request.
+      /// </summary>
       [Test]
-      public void GzipStreamRequestTest()
+      public void TestGzipStreamRequest()
       {
          RequestType type = RequestType.GzipStream;
          IRequest request = new GzipStreamRequest("1");
@@ -220,8 +293,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the history request.
+      /// </summary>
       [Test]
-      public void HistoryRequestTest()
+      public void TestHistoryRequest()
       {
          RequestType type = RequestType.History;
          IRequest request = new HistoryRequest();
@@ -229,8 +305,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the import request.
+      /// </summary>
       [Test]
-      public void ImportRequestTest()
+      public void TestImportRequest()
       {
          RequestType type = RequestType.Import;
          IRequest request = new ImportRequest();
@@ -238,8 +317,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the init request.
+      /// </summary>
       [Test]
-      public void InitRequestTest()
+      public void TestInitRequest()
       {
          RequestType type = RequestType.Init;
          IRequest request = new InitRequest("sandbox");
@@ -247,8 +329,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the is modified request.
+      /// </summary>
       [Test]
-      public void IsModifiedRequestTest()
+      public void TestIsModifiedRequest()
       {
          RequestType type = RequestType.IsModified;
          IRequest request = new IsModifiedRequest("file.cs");
@@ -256,8 +341,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the kerberos encrypt request.
+      /// </summary>
       [Test]
-      public void KerberosEncryptRequestTest()
+      public void TestKerberosEncryptRequest()
       {
          RequestType type = RequestType.KerberosEncrypt;
          IRequest request = new KerberosEncryptRequest();
@@ -265,8 +353,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the kopt request.
+      /// </summary>
       [Test]
-      public void KoptRequestTest()
+      public void TestKoptRequest()
       {
          RequestType type = RequestType.Kopt;
          IRequest request = new KoptRequest("-kb");
@@ -274,8 +365,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the log request.
+      /// </summary>
       [Test]
-      public void LogRequestTest()
+      public void TestLogRequest()
       {
          RequestType type = RequestType.Log;
          IRequest request = new LogRequest();
@@ -283,8 +377,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the lost request.
+      /// </summary>
       [Test]
-      public void LostRequestTest()
+      public void TestLostRequest()
       {
          RequestType type = RequestType.Lost;
          IRequest request = new LostRequest("file.cs");
@@ -292,8 +389,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the max dot request.
+      /// </summary>
       [Test]
-      public void MaxDotRequestTest()
+      public void TestMaxDotRequest()
       {
          RequestType type = RequestType.MaxDot;
          IRequest request = new MaxDotRequest("one");
@@ -301,8 +401,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the modified request.
+      /// </summary>
       [Test]
-      public void ModifiedRequestTest()
+      public void TestModifiedRequest()
       {
          RequestType type = RequestType.Modified;
          IRequest request = new ModifiedRequest("file.cs", "u=rw,g=rw,o=rw", 6);
@@ -310,8 +413,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the noop request.
+      /// </summary>
       [Test]
-      public void NoopRequestTest()
+      public void TestNoopRequest()
       {
          RequestType type = RequestType.Noop;
          IRequest request = new NoopRequest();
@@ -319,8 +425,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the notify request.
+      /// </summary>
       [Test]
-      public void NotifyRequestTest()
+      public void TestNotifyRequest()
       {
          RequestType type = RequestType.Notify;
          IRequest request = new NotifyRequest("file.cs");
@@ -328,8 +437,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the questionable request.
+      /// </summary>
       [Test]
-      public void QuestionableRequestTest()
+      public void TestQuestionableRequest()
       {
          RequestType type = RequestType.Questionable;
          IRequest request = new QuestionableRequest("file.cs");
@@ -337,8 +449,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the R annotate request.
+      /// </summary>
       [Test]
-      public void RAnnotateRequestTest()
+      public void TestRAnnotateRequest()
       {
          RequestType type = RequestType.RAnnotate;
          IRequest request = new RAnnotateRequest();
@@ -346,8 +461,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the R diff request.
+      /// </summary>
       [Test]
-      public void RDiffRequestTest()
+      public void TestRDiffRequest()
       {
          RequestType type = RequestType.RDiff;
          IRequest request = new RDiffRequest();
@@ -355,8 +473,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the release request.
+      /// </summary>
       [Test]
-      public void ReleaseRequestTest()
+      public void TestReleaseRequest()
       {
          RequestType type = RequestType.Release;
          IRequest request = new ReleaseRequest();
@@ -364,8 +485,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the remove request.
+      /// </summary>
       [Test]
-      public void RemoveRequestTest()
+      public void TestRemoveRequest()
       {
          RequestType type = RequestType.Remove;
          IRequest request = new RemoveRequest();
@@ -373,8 +497,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the repository request.
+      /// </summary>
       [Test]
-      public void RepositoryRequestTest()
+      public void TestRepositoryRequest()
       {
          RequestType type = RequestType.Repository;
          IRequest request = new RepositoryRequest(_root.Repository);
@@ -382,8 +509,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the requests to types.
+      /// </summary>
       [Test]
-      public void RequestsToTypesTest()
+      public void TestRequestsToTypes()
       {
          string requests = "ci Global_option Is-modified";
          IList<RequestType> types = RequestHelper.RequestsToRequestTypes(requests);
@@ -392,8 +522,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(RequestType.IsModified, types[2]);
       }
 
+      /// <summary>
+      /// Tests the R log request.
+      /// </summary>
       [Test]
-      public void RLogRequestTest()
+      public void TestRLogRequest()
       {
          RequestType type = RequestType.RLog;
          IRequest request = new RLogRequest();
@@ -401,8 +534,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the root request.
+      /// </summary>
       [Test]
-      public void RootRequestTest()
+      public void TestRootRequest()
       {
          RequestType type = RequestType.Root;
          IRequest request = new RootRequest(_root.Repository);
@@ -410,8 +546,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the R tag request.
+      /// </summary>
       [Test]
-      public void RTagRequestTest()
+      public void TestRTagRequest()
       {
          RequestType type = RequestType.RTag;
          IRequest request = new RTagRequest();
@@ -419,8 +558,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the set request.
+      /// </summary>
       [Test]
-      public void SetRequestTest()
+      public void TestSetRequest()
       {
          RequestType type = RequestType.Set;
          IRequest request = new SetRequest("rabbit", "Peter");
@@ -428,8 +570,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the static directory request.
+      /// </summary>
       [Test]
-      public void StaticDirectoryRequestTest()
+      public void TestStaticDirectoryRequest()
       {
          RequestType type = RequestType.StaticDirectory;
          IRequest request = new StaticDirectoryRequest();
@@ -437,8 +582,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the status request.
+      /// </summary>
       [Test]
-      public void StatusRequestTest()
+      public void TestStatusRequest()
       {
          RequestType type = RequestType.Status;
          IRequest request = new StatusRequest();
@@ -446,8 +594,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the sticky request.
+      /// </summary>
       [Test]
-      public void StickyRequestTest()
+      public void TestStickyRequest()
       {
          RequestType type = RequestType.Sticky;
          IRequest request = new StickyRequest("idk");
@@ -455,8 +606,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the tag request.
+      /// </summary>
       [Test]
-      public void TagRequestTest()
+      public void TestTagRequest()
       {
          RequestType type = RequestType.Tag;
          IRequest request = new TagRequest();
@@ -464,8 +618,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the unchanged request.
+      /// </summary>
       [Test]
-      public void UnchangedRequestTest()
+      public void TestUnchangedRequest()
       {
          RequestType type = RequestType.Unchanged;
          IRequest request = new UnchangedRequest("file.cs");
@@ -473,8 +630,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the update patches.
+      /// </summary>
       [Test]
-      public void UpdatePatchesTest()
+      public void TestUpdatePatches()
       {
          RequestType type = RequestType.UpdatePatches;
          IRequest request = new UpdatePatchesRequest();
@@ -482,8 +642,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the update request.
+      /// </summary>
       [Test]
-      public void UpdateRequestTest()
+      public void TestUpdateRequest()
       {
          RequestType type = RequestType.Update;
          IRequest request = new UpdateRequest();
@@ -491,8 +654,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the use unchanged request.
+      /// </summary>
       [Test]
-      public void UseUnchangedRequestTest()
+      public void TestUseUnchangedRequest()
       {
          RequestType type = RequestType.UseUnchanged;
          IRequest request = new UseUnchangedRequest();
@@ -500,8 +666,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the valid requests request.
+      /// </summary>
       [Test]
-      public void ValidRequestsRequestTest()
+      public void TestValidRequestsRequest()
       {
          RequestType type = RequestType.ValidRequests;
          IRequest request = new ValidRequestsRequest();
@@ -509,8 +678,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the valid responses request.
+      /// </summary>
       [Test]
-      public void ValidResponsesRequestTest()
+      public void TestValidResponsesRequest()
       {
          RequestType type = RequestType.ValidResponses;
          IRequest request = new ValidResponsesRequest(new[] { ResponseType.Ok, ResponseType.MTMessage, ResponseType.EMessage });
@@ -518,8 +690,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, false);
       }
 
+      /// <summary>
+      /// Tests the verify auth request.
+      /// </summary>
       [Test]
-      public void VerifyAuthRequestTest()
+      public void TestVerifyAuthRequest()
       {
          RequestType type = RequestType.VerifyAuth;
          IRequest request = new VerifyAuthRequest(_root);
@@ -527,8 +702,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the version request.
+      /// </summary>
       [Test]
-      public void VersionRequestTest()
+      public void TestVersionRequest()
       {
          RequestType type = RequestType.Version;
          IRequest request = new VersionRequest();
@@ -536,8 +714,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the watch add request.
+      /// </summary>
       [Test]
-      public void WatchAddRequestTest()
+      public void TestWatchAddRequest()
       {
          RequestType type = RequestType.WatchAdd;
          IRequest request = new WatchAddRequest();
@@ -545,8 +726,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the watchers request.
+      /// </summary>
       [Test]
-      public void WatchersRequestTest()
+      public void TestWatchersRequest()
       {
          RequestType type = RequestType.Watchers;
          IRequest request = new WatchersRequest();
@@ -554,8 +738,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the watch off request.
+      /// </summary>
       [Test]
-      public void WatchOffRequestTest()
+      public void TestWatchOffRequest()
       {
          RequestType type = RequestType.WatchOff;
          IRequest request = new WatchOffRequest();
@@ -563,8 +750,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the watch on request.
+      /// </summary>
       [Test]
-      public void WatchOnRequestTest()
+      public void TestWatchOnRequest()
       {
          RequestType type = RequestType.WatchOn;
          IRequest request = new WatchOnRequest();
@@ -572,8 +762,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the watch remove request.
+      /// </summary>
       [Test]
-      public void WatchRemoveRequestTest()
+      public void TestWatchRemoveRequest()
       {
          RequestType type = RequestType.WatchRemove;
          IRequest request = new WatchRemoveRequest();
@@ -581,8 +774,11 @@ namespace PServerClient.Tests
          RequestTest(type, request, expected, true);
       }
 
+      /// <summary>
+      /// Tests the wrapper sendme RCS options request.
+      /// </summary>
       [Test]
-      public void WrapperSendmeRcsOptionsRequestTest()
+      public void TestWrapperSendmeRcsOptionsRequest()
       {
          RequestType type = RequestType.WrapperSendmeRcsOptions;
          IRequest request = new WrapperSendmeRcsOptionsRequest();

@@ -9,6 +9,9 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.IntegrationTests
 {
+   /// <summary>
+   /// Tests the CheckoutCommand class
+   /// </summary>
    [TestFixture]
    public class CheckoutCommandTest
    {
@@ -16,24 +19,33 @@ namespace PServerClient.IntegrationTests
       private IConnection _connection;
       private string _lineend = "\n";
 
+      /// <summary>
+      /// Sets up test data.
+      /// </summary>
       [SetUp]
-      public void SetUp()
+      public void SetUpTestData()
       {
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.PasswordScrambled.UnscramblePassword());
          _root.WorkingDirectory = TestConfig.WorkingDirectory;
          _connection = new PServerConnection();
       }
 
+      /// <summary>
+      /// Tests the checkout command execute.
+      /// </summary>
       [Test]
-      public void CheckoutCommandExecuteTest()
+      public void TestCheckoutCommandExecute()
       {
          CheckOutCommand command = new CheckOutCommand(_root, _connection);
          command.Execute();
          TestHelper.SaveCommandConversation(command, @"c:\_junk\checkout.xml");
       }
 
+      /// <summary>
+      /// Tests the test CVS TCP client checkout commands.
+      /// </summary>
       [Test]
-      public void TestRawCvsCheckoutCommandsTest()
+      public void TestTestCvsTcpClientCheckoutCommands()
       {
          AuthRequest auth = new AuthRequest(_root);
          string s = auth.GetRequestString();
