@@ -32,11 +32,6 @@ namespace PServerClient.Commands
       public CheckOutCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
-         Requests.Add(new RootRequest(root.Repository));
-         Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
-         Requests.Add(new ArgumentRequest(root.Module));
-         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
-         Requests.Add(new CheckOutRequest());
       }
 
       /// <summary>
@@ -49,6 +44,19 @@ namespace PServerClient.Commands
          {
             return CommandType.CheckOut;
          }
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         Requests.Add(new RootRequest(Root.Repository));
+         Requests.Add(new GlobalOptionRequest(GlobalOption.Quiet)); // somewhat quiet
+         Requests.Add(new ArgumentRequest(Root.Module));
+         Requests.Add(new DirectoryRequest(".", Root.Repository + "/" + Root.Module));
+         Requests.Add(new CheckOutRequest());
       }
 
       /////// <summary>
@@ -115,6 +123,10 @@ namespace PServerClient.Commands
       ////   }
       ////}
 
+      /// <summary>
+      /// Gets a value indicating whether to save CVS folder information
+      /// </summary>
+      /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
       protected override bool SaveCVSFolder
       {
          get

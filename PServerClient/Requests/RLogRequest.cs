@@ -4,10 +4,15 @@ namespace PServerClient.Requests
 {
    /// <summary>
    /// rlog \n
-   /// Response expected: yes. Actually do a cvs command. This uses any previ-
-   /// ous Argument requests, if they have been sent. The client should not send
-   /// Directory, Entry, or Modified requests for these commands; they are not
-   /// used. Arguments to these commands are module names, as described for co.
+   /// The "cvs r*" commands are cvs sub-commands, that work directly on the CVS repository.
+   /// Since the "cvs r*" commands work directly on the CVS repository, you don't need a working directory to use one. 
+   /// The target of a "cvs r*" command is always a combination of the CVSROOT and a module name. 
+   /// cvs rlog" displays information about all the revisions, of the files in the specified CVS repository module(s). 
+   /// "cvs rlog" is similar to the "cvs log" command, but works directly on the repository modules. In other words, you don't need a working directory to use the "cvs rlog" command. The general usage of the "cvs rlog" command is: 
+   /// cvs rlog target 
+   /// Where "target" is of the form: 
+   /// modulename[/filename] 
+   /// Where "modulename" is the name a CVS module, relative to CVSROOT and "filename" is optional. 
    /// </summary>
    public class RLogRequest : NoArgRequestBase
    {

@@ -1,3 +1,4 @@
+using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
@@ -17,9 +18,6 @@ namespace PServerClient.Commands
       public VersionCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
-         RequiredRequests.Clear();
-         RequiredRequests.Add(new AuthRequest(root));
-         Requests.Add(new VersionRequest());
       }
 
       /// <summary>
@@ -41,6 +39,17 @@ namespace PServerClient.Commands
       public string Version
       {
          get; private set;
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         RequiredRequests.Clear();
+         RequiredRequests.Add(new AuthRequest(Root));
+         Requests.Add(new VersionRequest());
       }
 
       /// <summary>

@@ -49,6 +49,12 @@ namespace PServerClient.Commands
       IList<string> UserMessages { get; }
 
       /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      void Initialize();
+
+      /// <summary>
       /// Handles the execution of the CVS command. Ensures that all the requests
       /// are sent, and that responses are retrieved at the appropriate time.
       /// The processing of responses is handled by the command classes.

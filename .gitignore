@@ -8,3 +8,7 @@ _ReSharper.*
 *.cache
 *~
 *.swp
+Settings.StyleCop
+StyleCop.Cache
+*.ncb
+*.nunit

@@ -17,8 +17,6 @@ namespace PServerClient.Commands
       public VerifyAuthCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
-         RequiredRequests.Clear();
-         RequiredRequests.Add(new VerifyAuthRequest(root));
       }
 
       /// <summary>
@@ -31,6 +29,16 @@ namespace PServerClient.Commands
          {
             return CommandType.VerifyAuth;
          }
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         RequiredRequests.Clear();
+         RequiredRequests.Add(new VerifyAuthRequest(Root));
       }
    }
 }

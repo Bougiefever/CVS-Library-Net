@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using PServerClient.Connection;
 using PServerClient.CVS;
 using PServerClient.Requests;
-using PServerClient.Responses;
 
 namespace PServerClient.Commands
 {
@@ -20,28 +18,42 @@ namespace PServerClient.Commands
       /// </summary>
       /// <param name="root">The CVS root instance.</param>
       /// <param name="connection">The connection.</param>
-      /// <param name="exportDate">The as of date to retrieve.</param>
-      public ExportCommand(IRoot root, IConnection connection, DateTime exportDate)
+      public ExportCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
-         string dateArg = GetExportDate(exportDate);
-         IRequest exportTypeRequest = new ArgumentRequest(dateArg);
-         StartUp(root, exportTypeRequest);
       }
 
+      ///// <summary>
+      ///// Initializes a new instance of the <see cref="ExportCommand"/> class.
+      ///// </summary>
+      ///// <param name="root">The CVS root instance.</param>
+      ///// <param name="connection">The connection.</param>
+      ///// <param name="tag">The revision tag to retrieve.</param>
+      ////public ExportCommand(IRoot root, IConnection connection)
+      ////   : base(root, connection)
+      ////{
+      ////   string tagArg = "-r " + tag;
+      ////   IRequest exportTypeRequest = new ArgumentRequest(tagArg);
+      ////   StartUp(root, exportTypeRequest);
+      ////}
+
       /// <summary>
-      /// Initializes a new instance of the <see cref="ExportCommand"/> class.
+      /// Gets or sets the type of the export.
       /// </summary>
-      /// <param name="root">The CVS root instance.</param>
-      /// <param name="connection">The connection.</param>
-      /// <param name="tag">The revision tag to retrieve.</param>
-      public ExportCommand(IRoot root, IConnection connection, string tag)
-         : base(root, connection)
-      {
-         string tagArg = "-r " + tag;
-         IRequest exportTypeRequest = new ArgumentRequest(tagArg);
-         StartUp(root, exportTypeRequest);
-      }
+      /// <value>The type of the export.</value>
+      public ExportType ExportType { get; set; }
+
+      /// <summary>
+      /// Gets or sets the export date.
+      /// </summary>
+      /// <value>The export date.</value>
+      public DateTime ExportDate { get; set; }
+
+      /// <summary>
+      /// Gets or sets the tag.
+      /// </summary>
+      /// <value>The cvs tag.</value>
+      public string Tag { get; set; }
 
       /// <summary>
       /// Gets the command type.
@@ -53,6 +65,44 @@ namespace PServerClient.Commands
          {
             return CommandType.Export;
          }
+      }
+
+      /// <summary>
+      /// Gets a value indicating whether to save CVS folder information
+      /// </summary>
+      /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
+      protected override bool SaveCVSFolder
+      {
+         get
+         {
+            return false;
+         }
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         Requests.Add(new RootRequest(Root.Repository));
+         Requests.Add(new GlobalOptionRequest(GlobalOption.Quiet)); // somewhat quiet
+         Requests.Add(GetExportTypeRequest());
+         Requests.Add(new ArgumentRequest("-R"));
+         Requests.Add(new ArgumentRequest(Root.Module));
+         Requests.Add(new DirectoryRequest(".", Root.Repository + "/" + Root.Module));
+         Requests.Add(new ExportRequest());
+      }
+
+      internal IRequest GetExportTypeRequest()
+      {
+         string arg;
+         if (ExportType == ExportType.Date)
+            arg = string.Format("-D {0}", ExportDate.ToRfc822());
+         else
+            arg = string.Format("-r {0}", Tag);
+         IRequest exportRequest = new ArgumentRequest(arg);
+         return exportRequest;
       }
 
       internal string GetExportDate(DateTime exportDate)
@@ -123,23 +173,15 @@ namespace PServerClient.Commands
       ////   }
       ////}
    
-      private void StartUp(IRoot root, IRequest exportTypeRequest)
-      {
-         Requests.Add(new RootRequest(root.Repository));
-         Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
-         Requests.Add(exportTypeRequest);
-         Requests.Add(new ArgumentRequest("-R"));
-         Requests.Add(new ArgumentRequest(root.Module));
-         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
-         Requests.Add(new ExportRequest());
-      }
-
-      protected override bool SaveCVSFolder
-      {
-         get
-         {
-            return false;
-         }
-      }
+      ////private void StartUp(IRoot root, IRequest exportTypeRequest)
+      ////{
+      ////   Requests.Add(new RootRequest(root.Repository));
+      ////   Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
+      ////   Requests.Add(exportTypeRequest);
+      ////   Requests.Add(new ArgumentRequest("-R"));
+      ////   Requests.Add(new ArgumentRequest(root.Module));
+      ////   Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
+      ////   Requests.Add(new ExportRequest());
+      ////}
    }
 }

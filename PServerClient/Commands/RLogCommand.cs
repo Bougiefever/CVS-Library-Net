@@ -1,33 +1,34 @@
 using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
+using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
    /// <summary>
-   /// CVS import command to add a project to CVS
+   /// The RLog command 
    /// </summary>
-   public class ImportCommand : CommandBase
+   public class RLogCommand : CommandBase
    {
       /// <summary>
-      /// Initializes a new instance of the <see cref="ImportCommand"/> class.
+      /// Initializes a new instance of the <see cref="RLogCommand"/> class.
       /// </summary>
       /// <param name="root">The CVS root.</param>
-      /// <param name="connection">The CVS connection.</param>
-      public ImportCommand(IRoot root, IConnection connection)
+      /// <param name="connection">The connection.</param>
+      public RLogCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
       }
 
       /// <summary>
-      /// Gets the command type. 
+      /// Gets the command type.
       /// </summary>
-      /// <value>The CommandType value</value>
+      /// <value>The command type.</value>
       public override CommandType Type
       {
          get
          {
-            return CommandType.Import;
+            return CommandType.RLog;
          }
       }
 
@@ -37,7 +38,10 @@ namespace PServerClient.Commands
       /// </summary>
       public override void Initialize()
       {
-         throw new NotImplementedException();
+         Requests.Add(new RootRequest(Root.Repository));
+         Requests.Add(new ArgumentRequest("-q"));
+         Requests.Add(new ArgumentRequest("-Q"));
+
       }
    }
 }

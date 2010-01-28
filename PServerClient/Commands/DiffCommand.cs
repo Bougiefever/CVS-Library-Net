@@ -1,3 +1,4 @@
+using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
 
@@ -28,6 +29,15 @@ namespace PServerClient.Commands
          {
             return CommandType.Diff;
          }
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         throw new NotImplementedException();
       }
    }
 }

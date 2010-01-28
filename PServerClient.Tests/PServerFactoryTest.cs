@@ -12,12 +12,18 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Tests for PServerFactory class
+   /// </summary>
    [TestFixture]
    public class PServerFactoryTest
    {
       private PServerFactory _factory;
       private IRoot _root;
 
+      /// <summary>
+      /// Sets up for testing
+      /// </summary>
       [TestFixtureSetUp]
       public void SetUp()
       {
@@ -25,8 +31,11 @@ namespace PServerClient.Tests
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
       }
 
+      /// <summary>
+      /// Tests CreateResponse from type
+      /// </summary>
       [Test]
-      public void CreateResponsesFromTypeTest()
+      public void TestCreateResponsesFromType()
       {
          ResponseType type = ResponseType.Auth;
          IResponse response = _factory.CreateResponse(type);
@@ -153,6 +162,9 @@ namespace PServerClient.Tests
          Assert.IsInstanceOf<UnknownResponse>(response);
       }
 
+      /// <summary>
+      /// Tests getting the response type from a string
+      /// </summary>
       [Test]
       public void ResponseTypeTest()
       {
@@ -322,8 +334,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(ResponseType.Unknown, result);
       }
 
+      /// <summary>
+      /// Tests the create command from classname
+      /// </summary>
       [Test]
-      public void CreateCommandTest()
+      public void TestCreateCommand()
       {
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          root.WorkingDirectory = TestConfig.WorkingDirectory;
@@ -383,15 +398,18 @@ namespace PServerClient.Tests
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
 
-         // Tag
-         type = CommandType.Tag;
-         className = "PServerClient.Commands.TagCommand";
+         // RTag
+         type = CommandType.RTag;
+         className = "PServerClient.Commands.RTagCommand";
          command = _factory.CreateCommand(className, new object[] { root, connection });
          Assert.AreEqual(type, command.Type);
       }
 
+      /// <summary>
+      /// Tests the create command from XML.
+      /// </summary>
       [Test][Ignore]
-      public void CreateCommandFromXMLTest()
+      public void TestCreateCommandFromXML()
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;
          XDocument xdoc = XDocument.Parse(xml);
@@ -415,8 +433,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(AuthStatus.Authenticated, authResponse.Status);
       }
 
+      /// <summary>
+      /// Tests the create request from lines.
+      /// </summary>
       [Test]
-      public void CreateRequestFromLinesTest()
+      public void TestCreateRequestFromLines()
       {
          PServerFactory factory = new PServerFactory();
          IList<string> lines = new List<string> { "line 1", "line 2" };
@@ -432,8 +453,11 @@ namespace PServerClient.Tests
          }
       }
 
+      /// <summary>
+      /// Tests the create response by class.
+      /// </summary>
       [Test]
-      public void CreateResponseByClassNameTest()
+      public void TestCreateResponseByClassName()
       {
          for (int i = 0; i < 32; i++)
          {
@@ -444,8 +468,11 @@ namespace PServerClient.Tests
          }
       }
 
+      /// <summary>
+      /// Tests the CreateRequest from RequestType
+      /// </summary>
       [Test]
-      public void CreateRequestFromTypeTest()
+      public void TestCreateRequestFromType()
       {
          // Add
          RequestType type = RequestType.Add;
@@ -683,7 +710,7 @@ namespace PServerClient.Tests
          request = _factory.CreateRequest(type, new object[] { "idk" });
          Assert.IsInstanceOf<StickyRequest>(request);
 
-         // Tag
+         // RTag
          type = RequestType.Tag;
          request = _factory.CreateRequest(type, new object[] { }); 
          Assert.IsInstanceOf<TagRequest>(request);

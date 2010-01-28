@@ -5,9 +5,15 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Tests for PServerHelper static class
+   /// </summary>
    [TestFixture]
    public class PServerHelperTest
    {
+      /// <summary>
+      /// Test for date time ToEntryString method
+      /// </summary>
       [Test]
       public void ConvertDateTimeToEntryFormatTest()
       {
@@ -20,6 +26,9 @@ namespace PServerClient.Tests
          Assert.AreEqual("Sun Dec  6 19:09:26 2009", date);
       }
 
+      /// <summary>
+      /// Test for date time ToRfc822 method
+      /// </summary>
       [Test]
       public void ConvertDateTimeToRfc822StringTest()
       {
@@ -28,6 +37,9 @@ namespace PServerClient.Tests
          Assert.AreEqual("01 Jan 2011 13:52:22 -0000", result);
       }
 
+      /// <summary>
+      /// Test for EntryToDateTime method
+      /// </summary>
       [Test]
       public void ConvertEntryFileDateStringToDateTimeTest()
       {
@@ -36,6 +48,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(DateTime.Parse("12/7/2009 11:15:36 PM"), dt);
       }
 
+      /// <summary>
+      /// Test for EntryToDateTime exception
+      /// </summary>
       [Test][ExpectedException(typeof(ArgumentException))]
       public void EntryToDateTimeExceptionTest()
       {
@@ -43,6 +58,9 @@ namespace PServerClient.Tests
          DateTime dt = test.EntryToDateTime();
       }
 
+      /// <summary>
+      /// Test for Rfc822ToDateTime string to date time method
+      /// </summary>
       [Test]
       public void ConvertRfc822ToDateTimeTest()
       {
@@ -52,6 +70,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(result, expected);
       }
 
+      /// <summary>
+      /// Test for converting byte array to string
+      /// </summary>
       [Test]
       public void DecodeTest()
       {
@@ -61,6 +82,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, result);
       }
 
+      /// <summary>
+      /// Test for converting byte array to string with trailing nulls
+      /// </summary>
       [Test]
       public void DecodeWithTrailingNullsTest()
       {
@@ -70,6 +94,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, result);
       }
 
+      /// <summary>
+      /// Test for converting a string into a byte array
+      /// </summary>
       [Test]
       public void EncodeTest()
       {
@@ -79,6 +106,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, result);
       }
 
+      /// <summary>
+      /// Test of ScramblePassword
+      /// </summary>
       [Test]
       public void Scramble()
       {
@@ -86,6 +116,9 @@ namespace PServerClient.Tests
          Console.WriteLine(password.ScramblePassword());
       }
 
+      /// <summary>
+      /// Test for enum string to integer value of matching enum
+      /// </summary>
       [Test]
       public void StringToEnumTest()
       {
@@ -95,6 +128,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(mon, (MonthName) result);
       }
 
+      /// <summary>
+      /// Test for ScramblePassword
+      /// </summary>
       [Test]
       public void TestPasswordScramble()
       {
@@ -104,6 +140,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, scrambled, "Password was not scrambled correctly");
       }
 
+      /// <summary>
+      /// Test for UnscramblePassword
+      /// </summary>
       [Test]
       public void UnscramblePasswordTest()
       {
@@ -113,8 +152,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, unscrambled, "Password was not unscrambled correctly");
       }
 
+      /// <summary>
+      /// Test for GetRootModuleFolderPath
+      /// </summary>
       [Test]
-      public void GetRootModuleFolderPathTest()
+      public void TestGetRootModuleFolderPath()
       {
          DirectoryInfo working = TestConfig.WorkingDirectory;
          string module = "mymod";
@@ -124,28 +166,6 @@ namespace PServerClient.Tests
          module = "mymod/project";
          di = PServerHelper.GetRootModuleFolderPath(working, module);
          Assert.AreEqual(@"c:\_temp\mymod\project", di.FullName);
-      }
-
-      [Test]
-      public void GetModuleNameTest()
-      {
-         string mod1 = "abougie/cvstest";
-         string mod2 = "abougie/cvstest/CVSROOT";
-         string name = mod2.Substring(mod2.IndexOf(mod1) + mod1.Length + 1);
-         Assert.AreEqual("CVSROOT", name);
-      }
-
-      [Test]
-      public void Test()
-      {
-         string s = @"C:\ORACLE_10G\bin;C:\Program Files\Windows Resource Kits\Tools\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;c:\phoenix;c:\arttools;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\Windows Imaging\;C:\Program Files\Utimaco\SafeGuard Easy\;C:\WINDOWS\system32\WindowsPowerShell\v1.0;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\NCover\";
-         string[] ss = s.Split(new [] { ";" }, StringSplitOptions.None);
-         foreach (var s1 in ss)
-         {
-            Console.WriteLine(s1);
-         }
-
-         s = @"C:\Program Files\CVSNT;C:\Program Files\CVSNT\";
       }
    }
 }

@@ -10,6 +10,9 @@ using Rhino.Mocks;
 
 namespace PServerClient.Tests.Commands
 {
+   /// <summary>
+   /// Tests the CommandBase abstract class
+   /// </summary>
    [TestFixture]
    public class CommandBaseTest
    {
@@ -17,6 +20,9 @@ namespace PServerClient.Tests.Commands
       private IConnection _connection;
       private IRoot _root;
 
+      /// <summary>
+      /// Sets up mocks
+      /// </summary>
       [SetUp]
       public void SetUp()
       {
@@ -24,12 +30,18 @@ namespace PServerClient.Tests.Commands
          _connection = _mocks.DynamicMock<IConnection>();
       }
 
+      /// <summary>
+      /// Sets up cvs root with test info
+      /// </summary>
       [TestFixtureSetUp]
       public void TestFixtureSetUp()
       {
          _root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
       }
 
+      /// <summary>
+      /// Test for AllRequestsAreValid 
+      /// </summary>
       [Test]
       public void AllRequestsValidTest()
       {
@@ -48,6 +60,9 @@ namespace PServerClient.Tests.Commands
          Assert.IsFalse(cmd.AllRequestsAreValid());
       }
 
+      /// <summary>
+      /// Test for cvs authentication when authentication succeeds
+      /// </summary>
       [Test]
       public void AuthenticateTest()
       {
@@ -69,6 +84,9 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(AuthStatus.Authenticated, cmd.AuthStatus);
       }
 
+      /// <summary>
+      /// Test for cvs authentication when authentication fails
+      /// </summary>
       [Test]
       public void NotAuthenticatedTest()
       {
@@ -90,6 +108,9 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(AuthStatus.NotAuthenticated, cmd.AuthStatus);
       }
 
+      /// <summary>
+      /// Test for cvs authentication when authentication produces an error
+      /// </summary>
       [Test]
       public void AuthErrorTest()
       {
@@ -116,6 +137,9 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(2, cmd.UserMessages.Count, "Wrong number of messages");
       }
 
+      /// <summary>
+      /// Test of the command base execute method
+      /// </summary>
       [Test]
       public void CommandBaseExecuteTest()
       {
@@ -153,6 +177,9 @@ namespace PServerClient.Tests.Commands
          _mocks.VerifyAll();
       }
 
+      /// <summary>
+      /// Test of the command base execute method when authentication has failed
+      /// </summary>
       [Test]
       public void CommandBaseExecuteWhenAuthFailedTest()
       {
@@ -180,6 +207,9 @@ namespace PServerClient.Tests.Commands
          _mocks.VerifyAll();
       }
 
+      /// <summary>
+      /// Tests that the ExecuteRequiredRequests populates the ValidRequestTypes list
+      /// </summary>
       [Test]
       public void ExectuteRequiredRequestsPopulatesValidRequestTypesTest()
       {
@@ -213,6 +243,9 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(6, cmd.ValidRequestTypes.Count);
       }
 
+      /// <summary>
+      /// Tests that the ExecuteRequiredRequests has ExitCode of fail when authentication fails
+      /// </summary>
       [Test]
       public void ExecuteRequiredRequestsAuthFailExitCodeFailTest()
       {
@@ -235,6 +268,9 @@ namespace PServerClient.Tests.Commands
          Assert.AreEqual(ExitCode.Failed, result);
       }
 
+      /// <summary>
+      /// Tests that ExecuteRequiredRequestshas ExitCode of fail when errors are in the responses
+      /// </summary>
       [Test]
       public void ExecuteRequiredRequestsWhenErrorResponseTest()
       {

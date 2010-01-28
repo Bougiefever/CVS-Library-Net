@@ -135,7 +135,7 @@ namespace PServerClient.Connection
          {
             for (int i = 1; i < lineCount; i++)
             {
-               responseLine = ReadLine();
+               responseLine = _cvsTcpClient.ReadLine();
                responseLines.Add(responseLine);
             }
          }
@@ -143,24 +143,24 @@ namespace PServerClient.Connection
          return responseLines;
       }
 
-      internal string ReadLine()
-      {
-         int i;
-         string line = null;
-         StringBuilder sb = new StringBuilder();
-         do
-         {
-            i = TcpClient.ReadByte();
-            if (i != 0 && i != 10 && i != -1)
-            {
-               sb.Append((char) i);
-            }
-         }
-         while (i != 0 && i != 10 && i != -1);
-         if (sb.Length > 0)
-            line = sb.ToString();
-         Console.WriteLine("S: " + (line ?? string.Empty));
-         return line;
-      }
+      ////internal string ReadLine()
+      ////{
+      ////   int i;
+      ////   string line = null;
+      ////   StringBuilder sb = new StringBuilder();
+      ////   do
+      ////   {
+      ////      i = TcpClient.ReadByte();
+      ////      if (i != 0 && i != 10 && i != -1)
+      ////      {
+      ////         sb.Append((char) i);
+      ////      }
+      ////   }
+      ////   while (i != 0 && i != 10 && i != -1);
+      ////   if (sb.Length > 0)
+      ////      line = sb.ToString();
+      ////   Console.WriteLine("S: " + (line ?? string.Empty));
+      ////   return line;
+      ////}
    }
 }

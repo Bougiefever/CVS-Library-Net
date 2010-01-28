@@ -11,12 +11,12 @@ namespace PServerClient.Connection
    public class CVSTcpClient : ICVSTcpClient
    {
       private readonly TcpClient _tcpClient;
-      private int _lastByte;
+      ////private int _lastByte;
       private NetworkStream _stream;
       private byte[] _buffer; // holds the bytes from the client
       private int _bufferSize = 1024; // size of buffer
       private int _position; // what to start reading from the buffer
-      private int _timeout = 1000; // milliseconds to timeout from reading the stream
+      private int _timeout = 100; // milliseconds to timeout from reading the stream
 
       /// <summary>
       /// Initializes a new instance of the <see cref="CVSTcpClient"/> class.
@@ -24,7 +24,6 @@ namespace PServerClient.Connection
       public CVSTcpClient()
       {
          _tcpClient = new TcpClient();
-         _lastByte = 0;
       }
 
       /// <summary>
@@ -49,16 +48,16 @@ namespace PServerClient.Connection
          _position = _bufferSize; // set initial position so the next read request starts reading bytes from the stream
       }
 
-      /// <summary>
-      /// Reads the bytes from the stream
-      /// </summary>
-      /// <returns>the byte array from the stream</returns>
-      public byte[] Read()
-      {
-         byte[] buffer = new byte[_bufferSize];
-         _stream.Read(buffer, 0, _bufferSize);
-         return buffer;
-      }
+      /////// <summary>
+      /////// Reads the bytes from the stream
+      /////// </summary>
+      /////// <returns>the byte array from the stream</returns>
+      ////public byte[] Read()
+      ////{
+      ////   byte[] buffer = new byte[_bufferSize];
+      ////   _stream.Read(buffer, 0, _bufferSize);
+      ////   return buffer;
+      ////}
 
       /// <summary>
       /// Closes the Tcp connection
@@ -69,33 +68,33 @@ namespace PServerClient.Connection
          _tcpClient.Close();
       }
 
-      /// <summary>
-      /// Reads one byte.
-      /// </summary>
-      /// <returns>one byte -----</returns>
-      public int ReadByte()
-      {
-         _tcpClient.Client.Blocking = true;
-         int b = 0;
-         try
-         {
-            b = _stream.ReadByte();
-         }
-         catch (IOException)
-         {
-            b = -1;
-         }
-         catch (Exception e)
-         {
-            Console.WriteLine(e);
-         }
+      /////// <summary>
+      /////// Reads one byte.
+      /////// </summary>
+      /////// <returns>one byte -----</returns>
+      ////public int ReadByte()
+      ////{
+      ////   _tcpClient.Client.Blocking = true;
+      ////   int b = 0;
+      ////   try
+      ////   {
+      ////      b = _stream.ReadByte();
+      ////   }
+      ////   catch (IOException)
+      ////   {
+      ////      b = -1;
+      ////   }
+      ////   catch (Exception e)
+      ////   {
+      ////      Console.WriteLine(e);
+      ////   }
 
-         if (b == 0 && _lastByte == 10)
-            b = -1;
-         else
-            _lastByte = b;
-         return b;
-      }
+      ////   if (b == 0 && _lastByte == 10)
+      ////      b = -1;
+      ////   else
+      ////      _lastByte = b;
+      ////   return b;
+      ////}
 
       /// <summary>
       /// Reads the specified number of bytes from the stream into the buffer

@@ -7,8 +7,6 @@ namespace PServerClient.Requests
    /// Response expected: no. Tell the server that filenames should be matched in
    /// a case-insensitive fashion. Note that this is not the primary mechanism for
    /// achieving case-insensitivity; for the most part the client keeps track of the case
-   /// ________________________________________
-   /// Page 16
    /// which the server wants to use and takes care to always use that case regardless of
    /// what the user specifies. For example the filenames given in Entry and Modified
    /// requests for the same file must match in case regardless of whether the Case

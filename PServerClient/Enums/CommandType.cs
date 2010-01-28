@@ -51,8 +51,18 @@ namespace PServerClient
       Diff = 8,
 
       /// <summary>
+      /// RTag command
+      /// </summary>
+      RTag = 9,
+
+      /// <summary>
       /// Tag command
       /// </summary>
-      Tag = 9
+      Tag = 10,
+
+      /// <summary>
+      /// RLog command
+      /// </summary>
+      RLog = 11
    }
 }

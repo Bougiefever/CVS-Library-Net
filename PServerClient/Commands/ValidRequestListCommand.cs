@@ -17,9 +17,6 @@ namespace PServerClient.Commands
       public ValidRequestsListCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
-         RequiredRequests.Clear();
-         RequiredRequests.Add(new AuthRequest(root));
-         RequiredRequests.Add(new ValidRequestsRequest());
       }
 
       /// <summary>
@@ -32,6 +29,17 @@ namespace PServerClient.Commands
          {
             return CommandType.ValidRequestsList;
          }
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         RequiredRequests.Clear();
+         RequiredRequests.Add(new AuthRequest(Root));
+         RequiredRequests.Add(new ValidRequestsRequest());
       }
    }
 }

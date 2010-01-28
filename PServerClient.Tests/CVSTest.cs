@@ -9,6 +9,9 @@ namespace PServerClient.Tests
    using Rhino.Mocks;
    using Rhino.Mocks.Constraints;
 
+   /// <summary>
+   /// Test of CVS
+   /// </summary>
    [TestFixture]
    public class CVSTest
    {

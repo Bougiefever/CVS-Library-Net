@@ -5,8 +5,11 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Test of Root class
+   /// </summary>
    [TestFixture]
-   public class CvsRootTests
+   public class RootTests
    {
       private readonly string _hostName = TestConfig.CVSHost; 
       private readonly int _port = TestConfig.CVSPort; 
@@ -15,8 +18,11 @@ namespace PServerClient.Tests
       private readonly string _repoPath = TestConfig.RepositoryPath; 
       private readonly string _module = TestConfig.ModuleName;
 
+      /// <summary>
+      /// Tests the root constructor.
+      /// </summary>
       [Test]
-      public void ConstructorTest()
+      public void TestRootConstructor()
       {
          IRoot root = new Root(_repoPath, _module, _hostName, _port, _user, _pwd);
          string expected = ":pserver:username@host-name:2401/f1/f2/f3";
@@ -29,14 +35,18 @@ namespace PServerClient.Tests
          Assert.AreEqual(2401, root.Port);
       }
 
+      /// <summary>
+      /// Tests the get module folder with multiple names in path.
+      /// </summary>
       [Test]
-      public void GetModuleFolderWithMultipleNamesInPathTest()
+      public void TestGetModuleFolderWithMultipleNamesInPath()
       {
          IRoot root = new Root(_repoPath, _module, _hostName, _port, _user, _pwd);
          DirectoryInfo di = new DirectoryInfo(@"c:\_temp");
          root.WorkingDirectory = di;
          root.Module = "rootmod/mymod";
          Folder modFolder = root.RootFolder;
+         Assert.Inconclusive("finish writing test");
       }
    }
 }

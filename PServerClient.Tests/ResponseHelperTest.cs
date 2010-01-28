@@ -12,11 +12,17 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Tests for the ResponseHelper class
+   /// </summary>
    [TestFixture]
    public class ResponseHelperTest
    {
+      /// <summary>
+      /// Tests the fix response module slashes.
+      /// </summary>
       [Test]
-      public void FixResponseModuleSlashesTest()
+      public void TestFixResponseModuleSlashes()
       {
          string mod = "mymod/";
          string result = ResponseHelper.FixResponseModuleSlashes(mod);
@@ -39,8 +45,11 @@ namespace PServerClient.Tests
          Assert.AreEqual("mymod/cvstest/CVSROOT", result);
       }
 
+      /// <summary>
+      /// Tests the name of the get last module.
+      /// </summary>
       [Test]
-      public void GetLastModuleNameTest()
+      public void TestGetLastModuleName()
       {
          string mod = "mymod/";
          string result = ResponseHelper.GetLastModuleName(mod);
@@ -55,8 +64,11 @@ namespace PServerClient.Tests
          Assert.AreEqual("CVSROOT", result);
       }
 
+      /// <summary>
+      /// Tests the collapse message responses.
+      /// </summary>
       [Test]
-      public void CollapseMessageResponsesTest()
+      public void TestCollapseMessageResponses()
       {
          DirectoryInfo di = Directory.GetParent(Environment.CurrentDirectory);
          FileInfo fi = new FileInfo(Path.Combine(di.FullName, "TestSetup\\ExportCommandWithEMessages.xml"));
@@ -78,8 +90,11 @@ namespace PServerClient.Tests
          Console.WriteLine(message.Display());
       }
 
+      /// <summary>
+      /// Tests the get info from updated.
+      /// </summary>
       [Test]
-      public void GetInfoFromUpdatedTest()
+      public void TestGetInfoFromUpdated()
       {
          string test = "/.cvspass/1.1.1.1///";
          string name = ResponseHelper.GetFileNameFromEntryLine(test);
@@ -88,9 +103,12 @@ namespace PServerClient.Tests
          Assert.AreEqual("1.1.1.1", revision);
       }
 
+      /// <summary>
+      /// Tests the get info from updated exception.
+      /// </summary>
       [Test]
       [ExpectedException(typeof(ArgumentException))]
-      public void GetInfoFromUpdatedExceptionTest()
+      public void TestGetInfoFromUpdatedException()
       {
          string test = "abcd";
          string revision = ResponseHelper.GetRevisionFromEntryLine(test);

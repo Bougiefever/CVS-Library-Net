@@ -4,8 +4,15 @@ using System.IO;
 
 namespace PServerClient.Tests.TestSetup
 {
+   /// <summary>
+   /// Test data to populate the Root instance for testing
+   /// </summary>
    public static class TestConfig
    {
+      /// <summary>
+      /// Gets the CVS host.
+      /// </summary>
+      /// <value>The CVS host.</value>
       public static string CVSHost
       {
          get
@@ -16,6 +23,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the CVS port.
+      /// </summary>
+      /// <value>The CVS port.</value>
       public static int CVSPort
       {
          get
@@ -26,6 +37,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the username.
+      /// </summary>
+      /// <value>The username.</value>
       public static string Username
       {
          get
@@ -36,6 +51,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the password.
+      /// </summary>
+      /// <value>The password.</value>
       public static string Password
       {
          get
@@ -46,6 +65,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the password scrambled.
+      /// </summary>
+      /// <value>The password scrambled.</value>
       public static string PasswordScrambled
       {
          get
@@ -56,6 +79,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the working directory.
+      /// </summary>
+      /// <value>The working directory.</value>
       public static DirectoryInfo WorkingDirectory
       {
          get
@@ -67,6 +94,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the repository path.
+      /// </summary>
+      /// <value>The repository path.</value>
       public static string RepositoryPath
       {
          get
@@ -77,6 +108,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the name of the module.
+      /// </summary>
+      /// <value>The name of the module.</value>
       public static string ModuleName
       {
          get
@@ -87,6 +122,10 @@ namespace PServerClient.Tests.TestSetup
          }
       }
 
+      /// <summary>
+      /// Gets the name of the local module directory.
+      /// </summary>
+      /// <value>The name of the local module directory.</value>
       public static string LocalModuleDirectoryName
       {
          get

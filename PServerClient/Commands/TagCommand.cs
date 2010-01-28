@@ -1,11 +1,11 @@
+using System;
 using PServerClient.Connection;
 using PServerClient.CVS;
-using PServerClient.Requests;
 
 namespace PServerClient.Commands
 {
    /// <summary>
-   /// Tags files in CVS
+   /// Issues the tag command
    /// </summary>
    public class TagCommand : CommandBase
    {
@@ -14,27 +14,31 @@ namespace PServerClient.Commands
       /// </summary>
       /// <param name="root">The CVS root.</param>
       /// <param name="connection">The connection.</param>
-      /// <param name="tag">The tag string</param>
+      /// <param name="tag">The name of the tag to create, move or delete</param>
       public TagCommand(IRoot root, IConnection connection, string tag)
          : base(root, connection)
       {
-         Requests.Add(new RootRequest(root.Repository));
-         Requests.Add(new GlobalOptionRequest("-q")); // somewhat quiet
-         Requests.Add(new ArgumentRequest(tag));
-         Requests.Add(new DirectoryRequest(".", root.Repository + "/" + root.Module));
-         Requests.Add(new TagRequest());
       }
 
       /// <summary>
-      /// Gets the command type. 
+      /// Gets the command type.
       /// </summary>
-      /// <value></value>
+      /// <value>The command type.</value>
       public override CommandType Type
       {
          get
          {
             return CommandType.Tag;
          }
+      }
+
+      /// <summary>
+      /// Prepares the requests for the command after all the properties
+      /// have been set.
+      /// </summary>
+      public override void Initialize()
+      {
+         throw new NotImplementedException();
       }
    }
 }

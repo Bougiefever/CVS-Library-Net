@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CDB3E7C6-94F2-43FA-93A2-D075D4FD8464}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -48,19 +48,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthStatus.cs" />
+    <Compile Include="Enums\AuthStatus.cs" />
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\CheckOutCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DiffCommand.cs" />
     <Compile Include="Commands\ExportCommand.cs" />
+    <Compile Include="Enums\GlobalOption.cs" />
+    <Compile Include="Enums\TagAction.cs" />
+    <Compile Include="Enums\ExportType.cs" />
     <Compile Include="Commands\FileResponseGroup.cs" />
     <Compile Include="Commands\ICommandItem.cs" />
     <Compile Include="Commands\IFileResponseGroup.cs" />
     <Compile Include="Commands\ReceiveFileCommandBase.cs" />
     <Compile Include="Commands\ResponseProcessor.cs" />
+    <Compile Include="Commands\RLogCommand.cs" />
+    <Compile Include="Commands\RTagCommand.cs" />
     <Compile Include="Commands\TagCommand.cs" />
-    <Compile Include="CommandType.cs" />
+    <Compile Include="Enums\CommandType.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ImportCommand.cs" />
     <Compile Include="Commands\LogCommand.cs" />
@@ -72,15 +77,16 @@
     <Compile Include="Connection\CVSTcpClient.cs" />
     <Compile Include="Connection\PServerConnection.cs" />
     <Compile Include="CVS\IRoot.cs" />
-    <Compile Include="Day.cs" />
-    <Compile Include="ExitCode.cs" />
-    <Compile Include="FileType.cs" />
-    <Compile Include="MonthName.cs" />
+    <Compile Include="Enums\Day.cs" />
+    <Compile Include="Enums\ExitCode.cs" />
+    <Compile Include="Enums\FileType.cs" />
+    <Compile Include="Enums\MonthName.cs" />
+    <Compile Include="Enums\CommandOption.cs" />
     <Compile Include="PServerFactory.cs" />
     <Compile Include="RequestHelper.cs" />
     <Compile Include="Requests\IAuthRequest.cs" />
     <Compile Include="Requests\ISubmitFileRequest.cs" />
-    <Compile Include="RequestType.cs" />
+    <Compile Include="Enums\RequestType.cs" />
     <Compile Include="Requests\SendFile.cs" />
     <Compile Include="ResponseHelper.cs" />
     <Compile Include="CVS\Root.cs" />
@@ -192,7 +198,7 @@
     <Compile Include="Responses\RemovedResponse.cs" />
     <Compile Include="Responses\RemoveEntryResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
-    <Compile Include="ResponseType.cs" />
+    <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Responses\SetStaticDirectoryResponse.cs" />
     <Compile Include="Responses\SetStickyResponse.cs" />
     <Compile Include="Responses\TemplateResponse.cs" />

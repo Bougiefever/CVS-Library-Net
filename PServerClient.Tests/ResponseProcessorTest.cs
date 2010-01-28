@@ -11,6 +11,9 @@ using PServerClient.Tests.TestSetup;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Tests for the ResponseProcessor class
+   /// </summary>
    [TestFixture]
    public class ResponseProcessorTest
    {
@@ -24,6 +27,9 @@ namespace PServerClient.Tests
       private Folder _sub211;
       private Folder _sub12;
 
+      /// <summary>
+      /// Sets up for ResponseProcessor tests
+      /// </summary>
       [SetUp]
       public void SetUp()
       {
@@ -100,6 +106,9 @@ namespace PServerClient.Tests
       ////   Assert.AreEqual(3, test.Count);
       ////}
 
+      /// <summary>
+      /// Test for FindModuleFolder from root folder test.
+      /// </summary>
       [Test]
       public void FindModuleFolderFromRootFolderTest()
       {
@@ -117,6 +126,9 @@ namespace PServerClient.Tests
          Assert.AreSame(_sub11, result);
       }
 
+      /// <summary>
+      /// Test for FindModuleFolder from self folder test.
+      /// </summary>
       [Test]
       public void FindModuleFolderFromSelfTest()
       {
@@ -126,6 +138,9 @@ namespace PServerClient.Tests
          Assert.AreSame(result, _sub3);
       }
 
+      /// <summary>
+      /// Test for FindModuleFolder from parent folder test.
+      /// </summary>
       [Test]
       public void FindModuleFolderFromParentTest()
       {
@@ -141,6 +156,9 @@ namespace PServerClient.Tests
          Assert.AreSame(result, _sub3);
       }
 
+      /// <summary>
+      /// Test for FindModuleFolder from sibling folder test.
+      /// </summary>
       [Test]
       public void FindModuleFolderFromSiblingTest()
       {
@@ -153,6 +171,9 @@ namespace PServerClient.Tests
          Assert.AreSame(_sub3, result);
       }
 
+      /// <summary>
+      /// Test for FindModuleFolder returns null when the folder does not exist.
+      /// </summary>
       [Test]
       public void FindModuleFolderReturnsNullWhenNotExistsTest()
       {
@@ -162,6 +183,9 @@ namespace PServerClient.Tests
          Assert.IsNull(result);
       }
 
+      /// <summary>
+      /// Test for AddFolderToStructure
+      /// </summary>
       [Test]
       public void AddFolderToStructureTest()
       {
@@ -178,6 +202,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(module, result.Module);
       }
 
+      /// <summary>
+      /// Test for GetModuleFolder when the folder exists
+      /// </summary>
       [Test]
       public void GetModuleFolderWhenFolderExistsTest()
       {
@@ -186,6 +213,9 @@ namespace PServerClient.Tests
          Assert.AreSame(_sub2, result);
       }
 
+      /// <summary>
+      /// Test for GetModuleFolder when the folder does not exist
+      /// </summary>
       [Test]
       public void GetModuleFolderAddFolderToStructureTest()
       {

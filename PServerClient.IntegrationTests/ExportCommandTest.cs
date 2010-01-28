@@ -29,7 +29,9 @@ namespace PServerClient.IntegrationTests
       {
          DateTime date = DateTime.Now.AddDays(1);
          _root.Module = "abougie/TestApp";
-         ExportCommand cmd = new ExportCommand(_root, _connection, date);
+         ExportCommand cmd = new ExportCommand(_root, _connection);
+         cmd.ExportDate = date;
+         cmd.ExportType = ExportType.Date;
          cmd.Execute();
          TestHelper.SaveCommandConversation(cmd, @"c:\_junk\ExportCommandTestApp.xml");
       }
@@ -38,7 +40,10 @@ namespace PServerClient.IntegrationTests
       public void ExportDateTest()
       {
          DateTime date = DateTime.Parse("12/30/2009 16:00:00");
-         ExportCommand cmd = new ExportCommand(_root, _connection, date);
+         ExportCommand cmd = new ExportCommand(_root, _connection);
+         cmd.ExportDate = date;
+         cmd.ExportType = ExportType.Date;
+
          string mydate = cmd.GetExportDate(date);
          Assert.AreEqual("-D 30 Dec 2009 16:00:00 -0000", mydate);
       }

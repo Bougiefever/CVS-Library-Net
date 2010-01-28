@@ -179,8 +179,8 @@ namespace PServerClient.Tests
       public void GlobalOptionRequestTest()
       {
          RequestType type = RequestType.GlobalOption;
-         IRequest request = new GlobalOptionRequest("-o");
-          string expected = "Global_option -o\n";
+         IRequest request = new GlobalOptionRequest(GlobalOption.Quiet);
+          string expected = "Global_option -q\n";
          RequestTest(type, request, expected, false);
       }
 

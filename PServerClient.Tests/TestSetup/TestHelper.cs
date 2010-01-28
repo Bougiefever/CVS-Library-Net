@@ -9,12 +9,23 @@ using PServerClient.Responses;
 
 namespace PServerClient.Tests.TestSetup
 {
+   /// <summary>
+   /// Helper methods for easier testing
+   /// </summary>
    public static class TestHelper
    {
       #region SaveConversation
 
+      /// <summary>
+      /// Gets or sets the command items.
+      /// </summary>
+      /// <value>The command items.</value>
       public static IList<ICommandItem> CommandItems { get; set; }
 
+      /// <summary>
+      /// Adds the command item.
+      /// </summary>
+      /// <param name="item">The command item.</param>
       public static void AddItem(ICommandItem item)
       {
          if (CommandItems == null)
@@ -26,6 +37,11 @@ namespace PServerClient.Tests.TestSetup
          
       #region XML Validation
 
+      /// <summary>
+      /// Validates the response XML.
+      /// </summary>
+      /// <param name="response">The response.</param>
+      /// <returns>true / false</returns>
       public static bool ValidateResponseXML(XElement response)
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Response.xsd");
@@ -38,6 +54,11 @@ namespace PServerClient.Tests.TestSetup
          return true;
       }
 
+      /// <summary>
+      /// Validates the command XML.
+      /// </summary>
+      /// <param name="command">The command.</param>
+      /// <returns>true or false</returns>
       public static bool ValidateCommandXML(XDocument command)
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
@@ -49,6 +70,11 @@ namespace PServerClient.Tests.TestSetup
          return true;
       }
 
+      /// <summary>
+      /// Validates the request XML.
+      /// </summary>
+      /// <param name="request">The request.</param>
+      /// <returns>true or false</returns>
       public static bool ValidateRequestXML(XElement request)
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Request.xsd");
@@ -65,6 +91,11 @@ namespace PServerClient.Tests.TestSetup
 
       #region Objects to XML
 
+      /// <summary>
+      /// Saves the command conversation.
+      /// </summary>
+      /// <param name="command">The command.</param>
+      /// <param name="path">The path to save the file to.</param>
       public static void SaveCommandConversation(ICommand command, string path)
       {
          FileInfo fi = new FileInfo(path);
@@ -78,6 +109,13 @@ namespace PServerClient.Tests.TestSetup
 
       #region Mocking
 
+      /// <summary>
+      /// Gets the mock checkout responses.
+      /// </summary>
+      /// <param name="time">The mod time.</param>
+      /// <param name="path">The local system path.</param>
+      /// <param name="file">The file name.</param>
+      /// <returns>list of mock responses</returns>
       public static IList<IResponse> GetMockCheckoutResponses(string time, string path, string file)
       {
          IList<IResponse> responses = new List<IResponse>();
@@ -95,6 +133,11 @@ namespace PServerClient.Tests.TestSetup
          return responses;
       }
 
+      /// <summary>
+      /// Gets the mock MT response group.
+      /// </summary>
+      /// <param name="fname">The fname.</param>
+      /// <returns>list of mock MT responses</returns>
       public static IList<IResponse> GetMockMTResponseGroup(string fname)
       {
          IList<IResponse> responses = new List<IResponse>();
@@ -109,6 +152,12 @@ namespace PServerClient.Tests.TestSetup
          return responses;
       }
 
+      /// <summary>
+      /// Gets the mock updated response.
+      /// </summary>
+      /// <param name="path">The file path.</param>
+      /// <param name="name">The file name.</param>
+      /// <returns>a mock UpdateResponse instance</returns>
       public static UpdatedResponse GetMockUpdatedResponse(string path, string name)
       {
          UpdatedResponse res = new UpdatedResponse();
@@ -126,6 +175,12 @@ namespace PServerClient.Tests.TestSetup
          return res;
       }
 
+      /// <summary>
+      /// Strings the list to mock int array.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
+      /// <param name="lastChar">The last char.</param>
+      /// <returns>the int array</returns>
       public static int[] StringListToMockIntArray(IList<string> lines, int lastChar)
       {
          byte[] chars = new byte[0];
@@ -147,6 +202,12 @@ namespace PServerClient.Tests.TestSetup
          return ints;
       }
 
+      /// <summary>
+      /// Strings the list to mock byte array.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
+      /// <param name="lineSeperator">The line seperator.</param>
+      /// <returns>byte array of string</returns>
       public static byte[] StringListToMockByteArray(IList<string> lines, byte[] lineSeperator)
       {
          byte[] chars = new byte[0];

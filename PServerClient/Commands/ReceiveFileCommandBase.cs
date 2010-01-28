@@ -11,14 +11,27 @@ namespace PServerClient.Commands
    /// </summary>
    public abstract class ReceiveFileCommandBase : CommandBase
    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="ReceiveFileCommandBase"/> class.
+      /// </summary>
+      /// <param name="root">The CVS root.</param>
+      /// <param name="connection">The connection.</param>
       protected ReceiveFileCommandBase(IRoot root, IConnection connection)
          : base(root, connection)
       {
          CurrentFolder = root.RootFolder;
       }
 
+      /// <summary>
+      /// Gets a value indicating whether to save CVS folder information
+      /// </summary>
+      /// <value><c>true</c> if [save CVS folder]; otherwise, <c>false</c>.</value>
       protected abstract bool SaveCVSFolder { get; }
 
+      /// <summary>
+      /// Gets or sets the current folder.
+      /// </summary>
+      /// <value>The current folder.</value>
       protected Folder CurrentFolder { get; set; }
 
       /// <summary>

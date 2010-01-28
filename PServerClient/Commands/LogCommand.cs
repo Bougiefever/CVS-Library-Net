@@ -17,11 +17,6 @@ namespace PServerClient.Commands
       public LogCommand(IRoot root, IConnection connection)
          : base(root, connection)
       {
-         Requests.Add(new AuthRequest(root));
-         Requests.Add(new RootRequest(root.Repository));
-         if (LocalOnly)
-            Requests.Add(new ArgumentRequest("-l"));
-         Requests.Add(new LogRequest());
       }
 
       /// <summary>
@@ -52,6 +47,18 @@ namespace PServerClient.Commands
          {
             return CommandType.Log;
          }
+      }
+
+      /// <summary>
+      /// Initializes the log command
+      /// </summary>
+      public override void Initialize()
+      {
+         Requests.Add(new AuthRequest(Root));
+         Requests.Add(new RootRequest(Root.Repository));
+         if (LocalOnly)
+            Requests.Add(new ArgumentRequest("-l"));
+         Requests.Add(new LogRequest());
       }
    }
 }

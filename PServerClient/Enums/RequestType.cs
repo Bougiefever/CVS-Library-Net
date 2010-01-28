@@ -241,7 +241,7 @@ namespace PServerClient
       Sticky = 46,
 
       /// <summary>
-      /// Tag request.
+      /// RTag request.
       /// </summary>
       Tag = 47,
 

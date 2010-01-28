@@ -1,7 +1,11 @@
 namespace PServerClient.Tests.TestSetup
 {
+   /// <summary>
+   /// Strings used in tests for mocking
+   /// </summary>
    public static class TestStrings
    {
+#pragma warning disable 1591
       public const string UpdatedResponseXML = @"<Response>
     <ClassName>PServerClient.Responses.UpdatedResponse</ClassName>
     <Name>Updated</Name>

@@ -17,11 +17,17 @@ using Rhino.Mocks;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Tests for the TestHelper class
+   /// </summary>
    [TestFixture]
    public class TestHelperTest
    {
+      /// <summary>
+      /// Tests the file response from XML.
+      /// </summary>
       [Test]
-      public void FileResponseFromXMLTest()
+      public void TestFileResponseFromXML()
       {
          string xml = TestStrings.UpdatedResponseXML;
          XElement responseElement = XElement.Parse(xml);
@@ -38,8 +44,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(expected, fileContents);
       }
 
+      /// <summary>
+      /// Tests the get byte string.
+      /// </summary>
       [Test]
-      public void GetByteStringTest()
+      public void TestGetByteString()
       {
          byte[] buff = new byte[3];
          buff[0] = 97;
@@ -50,8 +59,11 @@ namespace PServerClient.Tests
          Assert.AreEqual("97,98,99", result);
       }
 
+      /// <summary>
+      /// Tests the get response from XML.
+      /// </summary>
       [Test]
-      public void GetResponseFromXMLTest()
+      public void TestGetResponseFromXML()
       {
          string xml = TestStrings.AuthResponseXML;
          XElement responseElement = XElement.Parse(xml);
@@ -64,16 +76,22 @@ namespace PServerClient.Tests
          Assert.AreEqual("I LOVE YOU", response.Display());
       }
 
+      /// <summary>
+      /// Tests the get valid responses string.
+      /// </summary>
       [Test]
-      public void GetValidResponsesStringTest()
+      public void TestGetValidResponsesString()
       {
          ResponseType[] types = new[] { ResponseType.Ok, ResponseType.MTMessage, ResponseType.EMessage };
          string rtypes = ResponseHelper.GetValidResponsesString(types);
          Assert.AreEqual("ok MT E", rtypes);
       }
 
+      /// <summary>
+      /// Tests the command to XML.
+      /// </summary>
       [Test]
-      public void CommandToXMLTest()
+      public void TestCommandToXML()
       {
          IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          MockRepository mocks = new MockRepository();
@@ -114,8 +132,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
+      /// <summary>
+      /// Tests the validator response XML.
+      /// </summary>
       [Test]
-      public void ValidatorResponseXMLTest()
+      public void TestValidatorResponseXML()
       {
          string xml = TestStrings.AuthResponseXML;
          XElement response = XElement.Parse(xml);
@@ -123,8 +144,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
+      /// <summary>
+      /// Tests the validator request XML.
+      /// </summary>
       [Test]
-      public void ValidatorRequestXMLTest()
+      public void TestValidatorRequestXML()
       {
          string xml = TestStrings.AuthRequestXML;
          XElement request = XElement.Parse(xml);
@@ -132,8 +156,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
+      /// <summary>
+      /// Tests the validator command XML.
+      /// </summary>
       [Test]
-      public void ValidatorCommandXMLTest()
+      public void TestValidatorCommandXML()
       {
          string xml = TestStrings.CommandWithCommandItemsXML1;
          XDocument xdoc = XDocument.Parse(xml);
@@ -141,8 +168,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
+      /// <summary>
+      /// Tests the validator2 command XML.
+      /// </summary>
       [Test]
-      public void Validator2CommandXMLTest()
+      public void TestValidator2CommandXML()
       {
          string xml = TestStrings.CommandWithCommandItemsXML2;
          XDocument xdoc = XDocument.Parse(xml);
@@ -150,8 +180,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
+      /// <summary>
+      /// Tests the command XML file schema.
+      /// </summary>
       [Test]
-      public void CommandXMLFileSchemaTest()
+      public void TestCommandXMLFileSchema()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
@@ -166,8 +199,11 @@ namespace PServerClient.Tests
          Console.WriteLine(xdoc.ToString());
       }
 
+      /// <summary>
+      /// Tests the XML schema with target namespsce.
+      /// </summary>
       [Test]
-      public void XMLSchemaWithTargetNamespsceTest()
+      public void TestXMLSchemaWithTargetNamespsce()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\XMLSchemaTest.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
@@ -180,8 +216,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(isValid);
       }
 
+      /// <summary>
+      /// Tests the response schema.
+      /// </summary>
       [Test]
-      public void ResponseSchemaTest()
+      public void TestResponseSchema()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Response.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
@@ -197,8 +236,11 @@ namespace PServerClient.Tests
          xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
       }
 
+      /// <summary>
+      /// Tests the request schema.
+      /// </summary>
       [Test]
-      public void RequestSchemaTest()
+      public void TestRequestSchema()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Request.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
@@ -210,8 +252,11 @@ namespace PServerClient.Tests
          xdoc.Validate(schemas, (o, e) => Assert.Fail(e.Message));
       }
 
+      /// <summary>
+      /// Tests the validate command XML.
+      /// </summary>
       [Test]
-      public void ValidateCommandXMLTest()
+      public void TestValidateCommandXML()
       {
          FileInfo fi = new FileInfo(@"..\..\SharedLib\Schemas\Command.xsd");
          XmlReader reader = XmlReader.Create(fi.OpenRead());
@@ -225,8 +270,11 @@ namespace PServerClient.Tests
          Assert.IsTrue(result);
       }
 
+      /// <summary>
+      /// Tests the command XML to command object.
+      /// </summary>
       [Test]
-      public void CommandXMLToCommandObjectTest()
+      public void TestCommandXMLToCommandObject()
       {
          string xml = TestStrings.CommandXMLFileWithManyItems;
          XDocument xdoc = XDocument.Parse(xml);
@@ -243,8 +291,11 @@ namespace PServerClient.Tests
          Assert.AreEqual(3, cmd.Items.OfType<IResponse>().Count());
       }
 
+      /// <summary>
+      /// Tests the regex named data.
+      /// </summary>
       [Test]
-      public void RegexTest()
+      public void TestRegexNamedData()
       {
          string test = "Valid-requests Root Valid-responses";
          string pattern = @"^Valid-requests\s(?<data>.*)";
@@ -257,8 +308,11 @@ namespace PServerClient.Tests
          Assert.AreEqual("Valid-requests Root Valid-responses", data);
       }
 
+      /// <summary>
+      /// Tests the import XML response with multiple lines.
+      /// </summary>
       [Test]
-      public void ImportXMLResponseWithMultipleLinesTest()
+      public void TestImportXMLResponseWithMultipleLines()
       {
          string xml = TestStrings.MTResponse;
          XElement responseElement = XElement.Parse(xml);

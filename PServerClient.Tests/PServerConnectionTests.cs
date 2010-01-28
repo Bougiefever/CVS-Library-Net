@@ -10,6 +10,9 @@ using Is = Rhino.Mocks.Constraints.Is;
 
 namespace PServerClient.Tests
 {
+   /// <summary>
+   /// Tests for the PServerConnection class
+   /// </summary>
    [TestFixture]
    public class PServerConnectionTests
    {
@@ -19,6 +22,9 @@ namespace PServerClient.Tests
 
       private PServerConnection _connection;
 
+      /// <summary>
+      /// Sets up the TcpClient mock with the connection instance
+      /// </summary>
       [SetUp]
       public void SetUp()
       {
@@ -28,6 +34,9 @@ namespace PServerClient.Tests
          _connection.TcpClient = _client;
       }
 
+      /// <summary>
+      /// Tests the connection Close
+      /// </summary>
       [Test]
       public void CloseTest()
       {
@@ -37,6 +46,9 @@ namespace PServerClient.Tests
          _mocks.VerifyAll();
       }
 
+      /// <summary>
+      /// Test for Connect
+      /// </summary>
       [Test]
       public void ConnectTest()
       {
@@ -45,11 +57,14 @@ namespace PServerClient.Tests
             .Constraints(Is.Equal("host-name"), Is.Equal(2401));
          _mocks.ReplayAll();
 
-         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password); 
+         IRoot root = new Root(TestConfig.RepositoryPath, TestConfig.ModuleName, TestConfig.CVSHost, TestConfig.CVSPort, TestConfig.Username, TestConfig.Password);
          _connection.Connect(root);
          _mocks.VerifyAll();
       }
 
+      /// <summary>
+      /// Tests getting a response with multiple text lines making up the response
+      /// </summary>
       [Test]
       public void GetResponseLinesMultipleLinesTest()
       {
@@ -63,10 +78,14 @@ namespace PServerClient.Tests
          int[] readBytes = GetMockReadBytes(lines, -1);
          using (_mocks.Record())
          {
-            for (int i = 0; i < readBytes.Length - 1; i++)
-            {
-               Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
-            }
+            ////for (int i = 0; i < readBytes.Length - 1; i++)
+            ////{
+            ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+            ////}
+            Expect.Call(_client.ReadLine()).Return(lines[0]);
+            Expect.Call(_client.ReadLine()).Return(lines[1]);
+            Expect.Call(_client.ReadLine()).Return(lines[2]);
+            Expect.Call(_client.ReadLine()).Return(lines[3]);
          }
 
          using (_mocks.Playback())
@@ -78,6 +97,9 @@ namespace PServerClient.Tests
          }
       }
 
+      /// <summary>
+      /// Tests getting the response when it has only one line
+      /// </summary>
       [Test]
       public void GetResponseLinesOneLineTest()
       {
@@ -92,6 +114,9 @@ namespace PServerClient.Tests
          Assert.AreEqual("Root Valid-responses valid-requests Repository Directory", result[0]);
       }
 
+      /// <summary>
+      /// Tests a response that contains a file transmission
+      /// </summary>
       [Test]
       public void GetResponsesFileResponseTest()
       {
@@ -104,48 +129,40 @@ namespace PServerClient.Tests
                                      "74"
                                   };
          string fileContents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w";
-         int[] readBytes = GetMockReadBytes(lines, -1);
-         for (int i = 0; i < readBytes.Length; i++)
-            Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
-         Expect.Call(_client.ReadBytes(74))
-            .Return(fileContents.Encode());
+
+         Expect.Call(_client.ReadLine()).Return(lines[0]);
+         Expect.Call(_client.ReadLine()).Return(lines[1]);
+         Expect.Call(_client.ReadLine()).Return(lines[2]);
+         Expect.Call(_client.ReadLine()).Return(lines[3]);
+         Expect.Call(_client.ReadLine()).Return(lines[4]);
+
          _mocks.ReplayAll();
          var result = _connection.GetAllResponses();
          _mocks.VerifyAll();
+
+         ////int[] readBytes = GetMockReadBytes(lines, -1);
+         ////for (int i = 0; i < readBytes.Length; i++)
+         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+         ////Expect.Call(_client.ReadBytes(74))
+         ////   .Return(fileContents.Encode());
+
          Assert.AreEqual(1, result.Count);
-         IFileResponse response = (IFileResponse) result[0];
+         IFileResponse response = (IFileResponse)result[0];
          string testFile = response.Contents.Decode();
          Assert.AreEqual(fileContents, testFile);
       }
 
-      [Test]
-      public void GetResponsesOneLineResponsesTest()
-      {
-         IList<string> lines = new List<string>
-                                  {
-                                     "MT +updated",
-                                     "MT text U ",
-                                     "MT fname abougie/.cvspass",
-                                     "MT newline",
-                                     "MT -updated"
-                                  };
-         int[] readBytes = GetMockReadBytes(lines, -1);
-         for (int i = 0; i < readBytes.Length; i++)
-            Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
-         _mocks.ReplayAll();
-         var result = _connection.GetAllResponses();
-         _mocks.VerifyAll();
-         Assert.AreEqual(5, result.Count);
-         Assert.IsInstanceOf<MTMessageResponse>(result[0]);
-      }
-
+      /// <summary>
+      /// Tests GetResponses when there is only one response
+      /// </summary>
       [Test]
       public void GetResponsesOneResponseTest()
       {
          IList<string> lines = new List<string> { "ok " };
-         int[] readBytes = GetMockReadBytes(lines, -1);
-         for (int i = 0; i < readBytes.Length; i++)
-            Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+         ////int[] readBytes = GetMockReadBytes(lines, -1);
+         ////for (int i = 0; i < readBytes.Length; i++)
+         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+         Expect.Call(_client.ReadLine()).Return(lines[0]);
          _mocks.ReplayAll();
 
          var result = _connection.GetAllResponses();
@@ -154,6 +171,9 @@ namespace PServerClient.Tests
          Assert.IsInstanceOf<OkResponse>(result[0]);
       }
 
+      /// <summary>
+      /// Tests getting several responses test
+      /// </summary>
       [Test]
       public void GetResponsesTest()
       {
@@ -179,9 +199,15 @@ namespace PServerClient.Tests
                                      "74"
                                   };
          string fileContents = "/1 :pserver:abougie@gb-aix-q:2401/usr/local/cvsroot/sandbox AB4%o=wSobI4w";
-         int[] readBytes = GetMockReadBytes(lines, -1);
-         for (int i = 0; i < readBytes.Length; i++)
-            Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+         ////int[] readBytes = GetMockReadBytes(lines, -1);
+         ////for (int i = 0; i < readBytes.Length; i++)
+         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+
+         for (int i = 0; i < lines.Count; i++)
+         {
+            Expect.Call(_client.ReadLine()).Return(lines[i]);
+         }
+
          Expect.Call(_client.ReadBytes(74))
             .Return(fileContents.Encode());
          _mocks.ReplayAll();
@@ -190,25 +216,9 @@ namespace PServerClient.Tests
          Assert.AreEqual(12, result.Count);
       }
 
-      [Test]
-      public void ReadLineTest()
-      {
-         int[] readBytes = GetMockReadBytes(new List<string> { "abc" }, -1);
-         using (_mocks.Record())
-         {
-            for (int i = 0; i < readBytes.Length - 1; i++)
-            {
-               Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
-            }
-         }
-
-         using (_mocks.Playback())
-         {
-            string result = _connection.ReadLine();
-            Assert.AreEqual("abc", result);
-         }
-      }
-
+      /// <summary>
+      /// A test for testing the connection mockery
+      /// </summary>
       [Test]
       public void TestReadBytes()
       {
@@ -224,6 +234,9 @@ namespace PServerClient.Tests
          }
       }
 
+      /// <summary>
+      /// Gets the one response test.
+      /// </summary>
       [Test]
       public void GetOneResponseTest()
       {
@@ -232,9 +245,12 @@ namespace PServerClient.Tests
                                      "I LOVE YOU ",
                                      "ok "
                                   };
-         int[] readBytes = GetMockReadBytes(lines, -1);
-         for (int i = 0; i < readBytes.Length; i++)
-            Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+         ////int[] readBytes = GetMockReadBytes(lines, -1);
+         ////for (int i = 0; i < readBytes.Length; i++)
+         ////   Expect.Call(_client.ReadByte()).Return(readBytes[i]).Repeat.Once();
+
+         Expect.Call(_client.ReadLine()).Return(lines[0]);
+         Expect.Call(_client.ReadLine()).Return(lines[1]);
          _mocks.ReplayAll();
          var r1 = _connection.GetResponse();
          var r2 = _connection.GetResponse();
@@ -245,6 +261,12 @@ namespace PServerClient.Tests
          Assert.IsNull(r3);
       }
 
+      /// <summary>
+      /// Gets the mock read bytes.
+      /// </summary>
+      /// <param name="lines">The lines.</param>
+      /// <param name="lastChar">The last char.</param>
+      /// <returns>int array of bytes</returns>
       private int[] GetMockReadBytes(IList<string> lines, int lastChar)
       {
          byte[] chars = new byte[0];

@@ -18,17 +18,17 @@ namespace PServerClient.Connection
       /// <param name="buffer">The buffer.</param>
       void Write(byte[] buffer);
 
-      /// <summary>
-      /// Reads the bytes from the stream
-      /// </summary>
-      /// <returns>the byte array from the stream</returns>
-      byte[] Read();
+      /////// <summary>
+      /////// Reads the bytes from the stream
+      /////// </summary>
+      /////// <returns>the byte array from the stream</returns>
+      ////byte[] Read();
 
-      /// <summary>
-      /// Reads one byte.
-      /// </summary>
-      /// <returns>one byte -----</returns>
-      int ReadByte();
+      /////// <summary>
+      /////// Reads one byte.
+      /////// </summary>
+      /////// <returns>one byte -----</returns>
+      ////int ReadByte();
 
       /// <summary>
       /// Reads the specified number of bytes from the stream into the buffer

@@ -15,6 +15,38 @@ namespace PServerClient
    {
       private static readonly byte[] _code;
 
+      /// <summary>
+      /// Array of strings containing global option arguments
+      /// </summary>
+      public static readonly string[] GlobalOptions;
+
+      /// <summary>
+      /// Array of strings containing common command options
+      /// </summary>
+      public static readonly string[] CommandOptions;
+
+      private const string GlobalCVSRootDir = "-d"; // -d cvs_root_directory 
+      private const string GlobalDoNotLog = "-l";
+      private const string GlobalDoNotChangeFiles = "-l";
+      private const string GlobalReallyQuite = "-Q";
+      private const string GlobalQuiet = "-q";
+      private const string GlobalSetVariable = "-s"; // -s variable=value 
+      private const string GlobalTrace = "-t";
+      private const string GlobalVersion = "-v";
+      private const string GlobalEncrypt = "-x";
+      private const string GlobalGZipLevel = "-z"; // -z gzip-level 
+      private const string CommandDateSpec = "-D";
+      private const string CommandRetrieveEvenIfNoMatch = "-f";
+      private const string CommandKeywordProcessingFlag = "-k"; // -k kflag 
+      private const string CommandLocal = "-l";
+      private const string CommandMessage = "-m"; // -m message 
+      private const string CommandDoNothing = "-n";
+      private const string CommandPrune = "-P";
+      private const string CommandPipe = "-p";
+      private const string CommandRecursive = "-R";
+      private const string CommandRevision = "-r";
+      private const string CommandFilter = "-W";
+
       static PServerHelper()
       {
          _code = new byte[]
@@ -36,6 +68,34 @@ namespace PServerClient
                        182, 128, 158, 208, 162, 132, 167, 209, 149, 241, 153, 251, 237, 236, 171, 195,
                        243, 233, 253, 240, 194, 250, 191, 155, 142, 137, 245, 235, 163, 242, 178, 152
                     };
+
+         GlobalOptions = new[]
+                         {
+                            GlobalCVSRootDir,
+                            GlobalDoNotLog,
+                            GlobalDoNotChangeFiles,
+                            GlobalReallyQuite,
+                            GlobalQuiet,
+                            GlobalSetVariable,
+                            GlobalTrace,
+                            GlobalVersion,
+                            GlobalEncrypt,
+                            GlobalGZipLevel
+                         };
+         CommandOptions = new[]
+                          {
+                             CommandDateSpec,
+                             CommandRetrieveEvenIfNoMatch,
+                             CommandKeywordProcessingFlag,
+                             CommandLocal,
+                             CommandMessage,
+                             CommandDoNothing,
+                             CommandPrune,
+                             CommandPipe,
+                             CommandRecursive,
+                             CommandRevision,
+                             CommandFilter
+                          };
       }
 
       /// <summary>
@@ -283,6 +343,26 @@ namespace PServerClient
          string name = fileName.Replace(".", @"\.");
          string regex = string.Format("D?{0}.", name);
          return regex;
+      }
+
+      /// <summary>
+      /// Gets the global option string.
+      /// </summary>
+      /// <param name="option">The option type.</param>
+      /// <returns>argument string</returns>
+      public static string ToString(this GlobalOption option)
+      {
+         return GlobalOptions[(int)option];
+      }
+
+      /// <summary>
+      /// Gets the command option string.
+      /// </summary>
+      /// <param name="option">The option type.</param>
+      /// <returns>the argument string</returns>
+      public static string ToString(this CommandOption option)
+      {
+         return CommandOptions[(int)option];
       }
    }
 }
