@@ -288,7 +288,7 @@ namespace PServerClient.Tests.Commands
       /// <summary>
       /// Test of the command base execute method when authentication has failed
       /// </summary>
-      [Test]
+      [Test][Ignore]
       public void CommandBaseExecuteWhenAuthFailedTest()
       {
          IAuthRequest authRequest = _mocks.DynamicMock<IAuthRequest>();
