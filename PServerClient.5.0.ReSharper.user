@@ -1,0 +1,2196 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="Tests" priority="2" />
+      <Item value="public" priority="435" />
+      <Item value="void" priority="137" />
+      <Item value="new" priority="595" />
+      <Item value="MockRepository" priority="7" />
+      <Item value="mocks" priority="31" />
+      <Item value="IConnection" priority="10" />
+      <Item value="VerifyAuthCommandTest" priority="2" />
+      <Item value="VerifyAuthCommand" priority="7" />
+      <Item value="CvsRoot" priority="25" />
+      <Item value="command" priority="62" />
+      <Item value="VerifyAuthRequest" priority="4" />
+      <Item value="request" priority="59" />
+      <Item value="AuthRequest" priority="9" />
+      <Item value="cvsRoot" priority="4" />
+      <Item value="connection" priority="21" />
+      <Item value="IRequest" priority="49" />
+      <Item value="interface" priority="8" />
+      <Item value="IResponse" priority="89" />
+      <Item value="ICommonRequest" priority="1" />
+      <Item value="IAuthResponse" priority="9" />
+      <Item value="Success" priority="4" />
+      <Item value="false" priority="20" />
+      <Item value="true" priority="27" />
+      <Item value="RequestBase" priority="7" />
+      <Item value="Expect" priority="72" />
+      <Item value="Is" priority="27" />
+      <Item value="IAuthRequest" priority="13" />
+      <Item value="AuthStatus" priority="18" />
+      <Item value="response" priority="192" />
+      <Item value="if" priority="181" />
+      <Item value="ErrorMessage" priority="3" />
+      <Item value="return" priority="159" />
+      <Item value="SetUp" priority="4" />
+      <Item value="TestFixtureSetUp" priority="1" />
+      <Item value="private" priority="131" />
+      <Item value="string" priority="606" />
+      <Item value="_username" priority="1" />
+      <Item value="_password" priority="0" />
+      <Item value="_repositoryPath" priority="1" />
+      <Item value="_localPath" priority="1" />
+      <Item value="_host" priority="0" />
+      <Item value="_port" priority="0" />
+      <Item value="_root" priority="82" />
+      <Item value="Assert" priority="256" />
+      <Item value="Connection" priority="7" />
+      <Item value="CvsTcpClient" priority="0" />
+      <Item value="_tcpClient" priority="0" />
+      <Item value="TcpClient" priority="1" />
+      <Item value="AuthResponse" priority="13" />
+      <Item value="Requests" priority="28" />
+      <Item value="List&lt;IRequest&gt;" priority="10" />
+      <Item value="_connection" priority="83" />
+      <Item value="null" priority="49" />
+      <Item value="RhinoMocks" priority="0" />
+      <Item value="Mocks" priority="16" />
+      <Item value="Constraints" priority="17" />
+      <Item value="Rhino" priority="16" />
+      <Item value="ICommand" priority="12" />
+      <Item value="AuthCommand" priority="0" />
+      <Item value="root" priority="44" />
+      <Item value="authRequest" priority="7" />
+      <Item value="bool" priority="51" />
+      <Item value="_requestSuccess" priority="1" />
+      <Item value="NullResponse" priority="4" />
+      <Item value="foreach" priority="60" />
+      <Item value="message" priority="13" />
+      <Item value="Environment" priority="5" />
+      <Item value="success" priority="4" />
+      <Item value="ValidRequestsListCommandTest" priority="1" />
+      <Item value="ValidRequestsListCommand" priority="10" />
+      <Item value="int" priority="46" />
+      <Item value="authRequestCount" priority="0" />
+      <Item value="requestCount" priority="0" />
+      <Item value="_mocks" priority="27" />
+      <Item value="otherResponse" priority="3" />
+      <Item value="authResponse" priority="16" />
+      <Item value="otherRequest" priority="4" />
+      <Item value="_request" priority="1" />
+      <Item value="count" priority="3" />
+      <Item value="_response" priority="0" />
+      <Item value="Console" priority="29" />
+      <Item value="ValidRequestsRequest" priority="10" />
+      <Item value="validRequests" priority="2" />
+      <Item value="ValidRequestResponse" priority="10" />
+      <Item value="requestString" priority="2" />
+      <Item value="Test" priority="9" />
+      <Item value="for" priority="26" />
+      <Item value="i" priority="49" />
+      <Item value="buffer" priority="22" />
+      <Item value="Length" priority="14" />
+      <Item value="while" priority="21" />
+      <Item value="foundNulls" priority="1" />
+      <Item value="char" priority="5" />
+      <Item value="c" priority="0" />
+      <Item value="byte" priority="45" />
+      <Item value="test" priority="8" />
+      <Item value="b" priority="10" />
+      <Item value="nullStart" priority="2" />
+      <Item value="decode" priority="5" />
+      <Item value="newEnd" priority="4" />
+      <Item value="receive" priority="1" />
+      <Item value="CopyTo" priority="0" />
+      <Item value="Array" priority="0" />
+      <Item value="ResponseBase" priority="5" />
+      <Item value="ResponseString" priority="1" />
+      <Item value="catch" priority="1" />
+      <Item value="Exception" priority="4" />
+      <Item value="protected" priority="13" />
+      <Item value="CvsResponse" priority="1" />
+      <Item value="ResponseFactory" priority="8" />
+      <Item value="factory" priority="24" />
+      <Item value="const" priority="51" />
+      <Item value="enum" priority="7" />
+      <Item value="ResponseType" priority="80" />
+      <Item value="class" priority="1" />
+      <Item value="CreateResponseHelper" priority="2" />
+      <Item value="_responsePatterns" priority="5" />
+      <Item value="AuthRegex" priority="0" />
+      <Item value="OkRegex" priority="0" />
+      <Item value="ErrorRegex" priority="0" />
+      <Item value="MessageRegex" priority="0" />
+      <Item value="ValidRequestsRegex" priority="0" />
+      <Item value="Regex" priority="8" />
+      <Item value="rawResponse" priority="1" />
+      <Item value="m" priority="33" />
+      <Item value="responseType" priority="3" />
+      <Item value="GetResponseType" priority="1" />
+      <Item value="switch" priority="2" />
+      <Item value="case" priority="24" />
+      <Item value="break" priority="18" />
+      <Item value="OkResponse" priority="4" />
+      <Item value="MessageResponse" priority="7" />
+      <Item value="typeof" priority="21" />
+      <Item value="_factory" priority="18" />
+      <Item value="lines" priority="109" />
+      <Item value="line1" priority="0" />
+      <Item value="StringSplitOptions" priority="7" />
+      <Item value="Ignore" priority="19" />
+      <Item value="LocalCvsItem" priority="0" />
+      <Item value="virtual" priority="2" />
+      <Item value="thr" priority="0" />
+      <Item value="NotSupportedException" priority="2" />
+      <Item value="ICvsItem" priority="60" />
+      <Item value="FileInfo" priority="55" />
+      <Item value="CvsFolder" priority="18" />
+      <Item value="DirectoryInfo" priority="70" />
+      <Item value="ParentFolder" priority="0" />
+      <Item value="parent" priority="17" />
+      <Item value="Path" priority="10" />
+      <Item value="RepositoryFile" priority="8" />
+      <Item value="Directory" priority="14" />
+      <Item value="EntriesFile" priority="5" />
+      <Item value="RootFile" priority="9" />
+      <Item value="using" priority="25" />
+      <Item value="FileStream" priority="6" />
+      <Item value="FileMode" priority="5" />
+      <Item value="stream" priority="4" />
+      <Item value="PServerHelper" priority="37" />
+      <Item value="Buffer" priority="1" />
+      <Item value="IReaderWriter" priority="10" />
+      <Item value="file" priority="45" />
+      <Item value="filePath" priority="0" />
+      <Item value="dir" priority="20" />
+      <Item value="static" priority="54" />
+      <Item value="_readerWriter" priority="7" />
+      <Item value="ReaderWriter" priority="24" />
+      <Item value="value" priority="6" />
+      <Item value="Item" priority="3" />
+      <Item value="FileContents" priority="2" />
+      <Item value="override" priority="41" />
+      <Item value="ChildItems" priority="3" />
+      <Item value="ReadFile" priority="0" />
+      <Item value="WriteFile" priority="0" />
+      <Item value="FileExists" priority="0" />
+      <Item value="DirectoryExists" priority="0" />
+      <Item value="CreateDirectory" priority="0" />
+      <Item value="DeleteDirectory" priority="0" />
+      <Item value="DeleteFile" priority="0" />
+      <Item value="repository" priority="2" />
+      <Item value="ReaderWriterTest" priority="0" />
+      <Item value="rw" priority="19" />
+      <Item value="IOException" priority="2" />
+      <Item value="DateTime" priority="32" />
+      <Item value="dt" priority="6" />
+      <Item value="result" priority="42" />
+      <Item value="expected" priority="6" />
+      <Item value="StatusRequest" priority="2" />
+      <Item value="auth" priority="0" />
+      <Item value="internal" priority="15" />
+      <Item value="AuthRequestBase" priority="2" />
+      <Item value="base" priority="90" />
+      <Item value="_requestString" priority="1" />
+      <Item value="authType" priority="0" />
+      <Item value="_authString" priority="0" />
+      <Item value="fileName" priority="5" />
+      <Item value="FileSystemInfo" priority="5" />
+      <Item value="info" priority="7" />
+      <Item value="blah" priority="1" />
+      <Item value="Decode" priority="2" />
+      <Item value="Folder" priority="124" />
+      <Item value="CvsItemBase" priority="0" />
+      <Item value="List&lt;ICvsItem&gt;" priority="7" />
+      <Item value="_parent" priority="21" />
+      <Item value="cvsFolder" priority="10" />
+      <Item value="TearDown" priority="3" />
+      <Item value="ExpectedException" priority="5" />
+      <Item value="fs" priority="6" />
+      <Item value="folder" priority="40" />
+      <Item value="fi" priority="5" />
+      <Item value="FileAccess" priority="3" />
+      <Item value="TextReader" priority="5" />
+      <Item value="IList" priority="124" />
+      <Item value="List&lt;string&gt;" priority="28" />
+      <Item value="reader" priority="7" />
+      <Item value="TextWriter" priority="4" />
+      <Item value="writer" priority="6" />
+      <Item value="Entry" priority="43" />
+      <Item value="s" priority="21" />
+      <Item value="entryLines" priority="0" />
+      <Item value="entry" priority="30" />
+      <Item value="Math" priority="0" />
+      <Item value="items" priority="5" />
+      <Item value="else" priority="24" />
+      <Item value="FolderEntryRegex" priority="0" />
+      <Item value="tw" priority="2" />
+      <Item value="tr" priority="2" />
+      <Item value="workingDir" priority="10" />
+      <Item value="var" priority="31" />
+      <Item value="Match" priority="1" />
+      <Item value="item" priority="26" />
+      <Item value="CvsItemType" priority="5" />
+      <Item value="entryLine" priority="2" />
+      <Item value="File" priority="13" />
+      <Item value="Version" priority="4" />
+      <Item value="ModTime" priority="2" />
+      <Item value="e1" priority="5" />
+      <Item value="e2" priority="3" />
+      <Item value="f1" priority="0" />
+      <Item value="this" priority="8" />
+      <Item value="date" priority="7" />
+      <Item value="entrydate" priority="3" />
+      <Item value="Properties" priority="3" />
+      <Item value="keyworkMode" priority="0" />
+      <Item value="code" priority="6" />
+      <Item value="dateTimeRegex" priority="0" />
+      <Item value="throw" priority="8" />
+      <Item value="ArgumentException" priority="7" />
+      <Item value="Convert" priority="5" />
+      <Item value="Type" priority="10" />
+      <Item value="t" priority="9" />
+      <Item value="FieldAccessException" priority="0" />
+      <Item value="in" priority="2" />
+      <Item value="object" priority="31" />
+      <Item value="FormatException" priority="1" />
+      <Item value="DayOfWeek" priority="4" />
+      <Item value="dow" priority="0" />
+      <Item value="MonthName" priority="6" />
+      <Item value="testfolder" priority="0" />
+      <Item value="year" priority="0" />
+      <Item value="month" priority="0" />
+      <Item value="day" priority="0" />
+      <Item value="hour" priority="0" />
+      <Item value="minute" priority="0" />
+      <Item value="List" priority="16" />
+      <Item value="PropertyAttribute" priority="0" />
+      <Item value="Text" priority="7" />
+      <Item value="ModuleExpansionResponse" priority="2" />
+      <Item value="long" priority="2" />
+      <Item value="ReceiveFile" priority="4" />
+      <Item value="Module" priority="3" />
+      <Item value="module" priority="40" />
+      <Item value="CvsPath" priority="0" />
+      <Item value="cvsPath" priority="0" />
+      <Item value="FileLength" priority="1" />
+      <Item value="fileLength" priority="0" />
+      <Item value="fileNameRevision" priority="2" />
+      <Item value="regex" priority="1" />
+      <Item value="ResponseHelper" priority="33" />
+      <Item value="FileName" priority="1" />
+      <Item value="Revision" priority="2" />
+      <Item value="revision" priority="3" />
+      <Item value="IFileResponse" priority="17" />
+      <Item value="fileProperties" priority="1" />
+      <Item value="FileResponseBase" priority="2" />
+      <Item value="System" priority="17" />
+      <Item value="Linq" priority="11" />
+      <Item value="r" priority="38" />
+      <Item value="RequestType" priority="133" />
+      <Item value="PreExecute" priority="0" />
+      <Item value="PostExecute" priority="2" />
+      <Item value="FileType" priority="0" />
+      <Item value="WrapperRscOptionResponse" priority="2" />
+      <Item value="WriteResponses" priority="0" />
+      <Item value="ref" priority="0" />
+      <Item value="ExitCode" priority="31" />
+      <Item value="rsp" priority="0" />
+      <Item value="StickyOption" priority="1" />
+      <Item value="stickyOption" priority="0" />
+      <Item value="RequestHelper" priority="12" />
+      <Item value="RequestNames" priority="6" />
+      <Item value="RequestName" priority="22" />
+      <Item value="ValidResponses" priority="1" />
+      <Item value="Select" priority="11" />
+      <Item value="vr" priority="1" />
+      <Item value="resStrings" priority="1" />
+      <Item value="Join" priority="1" />
+      <Item value="responses" priority="41" />
+      <Item value="ValidResponsesRequest" priority="2" />
+      <Item value="requests" priority="4" />
+      <Item value="Where" priority="6" />
+      <Item value="rr" priority="2" />
+      <Item value="requestIndexes" priority="1" />
+      <Item value="List&lt;RequestType&gt;" priority="4" />
+      <Item value="ri" priority="5" />
+      <Item value="Name" priority="2" />
+      <Item value="Index" priority="0" />
+      <Item value="requestList" priority="3" />
+      <Item value="ValidRequests" priority="1" />
+      <Item value="_validResponses" priority="1" />
+      <Item value="validResponses" priority="2" />
+      <Item value="ResponseNames" priority="1" />
+      <Item value="String" priority="2" />
+      <Item value="resString" priority="0" />
+      <Item value="types" priority="4" />
+      <Item value="sep" priority="0" />
+      <Item value="requestNames" priority="0" />
+      <Item value="rn" priority="1" />
+      <Item value="RequestsIndexes" priority="0" />
+      <Item value="rnn" priority="0" />
+      <Item value="t2" priority="0" />
+      <Item value="t3" priority="0" />
+      <Item value="t4" priority="0" />
+      <Item value="ExecuteRequiredRequests" priority="0" />
+      <Item value="RequiredRequests" priority="6" />
+      <Item value="_validRequests" priority="3" />
+      <Item value="AllRequestsAreValid" priority="0" />
+      <Item value="AddRequest" priority="13" />
+      <Item value="CheckOutRequest" priority="10" />
+      <Item value="ArgumentRequest" priority="17" />
+      <Item value="CommandBase" priority="6" />
+      <Item value="cmd" priority="61" />
+      <Item value="rtypes" priority="0" />
+      <Item value="r1" priority="6" />
+      <Item value="r2" priority="3" />
+      <Item value="UpdatePatchesRequest" priority="2" />
+      <Item value="vrRes" priority="1" />
+      <Item value="vrReq" priority="2" />
+      <Item value="List&lt;IResponse&gt;" priority="18" />
+      <Item value="ErrorResponse" priority="4" />
+      <Item value="errorResponse" priority="1" />
+      <Item value="assembly" priority="0" />
+      <Item value="InternalsVisibleTo" priority="0" />
+      <Item value="checkOutResponses" priority="5" />
+      <Item value="ModTimeResponse" priority="9" />
+      <Item value="MessageTagResponse" priority="37" />
+      <Item value="List&lt;MessageTagResponse&gt;" priority="3" />
+      <Item value="OfType" priority="0" />
+      <Item value="ResponseText" priority="0" />
+      <Item value="_AppDomain" priority="2" />
+      <Item value="CvsDirectory" priority="0" />
+      <Item value="StringBuilder" priority="5" />
+      <Item value="sb" priority="22" />
+      <Item value="Message" priority="14" />
+      <Item value="ModuleName" priority="0" />
+      <Item value="MessageType" priority="1" />
+      <Item value="IMessage" priority="8" />
+      <Item value="UpdatedMessage" priority="11" />
+      <Item value="first" priority="2" />
+      <Item value="fname" priority="0" />
+      <Item value="_fnameRegex" priority="0" />
+      <Item value="names" priority="6" />
+      <Item value="MessageHelper" priority="0" />
+      <Item value="updatedMessage" priority="6" />
+      <Item value="MessageFactory" priority="8" />
+      <Item value="msg" priority="1" />
+      <Item value="List&lt;MessageResponse&gt;" priority="1" />
+      <Item value="List&lt;IList&lt;MessageTagResponse&gt;&gt;" priority="0" />
+      <Item value="mt" priority="4" />
+      <Item value="group" priority="1" />
+      <Item value="groups" priority="2" />
+      <Item value="MTGroups" priority="0" />
+      <Item value="mts" priority="1" />
+      <Item value="List&lt;IMessage&gt;" priority="0" />
+      <Item value="_messages" priority="3" />
+      <Item value="updateMessage" priority="3" />
+      <Item value="ReadMTStyleResponses" priority="0" />
+      <Item value="ReadMUStyleResponses" priority="0" />
+      <Item value="CvsItemFactory" priority="3" />
+      <Item value="entryResponses" priority="4" />
+      <Item value="Root" priority="15" />
+      <Item value="CheckoutCommand" priority="8" />
+      <Item value="f" priority="4" />
+      <Item value="ValidRequestTypes" priority="0" />
+      <Item value="ClearStickyResponse" priority="5" />
+      <Item value="ClearStaticDirectoryResponse" priority="2" />
+      <Item value="GetMockMTResponseGroup" priority="0" />
+      <Item value="UpdatedResponse" priority="7" />
+      <Item value="name" priority="3" />
+      <Item value="res" priority="7" />
+      <Item value="text" priority="0" />
+      <Item value="GetMockUpdatedResponse" priority="1" />
+      <Item value="path" priority="8" />
+      <Item value="GetMockCheckoutResponses" priority="2" />
+      <Item value="co" priority="2" />
+      <Item value="coresponses" priority="4" />
+      <Item value="rootFolder" priority="22" />
+      <Item value="folders" priority="6" />
+      <Item value="IEnumerator" priority="2" />
+      <Item value="enumerator" priority="1" />
+      <Item value="ci" priority="0" />
+      <Item value="startDir" priority="1" />
+      <Item value="startFolder" priority="3" />
+      <Item value="working" priority="8" />
+      <Item value="PrintWorkingDirStructure" priority="3" />
+      <Item value="CreateFolderStructure" priority="0" />
+      <Item value="current" priority="2" />
+      <Item value="filename" priority="1" />
+      <Item value="ur" priority="5" />
+      <Item value="CommandFileHandler" priority="0" />
+      <Item value="CommandFileReceiver" priority="0" />
+      <Item value="mtr" priority="0" />
+      <Item value="mod" priority="15" />
+      <Item value="_cfr" priority="1" />
+      <Item value="_working" priority="4" />
+      <Item value="_cvsRoot" priority="4" />
+      <Item value="CvsServerFileReceiver" priority="4" />
+      <Item value="fileReceiver" priority="0" />
+      <Item value="iterator" priority="1" />
+      <Item value="is" priority="18" />
+      <Item value="SaveWorkingDirectory" priority="0" />
+      <Item value="lmocks" priority="2" />
+      <Item value="usinglmocks" priority="1" />
+      <Item value="exc" priority="7" />
+      <Item value="IDisposable" priority="0" />
+      <Item value="sub1" priority="11" />
+      <Item value="CreateMockFolderStructure" priority="0" />
+      <Item value="ItemType" priority="6" />
+      <Item value="SaveFolder" priority="0" />
+      <Item value="_childItems" priority="11" />
+      <Item value="subFolder" priority="7" />
+      <Item value="subEntry" priority="4" />
+      <Item value="child3" priority="0" />
+      <Item value="work" priority="0" />
+      <Item value="receiver" priority="1" />
+      <Item value="e3" priority="0" />
+      <Item value="CreateTestFolderStructure" priority="0" />
+      <Item value="_cvsFolder" priority="18" />
+      <Item value="ICVSItem" priority="11" />
+      <Item value="_cvsRootString" priority="1" />
+      <Item value="cvsRootString" priority="0" />
+      <Item value="WriteRootFile" priority="0" />
+      <Item value="cvsModule" priority="4" />
+      <Item value="_cvsModule" priority="5" />
+      <Item value="WriteRepositoryFile" priority="0" />
+      <Item value="SaveEntriesFile" priority="0" />
+      <Item value="_cvsRepository" priority="1" />
+      <Item value="folderName" priority="4" />
+      <Item value="_rootModuleFolder" priority="5" />
+      <Item value="WorkingDirectory" priority="0" />
+      <Item value="di" priority="15" />
+      <Item value="CvsConnectionString" priority="0" />
+      <Item value="parentFolder" priority="4" />
+      <Item value="hostName" priority="1" />
+      <Item value="port" priority="2" />
+      <Item value="user" priority="0" />
+      <Item value="pwd" priority="4" />
+      <Item value="repoPath" priority="1" />
+      <Item value="CvsFolderTest" priority="0" />
+      <Item value="_rw" priority="1" />
+      <Item value="usingmocks" priority="1" />
+      <Item value="conneciton" priority="0" />
+      <Item value="CVSFolder" priority="15" />
+      <Item value="_conneciton" priority="0" />
+      <Item value="_module" priority="12" />
+      <Item value="_cvsConnection" priority="0" />
+      <Item value="t0" priority="0" />
+      <Item value="t1" priority="0" />
+      <Item value="_moduleDI" priority="1" />
+      <Item value="moduleFolder" priority="1" />
+      <Item value="sub2" priority="5" />
+      <Item value="dimodule" priority="2" />
+      <Item value="disub2" priority="0" />
+      <Item value="Rhino.Mocks" priority="0" />
+      <Item value="_fileReceiver" priority="2" />
+      <Item value="Collections" priority="0" />
+      <Item value="Generic" priority="0" />
+      <Item value="List&lt;ICVSItem&gt;" priority="1" />
+      <Item value="IEnumerable" priority="3" />
+      <Item value="sub22" priority="0" />
+      <Item value="sub3" priority="5" />
+      <Item value="file1" priority="2" />
+      <Item value="file2" priority="1" />
+      <Item value="file3" priority="1" />
+      <Item value="WriteToDisk" priority="0" />
+      <Item value="Configuration" priority="10" />
+      <Item value="ConfigurationManager" priority="5" />
+      <Item value="TestConfig" priority="37" />
+      <Item value="cvsConnection" priority="2" />
+      <Item value="_path" priority="1" />
+      <Item value="AuthenticateFail" priority="0" />
+      <Item value="_pathname" priority="0" />
+      <Item value="_tagspec" priority="0" />
+      <Item value="XDocument" priority="44" />
+      <Item value="_lines" priority="2" />
+      <Item value="LineCount" priority="2" />
+      <Item value="xdoc" priority="22" />
+      <Item value="ntest" priority="92" />
+      <Item value="SetStaticDirectoryResponse" priority="1" />
+      <Item value="XElement" priority="54" />
+      <Item value="responseLines" priority="0" />
+      <Item value="ResponseLines" priority="9" />
+      <Item value="ChecksumResponse" priority="2" />
+      <Item value="CheckedInResponse" priority="0" />
+      <Item value="fileContents" priority="8" />
+      <Item value="buff" priority="2" />
+      <Item value="Cast" priority="0" />
+      <Item value="XmlSchemaSet" priority="0" />
+      <Item value="schemas" priority="6" />
+      <Item value="ResponseXMLSchema" priority="0" />
+      <Item value="isValid" priority="5" />
+      <Item value="responseFile" priority="0" />
+      <Item value="doc" priority="0" />
+      <Item value="contents" priority="4" />
+      <Item value="xResponse" priority="2" />
+      <Item value="line" priority="7" />
+      <Item value="lineElement" priority="0" />
+      <Item value="responseElement" priority="7" />
+      <Item value="fileElement" priority="1" />
+      <Item value="ResponseFromXElement" priority="0" />
+      <Item value="byteString" priority="0" />
+      <Item value="bytes" priority="2" />
+      <Item value="fileResponse" priority="3" />
+      <Item value="len" priority="2" />
+      <Item value="xml" priority="0" />
+      <Item value="_checkSum" priority="2" />
+      <Item value="CopyFileResponse" priority="0" />
+      <Item value="_originalFileName" priority="1" />
+      <Item value="_newFileName" priority="1" />
+      <Item value="CreatedResponse" priority="1" />
+      <Item value="FlushResponse" priority="1" />
+      <Item value="MbinaryResponse" priority="1" />
+      <Item value="MergedResponse" priority="1" />
+      <Item value="Mode" priority="1" />
+      <Item value="NewEntryResponse" priority="1" />
+      <Item value="asrt" priority="0" />
+      <Item value="NotifiedResponse" priority="1" />
+      <Item value="RepositoryPath" priority="5" />
+      <Item value="PatchedResponse" priority="1" />
+      <Item value="RcsDiffResponse" priority="1" />
+      <Item value="RemovedResponse" priority="1" />
+      <Item value="RemoveEntryResponse" priority="1" />
+      <Item value="SetStaticDirectoryResponseTest" priority="0" />
+      <Item value="SetStickyResponse" priority="3" />
+      <Item value="TemplateResponse" priority="1" />
+      <Item value="UpdateExistingTest" priority="0" />
+      <Item value="UpdateExistingResponse" priority="0" />
+      <Item value="process" priority="2" />
+      <Item value="Pattern" priority="0" />
+      <Item value="Option" priority="1" />
+      <Item value="TestHelper" priority="24" />
+      <Item value="GetResponses" priority="0" />
+      <Item value="responsesElement" priority="5" />
+      <Item value="vrresponse" priority="2" />
+      <Item value="vrrequest" priority="0" />
+      <Item value="corequest" priority="1" />
+      <Item value="XmlTextWriter" priority="1" />
+      <Item value="XmlDocumentType" priority="0" />
+      <Item value="SaveResponsesToXmlFile" priority="0" />
+      <Item value="GetResponsesXmlFile" priority="0" />
+      <Item value="requestElement" priority="5" />
+      <Item value="requestsElement" priority="9" />
+      <Item value="RequestXML" priority="0" />
+      <Item value="RequestLines" priority="31" />
+      <Item value="LineEnd" priority="0" />
+      <Item value="requestName" priority="4" />
+      <Item value="NoArgRequestBase" priority="1" />
+      <Item value="time" priority="0" />
+      <Item value="_entryLine" priority="0" />
+      <Item value="_fileName" priority="0" />
+      <Item value="_filename" priority="0" />
+      <Item value="_mode" priority="0" />
+      <Item value="variableName" priority="0" />
+      <Item value="ResponseToXML" priority="0" />
+      <Item value="TestSetup" priority="0" />
+      <Item value="host" priority="2" />
+      <Item value="username" priority="1" />
+      <Item value="RequestToXML" priority="1" />
+      <Item value="XmlWriter" priority="0" />
+      <Item value="RequestsListToXML" priority="0" />
+      <Item value="Responses" priority="35" />
+      <Item value="RootRequest" priority="1" />
+      <Item value="CommandType" priority="42" />
+      <Item value="XmlSchema" priority="0" />
+      <Item value="e" priority="2" />
+      <Item value="commandElement" priority="6" />
+      <Item value="default" priority="1" />
+      <Item value="ImportCommand" priority="2" />
+      <Item value="LogCommand" priority="1" />
+      <Item value="VersionCommand" priority="3" />
+      <Item value="GetCommandByType" priority="0" />
+      <Item value="Activator" priority="5" />
+      <Item value="myobj" priority="0" />
+      <Item value="type" priority="33" />
+      <Item value="GetResponseClassNameFromType" priority="0" />
+      <Item value="responseName" priority="3" />
+      <Item value="PServerFactory" priority="31" />
+      <Item value="handle" priority="0" />
+      <Item value="ObjectHandle" priority="1" />
+      <Item value="GetType" priority="0" />
+      <Item value="args" priority="0" />
+      <Item value="readonly" priority="2" />
+      <Item value="checkinTime" priority="1" />
+      <Item value="commandName" priority="1" />
+      <Item value="GetCommandClassNameFromType" priority="0" />
+      <Item value="commandType" priority="0" />
+      <Item value="OneArgRequestBase" priority="1" />
+      <Item value="requestType" priority="3" />
+      <Item value="AdminRequest" priority="2" />
+      <Item value="AnnotateRequest" priority="2" />
+      <Item value="CaseRequest" priority="2" />
+      <Item value="CheckInRequest" priority="2" />
+      <Item value="CheckinTimeRequest" priority="1" />
+      <Item value="DiffRequest" priority="2" />
+      <Item value="DirectoryRequest" priority="2" />
+      <Item value="EditorsRequest" priority="2" />
+      <Item value="EmptyConflictsRequest" priority="2" />
+      <Item value="EntryRequest" priority="1" />
+      <Item value="ExpandModulesRequest" priority="2" />
+      <Item value="ExportRequest" priority="7" />
+      <Item value="GlobalOptionRequest" priority="3" />
+      <Item value="GssapiAuthenticateRequest" priority="2" />
+      <Item value="GssapiEncryptRequest" priority="2" />
+      <Item value="GzipFileContentsRequest" priority="2" />
+      <Item value="GzipStreamRequest" priority="1" />
+      <Item value="HistoryRequest" priority="2" />
+      <Item value="ImportRequest" priority="2" />
+      <Item value="InitRequest" priority="0" />
+      <Item value="IsModifiedRequest" priority="0" />
+      <Item value="KerberosEncryptRequest" priority="1" />
+      <Item value="KoptRequest" priority="0" />
+      <Item value="LogRequest" priority="1" />
+      <Item value="LostRequest" priority="0" />
+      <Item value="MaxDotRequest" priority="0" />
+      <Item value="ModifiedRequest" priority="0" />
+      <Item value="NoopRequest" priority="1" />
+      <Item value="NotifyRequest" priority="0" />
+      <Item value="QuestionableRequest" priority="0" />
+      <Item value="RAnnotateRequest" priority="1" />
+      <Item value="RDiffRequest" priority="2" />
+      <Item value="ReleaseRequest" priority="1" />
+      <Item value="RemoveRequest" priority="1" />
+      <Item value="RepositoryRequest" priority="1" />
+      <Item value="RLogRequest" priority="2" />
+      <Item value="RTagRequest" priority="2" />
+      <Item value="SetRequest" priority="0" />
+      <Item value="StaticDirectoryRequest" priority="2" />
+      <Item value="StickyRequest" priority="1" />
+      <Item value="TagRequest" priority="2" />
+      <Item value="UnchangedRequest" priority="0" />
+      <Item value="UpdateRequest" priority="1" />
+      <Item value="UseUnchangedRequest" priority="1" />
+      <Item value="VersionRequest" priority="1" />
+      <Item value="WatchAddRequest" priority="1" />
+      <Item value="WatchersRequest" priority="1" />
+      <Item value="WatchOffRequest" priority="1" />
+      <Item value="WatchOnRequest" priority="1" />
+      <Item value="WatchRemoveRequest" priority="1" />
+      <Item value="WrapperSendmeRcsOptionsRequest" priority="1" />
+      <Item value="requiredRequestsElement" priority="1" />
+      <Item value="linesElements" priority="0" />
+      <Item value="le" priority="0" />
+      <Item value="RequestElementToObject" priority="0" />
+      <Item value="TestStrings" priority="13" />
+      <Item value="GetRequestsFromXML" priority="1" />
+      <Item value="GetResponsesFromXML" priority="0" />
+      <Item value="pattern" priority="1" />
+      <Item value="NameNull" priority="0" />
+      <Item value="GetExportDate" priority="1" />
+      <Item value="dateArg" priority="0" />
+      <Item value="exportDate" priority="2" />
+      <Item value="ExportCommand" priority="1" />
+      <Item value="tag" priority="0" />
+      <Item value="IMessageResponse" priority="17" />
+      <Item value="messageType" priority="5" />
+      <Item value="messageResponse" priority="8" />
+      <Item value="condensed" priority="5" />
+      <Item value="messageLines" priority="1" />
+      <Item value="List&lt;IMessageResponse&gt;" priority="0" />
+      <Item value="CollapseMessagesInResponses" priority="0" />
+      <Item value="messages" priority="4" />
+      <Item value="Double" priority="0" />
+      <Item value="last" priority="0" />
+      <Item value="export" priority="6" />
+      <Item value="display" priority="1" />
+      <Item value="expectedType" priority="1" />
+      <Item value="expectedDisplay" priority="1" />
+      <Item value="ResponseTests" priority="0" />
+      <Item value="lineCount" priority="1" />
+      <Item value="ResponseTest" priority="27" />
+      <Item value="PostProcessRequest" priority="0" />
+      <Item value="newResponses" priority="0" />
+      <Item value="IReceiveFileRequest" priority="0" />
+      <Item value="IFileResponseGroup" priority="6" />
+      <Item value="List&lt;IFileResponseGroup&gt;" priority="1" />
+      <Item value="collecting" priority="0" />
+      <Item value="FileResponseGroup" priority="1" />
+      <Item value="files" priority="3" />
+      <Item value="ResponseProcessorTest" priority="0" />
+      <Item value="processor" priority="11" />
+      <Item value="FileGroups" priority="2" />
+      <Item value="ResponseProcessor" priority="7" />
+      <Item value="Parent" priority="14" />
+      <Item value="IRoot" priority="3" />
+      <Item value="Info" priority="0" />
+      <Item value="rootModuleFolder" priority="14" />
+      <Item value="_moduleFolder" priority="1" />
+      <Item value="CVSModule" priority="0" />
+      <Item value="CVSItemBase" priority="0" />
+      <Item value="project1" priority="3" />
+      <Item value="CVSConnectionString" priority="0" />
+      <Item value="cvsfolder" priority="0" />
+      <Item value="RequestTest" priority="0" />
+      <Item value="nguid" priority="0" />
+      <Item value="mockslocal" priority="0" />
+      <Item value="PServerConnection" priority="6" />
+      <Item value="do" priority="4" />
+      <Item value="_status" priority="4" />
+      <Item value="Processed" priority="1" />
+      <Item value="res1" priority="0" />
+      <Item value="EMessageResponse" priority="1" />
+      <Item value="res2" priority="1" />
+      <Item value="UserMessages" priority="2" />
+      <Item value="errorResponses" priority="0" />
+      <Item value="Lines" priority="1" />
+      <Item value="validRequestResponse" priority="1" />
+      <Item value="gettingFile" priority="2" />
+      <Item value="ProcessMessages" priority="1" />
+      <Item value="GetAllRequestResponses" priority="0" />
+      <Item value="ProcessRequest" priority="0" />
+      <Item value="GetParentFolder" priority="1" />
+      <Item value="returnFolder" priority="16" />
+      <Item value="AddFolderToStructure" priority="1" />
+      <Item value="modules" priority="0" />
+      <Item value="GetModuleFolder" priority="2" />
+      <Item value="newModule" priority="1" />
+      <Item value="_validRequestTypes" priority="1" />
+      <Item value="IResponseListFromResponsesXElement" priority="0" />
+      <Item value="authResponses" priority="0" />
+      <Item value="otherResponses" priority="1" />
+      <Item value="validRequestsResponse" priority="0" />
+      <Item value="error" priority="0" />
+      <Item value="CleanUp" priority="0" />
+      <Item value="addRequest" priority="0" />
+      <Item value="ICommandItem" priority="8" />
+      <Item value="CommandItems" priority="1" />
+      <Item value="List&lt;ICommandItem&gt;" priority="2" />
+      <Item value="Items" priority="4" />
+      <Item value="ProcessResponse" priority="3" />
+      <Item value="mode" priority="0" />
+      <Item value="keys" priority="2" />
+      <Item value="k" priority="2" />
+      <Item value="startingFolder" priority="20" />
+      <Item value="_currentFolder" priority="12" />
+      <Item value="exportTypeRequest" priority="2" />
+      <Item value="StartUp" priority="1" />
+      <Item value="FindModuleFolder" priority="4" />
+      <Item value="sub11" priority="0" />
+      <Item value="subFolders" priority="0" />
+      <Item value="sub12" priority="0" />
+      <Item value="except" priority="1" />
+      <Item value="List&lt;Folder&gt;" priority="0" />
+      <Item value="exceptFolder" priority="2" />
+      <Item value="FindModuleInSubFolders" priority="0" />
+      <Item value="_processor" priority="5" />
+      <Item value="_sub2" priority="1" />
+      <Item value="_rootFolder" priority="5" />
+      <Item value="unProcessed" priority="0" />
+      <Item value="TestFixture" priority="0" />
+      <Item value="EntryTest" priority="0" />
+      <Item value="commandItemsElement" priority="0" />
+      <Item value="itemElement" priority="4" />
+      <Item value="commandItem" priority="0" />
+      <Item value="RequestXElementToIRequest" priority="0" />
+      <Item value="ResponseXElementToIResponse" priority="0" />
+      <Item value="ICommandItemListFromCommandItemsXElement" priority="0" />
+      <Item value="itemsElement" priority="0" />
+      <Item value="recursive" priority="0" />
+      <Item value="RemoveProcessedResponses" priority="1" />
+      <Item value="Save" priority="0" />
+      <Item value="_saveCVSFolder" priority="4" />
+      <Item value="SaveCVSFolder" priority="1" />
+      <Item value="StreamReader" priority="1" />
+      <Item value="fileLines" priority="1" />
+      <Item value="StreamWriter" priority="0" />
+      <Item value="writeLine" priority="1" />
+      <Item value="writeLines" priority="2" />
+      <Item value="readLines" priority="0" />
+      <Item value="EntryLine" priority="5" />
+      <Item value="entries" priority="4" />
+      <Item value="proj" priority="0" />
+      <Item value="newEntryLine" priority="2" />
+      <Item value="mocksusing" priority="1" />
+      <Item value="mocksusinglocal" priority="1" />
+      <Item value="readerWriter" priority="2" />
+      <Item value="lineSeperator" priority="1" />
+      <Item value="chars" priority="2" />
+      <Item value="idx" priority="0" />
+      <Item value="lineFound" priority="1" />
+      <Item value="nsetup" priority="0" />
+      <Item value="dynamicmock" priority="0" />
+      <Item value="TestFixtureTearDown" priority="0" />
+      <Item value="_entries" priority="2" />
+      <Item value="_file1" priority="0" />
+      <Item value="_proj" priority="0" />
+      <Item value="mousing" priority="2" />
+      <Item value="nut" priority="15" />
+      <Item value="hasErrorResponse" priority="0" />
+      <Item value="hasOkResponse" priority="0" />
+      <Item value="mol" priority="0" />
+      <Item value="_bufferSize" priority="9" />
+      <Item value="_buffer" priority="3" />
+      <Item value="_position" priority="12" />
+      <Item value="length" priority="0" />
+      <Item value="ReadFromStream" priority="4" />
+      <Item value="ICVSTcpClient" priority="0" />
+      <Item value="_client" priority="15" />
+      <Item value="CVSTcpClient" priority="1" />
+      <Item value="offset" priority="2" />
+      <Item value="_timeout" priority="1" />
+      <Item value="send" priority="1" />
+      <Item value="_cvsTcpClient" priority="3" />
+      <Item value="_empty" priority="1" />
+      <Item value="readSuccess" priority="1" />
+      <Item value="_lastByte" priority="1" />
+      <Item value="CurrentFolder" priority="0" />
+      <Item value="abstract" priority="0" />
+      <Item value="nus" priority="0" />
+      <Item value="Diagnostics" priority="2" />
+      <Item value="Process" priority="3" />
+      <Item value="ProcessStartInfo" priority="2" />
+      <Item value="ProcessWindowStyle" priority="0" />
+      <Item value="TagCommandTest" priority="0" />
+      <Item value="TagCommand" priority="0" />
+      <Item value="bbb" priority="0" />
+      <Item value="DeleteTag" priority="0" />
+      <Item value="RTagCommand" priority="0" />
+      <Item value="ExportType" priority="2" />
+      <Item value="arg" priority="1" />
+      <Item value="ExportDate" priority="0" />
+      <Item value="Tag" priority="0" />
+      <Item value="exportRequest" priority="0" />
+      <Item value="DoBranch" priority="1" />
+      <Item value="target" priority="0" />
+      <Item value="DoDelete" priority="0" />
+      <Item value="TagAction" priority="4" />
+      <Item value="Initialize" priority="0" />
+      <Item value="GlobalOptions" priority="1" />
+      <Item value="CommandOptions" priority="1" />
+      <Item value="CommandOption" priority="8" />
+      <Item value="GlobalOption" priority="11" />
+      <Item value="option" priority="3" />
+      <Item value="NameOnlyOption" priority="0" />
+      <Item value="LocalOption" priority="0" />
+      <Item value="Repository" priority="1" />
+      <Item value="GetPathRequestString" priority="0" />
+      <Item value="modFolder" priority="0" />
+      <Item value="AddCommand" priority="1" />
+      <Item value="_checkoutModule" priority="2" />
+      <Item value="CheckoutModule" priority="2" />
+      <Item value="CheckOutCommand" priority="3" />
+      <Item value="_cmdbase" priority="10" />
+      <Item value="MTMessageResponse" priority="0" />
+      <Item value="mody" priority="3" />
+      <Item value="appSettings" priority="0" />
+      <Item value="mresponse" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Rhino.Mocks.MockRepository">
+      <Item value="DynamicMock" priority="26" />
+      <Item value="ReplayAll" priority="8" />
+      <Item value="VerifyAll" priority="9" />
+      <Item value="Record" priority="0" />
+      <Item value="Playback" priority="0" />
+      <Item value="Stub" priority="3" />
+      <Item value="PartialMock" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.VerifyAuthCommand">
+      <Item value="Execute" priority="2" />
+      <Item value="AuthRequest" priority="2" />
+      <Item value="Connection" priority="0" />
+      <Item value="Authenticate" priority="1" />
+      <Item value="AuthStatus" priority="3" />
+      <Item value="Requests" priority="2" />
+      <Item value="ErrorMessage" priority="0" />
+      <Item value="UserMessages" priority="1" />
+      <Item value="Initialize" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Rhino.Mocks.Expect">
+      <Item value="Call" priority="72" />
+      <Item value="ctx" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Connection.IConnection">
+      <Item value="DoRequest" priority="5" />
+      <Item value="Connect" priority="4" />
+      <Item value="Close" priority="4" />
+      <Item value="GetResponse" priority="12" />
+      <Item value="GetAllResponses" priority="6" />
+      <Item value="TcpClient" priority="0" />
+      <Item value="GetFileResponseContents" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Rhino.Mocks.Interfaces.IMethodOptions`1">
+      <Item value="IgnoreArguments" priority="18" />
+      <Item value="Constraints" priority="14" />
+      <Item value="Return" priority="37" />
+      <Item value="Repeat" priority="28" />
+      <Item value="ToString" priority="0" />
+      <Item value="PropertyBehavior" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.Framework.Is">
+      <Item value="TypeOf" priority="1" />
+      <Item value="EqualTo" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Rhino.Mocks.Constraints.Is">
+      <Item value="TypeOf" priority="1" />
+      <Item value="Equal" priority="4" />
+      <Item value="Anything" priority="7" />
+      <Item value="Same" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.IAuthRequest">
+      <Item value="Response" priority="4" />
+      <Item value="AuthResponse" priority="0" />
+      <Item value="Status" priority="0" />
+      <Item value="RequestType" priority="1" />
+      <Item value="Type" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.IAuthResponse">
+      <Item value="Status" priority="1" />
+      <Item value="ErrorMessage" priority="3" />
+      <Item value="ProcessResponse" priority="0" />
+      <Item value="Success" priority="2" />
+      <Item value="Lines" priority="0" />
+      <Item value="Processed" priority="1" />
+      <Item value="Initialize" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Rhino.Mocks.Interfaces.IRepeat`1">
+      <Item value="Never" priority="5" />
+      <Item value="Once" priority="12" />
+      <Item value="Twice" priority="2" />
+      <Item value="Any" priority="2" />
+      <Item value="Times" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.AuthStatus">
+      <Item value="Authenticated" priority="5" />
+      <Item value="NotAuthenticated" priority="1" />
+      <Item value="Error" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="UnscramblePassword" priority="1" />
+      <Item value="Contains" priority="0" />
+      <Item value="Split" priority="7" />
+      <Item value="Length" priority="4" />
+      <Item value="ConvertRfc822ToDateTime" priority="1" />
+      <Item value="Encode" priority="13" />
+      <Item value="Count" priority="0" />
+      <Item value="Rfc822ToDateTime" priority="0" />
+      <Item value="EntryToDateTimeFormat" priority="1" />
+      <Item value="Substring" priority="2" />
+      <Item value="StartsWith" priority="4" />
+      <Item value="ScramblePassword" priority="0" />
+      <Item value="TrimStart" priority="0" />
+      <Item value="Remove" priority="0" />
+      <Item value="Replace" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.Framework.Assert">
+      <Item value="AreEqual" priority="158" />
+      <Item value="IsTrue" priority="53" />
+      <Item value="IsNotNull" priority="9" />
+      <Item value="IsInstanceOf" priority="15" />
+      <Item value="IsFalse" priority="9" />
+      <Item value="Fail" priority="8" />
+      <Item value="ReferenceEquals" priority="0" />
+      <Item value="IsNull" priority="2" />
+      <Item value="AreSame" priority="6" />
+      <Item value="IsEmpty" priority="0" />
+      <Item value="Inconclusive" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CvsRoot">
+      <Item value="Host" priority="1" />
+      <Item value="Port" priority="1" />
+      <Item value="Username" priority="1" />
+      <Item value="Password" priority="2" />
+      <Item value="Root" priority="0" />
+      <Item value="WorkingDirectory" priority="7" />
+      <Item value="Module" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="First" priority="30" />
+      <Item value="Count" priority="7" />
+      <Item value="Join" priority="0" />
+      <Item value="ToArray" priority="6" />
+      <Item value="Select" priority="6" />
+      <Item value="Except" priority="0" />
+      <Item value="Where" priority="2" />
+      <Item value="FirstOrDefault" priority="1" />
+      <Item value="Elements" priority="0" />
+      <Item value="from" priority="0" />
+      <Item value="ToList" priority="10" />
+      <Item value="ElementAt" priority="0" />
+      <Item value="Cast" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IList`1">
+      <Item value="Add" priority="105" />
+      <Item value="OfType" priority="17" />
+      <Item value="Count" priority="39" />
+      <Item value="Remove" priority="4" />
+      <Item value="Where" priority="19" />
+      <Item value="Clear" priority="10" />
+      <Item value="Contains" priority="0" />
+      <Item value="ToArray" priority="1" />
+      <Item value="GetEnumerator" priority="0" />
+      <Item value="ctx" priority="1" />
+      <Item value="Union" priority="2" />
+      <Item value="Except" priority="1" />
+      <Item value="RemoveAt" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.IRequest">
+      <Item value="Response" priority="7" />
+      <Item value="GetRequestString" priority="0" />
+      <Item value="SetResponseString" priority="0" />
+      <Item value="GetResponse" priority="0" />
+      <Item value="RequestType" priority="23" />
+      <Item value="ResponseExpected" priority="5" />
+      <Item value="Responses" priority="17" />
+      <Item value="RequestLines" priority="3" />
+      <Item value="Type" priority="0" />
+      <Item value="GetXElement" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.IResponse">
+      <Item value="Success" priority="6" />
+      <Item value="ProcessResponse" priority="7" />
+      <Item value="ErrorMessage" priority="0" />
+      <Item value="ResponseString" priority="0" />
+      <Item value="ResponseType" priority="17" />
+      <Item value="ResponseText" priority="2" />
+      <Item value="DisplayResponse" priority="2" />
+      <Item value="ToXML" priority="0" />
+      <Item value="GetXElement" priority="1" />
+      <Item value="GetType" priority="6" />
+      <Item value="Lines" priority="6" />
+      <Item value="Display" priority="2" />
+      <Item value="ToString" priority="0" />
+      <Item value="Type" priority="5" />
+      <Item value="Process" priority="8" />
+      <Item value="Initialize" priority="3" />
+      <Item value="Processed" priority="9" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Empty" priority="18" />
+      <Item value="Format" priority="23" />
+      <Item value="Join" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Environment">
+      <Item value="NewLine" priority="2" />
+      <Item value="CurrentDirectory" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.ValidRequestsListCommand">
+      <Item value="Requests" priority="5" />
+      <Item value="Execute" priority="1" />
+      <Item value="Connection" priority="0" />
+      <Item value="RequestList" priority="0" />
+      <Item value="ErrorMessage" priority="1" />
+      <Item value="ValidRequestTypes" priority="4" />
+      <Item value="AllRequestsAreValid" priority="1" />
+      <Item value="ExecuteRequiredRequests" priority="1" />
+      <Item value="RequiredRequests" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="WriteLine" priority="30" />
+      <Item value="Write" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ValidRequestResponse">
+      <Item value="ValidRequests" priority="1" />
+      <Item value="ValidRequestTypes" priority="1" />
+      <Item value="LineCount" priority="0" />
+      <Item value="ProcessResponse" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Array">
+      <Item value="Copy" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ResponseFactory">
+      <Item value="CreateResponse" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Text.RegularExpressions.Regex">
+      <Item value="Match" priority="8" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Responses.ResponseFactory+CreateResponseHelper">
+      <Item value="ResponsePatterns" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.RegularExpressions.Match">
+      <Item value="Success" priority="8" />
+      <Item value="GetType" priority="0" />
+      <Item value="Groups" priority="18" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Responses.ResponseType">
+      <Item value="UnknownResponse" priority="1" />
+      <Item value="OkResponse" priority="0" />
+      <Item value="ErrorResponse" priority="0" />
+      <Item value="MessageResponse" priority="0" />
+      <Item value="ValidRequestsResponse" priority="0" />
+      <Item value="CheckedInResponse" priority="0" />
+      <Item value="NewEntryResponse" priority="0" />
+      <Item value="Error" priority="2" />
+      <Item value="Updated" priority="2" />
+      <Item value="Ok" priority="5" />
+      <Item value="ValidRequests" priority="1" />
+      <Item value="CheckedIn" priority="1" />
+      <Item value="NewEntry" priority="1" />
+      <Item value="Created" priority="0" />
+      <Item value="Merged" priority="1" />
+      <Item value="ModTime" priority="4" />
+      <Item value="Removed" priority="0" />
+      <Item value="SetStaticDirectory" priority="1" />
+      <Item value="ClearStaticDirectory" priority="1" />
+      <Item value="SetSticky" priority="1" />
+      <Item value="ClearSticky" priority="1" />
+      <Item value="ModuleExpansion" priority="1" />
+      <Item value="Message" priority="3" />
+      <Item value="EMessage" priority="2" />
+      <Item value="MessageTag" priority="6" />
+      <Item value="Auth" priority="0" />
+      <Item value="CheckSum" priority="0" />
+      <Item value="CopyFile" priority="0" />
+      <Item value="Mbinary" priority="0" />
+      <Item value="Mode" priority="0" />
+      <Item value="Notified" priority="0" />
+      <Item value="Unknown" priority="0" />
+      <Item value="RcsDiff" priority="0" />
+      <Item value="RemoveEntry" priority="0" />
+      <Item value="UpdateExisting" priority="0" />
+      <Item value="WrapperRscOption" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.StringSplitOptions">
+      <Item value="RemoveEmptyEntries" priority="7" />
+      <Item value="None" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Path">
+      <Item value="ChangeExtension" priority="0" />
+      <Item value="Combine" priority="12" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.ICvsItem">
+      <Item value="Item" priority="9" />
+      <Item value="ItemType" priority="10" />
+      <Item value="Version" priority="0" />
+      <Item value="ModTime" priority="2" />
+      <Item value="Properties" priority="0" />
+      <Item value="Revision" priority="0" />
+      <Item value="StickyOption" priority="0" />
+      <Item value="Name" priority="2" />
+      <Item value="ChildItems" priority="6" />
+      <Item value="FileContents" priority="3" />
+      <Item value="Write" priority="8" />
+      <Item value="CreateIterator" priority="0" />
+      <Item value="AddItem" priority="4" />
+      <Item value="Length" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.FileSystemInfo">
+      <Item value="FullName" priority="12" />
+      <Item value="Exists" priority="14" />
+      <Item value="Delete" priority="0" />
+      <Item value="Refresh" priority="0" />
+      <Item value="Name" priority="7" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.DirectoryInfo">
+      <Item value="FullName" priority="13" />
+      <Item value="Exists" priority="6" />
+      <Item value="Create" priority="3" />
+      <Item value="Delete" priority="2" />
+      <Item value="Refresh" priority="4" />
+      <Item value="Parent" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.FileInfo">
+      <Item value="Open" priority="2" />
+      <Item value="Length" priority="1" />
+      <Item value="Exists" priority="5" />
+      <Item value="FullName" priority="6" />
+      <Item value="Delete" priority="1" />
+      <Item value="Replace" priority="0" />
+      <Item value="Create" priority="0" />
+      <Item value="OpenWrite" priority="2" />
+      <Item value="OpenRead" priority="2" />
+      <Item value="OpenText" priority="5" />
+      <Item value="CreateText" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileMode">
+      <Item value="Open" priority="1" />
+      <Item value="OpenOrCreate" priority="1" />
+      <Item value="CreateNew" priority="0" />
+      <Item value="Create" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.FileStream">
+      <Item value="Read" priority="0" />
+      <Item value="Close" priority="3" />
+      <Item value="Write" priority="1" />
+      <Item value="Flush" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.PServerHelper">
+      <Item value="DecodeString" priority="0" />
+      <Item value="EncodeString" priority="1" />
+      <Item value="StringToEnum" priority="3" />
+      <Item value="ToEntryDateTimeString" priority="0" />
+      <Item value="GetUpdatedFnamePathFile" priority="1" />
+      <Item value="CreateModuleFolderStructure" priority="2" />
+      <Item value="IsTestMode" priority="8" />
+      <Item value="GetRootModuleFolderPath" priority="0" />
+      <Item value="GetEntryFilenameRegex" priority="0" />
+      <Item value="GlobalOptions" priority="0" />
+      <Item value="GetGlobalOptionString" priority="0" />
+      <Item value="GetCommandOptionString" priority="0" />
+      <Item value="ToRequestString" priority="0" />
+      <Item value="UnixLineEnd" priority="0" />
+      <Item value="WindowsLineEnd" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Directory">
+      <Item value="CreateDirectory" priority="1" />
+      <Item value="Exists" priority="3" />
+      <Item value="Delete" priority="0" />
+      <Item value="GetParent" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.LocalFileSystem.ReaderWriter">
+      <Item value="Current" priority="21" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.IReaderWriter">
+      <Item value="ReadFile" priority="4" />
+      <Item value="WriteFile" priority="6" />
+      <Item value="CreateDirectory" priority="7" />
+      <Item value="FileExists" priority="0" />
+      <Item value="ReadFileLines" priority="3" />
+      <Item value="WriteFileLines" priority="7" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.ReaderWriter">
+      <Item value="CreateDirectory" priority="0" />
+      <Item value="DirectoryExists" priority="1" />
+      <Item value="FileExists" priority="0" />
+      <Item value="Exists" priority="3" />
+      <Item value="WriteFile" priority="0" />
+      <Item value="ReadFile" priority="0" />
+      <Item value="Delete" priority="1" />
+      <Item value="ReadFileLines" priority="0" />
+      <Item value="WriteFileLines" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DateTime">
+      <Item value="Parse" priority="8" />
+      <Item value="Now" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.DateTime">
+      <Item value="ConvertDateTimeToRfc822String" priority="1" />
+      <Item value="ToString" priority="2" />
+      <Item value="Day" priority="0" />
+      <Item value="ToEntryFileDateTimeFormat" priority="1" />
+      <Item value="AddHours" priority="0" />
+      <Item value="ToEntryDateTimeString" priority="0" />
+      <Item value="Year" priority="0" />
+      <Item value="ToUniversalTime" priority="0" />
+      <Item value="ToRfc822" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.AuthRequestBase">
+      <Item value="GetRequestString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.CvsFolder">
+      <Item value="Directory" priority="1" />
+      <Item value="RootFile" priority="0" />
+      <Item value="RepositoryFile" priority="0" />
+      <Item value="Equals" priority="0" />
+      <Item value="GetRootString" priority="1" />
+      <Item value="WriteRootFile" priority="0" />
+      <Item value="WriteRepositoryFile" priority="0" />
+      <Item value="GetRepositoryString" priority="0" />
+      <Item value="GetItems" priority="0" />
+      <Item value="SaveEntriesFile" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileAccess">
+      <Item value="Write" priority="1" />
+      <Item value="ReadWrite" priority="0" />
+      <Item value="Read" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.TextReader">
+      <Item value="ReadLine" priority="4" />
+      <Item value="Close" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.TextWriter">
+      <Item value="WriteLine" priority="3" />
+      <Item value="Flush" priority="2" />
+      <Item value="Close" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.RegularExpressions.Group">
+      <Item value="ToString" priority="15" />
+      <Item value="Value" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.Entry">
+      <Item value="Version" priority="0" />
+      <Item value="ModTime" priority="1" />
+      <Item value="Revision" priority="0" />
+      <Item value="StickyOption" priority="0" />
+      <Item value="Length" priority="0" />
+      <Item value="Properties" priority="0" />
+      <Item value="FileContents" priority="0" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.LocalFileSystem.CvsItemType">
+      <Item value="Entry" priority="0" />
+      <Item value="Folder" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Convert">
+      <Item value="ToInt32" priority="6" />
+      <Item value="ToInt64" priority="1" />
+      <Item value="ToByte" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Type">
+      <Item value="GetFields" priority="0" />
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Reflection.FieldInfo">
+      <Item value="GetValue" priority="0" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DayOfWeek">
+      <Item value="Saturday" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.MonthName">
+      <Item value="Dec" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Rhino.Mocks.Constraints.List">
+      <Item value="Element" priority="3" />
+      <Item value="Count" priority="3" />
+      <Item value="ContainsAll" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Rhino.Mocks.Constraints.Property">
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Rhino.Mocks.Constraints.Text">
+      <Item value="StartsWith" priority="5" />
+      <Item value="Contains" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.ResponseHelper">
+      <Item value="GetFileNameFromUpdatedLine" priority="1" />
+      <Item value="GetRevisionFromUpdatedLine" priority="2" />
+      <Item value="ResponseNames" priority="2" />
+      <Item value="FileContentsToByteArrayString" priority="1" />
+      <Item value="ValidateResponseXML" priority="4" />
+      <Item value="ResponseFromXElement" priority="0" />
+      <Item value="ResponsesFromXML" priority="0" />
+      <Item value="ResponsePatterns" priority="1" />
+      <Item value="CollapseMessagesInResponses" priority="5" />
+      <Item value="FixResponseModuleSlashes" priority="2" />
+      <Item value="GetLastModuleName" priority="1" />
+      <Item value="GetFileNameFromEntryLine" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.IFileResponse">
+      <Item value="File" priority="5" />
+      <Item value="Module" priority="0" />
+      <Item value="EntryLine" priority="0" />
+      <Item value="Contents" priority="0" />
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ReceiveFile">
+      <Item value="FileContents" priority="3" />
+      <Item value="FileLength" priority="2" />
+      <Item value="CvsPath" priority="1" />
+      <Item value="FileName" priority="1" />
+      <Item value="Revision" priority="1" />
+      <Item value="Path" priority="0" />
+      <Item value="Properties" priority="0" />
+      <Item value="Length" priority="2" />
+      <Item value="Contents" priority="2" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ResponseType">
+      <Item value="Unknown" priority="0" />
+      <Item value="ToString" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.UpdatedResponse">
+      <Item value="File" priority="7" />
+      <Item value="ProcessResponse" priority="0" />
+      <Item value="Processed" priority="0" />
+      <Item value="Process" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.CheckoutCommand">
+      <Item value="Requests" priority="3" />
+      <Item value="PostExecute" priority="0" />
+      <Item value="ReadMTStyleResponses" priority="0" />
+      <Item value="GetResponses" priority="0" />
+      <Item value="ResponsesXML" priority="0" />
+      <Item value="RequiredRequests" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.RequestType">
+      <Item value="Add" priority="0" />
+      <Item value="CheckIn" priority="0" />
+      <Item value="CheckinTime" priority="0" />
+      <Item value="CheckOut" priority="0" />
+      <Item value="Diff" priority="0" />
+      <Item value="Editors" priority="0" />
+      <Item value="EmptyConflicts" priority="0" />
+      <Item value="Entry" priority="0" />
+      <Item value="ExpandModules" priority="0" />
+      <Item value="GlobalOption" priority="0" />
+      <Item value="GssapiAuthenticate" priority="0" />
+      <Item value="GssapiEncrypt" priority="0" />
+      <Item value="GzipFileContents" priority="0" />
+      <Item value="GzipStream" priority="0" />
+      <Item value="History" priority="0" />
+      <Item value="Import" priority="0" />
+      <Item value="Init" priority="0" />
+      <Item value="IsModified" priority="0" />
+      <Item value="KerberosEncrypt" priority="0" />
+      <Item value="Kopt" priority="0" />
+      <Item value="MaxDot" priority="0" />
+      <Item value="Modified" priority="0" />
+      <Item value="Notify" priority="1" />
+      <Item value="Questionable" priority="0" />
+      <Item value="Rannotate" priority="0" />
+      <Item value="RDiff" priority="0" />
+      <Item value="Release" priority="0" />
+      <Item value="Remove" priority="0" />
+      <Item value="Repository" priority="0" />
+      <Item value="RLog" priority="0" />
+      <Item value="Root" priority="0" />
+      <Item value="RTag" priority="0" />
+      <Item value="Status" priority="0" />
+      <Item value="Sticky" priority="0" />
+      <Item value="Tag" priority="0" />
+      <Item value="Unchanged" priority="0" />
+      <Item value="UpdatePatches" priority="0" />
+      <Item value="Update" priority="0" />
+      <Item value="UseUnchanged" priority="0" />
+      <Item value="ValidRequests" priority="0" />
+      <Item value="ValidResponses" priority="0" />
+      <Item value="VerifyAuth" priority="0" />
+      <Item value="Version" priority="0" />
+      <Item value="WatchAdd" priority="0" />
+      <Item value="Watchers" priority="0" />
+      <Item value="WatchOff" priority="0" />
+      <Item value="WatchRemove" priority="1" />
+      <Item value="WrapperSendmercsOptions" priority="0" />
+      <Item value="ToString" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Requests.RequestType">
+      <Item value="Auth" priority="10" />
+      <Item value="Admin" priority="1" />
+      <Item value="Annotate" priority="1" />
+      <Item value="Argument" priority="2" />
+      <Item value="Argumentx" priority="1" />
+      <Item value="Case" priority="1" />
+      <Item value="CheckIn" priority="3" />
+      <Item value="CheckinTime" priority="0" />
+      <Item value="CheckOut" priority="4" />
+      <Item value="Directory" priority="1" />
+      <Item value="Editors" priority="0" />
+      <Item value="EmptyConflicts" priority="0" />
+      <Item value="Export" priority="2" />
+      <Item value="ExpandModules" priority="0" />
+      <Item value="GlobalOption" priority="2" />
+      <Item value="GssapiAuthenticate" priority="0" />
+      <Item value="GssapiEncrypt" priority="0" />
+      <Item value="GzipFileContents" priority="0" />
+      <Item value="GzipStream" priority="0" />
+      <Item value="History" priority="0" />
+      <Item value="Import" priority="0" />
+      <Item value="Init" priority="0" />
+      <Item value="IsModified" priority="1" />
+      <Item value="KerberosEncrypt" priority="0" />
+      <Item value="Kopt" priority="0" />
+      <Item value="Lost" priority="0" />
+      <Item value="MaxDot" priority="0" />
+      <Item value="Modified" priority="1" />
+      <Item value="Notify" priority="1" />
+      <Item value="Questionable" priority="0" />
+      <Item value="Rannotate" priority="0" />
+      <Item value="RDiff" priority="0" />
+      <Item value="Release" priority="0" />
+      <Item value="Remove" priority="0" />
+      <Item value="Repository" priority="0" />
+      <Item value="RLog" priority="0" />
+      <Item value="Root" priority="0" />
+      <Item value="RTag" priority="0" />
+      <Item value="Sticky" priority="1" />
+      <Item value="Status" priority="0" />
+      <Item value="Unchanged" priority="0" />
+      <Item value="Update" priority="2" />
+      <Item value="UpdatePatches" priority="0" />
+      <Item value="UseUnchanged" priority="0" />
+      <Item value="ValidRequests" priority="3" />
+      <Item value="ValidResponses" priority="0" />
+      <Item value="Version" priority="0" />
+      <Item value="WatchAdd" priority="0" />
+      <Item value="Watchers" priority="0" />
+      <Item value="WatchOff" priority="0" />
+      <Item value="WatchOn" priority="0" />
+      <Item value="WatchRemove" priority="1" />
+      <Item value="WrapperSendmercsOptions" priority="0" />
+      <Item value="VerifyAuth" priority="6" />
+      <Item value="Add" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.ICommand">
+      <Item value="Requests" priority="6" />
+      <Item value="ResponsesXML" priority="0" />
+      <Item value="RequiredRequests" priority="6" />
+      <Item value="CommandType" priority="1" />
+      <Item value="ExitCode" priority="0" />
+      <Item value="GetXDocument" priority="0" />
+      <Item value="Responses" priority="2" />
+      <Item value="Items" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Commands.ExitCode">
+      <Item value="Failed" priority="2" />
+      <Item value="Succeeded" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.ExitCode">
+      <Item value="Succeeded" priority="3" />
+      <Item value="Failed" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.RequestHelper">
+      <Item value="RequestNames" priority="4" />
+      <Item value="GetValidResponsesString" priority="1" />
+      <Item value="ValidResponses" priority="1" />
+      <Item value="RequestListToRequestTypes" priority="0" />
+      <Item value="RequestsToRequestTypes" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.ValidRequestsRequest">
+      <Item value="Responses" priority="1" />
+      <Item value="GetRequestString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ModTimeResponse">
+      <Item value="ModTime" priority="3" />
+      <Item value="ProcessResponse" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.StringBuilder">
+      <Item value="Append" priority="10" />
+      <Item value="ToString" priority="6" />
+      <Item value="Length" priority="3" />
+      <Item value="Remove" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Responses.Messages.MessageType">
+      <Item value="Updated" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.MessageTagResponse">
+      <Item value="Message" priority="6" />
+      <Item value="DisplayResponse" priority="0" />
+      <Item value="ProcessResponse" priority="0" />
+      <Item value="Process" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Responses.Messages.MessageHelper">
+      <Item value="GetUpdatedFnamePathFile" priority="0" />
+      <Item value="GetMUPathFile" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.Messages.UpdatedMessage">
+      <Item value="Path" priority="1" />
+      <Item value="FileName" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.Messages.MessageFactory">
+      <Item value="ProcessMessageResponses" priority="4" />
+      <Item value="GroupMTResponses" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.MessageResponse">
+      <Item value="Message" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.CvsItemFactory">
+      <Item value="CreateEntry" priority="1" />
+      <Item value="CreateFolderStructure" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ClearStickyResponse">
+      <Item value="CvsDirectory" priority="0" />
+      <Item value="LineCount" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.CheckOutRequest">
+      <Item value="Responses" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.LocalFileSystem.Folder">
+      <Item value="Name" priority="2" />
+      <Item value="ChildItems" priority="9" />
+      <Item value="CreateIterator" priority="1" />
+      <Item value="ItemType" priority="3" />
+      <Item value="Item" priority="1" />
+      <Item value="AddItem" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.IEnumerator">
+      <Item value="MoveNext" priority="0" />
+      <Item value="Current" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.CvsServerFileReceiver">
+      <Item value="AddNewEntry" priority="0" />
+      <Item value="ReceiveMTStyleResponses" priority="0" />
+      <Item value="ProcessCheckoutResponses" priority="0" />
+      <Item value="SaveFolder" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerator`1">
+      <Item value="MoveNext" priority="1" />
+      <Item value="Current" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.LocalFileSystem.ItemType">
+      <Item value="Folder" priority="4" />
+      <Item value="Entry" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.File">
+      <Item value="Exists" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.ICVSItem">
+      <Item value="CvsFolder" priority="2" />
+      <Item value="Item" priority="0" />
+      <Item value="Name" priority="3" />
+      <Item value="AddItem" priority="1" />
+      <Item value="Repository" priority="0" />
+      <Item value="Save" priority="0" />
+      <Item value="EntryLine" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.CVSFolder">
+      <Item value="GetRepositoryString" priority="0" />
+      <Item value="GetRootString" priority="1" />
+      <Item value="CVSDirectory" priority="3" />
+      <Item value="RootFile" priority="3" />
+      <Item value="Equals" priority="0" />
+      <Item value="EntriesFile" priority="2" />
+      <Item value="RepositoryFile" priority="3" />
+      <Item value="WriteRootFile" priority="1" />
+      <Item value="ReadRepositoryFile" priority="0" />
+      <Item value="WriteRepositoryFile" priority="1" />
+      <Item value="SaveCVSFolder" priority="0" />
+      <Item value="WriteEntries" priority="1" />
+      <Item value="WriteEntry" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.Root">
+      <Item value="CvsConnectionString" priority="2" />
+      <Item value="WorkingDirectory" priority="3" />
+      <Item value="ModuleFolder" priority="24" />
+      <Item value="Module" priority="4" />
+      <Item value="RepositoryPath" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.Folder">
+      <Item value="Name" priority="1" />
+      <Item value="Item" priority="3" />
+      <Item value="FileContents" priority="0" />
+      <Item value="AddItem" priority="4" />
+      <Item value="ChildItems" priority="2" />
+      <Item value="Count" priority="5" />
+      <Item value="Info" priority="10" />
+      <Item value="Parent" priority="12" />
+      <Item value="Repository" priority="3" />
+      <Item value="CVSModule" priority="1" />
+      <Item value="CVSConnectionString" priority="3" />
+      <Item value="CvsFolder" priority="0" />
+      <Item value="Module" priority="11" />
+      <Item value="GetSubFolders" priority="0" />
+      <Item value="GetRoot" priority="0" />
+      <Item value="GetRootFolder" priority="2" />
+      <Item value="Equals" priority="0" />
+      <Item value="Save" priority="1" />
+      <Item value="CVSFolder" priority="1" />
+      <Item value="SaveCVSFolder" priority="5" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.ServerFileReceiver">
+      <Item value="SaveFolder" priority="0" />
+      <Item value="WriteToDisk" priority="1" />
+      <Item value="ProcessCheckoutResponses" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.Entry">
+      <Item value="Name" priority="0" />
+      <Item value="Info" priority="8" />
+      <Item value="FileContents" priority="0" />
+      <Item value="Revision" priority="1" />
+      <Item value="EntryLine" priority="6" />
+      <Item value="Parent" priority="1" />
+      <Item value="Save" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Configuration.ConfigurationManager">
+      <Item value="AppSettings" priority="19" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.IntegrationTests.TestConfig">
+      <Item value="CVSHost" priority="0" />
+      <Item value="CVSPort" priority="0" />
+      <Item value="Username" priority="0" />
+      <Item value="PasswordScrambled" priority="0" />
+      <Item value="RepositoryPath" priority="0" />
+      <Item value="WorkingDirectory" priority="0" />
+      <Item value="ModuleName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.SetStaticDirectoryResponse">
+      <Item value="ProcessResponse" priority="0" />
+      <Item value="ToXML" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Linq.XDocument">
+      <Item value="Elements" priority="1" />
+      <Item value="Descendants" priority="1" />
+      <Item value="Validate" priority="1" />
+      <Item value="ToString" priority="4" />
+      <Item value="Element" priority="2" />
+      <Item value="Add" priority="0" />
+      <Item value="AddFirst" priority="0" />
+      <Item value="Save" priority="1" />
+      <Item value="FirstNode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Linq.XElement">
+      <Item value="Add" priority="9" />
+      <Item value="Elements" priority="5" />
+      <Item value="Element" priority="9" />
+      <Item value="Value" priority="6" />
+      <Item value="Descendants" priority="0" />
+      <Item value="Nodes" priority="3" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ResponseBase">
+      <Item value="ProcessResponse" priority="11" />
+      <Item value="ToXML" priority="0" />
+      <Item value="Process" priority="12" />
+      <Item value="Initialize" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.AuthResponse">
+      <Item value="ProcessResponse" priority="1" />
+      <Item value="LineCount" priority="0" />
+      <Item value="ResponseType" priority="0" />
+      <Item value="DisplayResponse" priority="0" />
+      <Item value="ToXML" priority="0" />
+      <Item value="Processed" priority="1" />
+      <Item value="Status" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.CheckedInResponse">
+      <Item value="LineCount" priority="0" />
+      <Item value="File" priority="0" />
+      <Item value="ResponseType" priority="0" />
+      <Item value="DisplayResponse" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Int64">
+      <Item value="ToString" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Byte">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Schema.XmlSchemaSet">
+      <Item value="Add" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Xml.Linq.XDocument">
+      <Item value="Parse" priority="7" />
+      <Item value="Load" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Xml.Linq.XElement">
+      <Item value="Parse" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ChecksumResponse">
+      <Item value="LineCount" priority="0" />
+      <Item value="ProcessResponse" priority="0" />
+      <Item value="ToXML" priority="0" />
+      <Item value="ResponseType" priority="0" />
+      <Item value="DisplayResponse" priority="0" />
+      <Item value="CheckSum" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ClearStaticDirectoryResponse">
+      <Item value="ModuleName" priority="0" />
+      <Item value="CvsDirectory" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.CopyFileResponse">
+      <Item value="LineCount" priority="0" />
+      <Item value="OriginalFileName" priority="0" />
+      <Item value="NewfileName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.CreatedResponse">
+      <Item value="LineCount" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ErrorResponse">
+      <Item value="ErrorMessage" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ModeResponse">
+      <Item value="Mode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ModuleExpansionResponse">
+      <Item value="ModuleName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.NewEntryResponse">
+      <Item value="FileName" priority="0" />
+      <Item value="Revision" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.NotifiedResponse">
+      <Item value="RepositoryPath" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.NullResponse">
+      <Item value="DisplayResponse" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Text.Encoding">
+      <Item value="UTF8" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.IntegrationTests.TestHelper">
+      <Item value="SaveResponsesToFile" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Tests.TestHelper">
+      <Item value="ResponseXML" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.RequestBase">
+      <Item value="GetRequestString" priority="0" />
+      <Item value="CollapseResponses" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Tests.TestSetup.TestConfig">
+      <Item value="CVSHost" priority="5" />
+      <Item value="CVSPort" priority="4" />
+      <Item value="Username" priority="4" />
+      <Item value="PasswordScrambled" priority="1" />
+      <Item value="RepositoryPath" priority="4" />
+      <Item value="Password" priority="2" />
+      <Item value="WorkingDirectory" priority="5" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Tests.TestSetup.TestHelper">
+      <Item value="RequestToXML" priority="1" />
+      <Item value="ValidateRequestXML" priority="2" />
+      <Item value="CommandRequestsToXML" priority="1" />
+      <Item value="ValidateXML" priority="1" />
+      <Item value="GetMockCheckoutResponses" priority="0" />
+      <Item value="SaveCommandConversation" priority="0" />
+      <Item value="ValidateResponseXML" priority="1" />
+      <Item value="ValidateCommandXML" priority="4" />
+      <Item value="GetCommandByType" priority="0" />
+      <Item value="CommandXMLToCommandObject" priority="0" />
+      <Item value="GetRequestByType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Commands.CommandType">
+      <Item value="Import" priority="2" />
+      <Item value="Log" priority="2" />
+      <Item value="Version" priority="2" />
+      <Item value="VerifyAuth" priority="2" />
+      <Item value="CheckOut" priority="2" />
+      <Item value="ValidRequestList" priority="0" />
+      <Item value="Add" priority="0" />
+      <Item value="ValidRequestsList" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Xml.Schema.XmlSchema">
+      <Item value="Read" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Schema.ValidationEventArgs">
+      <Item value="Message" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.CommandType">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Activator">
+      <Item value="CreateInstance" priority="7" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.ResponseType">
+      <Item value="EMessage" priority="0" />
+      <Item value="Auth" priority="2" />
+      <Item value="MessageTag" priority="1" />
+      <Item value="ModTime" priority="0" />
+      <Item value="ValidRequests" priority="0" />
+      <Item value="Error" priority="0" />
+      <Item value="Ok" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.ResponseType">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.PServerFactory">
+      <Item value="CreateResponse" priority="0" />
+      <Item value="CreateRequest" priority="17" />
+      <Item value="CreateCommand" priority="5" />
+      <Item value="ResponseXElementToIResponse" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Runtime.Remoting.ObjectHandle">
+      <Item value="Unwrap" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.RequestType">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Reflection.BindingFlags">
+      <Item value="CreateInstance" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Type">
+      <Item value="GetType" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.RequestType">
+      <Item value="Add" priority="0" />
+      <Item value="Auth" priority="3" />
+      <Item value="Admin" priority="1" />
+      <Item value="Annotate" priority="0" />
+      <Item value="CheckOut" priority="1" />
+      <Item value="CheckIn" priority="0" />
+      <Item value="CheckinTime" priority="0" />
+      <Item value="Diff" priority="0" />
+      <Item value="Directory" priority="0" />
+      <Item value="Editors" priority="0" />
+      <Item value="EmptyConflicts" priority="0" />
+      <Item value="Entry" priority="0" />
+      <Item value="ExpandModules" priority="0" />
+      <Item value="Export" priority="0" />
+      <Item value="GlobalOption" priority="0" />
+      <Item value="GssapiAuthenticate" priority="0" />
+      <Item value="Import" priority="0" />
+      <Item value="Kopt" priority="0" />
+      <Item value="MaxDot" priority="0" />
+      <Item value="Modified" priority="0" />
+      <Item value="Noop" priority="0" />
+      <Item value="Questionable" priority="0" />
+      <Item value="RAnnotate" priority="0" />
+      <Item value="Release" priority="0" />
+      <Item value="ValidRequests" priority="0" />
+      <Item value="ValidResponses" priority="0" />
+      <Item value="VerifyAuth" priority="0" />
+      <Item value="Version" priority="0" />
+      <Item value="WatchAdd" priority="0" />
+      <Item value="Watchers" priority="0" />
+      <Item value="WatchOff" priority="0" />
+      <Item value="WatchOn" priority="0" />
+      <Item value="WatchRemove" priority="0" />
+      <Item value="WrapperSendmeRcsOptions" priority="0" />
+      <Item value="Repository" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CommandType">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.CommandType">
+      <Item value="CheckOut" priority="1" />
+      <Item value="Import" priority="0" />
+      <Item value="ValidRequestsList" priority="1" />
+      <Item value="VerifyAuth" priority="1" />
+      <Item value="Version" priority="1" />
+      <Item value="Add" priority="0" />
+      <Item value="Export" priority="0" />
+      <Item value="Log" priority="0" />
+      <Item value="Diff" priority="0" />
+      <Item value="Tag" priority="1" />
+      <Item value="RLog" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.AuthRequest">
+      <Item value="Responses" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Tests.TestSetup.TestStrings">
+      <Item value="UpdatedResponseXML" priority="0" />
+      <Item value="AuthRequestNoResponseXML" priority="0" />
+      <Item value="AuthCheckedInResponses" priority="0" />
+      <Item value="CommandXML" priority="1" />
+      <Item value="AuthResponseXML" priority="0" />
+      <Item value="XMLWithTargetNamespace" priority="0" />
+      <Item value="CheckedInResponse" priority="1" />
+      <Item value="CheckOutRequest" priority="0" />
+      <Item value="CommandXMLFileWithManyItems" priority="0" />
+      <Item value="MTResponse" priority="0" />
+      <Item value="AuthRequestXML" priority="0" />
+      <Item value="CommandWithCommandItemsXML1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.CheckOutCommand">
+      <Item value="GetXDocument" priority="0" />
+      <Item value="RequiredRequests" priority="1" />
+      <Item value="Items" priority="1" />
+      <Item value="Requests" priority="1" />
+      <Item value="CheckoutModule" priority="1" />
+      <Item value="SaveCVSFolder" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.ExportCommand">
+      <Item value="GetExportDate" priority="0" />
+      <Item value="PostExecute" priority="0" />
+      <Item value="FileGroups" priority="0" />
+      <Item value="ExportDate" priority="1" />
+      <Item value="ExportType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.IMessageResponse">
+      <Item value="Lines" priority="3" />
+      <Item value="Display" priority="0" />
+      <Item value="Process" priority="2" />
+      <Item value="Message" priority="1" />
+      <Item value="Processed" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Int32">
+      <Item value="CompareTo" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.IFileResponseGroup">
+      <Item value="ModTime" priority="2" />
+      <Item value="MT" priority="3" />
+      <Item value="FileResponse" priority="7" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.ResponseProcessor">
+      <Item value="CreateFileGroupsFromResponses" priority="1" />
+      <Item value="GetParentFolder" priority="2" />
+      <Item value="AddFolderToStructure" priority="2" />
+      <Item value="AddFile" priority="0" />
+      <Item value="FindModuleFolder" priority="5" />
+      <Item value="GetModuleFolder" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Requests.ExportRequest">
+      <Item value="Responses" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CVS.IRoot">
+      <Item value="Repository" priority="12" />
+      <Item value="Module" priority="14" />
+      <Item value="RootFolder" priority="3" />
+      <Item value="WorkingDirectory" priority="6" />
+      <Item value="CVSConnectionString" priority="1" />
+      <Item value="Host" priority="0" />
+      <Item value="Port" priority="0" />
+      <Item value="Username" priority="0" />
+      <Item value="Password" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Connection.PServerConnection">
+      <Item value="GetResponse" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Responses.ValidRequestsResponse">
+      <Item value="Process" priority="1" />
+      <Item value="Initialize" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.ExitCode">
+      <Item value="Failed" priority="3" />
+      <Item value="Succeeded" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.CommandBase">
+      <Item value="PostProcessRequest" priority="0" />
+      <Item value="PostRequest" priority="1" />
+      <Item value="AfterExecute" priority="0" />
+      <Item value="RequiredRequests" priority="0" />
+      <Item value="Responses" priority="2" />
+      <Item value="RemoveProcessedResponses" priority="0" />
+      <Item value="ProcessResponse" priority="0" />
+      <Item value="DoRequest" priority="0" />
+      <Item value="Initialize" priority="0" />
+      <Item value="Items" priority="0" />
+      <Item value="ProcessMessages" priority="0" />
+      <Item value="UserMessages" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.ExitCode">
+      <Item value="Succeeded" priority="1" />
+      <Item value="Failed" priority="0" />
+      <Item value="Unknown" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Specialized.NameValueCollection">
+      <Item value="Get" priority="0" />
+      <Item value="Remove" priority="0" />
+      <Item value="AllKeys" priority="0" />
+      <Item value="Set" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Connection.ICVSTcpClient">
+      <Item value="Write" priority="2" />
+      <Item value="ReadBytes" priority="0" />
+      <Item value="Close" priority="0" />
+      <Item value="ReadLine" priority="9" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Connection.CVSTcpClient">
+      <Item value="TestTest" priority="0" />
+      <Item value="ReadLine" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@NUnit.Framework.Text">
+      <Item value="StartsWith" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Diagnostics.ProcessStartInfo">
+      <Item value="WindowStyle" priority="1" />
+      <Item value="UseShellExecute" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Diagnostics.ProcessWindowStyle">
+      <Item value="Maximized" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.TagCommand">
+      <Item value="Execute" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.RTagCommand">
+      <Item value="DeleteTag" priority="0" />
+      <Item value="Execute" priority="0" />
+      <Item value="Tag" priority="1" />
+      <Item value="DoDelete" priority="0" />
+      <Item value="TagAction" priority="0" />
+      <Item value="Initialize" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Commands.ExportType">
+      <Item value="Date" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.Commands.TagAction">
+      <Item value="Delete" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.TagAction">
+      <Item value="Branch" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.GlobalOption">
+      <Item value="GlobalQuiet" priority="0" />
+      <Item value="Quiet" priority="4" />
+      <Item value="ReallyQuite" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.CommandOption">
+      <Item value="ToString" priority="1" />
+      <Item value="ToRequestString" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@PServerClient.CommandOption">
+      <Item value="CommandRecursive" priority="0" />
+      <Item value="Local" priority="1" />
+      <Item value="DateSpec" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.RLogCommand">
+      <Item value="NameOnlyOption" priority="0" />
+      <Item value="LocalOption" priority="0" />
+      <Item value="Repository" priority="0" />
+      <Item value="File" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.GlobalOption">
+      <Item value="CompareTo" priority="0" />
+      <Item value="ToString" priority="0" />
+      <Item value="ToRequestString" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.AuthStatus">
+      <Item value="Authenticated" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:PServerClient.Commands.AddCommand">
+      <Item value="Initialize" priority="0" />
+      <Item value="Requests" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Configuration.AppSettingsSection">
+      <Item value="Settings" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Configuration.KeyValueConfigurationElement">
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Connection/f:IConnection.cs" caret="1309" fromTop="26" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Connection/f:PServerConnection.cs" caret="353" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:PServerConnectionTests.cs" caret="9999" fromTop="31" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:TestSetup/f:ExportCommandWithEMessages.xml" caret="6109" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:TestHelperTest.cs" caret="10616" fromTop="10" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:CvsRootTests.cs" caret="1896" fromTop="43" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Responses/f:FileResponseBase.cs" caret="2672" fromTop="25" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:PServerFactoryTest.cs" caret="15084" fromTop="3" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/f:ResponseHelper.cs" caret="0" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:RequestTests.cs" caret="0" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:ResponseProcessorTest.cs" caret="0" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:ResponseTests.cs" caret="0" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:PServerHelperTest.cs" caret="7646" fromTop="41" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:ResponseHelperTest.cs" caret="4557" fromTop="25" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:ExportCommandTest.cs" caret="0" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:UpdateCommandTest.cs" caret="0" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:ValidRequestsListCommandTest.cs" caret="530" fromTop="21" />
+      <File id="4B4F7BC6-EA1F-4D7B-8C81-3DABEBC8571D/f:CheckoutCommandTest.cs" caret="225" fromTop="8" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:AddCommand.cs" caret="1210" fromTop="42" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:AddCommandTest.cs" caret="1142" fromTop="39" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CheckOutCommand.cs" caret="1701" fromTop="16" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:ReceiveFileCommandBase.cs" caret="1003" fromTop="28" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:ExportCommand.cs" caret="2535" fromTop="17" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CheckoutCommandTest.cs" caret="2027" fromTop="62" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:RLogCommand.cs" caret="1655" fromTop="18" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/f:App.config" caret="509" fromTop="11" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/f:PServerHelper.cs" caret="13016" fromTop="19" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="10955" fromTop="18" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="595" fromTop="0" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/f:PServerFactory.cs" caret="0" fromTop="0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="4515" fromTop="44" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="885" fromTop="13" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="13165" fromTop="25" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="4836" fromTop="32" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="5452" fromTop="24" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="5952" fromTop="37" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="6293" fromTop="23" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="6797" fromTop="36" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="11332" fromTop="32" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="14080" fromTop="32" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="14374" fromTop="38" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="13658" fromTop="7" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="13986" fromTop="18" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="14343" fromTop="14" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="14338" fromTop="43" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="1313" fromTop="34" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="2204" fromTop="34" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="1873" fromTop="28" />
+      <File id="CDB3E7C6-94F2-43FA-93A2-D075D4FD8464/d:Commands/f:CommandBase.cs" caret="12921" fromTop="0" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="1793" fromTop="23" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="1793" fromTop="14" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="1793" fromTop="9" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="1780" fromTop="10" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="2314" fromTop="29" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="2481" fromTop="32" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="2851" fromTop="42" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="3078" fromTop="37" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="3715" fromTop="45" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="10902" fromTop="17" />
+      <File id="ED84E622-B562-4B69-A08A-1804E29E191B/d:Commands/f:CommandBaseTest.cs" caret="35" fromTop="1" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files\NUnit 2.5.2\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

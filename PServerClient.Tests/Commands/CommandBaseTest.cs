@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Configuration;
 using NUnit.Framework;
 using PServerClient.Commands;
 using PServerClient.Connection;
